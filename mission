@@ -1421,7 +1421,7 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 255.00185126602,
+                                            ["ETA"] = 249.32763930841,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 7315.2,
@@ -1440,8 +1440,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -177078.89647699,
-                                            ["y"] = -246554.08017738,
+                                            ["x"] = -176576.40051303,
+                                            ["y"] = -244299.52515251,
                                         }, -- end of [2]
                                     }, -- end of ["points"]
                                 }, -- end of ["route"]
@@ -1464,7 +1464,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Shell11",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = -2.7697873097423,
+                                        ["heading"] = -2.8046064012222,
                                         ["livery_id"] = "100th arw",
                                         ["name"] = "SHELL-1",
                                         ["onboard_num"] = "012",
@@ -1478,7 +1478,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = 2.7697873097423,
+                                        ["psi"] = 2.8046064012222,
                                         ["skill"] = "High",
                                         ["speed"] = 229.19444444444,
                                         ["type"] = "KC135MPRS",
@@ -32745,7 +32745,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 131506,
+    ["currentKey"] = 132872,
     ["date"] =
     {
         ["Day"] = 29,
@@ -41182,8 +41182,8 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -102215.25008594,
-        ["centerY"] = -319523.90618158,
+        ["centerX"] = -129098.71740452,
+        ["centerY"] = -277102.28802748,
         ["zoom"] = 863230.6019729,
     }, -- end of ["map"]
     ["maxDictId"] = 5,
