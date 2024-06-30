@@ -32745,7 +32745,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 134238,
+    ["currentKey"] = 135604,
     ["date"] =
     {
         ["Day"] = 29,
@@ -33601,9 +33601,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -122953.14375478,
                         ["mapY"] = -320975.62714816,
-                        ["name"] = "Range 13",
+                        ["name"] = "Range 14",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 13",
+                        ["text"] = "Range 14",
                         ["visible"] = true,
                     }, -- end of [19]
                     [20] =
@@ -33649,9 +33649,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = 71601.041087604,
                         ["mapY"] = -633602.64395644,
-                        ["name"] = "Range 32",
+                        ["name"] = "Range 33",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 32",
+                        ["text"] = "Range 33",
                         ["visible"] = true,
                     }, -- end of [22]
                     [23] =
@@ -33665,9 +33665,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -41563.689426834,
                         ["mapY"] = -767342.78001896,
-                        ["name"] = "Range 31",
+                        ["name"] = "Range 32",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 31",
+                        ["text"] = "Range 32",
                         ["visible"] = true,
                     }, -- end of [23]
                     [24] =
@@ -33681,9 +33681,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -7968.667658099,
                         ["mapY"] = -318895.59739185,
-                        ["name"] = "Range 15",
+                        ["name"] = "Range 16",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 15",
+                        ["text"] = "Range 16",
                         ["visible"] = true,
                     }, -- end of [24]
                     [25] =
@@ -33697,9 +33697,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -248866.30568241,
                         ["mapY"] = -444961.36582572,
-                        ["name"] = "Range 23",
+                        ["name"] = "Range 24",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 23",
+                        ["text"] = "Range 24",
                         ["visible"] = true,
                     }, -- end of [25]
                     [26] =
@@ -33730,9 +33730,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = 76869.449215304,
                         ["mapY"] = -332550.83912654,
-                        ["name"] = "Range 16",
+                        ["name"] = "Range 17",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 16",
+                        ["text"] = "Range 17",
                         ["visible"] = true,
                     }, -- end of [27]
                     [28] =
@@ -33746,9 +33746,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = 27276.169495985,
                         ["mapY"] = -391955.58734303,
-                        ["name"] = "Range 17",
+                        ["name"] = "Range 18",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 17",
+                        ["text"] = "Range 18",
                         ["visible"] = true,
                     }, -- end of [28]
                     [29] =
@@ -33762,9 +33762,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -85227.594156149,
                         ["mapY"] = -14816.387615292,
-                        ["name"] = "Range 21",
+                        ["name"] = "Range 22",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 21",
+                        ["text"] = "Range 22",
                         ["visible"] = true,
                     }, -- end of [29]
                     [30] =
@@ -33778,9 +33778,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -232125.91563375,
                         ["mapY"] = -75958.344941743,
-                        ["name"] = "Range 22",
+                        ["name"] = "Range 23",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 22",
+                        ["text"] = "Range 23",
                         ["visible"] = true,
                     }, -- end of [30]
                     [31] =
@@ -33794,9 +33794,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = 184738.03752941,
                         ["mapY"] = -85562.010126597,
-                        ["name"] = "Range 20",
+                        ["name"] = "Range 21",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 20",
+                        ["text"] = "Range 21",
                         ["visible"] = true,
                     }, -- end of [31]
                     [32] =
@@ -33810,9 +33810,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -45675.756446151,
                         ["mapY"] = -340571.10532327,
-                        ["name"] = "Range 14",
+                        ["name"] = "Range 15",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 14\
+                        ["text"] = "Range 15\
 ",
                         ["visible"] = true,
                     }, -- end of [32]
@@ -33827,9 +33827,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -108163.56951439,
                         ["mapY"] = -416126.84673194,
-                        ["name"] = "Range 10-1",
+                        ["name"] = "Range 11",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 10",
+                        ["text"] = "Range 11",
                         ["visible"] = true,
                     }, -- end of [33]
                     [34] =
@@ -33843,9 +33843,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -113238.34380949,
                         ["mapY"] = -362625.53845716,
-                        ["name"] = "Range 12",
+                        ["name"] = "Range 13",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 12",
+                        ["text"] = "Range 13",
                         ["visible"] = true,
                     }, -- end of [34]
                     [35] =
@@ -33875,9 +33875,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -198045.06320039,
                         ["mapY"] = -774923.1925893,
-                        ["name"] = "Range 30",
+                        ["name"] = "Range 31",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 30\
+                        ["text"] = "Range 31\
 ",
                         ["visible"] = true,
                     }, -- end of [36]
@@ -34142,9 +34142,9 @@ mission =
                         ["layerName"] = "Common",
                         ["mapX"] = -151736.27880692,
                         ["mapY"] = -392292.51560633,
-                        ["name"] = "Range 11-1",
+                        ["name"] = "Range 12",
                         ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 11",
+                        ["text"] = "Range 12",
                         ["visible"] = true,
                     }, -- end of [50]
                 }, -- end of ["objects"]
@@ -41182,9 +41182,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -123685.9815968,
-        ["centerY"] = -247603.53781519,
-        ["zoom"] = 509729.03815898,
+        ["centerX"] = -37509.848524983,
+        ["centerY"] = -274450.69174129,
+        ["zoom"] = 1040120.260769,
     }, -- end of ["map"]
     ["maxDictId"] = 5,
     ["pictureFileNameB"] =
