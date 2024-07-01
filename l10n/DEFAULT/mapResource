@@ -1,3 +1,6 @@
 mapResource = 
 {
+    ["ResKey_Action_6"] = "Moose.lua",
+    ["ResKey_Action_20"] = "TRMA_Basic_Ranges.lua",
+    ["ResKey_Action_21"] = "TRMA_MISC.lua",
 } -- end of mapResource

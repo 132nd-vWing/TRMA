@@ -14085,7 +14085,7 @@ mission =
                             {
                                 ["groupId"] = 18,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-4",
+                                ["name"] = "Range11_Strafepit_2",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14107,6 +14107,24 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -14132,7 +14150,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0.87266462599716,
-                                        ["name"] = "Ground-4-1",
+                                        ["name"] = "Range11_Strafepit_2",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Strafe_Pit",
@@ -14149,7 +14167,7 @@ mission =
                             {
                                 ["groupId"] = 19,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-5",
+                                ["name"] = "Range_11_Circle_South",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14159,7 +14177,7 @@ mission =
                                             ["ETA"] = 0,
                                             ["ETA_locked"] = true,
                                             ["action"] = "Off Road",
-                                            ["alt"] = 4,
+                                            ["alt"] = 5,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
                                             ["speed"] = 0,
@@ -14171,12 +14189,30 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -101466.01456184,
-                                            ["y"] = -391637.58625549,
+                                            ["x"] = -101473.21407107,
+                                            ["y"] = -391645.13163117,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["spans"] =
@@ -14196,24 +14232,24 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0,
-                                        ["name"] = "Ground-5-1",
+                                        ["name"] = "Range_11_Circle_South",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Conventional_Circle_A",
                                         ["unitId"] = 60,
-                                        ["x"] = -101466.01456184,
-                                        ["y"] = -391637.58625549,
+                                        ["x"] = -101473.21407107,
+                                        ["y"] = -391645.13163117,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -101466.01456184,
-                                ["y"] = -391637.58625549,
+                                ["x"] = -101473.21407107,
+                                ["y"] = -391645.13163117,
                             }, -- end of [2]
                             [3] =
                             {
                                 ["groupId"] = 20,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-6",
+                                ["name"] = "Range_11_Circle_North",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14235,6 +14271,24 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -14260,7 +14314,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0,
-                                        ["name"] = "Ground-6-1",
+                                        ["name"] = "Range_11_Circle_North",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Conventional_Circle_A",
@@ -14277,7 +14331,7 @@ mission =
                             {
                                 ["groupId"] = 21,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-7",
+                                ["name"] = "Range11_Strafepit_1",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14299,6 +14353,24 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -14324,7 +14396,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0.87266462599716,
-                                        ["name"] = "Ground-7-1",
+                                        ["name"] = "Range11_Strafepit_1",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Strafe_Pit",
@@ -14341,7 +14413,7 @@ mission =
                             {
                                 ["groupId"] = 22,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-8",
+                                ["name"] = "Range11_Strafepit_3",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14363,6 +14435,24 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -14388,7 +14478,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 5.235987755983,
-                                        ["name"] = "Ground-8-1",
+                                        ["name"] = "Range11_Strafepit_3",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Strafe_Pit",
@@ -14405,7 +14495,7 @@ mission =
                             {
                                 ["groupId"] = 23,
                                 ["hidden"] = false,
-                                ["name"] = "Ground-9",
+                                ["name"] = "Range11_Strafepit_4",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14427,12 +14517,30 @@ mission =
                                                 {
                                                     ["tasks"] =
                                                     {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -100648.74700979,
-                                            ["y"] = -392199.83381672,
+                                            ["x"] = -100662.26038384,
+                                            ["y"] = -392210.19625136,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["spans"] =
@@ -14452,18 +14560,18 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 5.235987755983,
-                                        ["name"] = "Ground-9-1",
+                                        ["name"] = "Range11_Strafepit_4",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "Average",
                                         ["type"] = "Strafe_Pit",
                                         ["unitId"] = 64,
-                                        ["x"] = -100648.74700979,
-                                        ["y"] = -392199.83381672,
+                                        ["x"] = -100662.26038384,
+                                        ["y"] = -392210.19625136,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -100648.74700979,
-                                ["y"] = -392199.83381672,
+                                ["x"] = -100662.26038384,
+                                ["y"] = -392210.19625136,
                             }, -- end of [6]
                             [7] =
                             {
@@ -14755,6 +14863,196 @@ mission =
                                 ["x"] = -52994.488130058,
                                 ["y"] = -335795.28537817,
                             }, -- end of [9]
+                            [10] =
+                            {
+                                ["groupId"] = 181,
+                                ["hidden"] = false,
+                                ["name"] = "R1_foul line_East",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 9,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -100672.15311089,
+                                            ["y"] = -392007.75202899,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -100672.15311089,
+                                                ["y"] = -392007.75202899,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -100672.15311089,
+                                                ["y"] = -392007.75202899,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.0420352248334,
+                                        ["name"] = "R1_foul line_East",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "Average",
+                                        ["type"] = "Foul_Line",
+                                        ["unitId"] = 466,
+                                        ["x"] = -100672.15311089,
+                                        ["y"] = -392007.75202899,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -100672.15311089,
+                                ["y"] = -392007.75202899,
+                            }, -- end of [10]
+                            [11] =
+                            {
+                                ["groupId"] = 182,
+                                ["hidden"] = false,
+                                ["name"] = "R1_foul line_West",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 2,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -100183.47556532,
+                                            ["y"] = -392933.77574294,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -100183.47556532,
+                                                ["y"] = -392933.77574294,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -100183.47556532,
+                                                ["y"] = -392933.77574294,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.87266462599716,
+                                        ["name"] = "R1_foul line_West",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "Average",
+                                        ["type"] = "Foul_Line",
+                                        ["unitId"] = 467,
+                                        ["x"] = -100183.47556532,
+                                        ["y"] = -392933.77574294,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -100183.47556532,
+                                ["y"] = -392933.77574294,
+                            }, -- end of [11]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -32745,7 +33043,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 135604,
+    ["currentKey"] = 149351,
     ["date"] =
     {
         ["Day"] = 29,
@@ -41182,11 +41480,11 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -37509.848524983,
-        ["centerY"] = -274450.69174129,
-        ["zoom"] = 1040120.260769,
+        ["centerX"] = -100572.10819666,
+        ["centerY"] = -391882.44509081,
+        ["zoom"] = 7455.5777199717,
     }, -- end of ["map"]
-    ["maxDictId"] = 5,
+    ["maxDictId"] = 21,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -41247,13 +41545,19 @@ mission =
     {
         ["actions"] =
         {
-            [1] = "a_group_off(85);a_group_off(86);a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(99);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(105);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(143);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[1]=nil;",
-            [2] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[2]=nil;",
+            [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_6\"));",
+            [2] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_21\")); mission.trig.func[2]=nil;",
+            [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_20\")); mission.trig.func[3]=nil;",
+            [4] = "a_group_off(85);a_group_off(86);a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(99);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(105);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(143);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[4]=nil;",
+            [5] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[5]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
-            [1] = "return(c_time_after(10) )",
-            [2] = "return(c_time_after(13) )",
+            [1] = "return(true)",
+            [2] = "return(c_time_after(1) )",
+            [3] = "return(c_time_after(2) )",
+            [4] = "return(c_time_after(10) )",
+            [5] = "return(c_time_after(13) )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -41268,14 +41572,20 @@ mission =
         {
             [1] = true,
             [2] = true,
+            [3] = true,
+            [4] = true,
+            [5] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
-            [1] = "if mission.trig.conditions[1]() then mission.trig.actions[1]() end",
             [2] = "if mission.trig.conditions[2]() then mission.trig.actions[2]() end",
+            [3] = "if mission.trig.conditions[3]() then mission.trig.actions[3]() end",
+            [4] = "if mission.trig.conditions[4]() then mission.trig.actions[4]() end",
+            [5] = "if mission.trig.conditions[5]() then mission.trig.actions[5]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
+            [1] = "if mission.trig.conditions[1]() then mission.trig.actions[1]() end",
         }, -- end of ["funcStartup"]
     }, -- end of ["trig"]
     ["triggers"] =
@@ -41287,6 +41597,73 @@ mission =
     ["trigrules"] =
     {
         [1] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["file"] = "ResKey_Action_6",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["comment"] = "MOOSE",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerStart",
+            ["rules"] =
+            {
+            }, -- end of ["rules"]
+        }, -- end of [1]
+        [2] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["file"] = "ResKey_Action_21",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["comment"] = "TRMA_MISC",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 1,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [2]
+        [3] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["file"] = "ResKey_Action_20",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["comment"] = "TRMA_Basic_Ranges",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 2,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [3]
+        [4] =
         {
             ["actions"] =
             {
@@ -41505,8 +41882,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [1]
-        [2] =
+        }, -- end of [4]
+        [5] =
         {
             ["actions"] =
             {
@@ -41550,7 +41927,7 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [2]
+        }, -- end of [5]
     }, -- end of ["trigrules"]
     ["version"] = 22,
     ["weather"] =
