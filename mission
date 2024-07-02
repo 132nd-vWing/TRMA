@@ -4786,7 +4786,7 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 244.70909256648,
+                                            ["ETA"] = 295.10841772503,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -4805,12 +4805,12 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -80180.981054665,
-                                            ["y"] = -290756.54604013,
+                                            ["x"] = -84042.465579245,
+                                            ["y"] = -284429.08808574,
                                         }, -- end of [2]
                                         [3] =
                                         {
-                                            ["ETA"] = 675.98250076795,
+                                            ["ETA"] = 650.48998157163,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -4829,8 +4829,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -133351.1082052,
-                                            ["y"] = -289288.60556775,
+                                            ["x"] = -130954.43231051,
+                                            ["y"] = -285583.0454406,
                                         }, -- end of [3]
                                         [4] =
                                         {
@@ -4905,7 +4905,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Boar11",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = 1.4787433802965,
+                                        ["heading"] = 1.6006709486494,
                                         ["livery_id"] = "104th fs maryland ang, baltimore (md)",
                                         ["name"] = "Range 13-1",
                                         ["onboard_num"] = "021",
@@ -4920,7 +4920,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = -1.4787433802965,
+                                        ["psi"] = -1.6006709486494,
                                         ["skill"] = "High",
                                         ["speed"] = 123.33333333333,
                                         ["type"] = "A-10A",
@@ -5616,7 +5616,7 @@ mission =
                                         }, -- end of [5]
                                         [6] =
                                         {
-                                            ["ETA"] = 5593.7402203223,
+                                            ["ETA"] = 6567.6939953829,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -7770,7 +7770,7 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 843.48132326259,
+                                            ["ETA"] = 1084.6078786311,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -7789,12 +7789,12 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = 88362.946665354,
-                                            ["y"] = -439008.24375578,
+                                            ["x"] = 117824.0785285,
+                                            ["y"] = -434888.09457494,
                                         }, -- end of [2]
                                         [3] =
                                         {
-                                            ["ETA"] = 3202.3199790299,
+                                            ["ETA"] = 3426.4073941319,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -7813,8 +7813,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = 145417.726204,
-                                            ["y"] = -724282.14144901,
+                                            ["x"] = 171257.11000661,
+                                            ["y"] = -718724.35778666,
                                         }, -- end of [3]
                                         [4] =
                                         {
@@ -7889,7 +7889,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Pontiac21",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = 0.166684325202,
+                                        ["heading"] = 0.16051723693995,
                                         ["livery_id"] = "104th fs maryland ang, baltimore (md)",
                                         ["name"] = "Range 32-1",
                                         ["onboard_num"] = "025",
@@ -7904,7 +7904,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = -0.166684325202,
+                                        ["psi"] = -0.16051723693995,
                                         ["skill"] = "High",
                                         ["speed"] = 123.33333333333,
                                         ["type"] = "A-10A",
@@ -13818,7 +13818,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Arco21",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = 1.6480196863158,
+                                        ["heading"] = 1.6480196863157,
                                         ["livery_id"] = "Standard USAF",
                                         ["name"] = "AR202 #IFF:5202FR",
                                         ["onboard_num"] = "202",
@@ -13832,7 +13832,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = -1.6480196863158,
+                                        ["psi"] = -1.6480196863157,
                                         ["skill"] = "High",
                                         ["speed"] = 209.92099074795,
                                         ["type"] = "KC-135",
@@ -14616,7 +14616,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Shell31",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = 1.5616222722498,
+                                        ["heading"] = 1.5616222722497,
                                         ["livery_id"] = "100th arw",
                                         ["name"] = "AR303 #IFF:5303FR",
                                         ["onboard_num"] = "303",
@@ -14630,7 +14630,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = -1.5616222722498,
+                                        ["psi"] = -1.5616222722497,
                                         ["skill"] = "High",
                                         ["speed"] = 229.19444444444,
                                         ["type"] = "KC135MPRS",
@@ -15901,6 +15901,102 @@ mission =
                                 ["x"] = -100347.39288063,
                                 ["y"] = -393155.55162588,
                             }, -- end of [11]
+                            [12] =
+                            {
+                                ["groupId"] = 192,
+                                ["hidden"] = false,
+                                ["name"] = "Test CAS",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 96,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = true,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "EPLRS",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["groupId"] = 4,
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -234331.69025235,
+                                            ["y"] = -93910.168152744,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -234331.69025235,
+                                                ["y"] = -93910.168152744,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -234331.69025235,
+                                                ["y"] = -93910.168152744,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.3973334939483,
+                                        ["name"] = "Test ins camp-1-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "Average",
+                                        ["type"] = "InsurgentPickUp",
+                                        ["unitId"] = 477,
+                                        ["x"] = -234331.69025235,
+                                        ["y"] = -93910.168152744,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -234331.69025235,
+                                ["y"] = -93910.168152744,
+                            }, -- end of [12]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -21753,7 +21849,7 @@ mission =
                                             ["ETA"] = 0,
                                             ["ETA_locked"] = true,
                                             ["action"] = "Off Road",
-                                            ["alt"] = 12,
+                                            ["alt"] = 22,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
                                             ["speed"] = 0,
@@ -21769,8 +21865,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -291730.20792128,
-                                            ["y"] = -497432.0048173,
+                                            ["x"] = -292053.33921509,
+                                            ["y"] = -497414.13367347,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["spans"] =
@@ -21793,8 +21889,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 40B6M tr",
                                         ["unitId"] = 7,
-                                        ["x"] = -291730.20792128,
-                                        ["y"] = -497432.0048173,
+                                        ["x"] = -292053.33921509,
+                                        ["y"] = -497414.13367347,
                                     }, -- end of [1]
                                     [2] =
                                     {
@@ -21805,8 +21901,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 40B6MD sr",
                                         ["unitId"] = 8,
-                                        ["x"] = -292375.1477178,
-                                        ["y"] = -496705.98233933,
+                                        ["x"] = -292698.27901161,
+                                        ["y"] = -496688.1111955,
                                     }, -- end of [2]
                                     [3] =
                                     {
@@ -21817,8 +21913,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 54K6 cp",
                                         ["unitId"] = 9,
-                                        ["x"] = -292317.882348,
-                                        ["y"] = -497371.50892043,
+                                        ["x"] = -292639.45270696,
+                                        ["y"] = -497352.51113971,
                                     }, -- end of [3]
                                     [4] =
                                     {
@@ -21829,8 +21925,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 64H6E sr",
                                         ["unitId"] = 10,
-                                        ["x"] = -292585.79274841,
-                                        ["y"] = -497371.50892043,
+                                        ["x"] = -292908.92404222,
+                                        ["y"] = -497353.6377766,
                                     }, -- end of [4]
                                     [5] =
                                     {
@@ -21841,8 +21937,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85C ln",
                                         ["unitId"] = 11,
-                                        ["x"] = -292461.57042762,
-                                        ["y"] = -496783.76277816,
+                                        ["x"] = -292784.70172143,
+                                        ["y"] = -496765.89163433,
                                     }, -- end of [5]
                                     [6] =
                                     {
@@ -21853,8 +21949,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85D ln",
                                         ["unitId"] = 12,
-                                        ["x"] = -291892.71696607,
-                                        ["y"] = -496605.10459752,
+                                        ["x"] = -292215.84825988,
+                                        ["y"] = -496587.23345369,
                                     }, -- end of [6]
                                     [7] =
                                     {
@@ -21865,8 +21961,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85D ln",
                                         ["unitId"] = 13,
-                                        ["x"] = -291647.66030506,
-                                        ["y"] = -497450.23209379,
+                                        ["x"] = -291970.79159887,
+                                        ["y"] = -497432.36094996,
                                     }, -- end of [7]
                                     [8] =
                                     {
@@ -21877,8 +21973,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85C ln",
                                         ["unitId"] = 14,
-                                        ["x"] = -291735.6196652,
-                                        ["y"] = -496878.82775895,
+                                        ["x"] = -292058.75095901,
+                                        ["y"] = -496860.95661512,
                                     }, -- end of [8]
                                     [9] =
                                     {
@@ -21889,8 +21985,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85D ln",
                                         ["unitId"] = 15,
-                                        ["x"] = -291744.26193618,
-                                        ["y"] = -496801.04732012,
+                                        ["x"] = -292067.39322999,
+                                        ["y"] = -496783.17617629,
                                     }, -- end of [9]
                                     [10] =
                                     {
@@ -21901,8 +21997,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "S-300PS 5P85D ln",
                                         ["unitId"] = 16,
-                                        ["x"] = -291812.14760624,
-                                        ["y"] = -497449.99936099,
+                                        ["x"] = -292135.27890005,
+                                        ["y"] = -497432.12821716,
                                     }, -- end of [10]
                                     [11] =
                                     {
@@ -21913,8 +22009,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "generator_5i57",
                                         ["unitId"] = 17,
-                                        ["x"] = -291739.29379896,
-                                        ["y"] = -497244.32768221,
+                                        ["x"] = -292062.42509277,
+                                        ["y"] = -497226.45653838,
                                     }, -- end of [11]
                                     [12] =
                                     {
@@ -21925,8 +22021,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "generator_5i57",
                                         ["unitId"] = 18,
-                                        ["x"] = -291729.37031905,
-                                        ["y"] = -497244.48670438,
+                                        ["x"] = -292052.50161286,
+                                        ["y"] = -497226.61556055,
                                     }, -- end of [12]
                                     [13] =
                                     {
@@ -21937,8 +22033,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-5",
                                         ["unitId"] = 19,
-                                        ["x"] = -291790.03174026,
-                                        ["y"] = -497263.37013242,
+                                        ["x"] = -292113.16303407,
+                                        ["y"] = -497245.49898859,
                                     }, -- end of [13]
                                     [14] =
                                     {
@@ -21949,8 +22045,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-5",
                                         ["unitId"] = 20,
-                                        ["x"] = -291790.03174026,
-                                        ["y"] = -497252.73938292,
+                                        ["x"] = -292113.16303407,
+                                        ["y"] = -497234.86823909,
                                     }, -- end of [14]
                                     [15] =
                                     {
@@ -21961,8 +22057,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "GAZ-66",
                                         ["unitId"] = 21,
-                                        ["x"] = -291761.54647814,
-                                        ["y"] = -497008.46182367,
+                                        ["x"] = -292084.67777195,
+                                        ["y"] = -496990.59067984,
                                     }, -- end of [15]
                                     [16] =
                                     {
@@ -21973,8 +22069,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-60_Maz",
                                         ["unitId"] = 22,
-                                        ["x"] = -291663.45656556,
-                                        ["y"] = -497280.6488964,
+                                        ["x"] = -291986.58785937,
+                                        ["y"] = -497262.77775257,
                                     }, -- end of [16]
                                     [17] =
                                     {
@@ -21985,8 +22081,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-60_Maz",
                                         ["unitId"] = 23,
-                                        ["x"] = -291670.56865209,
-                                        ["y"] = -497273.53680987,
+                                        ["x"] = -291993.6999459,
+                                        ["y"] = -497255.66566604,
                                     }, -- end of [17]
                                     [18] =
                                     {
@@ -21997,13 +22093,13 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "KAMAZ Truck",
                                         ["unitId"] = 24,
-                                        ["x"] = -291746.53514889,
-                                        ["y"] = -497494.47769197,
+                                        ["x"] = -292069.6664427,
+                                        ["y"] = -497476.60654814,
                                     }, -- end of [18]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -291730.20792128,
-                                ["y"] = -497432.0048173,
+                                ["x"] = -292053.33921509,
+                                ["y"] = -497414.13367347,
                             }, -- end of [1]
                             [2] =
                             {
@@ -33917,6 +34013,70 @@ mission =
                                 ["x"] = -68032.353590611,
                                 ["y"] = -350265.65312023,
                             }, -- end of [4]
+                            [5] =
+                            {
+                                ["groupId"] = 191,
+                                ["hidden"] = false,
+                                ["name"] = "Test ins camp",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 222,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -251360.06170324,
+                                            ["y"] = -95343.105026719,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "Ground-4-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "Average",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 476,
+                                        ["x"] = -251360.06170324,
+                                        ["y"] = -95343.105026719,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -251360.06170324,
+                                ["y"] = -95343.105026719,
+                            }, -- end of [5]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [2]
@@ -34029,7 +34189,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 163076,
+    ["currentKey"] = 171583,
     ["date"] =
     {
         ["Day"] = 29,
@@ -34245,8 +34405,8 @@ mission =
                         ["colorString"] = "0x000000ff",
                         ["layerName"] = "Common",
                         ["lineMode"] = "segments",
-                        ["mapX"] = 90010.614472728,
-                        ["mapY"] = -440302.12341264,
+                        ["mapX"] = 116085.93383405,
+                        ["mapY"] = -434745.08813892,
                         ["name"] = "A-A Drone Range SEA NORTH",
                         ["points"] =
                         {
@@ -34262,13 +34422,13 @@ mission =
                             }, -- end of [2]
                             [3] =
                             {
-                                ["x"] = -55228.720155372,
-                                ["y"] = -308631.0832212,
+                                ["x"] = -80021.646761215,
+                                ["y"] = -314188.11849492,
                             }, -- end of [3]
                             [4] =
                             {
-                                ["x"] = -104501.40186262,
-                                ["y"] = -15160.82514069,
+                                ["x"] = -131431.64972759,
+                                ["y"] = -21145.324666238,
                             }, -- end of [4]
                             [5] =
                             {
@@ -34430,13 +34590,13 @@ mission =
                             }, -- end of [1]
                             [2] =
                             {
-                                ["x"] = 7493.3170651157,
-                                ["y"] = 57090.300011819,
+                                ["x"] = 3632.3595593827,
+                                ["y"] = 63413.363085647,
                             }, -- end of [2]
                             [3] =
                             {
-                                ["x"] = -45677.676343133,
-                                ["y"] = 58552.909263441,
+                                ["x"] = -43298.205115474,
+                                ["y"] = 62252.603236768,
                             }, -- end of [3]
                             [4] =
                             {
@@ -35408,8 +35568,8 @@ mission =
                         ["font"] = "DejaVuLGCSansCondensed.ttf",
                         ["fontSize"] = 10,
                         ["layerName"] = "Common",
-                        ["mapX"] = -162084.15445199,
-                        ["mapY"] = -188925.60418197,
+                        ["mapX"] = -161182.56777136,
+                        ["mapY"] = -108008.19959542,
                         ["name"] = "Jokkmokk roadbase",
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Jokkmokk roadbase FOB",
@@ -42466,9 +42626,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = 182442.81997545,
-        ["centerY"] = -248130.29197331,
-        ["zoom"] = 2440153.9872657,
+        ["centerX"] = -200610.45997938,
+        ["centerY"] = -381581.00836277,
+        ["zoom"] = 773661.16525762,
     }, -- end of ["map"]
     ["maxDictId"] = 21,
     ["pictureFileNameB"] =
@@ -42483,6 +42643,7 @@ mission =
     ["requiredModules"] =
     {
         ["476 vFG Range Targets by Noodle & Stuka"] = "476 vFG Range Targets by Noodle & Stuka",
+        ["Insurgent_PickUp"] = "Insurgent_PickUp",
     }, -- end of ["requiredModules"]
     ["result"] =
     {
