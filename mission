@@ -15507,7 +15507,7 @@ mission =
                                     [1] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 3.1415926535898,
+                                        ["heading"] = 2.8274333882308,
                                         ["name"] = "JTAC Basic training-1",
                                         ["playerCanDrive"] = true,
                                         ["skill"] = "High",
@@ -15625,7 +15625,7 @@ mission =
                                             ["ETA"] = 0,
                                             ["ETA_locked"] = true,
                                             ["action"] = "Off Road",
-                                            ["alt"] = 116.72130864505,
+                                            ["alt"] = 106,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
                                             ["speed"] = 0,
@@ -15677,8 +15677,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -52994.488130058,
-                                            ["y"] = -335795.28537817,
+                                            ["x"] = -52752.360744343,
+                                            ["y"] = -335063.32647762,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["spans"] =
@@ -15697,19 +15697,19 @@ mission =
                                     [1] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 2.2340214425527,
+                                        ["heading"] = 2.9496064358704,
                                         ["name"] = "JTAC Basic training-1-1",
                                         ["playerCanDrive"] = true,
                                         ["skill"] = "High",
                                         ["type"] = "Soldier stinger",
                                         ["unitId"] = 455,
-                                        ["x"] = -52994.488130058,
-                                        ["y"] = -335795.28537817,
+                                        ["x"] = -52752.360744343,
+                                        ["y"] = -335063.32647762,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -52994.488130058,
-                                ["y"] = -335795.28537817,
+                                ["x"] = -52752.360744343,
+                                ["y"] = -335063.32647762,
                             }, -- end of [9]
                             [10] =
                             {
@@ -20897,6 +20897,649 @@ mission =
                                 ["x"] = -152876.67290887,
                                 ["y"] = 151020.80351385,
                             }, -- end of [5]
+                            [6] =
+                            {
+                                ["groupId"] = 105,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_BRDM_T1_TIC_Guns_target",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 14,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -53060.259669847,
+                                            ["y"] = -334855.66863924,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7472955654246,
+                                        ["name"] = "R15_BRDM_T1_TIC_Guns_target-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BRDM-2",
+                                        ["unitId"] = 484,
+                                        ["x"] = -53060.259669847,
+                                        ["y"] = -334855.66863924,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7472955654246,
+                                        ["name"] = "R15_BRDM_T1_TIC_Guns_target-2",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BRDM-2",
+                                        ["unitId"] = 308,
+                                        ["x"] = -53069.46837551,
+                                        ["y"] = -334860.10656968,
+                                    }, -- end of [2]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -53060.259669847,
+                                ["y"] = -334855.66863924,
+                            }, -- end of [6]
+                            [7] =
+                            {
+                                ["groupId"] = 143,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_BTR80_Type2_BOC target",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 6,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -53247.39656337,
+                                            ["y"] = -335017.58442768,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -53247.39656337,
+                                                ["y"] = -335017.58442768,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -53247.39656337,
+                                                ["y"] = -335017.58442768,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.8817595792209,
+                                        ["name"] = "R15_BTR80_Type2_BOC target-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 401,
+                                        ["x"] = -53247.39656337,
+                                        ["y"] = -335017.58442768,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -53247.39656337,
+                                ["y"] = -335017.58442768,
+                            }, -- end of [7]
+                            [8] =
+                            {
+                                ["groupId"] = 104,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_BTR80_T2_BOT_medium-level_target",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 16,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -53266.143656404,
+                                            ["y"] = -334752.11516641,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -53266.143656404,
+                                                ["y"] = -334752.11516641,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -53266.143656404,
+                                                ["y"] = -334752.11516641,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7123889803847,
+                                        ["name"] = "R15_BTR80_T2_BOT_medium-level_target-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 305,
+                                        ["x"] = -53266.143656404,
+                                        ["y"] = -334752.11516641,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -53266.143656404,
+                                ["y"] = -334752.11516641,
+                            }, -- end of [8]
+                            [9] =
+                            {
+                                ["groupId"] = 195,
+                                ["hidden"] = false,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_Friendly platoon_M113",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 14,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = true,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "EPLRS",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["groupId"] = 11,
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -53092.895586625,
+                                            ["y"] = -335043.50599373,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -53092.895586625,
+                                                ["y"] = -335043.50599373,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -53092.895586625,
+                                                ["y"] = -335043.50599373,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4486232791553,
+                                        ["name"] = "R15_Friendly platoon_M113-4",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "M-113",
+                                        ["unitId"] = 488,
+                                        ["x"] = -53092.895586625,
+                                        ["y"] = -335043.50599373,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3613568165556,
+                                        ["name"] = "R15_Friendly platoon_M113-3",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "M-113",
+                                        ["unitId"] = 487,
+                                        ["x"] = -53083.893894787,
+                                        ["y"] = -335060.25332738,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.2986722862693,
+                                        ["name"] = "R15_Friendly platoon_M113-2",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "M-113",
+                                        ["unitId"] = 486,
+                                        ["x"] = -53192.542221857,
+                                        ["y"] = -335133.94159545,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.7052603405912,
+                                        ["name"] = "R15_Friendly platoon_M113-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "M-113",
+                                        ["unitId"] = 480,
+                                        ["x"] = -53184.796580043,
+                                        ["y"] = -335096.05075306,
+                                    }, -- end of [4]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -53092.895586625,
+                                ["y"] = -335043.50599373,
+                            }, -- end of [9]
+                            [10] =
+                            {
+                                ["groupId"] = 178,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_Arty_T3_TGT",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 20,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -54513.322325269,
+                                            ["y"] = -335027.04263352,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -54513.322325269,
+                                                ["y"] = -335027.04263352,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -54513.322325269,
+                                                ["y"] = -335027.04263352,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.0590019907462,
+                                        ["name"] = "R15_Arty_T3_TGT-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "SAU Msta",
+                                        ["unitId"] = 456,
+                                        ["x"] = -54513.322325269,
+                                        ["y"] = -335027.04263352,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.5850536063819,
+                                        ["name"] = "R15_Arty_T3_TGT-2",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 485,
+                                        ["x"] = -54544.60294187,
+                                        ["y"] = -334951.2108357,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = true,
+                                        ["heading"] = 5.0963614158234,
+                                        ["name"] = "R15_Arty_T3_TGT-3",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 457,
+                                        ["x"] = -54610.639799139,
+                                        ["y"] = -335039.8392494,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = true,
+                                        ["heading"] = 4.9916416607038,
+                                        ["name"] = "R15_Arty_T3_TGT-4",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "SAU Msta",
+                                        ["unitId"] = 458,
+                                        ["x"] = -54613.957440293,
+                                        ["y"] = -335019.61743665,
+                                    }, -- end of [4]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -54513.322325269,
+                                ["y"] = -335027.04263352,
+                            }, -- end of [10]
+                            [11] =
+                            {
+                                ["groupId"] = 197,
+                                ["hidden"] = false,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_Friendly_mortar",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 14,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -52551.947852318,
+                                            ["y"] = -335428.43540595,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["auto"] = false,
+                                        ["enabled"] = true,
+                                        ["id"] = "ControlledTask",
+                                        ["name"] = "Suppression",
+                                        ["number"] = 1,
+                                        ["params"] =
+                                        {
+                                            ["stopCondition"] =
+                                            {
+                                                ["duration"] = 300,
+                                            }, -- end of ["stopCondition"]
+                                            ["task"] =
+                                            {
+                                                ["id"] = "FireAtPoint",
+                                                ["params"] =
+                                                {
+                                                    ["alt_type"] = 1,
+                                                    ["expendQty"] = 1,
+                                                    ["expendQtyEnabled"] = false,
+                                                    ["templateId"] = "",
+                                                    ["weaponType"] = 52613349374,
+                                                    ["x"] = -50253.259022692,
+                                                    ["y"] = -328894.98985054,
+                                                    ["zoneRadius"] = 304.8,
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                        }, -- end of ["params"]
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["auto"] = false,
+                                        ["enabled"] = true,
+                                        ["id"] = "ControlledTask",
+                                        ["name"] = "SEAD",
+                                        ["number"] = 2,
+                                        ["params"] =
+                                        {
+                                            ["stopCondition"] =
+                                            {
+                                                ["duration"] = 300,
+                                            }, -- end of ["stopCondition"]
+                                            ["task"] =
+                                            {
+                                                ["id"] = "FireAtPoint",
+                                                ["params"] =
+                                                {
+                                                    ["alt_type"] = 1,
+                                                    ["expendQty"] = 1,
+                                                    ["expendQtyEnabled"] = false,
+                                                    ["templateId"] = "",
+                                                    ["weaponType"] = 52613349374,
+                                                    ["x"] = -50416.53029832,
+                                                    ["y"] = -328931.24935802,
+                                                    ["zoneRadius"] = 609.6,
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                        }, -- end of ["params"]
+                                    }, -- end of [2]
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.9722220547536,
+                                        ["name"] = "R15_Friendly_mortar-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "2B11 mortar",
+                                        ["unitId"] = 491,
+                                        ["x"] = -52551.947852318,
+                                        ["y"] = -335428.43540595,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.0420352248334,
+                                        ["name"] = "R15_Friendly platoon_M113-1-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "2B11 mortar",
+                                        ["unitId"] = 490,
+                                        ["x"] = -52534.317329932,
+                                        ["y"] = -335397.58199178,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.7052603405912,
+                                        ["name"] = "R15_Friendly platoon_M113-1-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "M 818",
+                                        ["unitId"] = 489,
+                                        ["x"] = -52526.383594859,
+                                        ["y"] = -335427.55387983,
+                                    }, -- end of [3]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -52551.947852318,
+                                ["y"] = -335428.43540595,
+                            }, -- end of [11]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [3]
@@ -25681,195 +26324,6 @@ mission =
                             }, -- end of [30]
                             [31] =
                             {
-                                ["groupId"] = 104,
-                                ["hidden"] = false,
-                                ["name"] = "Enemy platoon-19",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 16,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -53259.172714915,
-                                            ["y"] = -334696.68243374,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -53259.172714915,
-                                                ["y"] = -334696.68243374,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -53259.172714915,
-                                                ["y"] = -334696.68243374,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.0590019907462,
-                                        ["name"] = "Enemy platoon-19-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 303,
-                                        ["x"] = -53259.172714915,
-                                        ["y"] = -334696.68243374,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.0821041362365,
-                                        ["name"] = "Enemy platoon-19-2",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 304,
-                                        ["x"] = -53269.33963998,
-                                        ["y"] = -334677.01243324,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 3.8222710618676,
-                                        ["name"] = "Enemy platoon-19-3",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 305,
-                                        ["x"] = -53282.508012384,
-                                        ["y"] = -334698.27835546,
-                                    }, -- end of [3]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -53259.172714915,
-                                ["y"] = -334696.68243374,
-                            }, -- end of [31]
-                            [32] =
-                            {
-                                ["groupId"] = 105,
-                                ["hidden"] = false,
-                                ["name"] = "Enemy platoon-20",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 17,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -53507.419853854,
-                                            ["y"] = -334577.71447888,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.1312680008633,
-                                        ["name"] = "Enemy platoon-20-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 306,
-                                        ["x"] = -53507.419853854,
-                                        ["y"] = -334577.71447888,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.2010811709431,
-                                        ["name"] = "Enemy platoon-20-2",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 307,
-                                        ["x"] = -53527.839615965,
-                                        ["y"] = -334526.34350254,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.7472955654246,
-                                        ["name"] = "Enemy platoon-20-3",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 308,
-                                        ["x"] = -53570.528173764,
-                                        ["y"] = -334559.44522321,
-                                    }, -- end of [3]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -53507.419853854,
-                                ["y"] = -334577.71447888,
-                            }, -- end of [32]
-                            [33] =
-                            {
                                 ["groupId"] = 106,
                                 ["hidden"] = false,
                                 ["name"] = "Enemy platoon-21",
@@ -25955,8 +26409,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -11801.03222301,
                                 ["y"] = -313114.08783221,
-                            }, -- end of [33]
-                            [34] =
+                            }, -- end of [31]
+                            [32] =
                             {
                                 ["groupId"] = 107,
                                 ["hidden"] = false,
@@ -26043,8 +26497,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -13507.724778755,
                                 ["y"] = -314908.90507081,
-                            }, -- end of [34]
-                            [35] =
+                            }, -- end of [32]
+                            [33] =
                             {
                                 ["groupId"] = 108,
                                 ["hidden"] = false,
@@ -26131,8 +26585,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -15430.353737329,
                                 ["y"] = -309253.72377423,
-                            }, -- end of [35]
-                            [36] =
+                            }, -- end of [33]
+                            [34] =
                             {
                                 ["groupId"] = 109,
                                 ["hidden"] = false,
@@ -26219,8 +26673,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -663.40556727623,
                                 ["y"] = -306245.90661608,
-                            }, -- end of [36]
-                            [37] =
+                            }, -- end of [34]
+                            [35] =
                             {
                                 ["groupId"] = 110,
                                 ["hidden"] = false,
@@ -26307,8 +26761,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 20761.518090509,
                                 ["y"] = -290523.31226848,
-                            }, -- end of [37]
-                            [38] =
+                            }, -- end of [35]
+                            [36] =
                             {
                                 ["groupId"] = 111,
                                 ["hidden"] = false,
@@ -26395,8 +26849,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 18590.474375049,
                                 ["y"] = -286838.10046836,
-                            }, -- end of [38]
-                            [39] =
+                            }, -- end of [36]
+                            [37] =
                             {
                                 ["groupId"] = 112,
                                 ["hidden"] = false,
@@ -26483,8 +26937,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 86241.044876623,
                                 ["y"] = -289621.72004178,
-                            }, -- end of [39]
-                            [40] =
+                            }, -- end of [37]
+                            [38] =
                             {
                                 ["groupId"] = 113,
                                 ["hidden"] = false,
@@ -26571,8 +27025,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 94956.357009952,
                                 ["y"] = -299139.16686435,
-                            }, -- end of [40]
-                            [41] =
+                            }, -- end of [38]
+                            [39] =
                             {
                                 ["groupId"] = 114,
                                 ["hidden"] = false,
@@ -26659,8 +27113,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 112492.4522407,
                                 ["y"] = -299574.87931442,
-                            }, -- end of [41]
-                            [42] =
+                            }, -- end of [39]
+                            [40] =
                             {
                                 ["groupId"] = 115,
                                 ["hidden"] = false,
@@ -26747,8 +27201,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 76205.016539642,
                                 ["y"] = -305742.67665395,
-                            }, -- end of [42]
-                            [43] =
+                            }, -- end of [40]
+                            [41] =
                             {
                                 ["groupId"] = 116,
                                 ["hidden"] = false,
@@ -26835,8 +27289,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 68146.0600877,
                                 ["y"] = -315522.73139307,
-                            }, -- end of [43]
-                            [44] =
+                            }, -- end of [41]
+                            [42] =
                             {
                                 ["groupId"] = 117,
                                 ["hidden"] = false,
@@ -26923,8 +27377,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 44858.627277878,
                                 ["y"] = -308182.23920707,
-                            }, -- end of [44]
-                            [45] =
+                            }, -- end of [42]
+                            [43] =
                             {
                                 ["groupId"] = 118,
                                 ["hidden"] = false,
@@ -27011,8 +27465,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 34083.707559173,
                                 ["y"] = -368596.33073617,
-                            }, -- end of [45]
-                            [46] =
+                            }, -- end of [43]
+                            [44] =
                             {
                                 ["groupId"] = 119,
                                 ["hidden"] = false,
@@ -27099,8 +27553,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 33271.4270668,
                                 ["y"] = -372095.92522884,
-                            }, -- end of [46]
-                            [47] =
+                            }, -- end of [44]
+                            [45] =
                             {
                                 ["groupId"] = 120,
                                 ["hidden"] = false,
@@ -27187,8 +27641,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 37247.581561748,
                                 ["y"] = -370672.10667553,
-                            }, -- end of [47]
-                            [48] =
+                            }, -- end of [45]
+                            [46] =
                             {
                                 ["groupId"] = 121,
                                 ["hidden"] = false,
@@ -27275,8 +27729,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 37810.291471123,
                                 ["y"] = -368099.73148669,
-                            }, -- end of [48]
-                            [49] =
+                            }, -- end of [46]
+                            [47] =
                             {
                                 ["groupId"] = 122,
                                 ["hidden"] = false,
@@ -27363,8 +27817,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 44149.666229147,
                                 ["y"] = -364974.52487933,
-                            }, -- end of [49]
-                            [50] =
+                            }, -- end of [47]
+                            [48] =
                             {
                                 ["groupId"] = 123,
                                 ["hidden"] = false,
@@ -27451,8 +27905,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 45198.760336194,
                                 ["y"] = -360658.50956006,
-                            }, -- end of [50]
-                            [51] =
+                            }, -- end of [48]
+                            [49] =
                             {
                                 ["groupId"] = 124,
                                 ["hidden"] = false,
@@ -27681,311 +28135,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 219815.88645034,
                                 ["y"] = 26434.781258414,
-                            }, -- end of [51]
-                            [52] =
-                            {
-                                ["groupId"] = 143,
-                                ["hidden"] = false,
-                                ["name"] = "Enemy platoon-39",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 4,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -53319.534584881,
-                                            ["y"] = -334993.50376447,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -53319.534584881,
-                                                ["y"] = -334993.50376447,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -53319.534584881,
-                                                ["y"] = -334993.50376447,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.9549404638118,
-                                        ["name"] = "Enemy platoon-39-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 399,
-                                        ["x"] = -53319.534584881,
-                                        ["y"] = -334993.50376447,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.9549404638118,
-                                        ["name"] = "Enemy platoon-39-2",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 400,
-                                        ["x"] = -53274.691919219,
-                                        ["y"] = -335035.18372324,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.9549404638118,
-                                        ["name"] = "Enemy platoon-39-3",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "BTR-80",
-                                        ["unitId"] = 401,
-                                        ["x"] = -53372.058110153,
-                                        ["y"] = -334945.49839192,
-                                    }, -- end of [3]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -53319.534584881,
-                                ["y"] = -334993.50376447,
-                            }, -- end of [52]
-                            [53] =
-                            {
-                                ["groupId"] = 176,
-                                ["hidden"] = false,
-                                ["name"] = "Enemy platoon-40",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 6,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -53555.976011283,
-                                            ["y"] = -334883.4393244,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -53555.976011283,
-                                                ["y"] = -334883.4393244,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -53555.976011283,
-                                                ["y"] = -334883.4393244,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.9741883681838,
-                                        ["name"] = "Enemy platoon-40-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "T-72B",
-                                        ["unitId"] = 452,
-                                        ["x"] = -53555.976011283,
-                                        ["y"] = -334883.4393244,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.4454272662223,
-                                        ["name"] = "Enemy platoon-40-2",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "T-72B",
-                                        ["unitId"] = 453,
-                                        ["x"] = -53455.775764162,
-                                        ["y"] = -334906.3516472,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.7123889803847,
-                                        ["name"] = "Enemy platoon-40-3",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "T-72B",
-                                        ["unitId"] = 454,
-                                        ["x"] = -53553.148768668,
-                                        ["y"] = -334815.06193818,
-                                    }, -- end of [3]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -53555.976011283,
-                                ["y"] = -334883.4393244,
-                            }, -- end of [53]
-                            [54] =
-                            {
-                                ["groupId"] = 178,
-                                ["hidden"] = false,
-                                ["name"] = "Enemy platoon-41",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 6,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -53946.809049483,
-                                            ["y"] = -334931.55661522,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -53946.809049483,
-                                                ["y"] = -334931.55661522,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -53946.809049483,
-                                                ["y"] = -334931.55661522,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.0590019907462,
-                                        ["name"] = "Enemy platoon-41-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "SAU Msta",
-                                        ["unitId"] = 456,
-                                        ["x"] = -53946.809049483,
-                                        ["y"] = -334931.55661522,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.0963614158234,
-                                        ["name"] = "Enemy platoon-41-2",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "SAU Msta",
-                                        ["unitId"] = 457,
-                                        ["x"] = -53962.883323088,
-                                        ["y"] = -334868.82427309,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.9916416607038,
-                                        ["name"] = "Enemy platoon-41-3",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "SAU Msta",
-                                        ["unitId"] = 458,
-                                        ["x"] = -53975.116841054,
-                                        ["y"] = -334954.88564948,
-                                    }, -- end of [3]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -53946.809049483,
-                                ["y"] = -334931.55661522,
-                            }, -- end of [54]
-                            [55] =
+                            }, -- end of [49]
+                            [50] =
                             {
                                 ["groupId"] = 179,
                                 ["hidden"] = false,
@@ -28072,8 +28223,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 34413.683162008,
                                 ["y"] = -363553.34809218,
-                            }, -- end of [55]
-                            [56] =
+                            }, -- end of [50]
+                            [51] =
                             {
                                 ["groupId"] = 180,
                                 ["hidden"] = false,
@@ -28160,7 +28311,7 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 27298.869523474,
                                 ["y"] = -372778.27199761,
-                            }, -- end of [56]
+                            }, -- end of [51]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -34077,6 +34228,99 @@ mission =
                                 ["x"] = -251360.06170324,
                                 ["y"] = -95343.105026719,
                             }, -- end of [5]
+                            [6] =
+                            {
+                                ["groupId"] = 198,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "R15_Threat_SA13",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 28,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -50440.861867262,
+                                            ["y"] = -329151.27084157,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -50440.861867262,
+                                                ["y"] = -329151.27084157,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -50440.861867262,
+                                                ["y"] = -329151.27084157,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.966282711925,
+                                        ["name"] = "R15_Threat_SA13-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Strela-10M3",
+                                        ["unitId"] = 494,
+                                        ["x"] = -50440.861867262,
+                                        ["y"] = -329151.27084157,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.966282711925,
+                                        ["name"] = "R15_Threat_SA13-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375",
+                                        ["unitId"] = 492,
+                                        ["x"] = -50426.609515913,
+                                        ["y"] = -329145.24100062,
+                                    }, -- end of [2]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -50440.861867262,
+                                ["y"] = -329151.27084157,
+                            }, -- end of [6]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [2]
@@ -34189,7 +34433,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 171583,
+    ["currentKey"] = 182526,
     ["date"] =
     {
         ["Day"] = 29,
@@ -42626,11 +42870,11 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -200610.45997938,
-        ["centerY"] = -381581.00836277,
-        ["zoom"] = 773661.16525762,
+        ["centerX"] = -54519.053934266,
+        ["centerY"] = -334608.21437824,
+        ["zoom"] = 18124.445768234,
     }, -- end of ["map"]
-    ["maxDictId"] = 21,
+    ["maxDictId"] = 35,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -42695,8 +42939,16 @@ mission =
             [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_6\"));",
             [2] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_21\")); mission.trig.func[2]=nil;",
             [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_20\")); mission.trig.func[3]=nil;",
-            [4] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(105);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(143);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[4]=nil;",
+            [4] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[4]=nil;",
             [5] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[5]=nil;",
+            [6] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[6]=nil;",
+            [7] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[7]=nil;",
+            [8] = "a_set_ai_task(197, 1); mission.trig.func[8]=nil;",
+            [9] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[9]=nil;",
+            [10] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[10]=nil;",
+            [11] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[11]=nil;",
+            [12] = "a_set_ai_task(197, 2); mission.trig.func[12]=nil;",
+            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[13]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
@@ -42705,6 +42957,14 @@ mission =
             [3] = "return(c_time_after(2) )",
             [4] = "return(c_time_after(10) )",
             [5] = "return(c_time_after(13) )",
+            [6] = "return(c_flag_is_true(\"61\") )",
+            [7] = "return(c_group_life_less(104, 90) )",
+            [8] = "return(c_time_since_flag(\"62\", 120) )",
+            [9] = "return(c_time_since_flag(\"62\", 500) )",
+            [10] = "return(c_time_since_flag(\"62\", 700) )",
+            [11] = "return(c_time_since_flag(\"62\", 1180) )",
+            [12] = "return(c_time_since_flag(\"63\", 120) )",
+            [13] = "return(c_time_since_flag(\"63\", 520) )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -42722,6 +42982,14 @@ mission =
             [3] = true,
             [4] = true,
             [5] = true,
+            [6] = true,
+            [7] = true,
+            [8] = true,
+            [9] = true,
+            [10] = true,
+            [11] = true,
+            [12] = true,
+            [13] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
@@ -42729,6 +42997,14 @@ mission =
             [3] = "if mission.trig.conditions[3]() then mission.trig.actions[3]() end",
             [4] = "if mission.trig.conditions[4]() then mission.trig.actions[4]() end",
             [5] = "if mission.trig.conditions[5]() then mission.trig.actions[5]() end",
+            [6] = "if mission.trig.conditions[6]() then mission.trig.actions[6]() end",
+            [7] = "if mission.trig.conditions[7]() then mission.trig.actions[7]() end",
+            [8] = "if mission.trig.conditions[8]() then mission.trig.actions[8]() end",
+            [9] = "if mission.trig.conditions[9]() then mission.trig.actions[9]() end",
+            [10] = "if mission.trig.conditions[10]() then mission.trig.actions[10]() end",
+            [11] = "if mission.trig.conditions[11]() then mission.trig.actions[11]() end",
+            [12] = "if mission.trig.conditions[12]() then mission.trig.actions[12]() end",
+            [13] = "if mission.trig.conditions[13]() then mission.trig.actions[13]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
@@ -42866,139 +43142,129 @@ mission =
                 }, -- end of [10]
                 [11] =
                 {
-                    ["group"] = 105,
+                    ["group"] = 106,
                     ["predicate"] = "a_group_off",
                 }, -- end of [11]
                 [12] =
                 {
-                    ["group"] = 106,
+                    ["group"] = 107,
                     ["predicate"] = "a_group_off",
                 }, -- end of [12]
                 [13] =
                 {
-                    ["group"] = 107,
+                    ["group"] = 108,
                     ["predicate"] = "a_group_off",
                 }, -- end of [13]
                 [14] =
                 {
-                    ["group"] = 108,
+                    ["group"] = 109,
                     ["predicate"] = "a_group_off",
                 }, -- end of [14]
                 [15] =
                 {
-                    ["group"] = 109,
+                    ["group"] = 110,
                     ["predicate"] = "a_group_off",
                 }, -- end of [15]
                 [16] =
                 {
-                    ["group"] = 110,
+                    ["group"] = 111,
                     ["predicate"] = "a_group_off",
                 }, -- end of [16]
                 [17] =
                 {
-                    ["group"] = 111,
+                    ["group"] = 112,
                     ["predicate"] = "a_group_off",
                 }, -- end of [17]
                 [18] =
                 {
-                    ["group"] = 112,
+                    ["group"] = 113,
                     ["predicate"] = "a_group_off",
                 }, -- end of [18]
                 [19] =
                 {
-                    ["group"] = 113,
+                    ["group"] = 114,
                     ["predicate"] = "a_group_off",
                 }, -- end of [19]
                 [20] =
                 {
-                    ["group"] = 114,
+                    ["group"] = 88,
                     ["predicate"] = "a_group_off",
                 }, -- end of [20]
                 [21] =
                 {
-                    ["group"] = 88,
+                    ["group"] = 115,
                     ["predicate"] = "a_group_off",
                 }, -- end of [21]
                 [22] =
                 {
-                    ["group"] = 115,
+                    ["group"] = 116,
                     ["predicate"] = "a_group_off",
                 }, -- end of [22]
                 [23] =
                 {
-                    ["group"] = 116,
+                    ["group"] = 117,
                     ["predicate"] = "a_group_off",
                 }, -- end of [23]
                 [24] =
                 {
-                    ["group"] = 117,
+                    ["group"] = 118,
                     ["predicate"] = "a_group_off",
                 }, -- end of [24]
                 [25] =
                 {
-                    ["group"] = 118,
+                    ["group"] = 119,
                     ["predicate"] = "a_group_off",
                 }, -- end of [25]
                 [26] =
                 {
-                    ["group"] = 119,
+                    ["group"] = 120,
                     ["predicate"] = "a_group_off",
                 }, -- end of [26]
                 [27] =
                 {
-                    ["group"] = 120,
+                    ["group"] = 121,
                     ["predicate"] = "a_group_off",
                 }, -- end of [27]
                 [28] =
                 {
-                    ["group"] = 121,
+                    ["group"] = 122,
                     ["predicate"] = "a_group_off",
                 }, -- end of [28]
                 [29] =
                 {
-                    ["group"] = 122,
+                    ["group"] = 123,
                     ["predicate"] = "a_group_off",
                 }, -- end of [29]
                 [30] =
                 {
-                    ["group"] = 123,
+                    ["group"] = 89,
                     ["predicate"] = "a_group_off",
                 }, -- end of [30]
                 [31] =
                 {
-                    ["group"] = 143,
+                    ["group"] = 90,
                     ["predicate"] = "a_group_off",
                 }, -- end of [31]
                 [32] =
                 {
-                    ["group"] = 89,
+                    ["group"] = 91,
                     ["predicate"] = "a_group_off",
                 }, -- end of [32]
                 [33] =
                 {
-                    ["group"] = 90,
+                    ["group"] = 92,
                     ["predicate"] = "a_group_off",
                 }, -- end of [33]
                 [34] =
                 {
-                    ["group"] = 91,
+                    ["group"] = 93,
                     ["predicate"] = "a_group_off",
                 }, -- end of [34]
                 [35] =
                 {
-                    ["group"] = 92,
-                    ["predicate"] = "a_group_off",
-                }, -- end of [35]
-                [36] =
-                {
-                    ["group"] = 93,
-                    ["predicate"] = "a_group_off",
-                }, -- end of [36]
-                [37] =
-                {
                     ["group"] = 94,
                     ["predicate"] = "a_group_off",
-                }, -- end of [37]
+                }, -- end of [35]
             }, -- end of ["actions"]
             ["comment"] = "AI off enemy platoons",
             ["eventlist"] = "",
@@ -43060,6 +43326,351 @@ mission =
                 }, -- end of [1]
             }, -- end of ["rules"]
         }, -- end of [5]
+        [6] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["group"] = 178,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["group"] = 105,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [2]
+                [3] =
+                {
+                    ["group"] = 104,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [3]
+                [4] =
+                {
+                    ["group"] = 143,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [4]
+                [5] =
+                {
+                    ["group"] = 195,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [5]
+                [6] =
+                {
+                    ["group"] = 197,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [6]
+                [7] =
+                {
+                    ["group"] = 198,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [7]
+                [8] =
+                {
+                    ["group"] = 198,
+                    ["predicate"] = "a_group_off",
+                }, -- end of [8]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15 activate basic CAS",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "61",
+                    ["predicate"] = "c_flag_is_true",
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [6]
+        [7] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["KeyDict_text"] = "DictKey_ActionText_22",
+                    ["clearview"] = false,
+                    ["countrylist"] = 20,
+                    ["predicate"] = "a_out_text_delay_c",
+                    ["seconds"] = 60,
+                    ["start_delay"] = 0,
+                    ["text"] = "DictKey_ActionText_22",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["countrylist"] = 20,
+                    ["file"] = "ResKey_Action_23",
+                    ["predicate"] = "a_out_sound_c",
+                    ["start_delay"] = 0,
+                }, -- end of [2]
+                [3] =
+                {
+                    ["flag"] = "62",
+                    ["predicate"] = "a_set_flag",
+                }, -- end of [3]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_activate suppression",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_group_life_less",
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [7]
+        [8] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["predicate"] = "a_set_ai_task",
+                    ["set_ai_task"] =
+                    {
+                        [1] = 197,
+                        [2] = 1,
+                    }, -- end of ["set_ai_task"]
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_Suppression FFE",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "62",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 120,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [8]
+        [9] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["KeyDict_text"] = "DictKey_ActionText_26",
+                    ["clearview"] = false,
+                    ["countrylist"] = 20,
+                    ["predicate"] = "a_out_text_delay_c",
+                    ["seconds"] = 60,
+                    ["start_delay"] = 0,
+                    ["text"] = "DictKey_ActionText_26",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["countrylist"] = 20,
+                    ["file"] = "ResKey_Action_27",
+                    ["predicate"] = "a_out_sound_c",
+                    ["start_delay"] = 0,
+                }, -- end of [2]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_suppression_LROG",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "62",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 500,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [9]
+        [10] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["KeyDict_text"] = "DictKey_ActionText_28",
+                    ["clearview"] = false,
+                    ["countrylist"] = 20,
+                    ["predicate"] = "a_out_text_delay_c",
+                    ["seconds"] = 60,
+                    ["start_delay"] = 0,
+                    ["text"] = "DictKey_ActionText_28",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["countrylist"] = 20,
+                    ["file"] = "ResKey_Action_29",
+                    ["predicate"] = "a_out_sound_c",
+                    ["start_delay"] = 0,
+                }, -- end of [2]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_WO_SEAD_Fire_for_effect",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "62",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 700,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [10]
+        [11] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["KeyDict_text"] = "DictKey_ActionText_30",
+                    ["clearview"] = false,
+                    ["countrylist"] = 20,
+                    ["predicate"] = "a_out_text_delay_c",
+                    ["seconds"] = 60,
+                    ["start_delay"] = 0,
+                    ["text"] = "DictKey_ActionText_30",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["countrylist"] = 20,
+                    ["file"] = "ResKey_Action_31",
+                    ["predicate"] = "a_out_sound_c",
+                    ["start_delay"] = 0,
+                }, -- end of [2]
+                [3] =
+                {
+                    ["flag"] = "63",
+                    ["predicate"] = "a_set_flag",
+                }, -- end of [3]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_activate SEAD",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "62",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 1180,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [11]
+        [12] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["predicate"] = "a_set_ai_task",
+                    ["set_ai_task"] =
+                    {
+                        [1] = 197,
+                        [2] = 2,
+                    }, -- end of ["set_ai_task"]
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_SEAD_FFE",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "63",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 120,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [12]
+        [13] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["KeyDict_text"] = "DictKey_ActionText_34",
+                    ["clearview"] = false,
+                    ["countrylist"] = 20,
+                    ["predicate"] = "a_out_text_delay_c",
+                    ["seconds"] = 60,
+                    ["start_delay"] = 0,
+                    ["text"] = "DictKey_ActionText_34",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["countrylist"] = 20,
+                    ["file"] = "ResKey_Action_35",
+                    ["predicate"] = "a_out_sound_c",
+                    ["start_delay"] = 0,
+                }, -- end of [2]
+                [3] =
+                {
+                    ["group"] = 198,
+                    ["predicate"] = "a_group_on",
+                }, -- end of [3]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "R15_SEAD_LROG",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "63",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_time_since_flag",
+                    ["seconds"] = 520,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [13]
     }, -- end of ["trigrules"]
     ["version"] = 22,
     ["weather"] =
