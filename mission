@@ -1297,11 +1297,11 @@ mission =
                             [2] =
                             {
                                 ["communication"] = true,
-                                ["frequency"] = 321,
+                                ["frequency"] = 289,
                                 ["groupId"] = 3,
                                 ["hidden"] = false,
                                 ["modulation"] = 0,
-                                ["name"] = "SHELL1",
+                                ["name"] = "AR301 #IFF:5301FR",
                                 ["radioSet"] = true,
                                 ["route"] =
                                 {
@@ -1466,8 +1466,8 @@ mission =
                                         }, -- end of ["callsign"]
                                         ["heading"] = 0.40323733258306,
                                         ["livery_id"] = "100th arw",
-                                        ["name"] = "SHELL-1",
-                                        ["onboard_num"] = "012",
+                                        ["name"] = "AR301 #IFF:5301FR",
+                                        ["onboard_num"] = "301",
                                         ["payload"] =
                                         {
                                             ["chaff"] = 120,
@@ -1848,11 +1848,11 @@ mission =
                             [4] =
                             {
                                 ["communication"] = true,
-                                ["frequency"] = 322,
+                                ["frequency"] = 280,
                                 ["groupId"] = 6,
                                 ["hidden"] = false,
                                 ["modulation"] = 0,
-                                ["name"] = "ARCO",
+                                ["name"] = "AR201 #IFF:5201FR",
                                 ["radioSet"] = true,
                                 ["route"] =
                                 {
@@ -1866,7 +1866,7 @@ mission =
                                             ["alt"] = 6096,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
-                                            ["speed"] = 210.18055555556,
+                                            ["speed"] = 209.92099074795,
                                             ["speed_locked"] = true,
                                             ["task"] =
                                             {
@@ -2023,8 +2023,8 @@ mission =
                                         }, -- end of ["callsign"]
                                         ["heading"] = 0.43845913892084,
                                         ["livery_id"] = "Standard USAF",
-                                        ["name"] = "ARCO-1",
-                                        ["onboard_num"] = "013",
+                                        ["name"] = "AR201 #IFF:5201FR",
+                                        ["onboard_num"] = "201",
                                         ["payload"] =
                                         {
                                             ["chaff"] = 0,
@@ -2037,7 +2037,7 @@ mission =
                                         }, -- end of ["payload"]
                                         ["psi"] = -0.43845913892084,
                                         ["skill"] = "High",
-                                        ["speed"] = 210.18055555556,
+                                        ["speed"] = 209.92099074795,
                                         ["type"] = "KC-135",
                                         ["unitId"] = 6,
                                         ["x"] = -68193.097841033,
@@ -4074,7 +4074,7 @@ mission =
                                         }, -- end of [2]
                                         [3] =
                                         {
-                                            ["ETA"] = 718.51509705103,
+                                            ["ETA"] = 869.78275195706,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -4093,12 +4093,12 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -80354.341303769,
-                                            ["y"] = -372705.20472286,
+                                            ["x"] = -80354.647720489,
+                                            ["y"] = -372705.53410997,
                                         }, -- end of [3]
                                         [4] =
                                         {
-                                            ["ETA"] = 1241.0148061484,
+                                            ["ETA"] = 1322.0576410396,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -4117,8 +4117,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -79224.206089016,
-                                            ["y"] = -428255.29365649,
+                                            ["x"] = -79962.295617079,
+                                            ["y"] = -428484.10774212,
                                         }, -- end of [4]
                                         [5] =
                                         {
@@ -32819,7 +32819,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 158901,
+    ["currentKey"] = 161619,
     ["date"] =
     {
         ["Day"] = 29,
@@ -33304,8 +33304,8 @@ mission =
                         {
                             [1] =
                             {
-                                ["x"] = 1568.7360344987,
-                                ["y"] = -15034.221346229,
+                                ["x"] = 829.76804850113,
+                                ["y"] = -15248.760438939,
                             }, -- end of [1]
                             [2] =
                             {
@@ -33324,8 +33324,8 @@ mission =
                             }, -- end of [4]
                             [5] =
                             {
-                                ["x"] = 1564.7591551341,
-                                ["y"] = -15037.188774967,
+                                ["x"] = 813.87233065256,
+                                ["y"] = -15269.606125402,
                             }, -- end of [5]
                         }, -- end of ["points"]
                         ["primitiveType"] = "Line",
@@ -41256,9 +41256,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -22090.722601098,
-        ["centerY"] = -323879.30380118,
-        ["zoom"] = 1050588.5856708,
+        ["centerX"] = -65800.543262103,
+        ["centerY"] = -223577.04782509,
+        ["zoom"] = 1245491.6914058,
     }, -- end of ["map"]
     ["maxDictId"] = 21,
     ["pictureFileNameB"] =
