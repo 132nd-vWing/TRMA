@@ -3011,7 +3011,7 @@ mission =
                                         }, -- end of [9]
                                         [10] =
                                         {
-                                            ["ETA"] = 2422.0810796581,
+                                            ["ETA"] = 2455.1478231229,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -3414,7 +3414,7 @@ mission =
                                         }, -- end of [4]
                                         [5] =
                                         {
-                                            ["ETA"] = 1553.0175208106,
+                                            ["ETA"] = 1573.0433604254,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -5141,7 +5141,7 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 212.86565201985,
+                                            ["ETA"] = 212.86565201984,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -5743,7 +5743,7 @@ mission =
                                 ["communication"] = true,
                                 ["frequency"] = 124,
                                 ["groupId"] = 31,
-                                ["hidden"] = false,
+                                ["hidden"] = true,
                                 ["lateActivation"] = true,
                                 ["modulation"] = 0,
                                 ["name"] = "BODØ CTR",
@@ -6019,7 +6019,7 @@ mission =
                                         }, -- end of [4]
                                         [5] =
                                         {
-                                            ["ETA"] = 659.99921626727,
+                                            ["ETA"] = 682.58189883105,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -15423,106 +15423,6 @@ mission =
                             }, -- end of [6]
                             [7] =
                             {
-                                ["groupId"] = 38,
-                                ["hidden"] = false,
-                                ["name"] = "JTAC Basic training",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 108,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                        [1] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 1,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetImmortal",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [1]
-                                                        [2] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 2,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetInvisible",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [2]
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -52747.788092951,
-                                            ["y"] = -335059.64261238,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.8274333882308,
-                                        ["name"] = "JTAC Basic training-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "Soldier stinger",
-                                        ["unitId"] = 93,
-                                        ["x"] = -52747.788092951,
-                                        ["y"] = -335059.64261238,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -52747.788092951,
-                                ["y"] = -335059.64261238,
-                            }, -- end of [7]
-                            [8] =
-                            {
                                 ["groupId"] = 128,
                                 ["hidden"] = false,
                                 ["name"] = "TACAN Roadbase",
@@ -15610,108 +15510,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -167722.12889654,
                                 ["y"] = -101041.66070204,
-                            }, -- end of [8]
-                            [9] =
-                            {
-                                ["groupId"] = 177,
-                                ["hidden"] = false,
-                                ["name"] = "JTAC Basic training-1",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 106,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                        [1] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 1,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetImmortal",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [1]
-                                                        [2] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 2,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetInvisible",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [2]
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -52752.360744343,
-                                            ["y"] = -335063.32647762,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.9496064358704,
-                                        ["name"] = "JTAC Basic training-1-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "High",
-                                        ["type"] = "Soldier stinger",
-                                        ["unitId"] = 455,
-                                        ["x"] = -52752.360744343,
-                                        ["y"] = -335063.32647762,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -52752.360744343,
-                                ["y"] = -335063.32647762,
-                            }, -- end of [9]
-                            [10] =
+                            }, -- end of [7]
+                            [8] =
                             {
                                 ["groupId"] = 181,
                                 ["hidden"] = false,
@@ -15805,8 +15605,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -100680.2369108,
                                 ["y"] = -392013.93884808,
-                            }, -- end of [10]
-                            [11] =
+                            }, -- end of [8]
+                            [9] =
                             {
                                 ["groupId"] = 182,
                                 ["hidden"] = false,
@@ -15900,8 +15700,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -100347.39288063,
                                 ["y"] = -393155.55162588,
-                            }, -- end of [11]
-                            [12] =
+                            }, -- end of [9]
+                            [10] =
                             {
                                 ["groupId"] = 192,
                                 ["hidden"] = false,
@@ -15996,7 +15796,7 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -234331.69025235,
                                 ["y"] = -93910.168152744,
-                            }, -- end of [12]
+                            }, -- end of [10]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -21543,10 +21343,255 @@ mission =
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [3]
+                [4] =
+                {
+                    ["id"] = 20,
+                    ["name"] = "Italy",
+                    ["vehicle"] =
+                    {
+                        ["group"] =
+                        {
+                            [1] =
+                            {
+                                ["groupId"] = 38,
+                                ["hidden"] = false,
+                                ["name"] = "R15_JTAC_1",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 108,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                        [2] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 2,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetInvisible",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [2]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -52747.788092951,
+                                            ["y"] = -335059.64261238,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.8274333882308,
+                                        ["name"] = "R15_JTAC_1-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "Soldier stinger",
+                                        ["unitId"] = 93,
+                                        ["x"] = -52747.788092951,
+                                        ["y"] = -335059.64261238,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -52747.788092951,
+                                ["y"] = -335059.64261238,
+                            }, -- end of [1]
+                            [2] =
+                            {
+                                ["groupId"] = 177,
+                                ["hidden"] = false,
+                                ["name"] = "R15_JTAC_2",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 106,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                        [2] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 2,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetInvisible",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [2]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -52752.360744343,
+                                            ["y"] = -335063.32647762,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.9496064358704,
+                                        ["name"] = "R15_JTAC_2-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "Soldier stinger",
+                                        ["unitId"] = 455,
+                                        ["x"] = -52752.360744343,
+                                        ["y"] = -335063.32647762,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -52752.360744343,
+                                ["y"] = -335063.32647762,
+                            }, -- end of [2]
+                        }, -- end of ["group"]
+                    }, -- end of ["vehicle"]
+                }, -- end of [4]
             }, -- end of ["country"]
             ["name"] = "blue",
             ["nav_points"] =
             {
+                [1] =
+                {
+                    ["callsignStr"] = "IP.ISLAND",
+                    ["comment"] = "",
+                    ["id"] = 33,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -38649.304504606,
+                    ["y"] = -341090.08291507,
+                }, -- end of [1]
+                [2] =
+                {
+                    ["callsignStr"] = "CP",
+                    ["comment"] = "",
+                    ["id"] = 34,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -29342.25841764,
+                    ["y"] = -340674.88476602,
+                }, -- end of [2]
             }, -- end of ["nav_points"]
         }, -- end of ["blue"]
         ["neutrals"] =
@@ -34433,7 +34478,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 182526,
+    ["currentKey"] = 197757,
     ["date"] =
     {
         ["Day"] = 29,
@@ -34469,6 +34514,70 @@ mission =
                 ["name"] = "Neutral",
                 ["objects"] =
                 {
+                    [1] =
+                    {
+                        ["angle"] = 0,
+                        ["borderThickness"] = 1,
+                        ["colorString"] = "0x00ff00ff",
+                        ["fillColorString"] = "0xff000080",
+                        ["font"] = "DejaVuLGCSansCondensed.ttf",
+                        ["fontSize"] = 10,
+                        ["layerName"] = "Neutral",
+                        ["mapX"] = -45675.756446151,
+                        ["mapY"] = -340571.10532327,
+                        ["name"] = "Range 15",
+                        ["primitiveType"] = "TextBox",
+                        ["text"] = "Range 15\
+",
+                        ["visible"] = true,
+                    }, -- end of [1]
+                    [2] =
+                    {
+                        ["closed"] = false,
+                        ["colorString"] = "0x000000ff",
+                        ["layerName"] = "Neutral",
+                        ["lineMode"] = "segments",
+                        ["mapX"] = -27392.80808075,
+                        ["mapY"] = -348530.30308067,
+                        ["name"] = "Basic CAS range",
+                        ["points"] =
+                        {
+                            [1] =
+                            {
+                                ["x"] = -841.46548505155,
+                                ["y"] = 173.36726073921,
+                            }, -- end of [1]
+                            [2] =
+                            {
+                                ["x"] = -26525.657766149,
+                                ["y"] = 5535.0131560422,
+                            }, -- end of [2]
+                            [3] =
+                            {
+                                ["x"] = -29590.744361408,
+                                ["y"] = 18029.709355091,
+                            }, -- end of [3]
+                            [4] =
+                            {
+                                ["x"] = -28813.49428726,
+                                ["y"] = 38995.290987817,
+                            }, -- end of [4]
+                            [5] =
+                            {
+                                ["x"] = -4854.5844291775,
+                                ["y"] = 41136.390190666,
+                            }, -- end of [5]
+                            [6] =
+                            {
+                                ["x"] = -838.47362405935,
+                                ["y"] = 164.91032119095,
+                            }, -- end of [6]
+                        }, -- end of ["points"]
+                        ["primitiveType"] = "Line",
+                        ["style"] = "solid",
+                        ["thickness"] = 2,
+                        ["visible"] = true,
+                    }, -- end of [2]
                 }, -- end of ["objects"]
                 ["visible"] = true,
             }, -- end of [3]
@@ -34771,53 +34880,6 @@ mission =
                     }, -- end of [6]
                     [7] =
                     {
-                        ["closed"] = false,
-                        ["colorString"] = "0x000000ff",
-                        ["layerName"] = "Common",
-                        ["lineMode"] = "segments",
-                        ["mapX"] = -27392.80808075,
-                        ["mapY"] = -348530.30308067,
-                        ["name"] = "Basic CAS range",
-                        ["points"] =
-                        {
-                            [1] =
-                            {
-                                ["x"] = -841.46548505155,
-                                ["y"] = 173.36726073921,
-                            }, -- end of [1]
-                            [2] =
-                            {
-                                ["x"] = -26525.657766149,
-                                ["y"] = 5535.0131560422,
-                            }, -- end of [2]
-                            [3] =
-                            {
-                                ["x"] = -29590.744361408,
-                                ["y"] = 18029.709355091,
-                            }, -- end of [3]
-                            [4] =
-                            {
-                                ["x"] = -28813.49428726,
-                                ["y"] = 38995.290987817,
-                            }, -- end of [4]
-                            [5] =
-                            {
-                                ["x"] = -4854.5844291775,
-                                ["y"] = 41136.390190666,
-                            }, -- end of [5]
-                            [6] =
-                            {
-                                ["x"] = -838.47362405935,
-                                ["y"] = 164.91032119095,
-                            }, -- end of [6]
-                        }, -- end of ["points"]
-                        ["primitiveType"] = "Line",
-                        ["style"] = "solid",
-                        ["thickness"] = 2,
-                        ["visible"] = true,
-                    }, -- end of [7]
-                    [8] =
-                    {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
                         ["layerName"] = "Common",
@@ -34862,8 +34924,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [8]
-                    [9] =
+                    }, -- end of [7]
+                    [8] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -34904,8 +34966,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [9]
-                    [10] =
+                    }, -- end of [8]
+                    [9] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -34946,8 +35008,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [10]
-                    [11] =
+                    }, -- end of [9]
+                    [10] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -34993,8 +35055,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [11]
-                    [12] =
+                    }, -- end of [10]
+                    [11] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35030,8 +35092,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [12]
-                    [13] =
+                    }, -- end of [11]
+                    [12] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35072,8 +35134,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [13]
-                    [14] =
+                    }, -- end of [12]
+                    [13] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35109,8 +35171,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [14]
-                    [15] =
+                    }, -- end of [13]
+                    [14] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35166,8 +35228,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [15]
-                    [16] =
+                    }, -- end of [14]
+                    [15] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35203,8 +35265,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [16]
-                    [17] =
+                    }, -- end of [15]
+                    [16] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35240,8 +35302,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [17]
-                    [18] =
+                    }, -- end of [16]
+                    [17] =
                     {
                         ["closed"] = true,
                         ["colorString"] = "0x000000ff",
@@ -35277,8 +35339,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [18]
-                    [19] =
+                    }, -- end of [17]
+                    [18] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35293,8 +35355,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 14",
                         ["visible"] = true,
-                    }, -- end of [19]
-                    [20] =
+                    }, -- end of [18]
+                    [19] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35309,8 +35371,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "TMA",
                         ["visible"] = true,
-                    }, -- end of [20]
-                    [21] =
+                    }, -- end of [19]
+                    [20] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35325,8 +35387,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "CVOA",
                         ["visible"] = true,
-                    }, -- end of [21]
-                    [22] =
+                    }, -- end of [20]
+                    [21] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35341,8 +35403,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 33",
                         ["visible"] = true,
-                    }, -- end of [22]
-                    [23] =
+                    }, -- end of [21]
+                    [22] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35357,8 +35419,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 32",
                         ["visible"] = true,
-                    }, -- end of [23]
-                    [24] =
+                    }, -- end of [22]
+                    [23] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35373,8 +35435,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 16",
                         ["visible"] = true,
-                    }, -- end of [24]
-                    [25] =
+                    }, -- end of [23]
+                    [24] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35389,8 +35451,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 24",
                         ["visible"] = true,
-                    }, -- end of [25]
-                    [26] =
+                    }, -- end of [24]
+                    [25] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35406,8 +35468,8 @@ mission =
                         ["text"] = "MOA 1\
 ",
                         ["visible"] = true,
-                    }, -- end of [26]
-                    [27] =
+                    }, -- end of [25]
+                    [26] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35422,8 +35484,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 17",
                         ["visible"] = true,
-                    }, -- end of [27]
-                    [28] =
+                    }, -- end of [26]
+                    [27] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35438,8 +35500,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 18",
                         ["visible"] = true,
-                    }, -- end of [28]
-                    [29] =
+                    }, -- end of [27]
+                    [28] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35454,8 +35516,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 22",
                         ["visible"] = true,
-                    }, -- end of [29]
-                    [30] =
+                    }, -- end of [28]
+                    [29] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35470,8 +35532,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 23",
                         ["visible"] = true,
-                    }, -- end of [30]
-                    [31] =
+                    }, -- end of [29]
+                    [30] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35486,25 +35548,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 21",
                         ["visible"] = true,
-                    }, -- end of [31]
-                    [32] =
-                    {
-                        ["angle"] = 0,
-                        ["borderThickness"] = 1,
-                        ["colorString"] = "0x00ff00ff",
-                        ["fillColorString"] = "0xff000080",
-                        ["font"] = "DejaVuLGCSansCondensed.ttf",
-                        ["fontSize"] = 10,
-                        ["layerName"] = "Common",
-                        ["mapX"] = -45675.756446151,
-                        ["mapY"] = -340571.10532327,
-                        ["name"] = "Range 15",
-                        ["primitiveType"] = "TextBox",
-                        ["text"] = "Range 15\
-",
-                        ["visible"] = true,
-                    }, -- end of [32]
-                    [33] =
+                    }, -- end of [30]
+                    [31] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35519,8 +35564,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 11",
                         ["visible"] = true,
-                    }, -- end of [33]
-                    [34] =
+                    }, -- end of [31]
+                    [32] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35535,8 +35580,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 13",
                         ["visible"] = true,
-                    }, -- end of [34]
-                    [35] =
+                    }, -- end of [32]
+                    [33] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35551,8 +35596,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "",
                         ["visible"] = true,
-                    }, -- end of [35]
-                    [36] =
+                    }, -- end of [33]
+                    [34] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35568,8 +35613,8 @@ mission =
                         ["text"] = "Range 31\
 ",
                         ["visible"] = true,
-                    }, -- end of [36]
-                    [37] =
+                    }, -- end of [34]
+                    [35] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35585,8 +35630,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [37]
-                    [38] =
+                    }, -- end of [35]
+                    [36] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35602,8 +35647,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [38]
-                    [39] =
+                    }, -- end of [36]
+                    [37] =
                     {
                         ["closed"] = false,
                         ["colorString"] = "0xff0000ff",
@@ -35634,8 +35679,8 @@ mission =
                         ["style"] = "triangle",
                         ["thickness"] = 6,
                         ["visible"] = true,
-                    }, -- end of [39]
-                    [40] =
+                    }, -- end of [37]
+                    [38] =
                     {
                         ["closed"] = false,
                         ["colorString"] = "0xff0000ff",
@@ -35666,8 +35711,8 @@ mission =
                         ["style"] = "triangle",
                         ["thickness"] = 6,
                         ["visible"] = true,
-                    }, -- end of [40]
-                    [41] =
+                    }, -- end of [38]
+                    [39] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35683,8 +35728,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [41]
-                    [42] =
+                    }, -- end of [39]
+                    [40] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35700,8 +35745,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [42]
-                    [43] =
+                    }, -- end of [40]
+                    [41] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35717,8 +35762,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [43]
-                    [44] =
+                    }, -- end of [41]
+                    [42] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35734,8 +35779,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [44]
-                    [45] =
+                    }, -- end of [42]
+                    [43] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35751,8 +35796,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [45]
-                    [46] =
+                    }, -- end of [43]
+                    [44] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35768,8 +35813,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [46]
-                    [47] =
+                    }, -- end of [44]
+                    [45] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35785,8 +35830,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [47]
-                    [48] =
+                    }, -- end of [45]
+                    [46] =
                     {
                         ["angle"] = 0,
                         ["colorString"] = "0x8000ffff",
@@ -35802,8 +35847,8 @@ mission =
                         ["style"] = "solid",
                         ["thickness"] = 2,
                         ["visible"] = true,
-                    }, -- end of [48]
-                    [49] =
+                    }, -- end of [46]
+                    [47] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35818,8 +35863,8 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Jokkmokk roadbase FOB",
                         ["visible"] = true,
-                    }, -- end of [49]
-                    [50] =
+                    }, -- end of [47]
+                    [48] =
                     {
                         ["angle"] = 0,
                         ["borderThickness"] = 1,
@@ -35834,7 +35879,7 @@ mission =
                         ["primitiveType"] = "TextBox",
                         ["text"] = "Range 12",
                         ["visible"] = true,
-                    }, -- end of [50]
+                    }, -- end of [48]
                 }, -- end of ["objects"]
                 ["visible"] = true,
             }, -- end of [4]
@@ -42870,9 +42915,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -54519.053934266,
-        ["centerY"] = -334608.21437824,
-        ["zoom"] = 18124.445768234,
+        ["centerX"] = -61115.20857877,
+        ["centerY"] = -326825.19159141,
+        ["zoom"] = 603630.59004204,
     }, -- end of ["map"]
     ["maxDictId"] = 35,
     ["pictureFileNameB"] =
@@ -42939,32 +42984,34 @@ mission =
             [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_6\"));",
             [2] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_21\")); mission.trig.func[2]=nil;",
             [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_20\")); mission.trig.func[3]=nil;",
-            [4] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[4]=nil;",
-            [5] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[5]=nil;",
-            [6] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[6]=nil;",
-            [7] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[7]=nil;",
-            [8] = "a_set_ai_task(197, 1); mission.trig.func[8]=nil;",
-            [9] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[9]=nil;",
-            [10] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[10]=nil;",
-            [11] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[11]=nil;",
-            [12] = "a_set_ai_task(197, 2); mission.trig.func[12]=nil;",
-            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[13]=nil;",
+            [4] = "a_group_off(38);a_group_off(177); mission.trig.func[4]=nil;",
+            [5] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[5]=nil;",
+            [6] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[6]=nil;",
+            [7] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[7]=nil;",
+            [8] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[8]=nil;",
+            [9] = "a_set_ai_task(197, 1); mission.trig.func[9]=nil;",
+            [10] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[10]=nil;",
+            [11] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[11]=nil;",
+            [12] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[12]=nil;",
+            [13] = "a_set_ai_task(197, 2); mission.trig.func[13]=nil;",
+            [14] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[14]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
             [1] = "return(true)",
             [2] = "return(c_time_after(1) )",
             [3] = "return(c_time_after(2) )",
-            [4] = "return(c_time_after(10) )",
-            [5] = "return(c_time_after(13) )",
-            [6] = "return(c_flag_is_true(\"61\") )",
-            [7] = "return(c_group_life_less(104, 90) )",
-            [8] = "return(c_time_since_flag(\"62\", 120) )",
-            [9] = "return(c_time_since_flag(\"62\", 500) )",
-            [10] = "return(c_time_since_flag(\"62\", 700) )",
-            [11] = "return(c_time_since_flag(\"62\", 1180) )",
-            [12] = "return(c_time_since_flag(\"63\", 120) )",
-            [13] = "return(c_time_since_flag(\"63\", 520) )",
+            [4] = "return(c_time_after(3) )",
+            [5] = "return(c_time_after(10) )",
+            [6] = "return(c_time_after(13) )",
+            [7] = "return(c_flag_is_true(\"61\") )",
+            [8] = "return(c_group_life_less(104, 90) )",
+            [9] = "return(c_time_since_flag(\"62\", 120) )",
+            [10] = "return(c_time_since_flag(\"62\", 500) )",
+            [11] = "return(c_time_since_flag(\"62\", 700) )",
+            [12] = "return(c_time_since_flag(\"62\", 1180) )",
+            [13] = "return(c_time_since_flag(\"63\", 120) )",
+            [14] = "return(c_time_since_flag(\"63\", 520) )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -42990,6 +43037,7 @@ mission =
             [11] = true,
             [12] = true,
             [13] = true,
+            [14] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
@@ -43005,6 +43053,7 @@ mission =
             [11] = "if mission.trig.conditions[11]() then mission.trig.actions[11]() end",
             [12] = "if mission.trig.conditions[12]() then mission.trig.actions[12]() end",
             [13] = "if mission.trig.conditions[13]() then mission.trig.actions[13]() end",
+            [14] = "if mission.trig.conditions[14]() then mission.trig.actions[14]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
@@ -43087,6 +43136,37 @@ mission =
             }, -- end of ["rules"]
         }, -- end of [3]
         [4] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["group"] = 38,
+                    ["predicate"] = "a_group_off",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["group"] = 177,
+                    ["predicate"] = "a_group_off",
+                }, -- end of [2]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x004080ff",
+            ["comment"] = "AI off blue units",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 3,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [4]
+        [5] =
         {
             ["actions"] =
             {
@@ -43280,8 +43360,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [4]
-        [5] =
+        }, -- end of [5]
+        [6] =
         {
             ["actions"] =
             {
@@ -43325,8 +43405,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [5]
-        [6] =
+        }, -- end of [6]
+        [7] =
         {
             ["actions"] =
             {
@@ -43386,8 +43466,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [6]
-        [7] =
+        }, -- end of [7]
+        [8] =
         {
             ["actions"] =
             {
@@ -43430,8 +43510,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [7]
-        [8] =
+        }, -- end of [8]
+        [9] =
         {
             ["actions"] =
             {
@@ -43463,8 +43543,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [8]
-        [9] =
+        }, -- end of [9]
+        [10] =
         {
             ["actions"] =
             {
@@ -43504,8 +43584,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [9]
-        [10] =
+        }, -- end of [10]
+        [11] =
         {
             ["actions"] =
             {
@@ -43545,8 +43625,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [10]
-        [11] =
+        }, -- end of [11]
+        [12] =
         {
             ["actions"] =
             {
@@ -43591,8 +43671,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [11]
-        [12] =
+        }, -- end of [12]
+        [13] =
         {
             ["actions"] =
             {
@@ -43624,8 +43704,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [12]
-        [13] =
+        }, -- end of [13]
+        [14] =
         {
             ["actions"] =
             {
@@ -43670,7 +43750,7 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [13]
+        }, -- end of [14]
     }, -- end of ["trigrules"]
     ["version"] = 22,
     ["weather"] =
