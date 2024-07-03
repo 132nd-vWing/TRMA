@@ -1,5 +1,5 @@
 -- Strafe pits. Each pit can consist of multiple targets. Here we have two pits and each of the pits has two targets. These are names of the corresponding units defined in the ME.
-Range11_Strafepit_Table={"Range11_Strafepit_1", "Range11_Strafepit_2","Range11_Strafepit_3","Range11_Strafepit_11"}
+Range11_Strafepit_Table={"Range11_Strafepit_1", "Range11_Strafepit_2","Range11_Strafepit_3","Range11_Strafepit_4"}
 
 -- Table of bombing target names.
 bombtargets_Range11={"Range_11_Circle_North", "Range_11_Circle_South" }
