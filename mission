@@ -7784,7 +7784,7 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 1084.6078786311,
+                                            ["ETA"] = 1076.7762714478,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 2000,
@@ -7803,8 +7803,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = 117824.0785285,
-                                            ["y"] = -434888.09457494,
+                                            ["x"] = 116806.56968755,
+                                            ["y"] = -434650.73388034,
                                         }, -- end of [2]
                                         [3] =
                                         {
@@ -7903,7 +7903,7 @@ mission =
                                             [3] = 1,
                                             ["name"] = "Pontiac21",
                                         }, -- end of ["callsign"]
-                                        ["heading"] = 0.16051723693995,
+                                        ["heading"] = 0.16350616760888,
                                         ["livery_id"] = "104th fs maryland ang, baltimore (md)",
                                         ["name"] = "Range 32-1",
                                         ["onboard_num"] = "025",
@@ -7918,7 +7918,7 @@ mission =
                                             {
                                             }, -- end of ["pylons"]
                                         }, -- end of ["payload"]
-                                        ["psi"] = -0.16051723693995,
+                                        ["psi"] = -0.16350616760888,
                                         ["skill"] = "High",
                                         ["speed"] = 123.33333333333,
                                         ["type"] = "A-10A",
@@ -14892,7 +14892,7 @@ mission =
                                 ["dead"] = false,
                                 ["groupId"] = 125,
                                 ["heading"] = 0.039295647152486,
-                                ["name"] = "ATIS Bodø AFB 123.900, TRAFFIC 398.650, VOICE en-US-Standard-E",
+                                ["name"] = "ATIS Bodo 398.150, TRAFFIC 398.650, VOICE en-US-Standard-E",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14905,8 +14905,8 @@ mission =
                                             ["name"] = "",
                                             ["speed"] = 0,
                                             ["type"] = "",
-                                            ["x"] = -67359.413372139,
-                                            ["y"] = -347269.19794248,
+                                            ["x"] = -67313.728418315,
+                                            ["y"] = -347233.06372917,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                 }, -- end of ["route"]
@@ -14916,57 +14916,17 @@ mission =
                                     {
                                         ["category"] = "Fortifications",
                                         ["heading"] = 0.039295647152486,
-                                        ["name"] = "ATIS Bodø AFB 123.900, TRAFFIC 398.650, VOICE en-US-Standard-E",
+                                        ["name"] = "ATIS Bodo 398.150, TRAFFIC 398.650, VOICE en-US-Standard-E",
                                         ["rate"] = 10,
                                         ["type"] = "house2arm",
                                         ["unitId"] = 378,
-                                        ["x"] = -67359.413372139,
-                                        ["y"] = -347269.19794248,
+                                        ["x"] = -67313.728418315,
+                                        ["y"] = -347233.06372917,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
-                                ["x"] = -67359.413372139,
-                                ["y"] = -347269.19794248,
+                                ["x"] = -67313.728418315,
+                                ["y"] = -347233.06372917,
                             }, -- end of [2]
-                            [3] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 183,
-                                ["heading"] = 0.039295647152486,
-                                ["name"] = "ATIS Bodø AFB 398.150, TRAFFIC 398.650, VOICE en-US-Standard-E-1",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = -67386.525712397,
-                                            ["y"] = -347204.06113513,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Fortifications",
-                                        ["heading"] = 0.039295647152486,
-                                        ["name"] = "ATIS Bodø AFB 398.150, TRAFFIC 398.650, VOICE en-US-Standard-E-1-1",
-                                        ["rate"] = 10,
-                                        ["type"] = "house2arm",
-                                        ["unitId"] = 468,
-                                        ["x"] = -67386.525712397,
-                                        ["y"] = -347204.06113513,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = -67386.525712397,
-                                ["y"] = -347204.06113513,
-                            }, -- end of [3]
                         }, -- end of ["group"]
                     }, -- end of ["static"]
                     ["vehicle"] =
@@ -21265,8 +21225,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -52551.947852318,
-                                            ["y"] = -335428.43540595,
+                                            ["x"] = -52559.296290276,
+                                            ["y"] = -335421.43599345,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["routeRelativeTOT"] = true,
@@ -21352,8 +21312,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "2B11 mortar",
                                         ["unitId"] = 491,
-                                        ["x"] = -52551.947852318,
-                                        ["y"] = -335428.43540595,
+                                        ["x"] = -52559.296290276,
+                                        ["y"] = -335421.43599345,
                                     }, -- end of [1]
                                     [2] =
                                     {
@@ -21364,8 +21324,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "2B11 mortar",
                                         ["unitId"] = 490,
-                                        ["x"] = -52534.317329932,
-                                        ["y"] = -335397.58199178,
+                                        ["x"] = -52579.879857673,
+                                        ["y"] = -335413.01544315,
                                     }, -- end of [2]
                                     [3] =
                                     {
@@ -21376,13 +21336,13 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "M 818",
                                         ["unitId"] = 489,
-                                        ["x"] = -52526.383594859,
-                                        ["y"] = -335427.55387983,
+                                        ["x"] = -52572.394924074,
+                                        ["y"] = -335427.04969365,
                                     }, -- end of [3]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -52551.947852318,
-                                ["y"] = -335428.43540595,
+                                ["x"] = -52559.296290276,
+                                ["y"] = -335421.43599345,
                             }, -- end of [11]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
@@ -34550,7 +34510,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 237667,
+    ["currentKey"] = 246276,
     ["date"] =
     {
         ["Day"] = 29,
@@ -42987,9 +42947,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = 319006.9643184,
-        ["centerY"] = -403068.14806552,
-        ["zoom"] = 1247051.6547536,
+        ["centerX"] = -64617.537939817,
+        ["centerY"] = -343309.36175089,
+        ["zoom"] = 31495.799826343,
     }, -- end of ["map"]
     ["maxDictId"] = 77,
     ["pictureFileNameB"] =
@@ -43081,11 +43041,11 @@ mission =
             [7] = "return(c_time_after(10) )",
             [8] = "return(c_time_after(13) )",
             [9] = "return(c_flag_is_true(\"61\") )",
-            [10] = "return(c_group_life_less(104, 90) )",
+            [10] = "return(c_group_life_less(104, 90) or c_group_dead(104) )",
             [11] = "return(c_time_since_flag(\"62\", 120) )",
             [12] = "return(c_time_since_flag(\"62\", 500) )",
             [13] = "return(c_time_since_flag(\"62\", 700) )",
-            [14] = "return(c_time_since_flag(\"62\", 1180) )",
+            [14] = "return(c_time_since_flag(\"62\", 1100) )",
             [15] = "return(c_time_since_flag(\"63\", 120) )",
             [16] = "return(c_time_since_flag(\"63\", 520) )",
         }, -- end of ["conditions"]
@@ -43639,6 +43599,19 @@ mission =
                     ["unitType"] = "ALL",
                     ["zone"] = "",
                 }, -- end of [1]
+                [2] =
+                {
+                    ["predicate"] = "or",
+                }, -- end of [2]
+                [3] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["group"] = 104,
+                    ["percent"] = 90,
+                    ["predicate"] = "c_group_dead",
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [3]
             }, -- end of ["rules"]
         }, -- end of [10]
         [11] =
@@ -43796,7 +43769,7 @@ mission =
                     ["group"] = 104,
                     ["percent"] = 90,
                     ["predicate"] = "c_time_since_flag",
-                    ["seconds"] = 1180,
+                    ["seconds"] = 1100,
                     ["unitType"] = "ALL",
                     ["zone"] = "",
                 }, -- end of [1]
