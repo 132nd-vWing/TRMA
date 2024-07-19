@@ -1501,6 +1501,7 @@ mission =
                             [3] =
                             {
                                 ["communication"] = true,
+                                ["dynSpawnTemplate"] = false,
                                 ["frequency"] = 124,
                                 ["groupId"] = 5,
                                 ["hidden"] = false,
@@ -14686,6 +14687,127 @@ mission =
                                 ["x"] = 305813.09935699,
                                 ["y"] = -659751.49076703,
                             }, -- end of [35]
+                            [36] =
+                            {
+                                ["communication"] = false,
+                                ["dynSpawnTemplate"] = false,
+                                ["frequency"] = 251,
+                                ["groupId"] = 208,
+                                ["hidden"] = false,
+                                ["lateActivation"] = true,
+                                ["modulation"] = 0,
+                                ["name"] = "CVN73_Tanker#IFF:5327FR",
+                                ["radioSet"] = false,
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Turning Point",
+                                            ["alt"] = 2000,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 82.222222222222,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = true,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "Tanker",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                        [2] =
+                                                        {
+                                                            ["auto"] = true,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 2,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "EPLRS",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["groupId"] = 31,
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [2]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -53008.556149733,
+                                            ["y"] = -609837.43315508,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Refueling",
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrolled"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["AddPropAircraft"] =
+                                        {
+                                            ["STN_L16"] = "01170",
+                                            ["VoiceCallsignLabel"] = "ED",
+                                            ["VoiceCallsignNumber"] = "11",
+                                        }, -- end of ["AddPropAircraft"]
+                                        ["alt"] = 2000,
+                                        ["alt_type"] = "BARO",
+                                        ["callsign"] =
+                                        {
+                                            [1] = 1,
+                                            [2] = 1,
+                                            [3] = 1,
+                                            ["name"] = "Texaco11",
+                                        }, -- end of ["callsign"]
+                                        ["heading"] = 0.83888030321073,
+                                        ["name"] = "CVN73_Tanker#IFF:5327FR",
+                                        ["onboard_num"] = "013",
+                                        ["payload"] =
+                                        {
+                                            ["chaff"] = 30,
+                                            ["flare"] = 30,
+                                            ["fuel"] = 6887,
+                                            ["gun"] = 100,
+                                            ["pylons"] =
+                                            {
+                                            }, -- end of ["pylons"]
+                                        }, -- end of ["payload"]
+                                        ["psi"] = 0,
+                                        ["skill"] = "High",
+                                        ["speed"] = 82.222222222222,
+                                        ["type"] = "S-3B Tanker",
+                                        ["unitId"] = 504,
+                                        ["x"] = -53008.556149733,
+                                        ["y"] = -609837.43315508,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["x"] = -53008.556149733,
+                                ["y"] = -609837.43315508,
+                            }, -- end of [36]
                         }, -- end of ["group"]
                     }, -- end of ["plane"]
                     ["ship"] =
@@ -14696,7 +14818,7 @@ mission =
                             {
                                 ["groupId"] = 142,
                                 ["hidden"] = false,
-                                ["name"] = "CVN George Washington",
+                                ["name"] = "CVN-73",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -14728,52 +14850,6 @@ mission =
                                                             {
                                                                 ["action"] =
                                                                 {
-                                                                    ["id"] = "ActivateBeacon",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["AA"] = false,
-                                                                        ["bearing"] = true,
-                                                                        ["callsign"] = "TKR",
-                                                                        ["channel"] = 73,
-                                                                        ["frequency"] = 1160000000,
-                                                                        ["modeChannel"] = "X",
-                                                                        ["system"] = 3,
-                                                                        ["type"] = 4,
-                                                                        ["unitId"] = 398,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [1]
-                                                        [2] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 2,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "ActivateICLS",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["channel"] = 1,
-                                                                        ["type"] = 131584,
-                                                                        ["unitId"] = 398,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [2]
-                                                        [3] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 3,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
                                                                     ["id"] = "ActivateLink4",
                                                                     ["params"] =
                                                                     {
@@ -14782,7 +14858,7 @@ mission =
                                                                     }, -- end of ["params"]
                                                                 }, -- end of ["action"]
                                                             }, -- end of ["params"]
-                                                        }, -- end of [3]
+                                                        }, -- end of [1]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -14825,10 +14901,12 @@ mission =
                                 {
                                     [1] =
                                     {
+                                        ["allowAirboss"] = true,
+                                        ["allowLso"] = true,
                                         ["frequency"] = 127500000,
                                         ["heading"] = 1.5671085670552,
                                         ["modulation"] = 0,
-                                        ["name"] = "CVN George Washington-1",
+                                        ["name"] = "CVN-73",
                                         ["skill"] = "Excellent",
                                         ["type"] = "CVN_73",
                                         ["unitId"] = 398,
@@ -36705,7 +36783,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 253603,
+    ["currentKey"] = 283273,
     ["date"] =
     {
         ["Day"] = 29,
@@ -45146,7 +45224,7 @@ mission =
         ["centerY"] = -22000,
         ["zoom"] = 3286631.0160428,
     }, -- end of ["map"]
-    ["maxDictId"] = 83,
+    ["maxDictId"] = 103,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -45216,17 +45294,18 @@ mission =
             [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_80\")); mission.trig.func[3]=nil;",
             [4] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_81\")); mission.trig.func[4]=nil;",
             [5] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_82\")); mission.trig.func[5]=nil;",
-            [6] = "a_group_off(38);a_group_off(177); mission.trig.func[6]=nil;",
-            [7] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[7]=nil;",
-            [8] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[8]=nil;",
-            [9] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[9]=nil;",
-            [10] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[10]=nil;",
-            [11] = "a_set_ai_task(197, 1); mission.trig.func[11]=nil;",
-            [12] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[12]=nil;",
-            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[13]=nil;",
-            [14] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[14]=nil;",
-            [15] = "a_set_ai_task(197, 2); mission.trig.func[15]=nil;",
-            [16] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[16]=nil;",
+            [6] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_103\")); mission.trig.func[6]=nil;",
+            [7] = "a_group_off(38);a_group_off(177); mission.trig.func[7]=nil;",
+            [8] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[8]=nil;",
+            [9] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[9]=nil;",
+            [10] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[10]=nil;",
+            [11] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[11]=nil;",
+            [12] = "a_set_ai_task(197, 1); mission.trig.func[12]=nil;",
+            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[13]=nil;",
+            [14] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[14]=nil;",
+            [15] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[15]=nil;",
+            [16] = "a_set_ai_task(197, 2); mission.trig.func[16]=nil;",
+            [17] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[17]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
@@ -45236,16 +45315,17 @@ mission =
             [4] = "return(c_time_after(2) )",
             [5] = "return(c_time_after(3) )",
             [6] = "return(c_time_after(3) )",
-            [7] = "return(c_time_after(10) )",
-            [8] = "return(c_time_after(13) )",
-            [9] = "return(c_flag_is_true(\"61\") )",
-            [10] = "return(c_group_life_less(104, 90) or c_group_dead(104) )",
-            [11] = "return(c_time_since_flag(\"62\", 120) )",
-            [12] = "return(c_time_since_flag(\"62\", 500) )",
-            [13] = "return(c_time_since_flag(\"62\", 700) )",
-            [14] = "return(c_time_since_flag(\"62\", 1100) )",
-            [15] = "return(c_time_since_flag(\"63\", 120) )",
-            [16] = "return(c_time_since_flag(\"63\", 520) )",
+            [7] = "return(c_time_after(3) )",
+            [8] = "return(c_time_after(10) )",
+            [9] = "return(c_time_after(13) )",
+            [10] = "return(c_flag_is_true(\"61\") )",
+            [11] = "return(c_group_life_less(104, 90) or c_group_dead(104) )",
+            [12] = "return(c_time_since_flag(\"62\", 120) )",
+            [13] = "return(c_time_since_flag(\"62\", 500) )",
+            [14] = "return(c_time_since_flag(\"62\", 700) )",
+            [15] = "return(c_time_since_flag(\"62\", 1100) )",
+            [16] = "return(c_time_since_flag(\"63\", 120) )",
+            [17] = "return(c_time_since_flag(\"63\", 520) )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -45274,6 +45354,7 @@ mission =
             [14] = true,
             [15] = true,
             [16] = true,
+            [17] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
@@ -45292,6 +45373,7 @@ mission =
             [14] = "if mission.trig.conditions[14]() then mission.trig.actions[14]() end",
             [15] = "if mission.trig.conditions[15]() then mission.trig.actions[15]() end",
             [16] = "if mission.trig.conditions[16]() then mission.trig.actions[16]() end",
+            [17] = "if mission.trig.conditions[17]() then mission.trig.actions[17]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
@@ -45429,6 +45511,31 @@ mission =
             {
                 [1] =
                 {
+                    ["file"] = "ResKey_Action_103",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["comment"] = "TRMA_NavyGroup",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 3,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [6]
+        [7] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
                     ["group"] = 38,
                     ["predicate"] = "a_group_off",
                 }, -- end of [1]
@@ -45453,8 +45560,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [6]
-        [7] =
+        }, -- end of [7]
+        [8] =
         {
             ["actions"] =
             {
@@ -45648,8 +45755,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [7]
-        [8] =
+        }, -- end of [8]
+        [9] =
         {
             ["actions"] =
             {
@@ -45693,8 +45800,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [8]
-        [9] =
+        }, -- end of [9]
+        [10] =
         {
             ["actions"] =
             {
@@ -45754,8 +45861,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [9]
-        [10] =
+        }, -- end of [10]
+        [11] =
         {
             ["actions"] =
             {
@@ -45811,8 +45918,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [3]
             }, -- end of ["rules"]
-        }, -- end of [10]
-        [11] =
+        }, -- end of [11]
+        [12] =
         {
             ["actions"] =
             {
@@ -45844,8 +45951,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [11]
-        [12] =
+        }, -- end of [12]
+        [13] =
         {
             ["actions"] =
             {
@@ -45885,8 +45992,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [12]
-        [13] =
+        }, -- end of [13]
+        [14] =
         {
             ["actions"] =
             {
@@ -45926,8 +46033,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [13]
-        [14] =
+        }, -- end of [14]
+        [15] =
         {
             ["actions"] =
             {
@@ -45972,8 +46079,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [14]
-        [15] =
+        }, -- end of [15]
+        [16] =
         {
             ["actions"] =
             {
@@ -46005,8 +46112,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [15]
-        [16] =
+        }, -- end of [16]
+        [17] =
         {
             ["actions"] =
             {
@@ -46051,7 +46158,7 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [16]
+        }, -- end of [17]
     }, -- end of ["trigrules"]
     ["version"] = 22,
     ["weather"] =
