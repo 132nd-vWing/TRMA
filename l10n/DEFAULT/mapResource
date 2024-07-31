@@ -9,6 +9,6 @@ mapResource =
     ["ResKey_Action_80"] = "TRMA_Basic_Ranges.lua",
     ["ResKey_Action_81"] = "TRMA_Tankers.lua",
     ["ResKey_Action_82"] = "TRMA_Range_15.lua",
-    ["ResKey_Action_83"] = "Moose_.lua",
-    ["ResKey_Action_103"] = "TRMA_Navygroup.lua",
+    ["ResKey_Action_104"] = "Moose_.lua",
+    ["ResKey_Action_122"] = "TRMA_Navygroup.lua",
 } -- end of mapResource

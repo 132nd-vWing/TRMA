@@ -14784,6 +14784,7 @@ mission =
                                             ["name"] = "Texaco11",
                                         }, -- end of ["callsign"]
                                         ["heading"] = 0.83888030321073,
+                                        ["livery_id"] = "bd navy bloodhounds 700",
                                         ["name"] = "CVN73_Tanker#IFF:5327FR",
                                         ["onboard_num"] = "013",
                                         ["payload"] =
@@ -14831,7 +14832,7 @@ mission =
                                             ["alt"] = 0,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
-                                            ["speed"] = 9.7638888888889,
+                                            ["speed"] = 2.5694444444444,
                                             ["speed_locked"] = true,
                                             ["task"] =
                                             {
@@ -14868,13 +14869,13 @@ mission =
                                         }, -- end of [1]
                                         [2] =
                                         {
-                                            ["ETA"] = 12425.288991376,
+                                            ["ETA"] = 47216.098167227,
                                             ["ETA_locked"] = false,
                                             ["action"] = "Turning Point",
                                             ["alt"] = 0,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
-                                            ["speed"] = 9.7638888888889,
+                                            ["speed"] = 2.5694444444444,
                                             ["speed_locked"] = true,
                                             ["task"] =
                                             {
@@ -36783,7 +36784,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 283273,
+    ["currentKey"] = 311492,
     ["date"] =
     {
         ["Day"] = 29,
@@ -45220,11 +45221,11 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = 159683.42245989,
+        ["centerX"] = 166999.33818663,
         ["centerY"] = -22000,
         ["zoom"] = 3286631.0160428,
     }, -- end of ["map"]
-    ["maxDictId"] = 103,
+    ["maxDictId"] = 122,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -45289,12 +45290,12 @@ mission =
     {
         ["actions"] =
         {
-            [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_83\"));",
+            [1] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_104\"));",
             [2] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_79\")); mission.trig.func[2]=nil;",
             [3] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_80\")); mission.trig.func[3]=nil;",
             [4] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_81\")); mission.trig.func[4]=nil;",
             [5] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_82\")); mission.trig.func[5]=nil;",
-            [6] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_103\")); mission.trig.func[6]=nil;",
+            [6] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_122\")); mission.trig.func[6]=nil;",
             [7] = "a_group_off(38);a_group_off(177); mission.trig.func[7]=nil;",
             [8] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[8]=nil;",
             [9] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[9]=nil;",
@@ -45394,7 +45395,7 @@ mission =
             {
                 [1] =
                 {
-                    ["file"] = "ResKey_Action_83",
+                    ["file"] = "ResKey_Action_104",
                     ["predicate"] = "a_do_script_file",
                 }, -- end of [1]
             }, -- end of ["actions"]
@@ -45511,7 +45512,7 @@ mission =
             {
                 [1] =
                 {
-                    ["file"] = "ResKey_Action_103",
+                    ["file"] = "ResKey_Action_122",
                     ["predicate"] = "a_do_script_file",
                 }, -- end of [1]
             }, -- end of ["actions"]
