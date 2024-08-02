@@ -38054,8 +38054,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -236298.03970462,
-                                            ["y"] = -467984.96681284,
+                                            ["x"] = -236296.34933567,
+                                            ["y"] = -467980.46131817,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["routeRelativeTOT"] = true,
@@ -38079,80 +38079,80 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "SNR_75V",
                                         ["unitId"] = 25,
-                                        ["x"] = -236298.03970462,
-                                        ["y"] = -467984.96681284,
+                                        ["x"] = -236296.34933567,
+                                        ["y"] = -467980.46131817,
                                     }, -- end of [1]
                                     [2] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 5.4803338512622,
+                                        ["heading"] = 4.2935099599061,
                                         ["name"] = "R24_SA-2_site_static-2",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 26,
-                                        ["x"] = -236869.92074322,
-                                        ["y"] = -468699.81811109,
+                                        ["x"] = -236544.80223268,
+                                        ["y"] = -468198.35583747,
                                     }, -- end of [2]
                                     [3] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 1.535889741755,
+                                        ["heading"] = 3.2812189937493,
                                         ["name"] = "R24_SA-2_site_static-3",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 27,
-                                        ["x"] = -236726.95048357,
-                                        ["y"] = -468413.87759179,
+                                        ["x"] = -236629.83424021,
+                                        ["y"] = -468038.25651079,
                                     }, -- end of [3]
                                     [4] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 4.6774823953448,
+                                        ["heading"] = 4.939281783144,
                                         ["name"] = "R24_SA-2_site_static-4",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 28,
-                                        ["x"] = -236299.86739889,
-                                        ["y"] = -468083.21103863,
+                                        ["x"] = -236382.70996832,
+                                        ["y"] = -468180.41939838,
                                     }, -- end of [4]
                                     [5] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 3.8048177693476,
+                                        ["heading"] = 1.6057029118348,
                                         ["name"] = "R24_SA-2_site_static-5",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 29,
-                                        ["x"] = -236383.29470076,
-                                        ["y"] = -468031.83618789,
+                                        ["x"] = -236388.02446879,
+                                        ["y"] = -467906.72262414,
                                     }, -- end of [5]
                                     [6] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 2.3561944901923,
+                                        ["heading"] = 2.164208272473,
                                         ["name"] = "R24_SA-2_site_static-6",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 30,
-                                        ["x"] = -236385.79524659,
-                                        ["y"] = -467927.04058527,
+                                        ["x"] = -236512.91522985,
+                                        ["y"] = -467891.44343528,
                                     }, -- end of [6]
                                     [7] =
                                     {
                                         ["coldAtStart"] = false,
-                                        ["heading"] = 0.92502450355699,
+                                        ["heading"] = 6.1261056745001,
                                         ["name"] = "R24_SA-2_site_static-7",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "S_75M_Volhov",
                                         ["unitId"] = 31,
-                                        ["x"] = -236217.34938641,
-                                        ["y"] = -467930.67774284,
+                                        ["x"] = -236279.07720914,
+                                        ["y"] = -468022.97732193,
                                     }, -- end of [7]
                                     [8] =
                                     {
@@ -38163,8 +38163,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ZIL-131 KUNG",
                                         ["unitId"] = 32,
-                                        ["x"] = -236268.08303252,
-                                        ["y"] = -467940.33064774,
+                                        ["x"] = -236443.16241117,
+                                        ["y"] = -468086.75132758,
                                     }, -- end of [8]
                                     [9] =
                                     {
@@ -38175,8 +38175,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ZIL-131 KUNG",
                                         ["unitId"] = 33,
-                                        ["x"] = -236272.91275476,
-                                        ["y"] = -467937.07767072,
+                                        ["x"] = -236476.37803912,
+                                        ["y"] = -468038.92082335,
                                     }, -- end of [9]
                                     [10] =
                                     {
@@ -38187,8 +38187,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "p-19 s-125 sr",
                                         ["unitId"] = 34,
-                                        ["x"] = -236359.18220285,
-                                        ["y"] = -467819.3109629,
+                                        ["x"] = -236420.57578417,
+                                        ["y"] = -468052.20707452,
                                     }, -- end of [10]
                                     [11] =
                                     {
@@ -38199,8 +38199,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "Ural-4320 APA-5D",
                                         ["unitId"] = 35,
-                                        ["x"] = -236347.98075037,
-                                        ["y"] = -467820.58205212,
+                                        ["x"] = -236431.20478512,
+                                        ["y"] = -468021.64869682,
                                     }, -- end of [11]
                                     [12] =
                                     {
@@ -38211,8 +38211,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATMZ-5",
                                         ["unitId"] = 36,
-                                        ["x"] = -236416.32533777,
-                                        ["y"] = -468156.12894495,
+                                        ["x"] = -236414.63496882,
+                                        ["y"] = -468151.62345028,
                                     }, -- end of [12]
                                     [13] =
                                     {
@@ -38223,8 +38223,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "ATMZ-5",
                                         ["unitId"] = 37,
-                                        ["x"] = -236435.39913435,
-                                        ["y"] = -468136.22585287,
+                                        ["x"] = -236433.7087654,
+                                        ["y"] = -468131.7203582,
                                     }, -- end of [13]
                                     [14] =
                                     {
@@ -38235,8 +38235,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "Ural-4320T",
                                         ["unitId"] = 38,
-                                        ["x"] = -236466.08306797,
-                                        ["y"] = -468069.8822126,
+                                        ["x"] = -236464.39269902,
+                                        ["y"] = -468065.37671793,
                                     }, -- end of [14]
                                     [15] =
                                     {
@@ -38247,13 +38247,13 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "Ural-4320T",
                                         ["unitId"] = 39,
-                                        ["x"] = -236449.49715791,
-                                        ["y"] = -468055.78418905,
+                                        ["x"] = -236447.80678896,
+                                        ["y"] = -468051.27869438,
                                     }, -- end of [15]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
-                                ["x"] = -236298.03970462,
-                                ["y"] = -467984.96681284,
+                                ["x"] = -236296.34933567,
+                                ["y"] = -467980.46131817,
                             }, -- end of [2]
                             [3] =
                             {
@@ -51969,7 +51969,7 @@ mission =
                                             ["ETA"] = 0,
                                             ["ETA_locked"] = true,
                                             ["action"] = "Off Road",
-                                            ["alt"] = 316,
+                                            ["alt"] = 315,
                                             ["alt_type"] = "BARO",
                                             ["formation_template"] = "",
                                             ["speed"] = 0,
@@ -52023,8 +52023,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "SA-11 Buk LN 9A310M1",
                                         ["unitId"] = 512,
-                                        ["x"] = -215113.23277676,
-                                        ["y"] = -389749.61351081,
+                                        ["x"] = -215113.49096238,
+                                        ["y"] = -389761.30725545,
                                     }, -- end of [2]
                                     [3] =
                                     {
@@ -52035,8 +52035,8 @@ mission =
                                         ["skill"] = "High",
                                         ["type"] = "SA-11 Buk SR 9S18M1",
                                         ["unitId"] = 511,
-                                        ["x"] = -215133.23277676,
-                                        ["y"] = -389749.61351081,
+                                        ["x"] = -215113.67897942,
+                                        ["y"] = -389739.12124485,
                                     }, -- end of [3]
                                 }, -- end of ["units"]
                                 ["visible"] = false,
@@ -52107,6 +52107,642 @@ mission =
                                 ["x"] = -200716.55553047,
                                 ["y"] = -412499.15204931,
                             }, -- end of [10]
+                            [11] =
+                            {
+                                ["groupId"] = 222,
+                                ["hidden"] = false,
+                                ["name"] = "R24_rocket_arty_BN_SA8",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 12,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -229944.27118993,
+                                            ["y"] = -477083.5960577,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3089969389957,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 531,
+                                        ["x"] = -229944.27118993,
+                                        ["y"] = -477083.5960577,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4137166941154,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 530,
+                                        ["x"] = -229957.39902878,
+                                        ["y"] = -477081.93849455,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 529,
+                                        ["x"] = -230028.0952878,
+                                        ["y"] = -476811.85002878,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 528,
+                                        ["x"] = -230044.42250345,
+                                        ["y"] = -476809.78937084,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 526,
+                                        ["x"] = -229952.99743099,
+                                        ["y"] = -477091.02875087,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.2288591161895,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 525,
+                                        ["x"] = -230037.76131681,
+                                        ["y"] = -476819.71317951,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.36651914291881,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 524,
+                                        ["x"] = -229955.18781663,
+                                        ["y"] = -476877.73966851,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.2863813201126,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 523,
+                                        ["x"] = -229963.71037356,
+                                        ["y"] = -476876.32319925,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.2935099599061,
+                                        ["name"] = "R24_rocket_arty_BN_SA8-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 522,
+                                        ["x"] = -229962.20036419,
+                                        ["y"] = -476884.95182421,
+                                    }, -- end of [9]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -229944.27118993,
+                                ["y"] = -477083.5960577,
+                            }, -- end of [11]
+                            [12] =
+                            {
+                                ["groupId"] = 223,
+                                ["hidden"] = false,
+                                ["name"] = "R24_rocket_arty_BN_SA19",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 39,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -200753.06074643,
+                                            ["y"] = -412699.38557346,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3089969389957,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 532,
+                                        ["x"] = -200753.06074643,
+                                        ["y"] = -412699.38557346,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4137166941154,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 533,
+                                        ["x"] = -200766.18858528,
+                                        ["y"] = -412697.72801031,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 534,
+                                        ["x"] = -200836.8848443,
+                                        ["y"] = -412427.63954454,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 535,
+                                        ["x"] = -200853.21205995,
+                                        ["y"] = -412425.57888659,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 536,
+                                        ["x"] = -200761.78698748,
+                                        ["y"] = -412706.81826662,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.2288591161895,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 537,
+                                        ["x"] = -200846.5508733,
+                                        ["y"] = -412435.50269527,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.36651914291881,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 538,
+                                        ["x"] = -200763.97737313,
+                                        ["y"] = -412493.52918426,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.2863813201126,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 539,
+                                        ["x"] = -200772.49993006,
+                                        ["y"] = -412492.11271501,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.2935099599061,
+                                        ["name"] = "R24_rocket_arty_BN_SA19-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 540,
+                                        ["x"] = -200770.98992069,
+                                        ["y"] = -412500.74133997,
+                                    }, -- end of [9]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -200753.06074643,
+                                ["y"] = -412699.38557346,
+                            }, -- end of [12]
+                            [13] =
+                            {
+                                ["groupId"] = 224,
+                                ["hidden"] = false,
+                                ["name"] = "R24_rocket_arty_BN_SA15",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 47,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -212580.27694442,
+                                            ["y"] = -412890.85134446,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3089969389957,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 541,
+                                        ["x"] = -212580.27694442,
+                                        ["y"] = -412890.85134446,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4137166941154,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 542,
+                                        ["x"] = -212593.40478327,
+                                        ["y"] = -412889.19378131,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 543,
+                                        ["x"] = -212664.10104229,
+                                        ["y"] = -412619.10531554,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 544,
+                                        ["x"] = -212680.42825794,
+                                        ["y"] = -412617.0446576,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 545,
+                                        ["x"] = -212589.00318548,
+                                        ["y"] = -412898.28403763,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.2288591161895,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 546,
+                                        ["x"] = -212673.7670713,
+                                        ["y"] = -412626.96846627,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.36651914291881,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 547,
+                                        ["x"] = -212591.19357112,
+                                        ["y"] = -412684.99495527,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.2863813201126,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 548,
+                                        ["x"] = -212599.71612805,
+                                        ["y"] = -412683.57848601,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.2935099599061,
+                                        ["name"] = "R24_rocket_arty_BN_SA15-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 549,
+                                        ["x"] = -212598.20611868,
+                                        ["y"] = -412692.20711097,
+                                    }, -- end of [9]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -212580.27694442,
+                                ["y"] = -412890.85134446,
+                            }, -- end of [13]
+                            [14] =
+                            {
+                                ["groupId"] = 225,
+                                ["hidden"] = false,
+                                ["name"] = "R24_rocket_arty_BN_SA11",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 313,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -215190.38601884,
+                                            ["y"] = -389952.90848378,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3089969389957,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 550,
+                                        ["x"] = -215190.38601884,
+                                        ["y"] = -389952.90848378,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4137166941154,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 551,
+                                        ["x"] = -215203.51385769,
+                                        ["y"] = -389951.25092063,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 552,
+                                        ["x"] = -215274.21011671,
+                                        ["y"] = -389681.16245486,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.3264502315157,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Grad-URAL",
+                                        ["unitId"] = 553,
+                                        ["x"] = -215290.53733236,
+                                        ["y"] = -389679.10179692,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 554,
+                                        ["x"] = -215199.1122599,
+                                        ["y"] = -389960.34117695,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.2288591161895,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 555,
+                                        ["x"] = -215283.87614572,
+                                        ["y"] = -389689.02560559,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.36651914291881,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 556,
+                                        ["x"] = -215201.30264554,
+                                        ["y"] = -389747.05209459,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.2863813201126,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 557,
+                                        ["x"] = -215209.82520247,
+                                        ["y"] = -389745.63562533,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.2935099599061,
+                                        ["name"] = "R24_rocket_arty_BN_SA11-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 558,
+                                        ["x"] = -215208.3151931,
+                                        ["y"] = -389754.26425029,
+                                    }, -- end of [9]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -215190.38601884,
+                                ["y"] = -389952.90848378,
+                            }, -- end of [14]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [2]
@@ -52219,7 +52855,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 322830,
+    ["currentKey"] = 325973,
     ["date"] =
     {
         ["Day"] = 29,
@@ -60656,9 +61292,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -201774.30141848,
-        ["centerY"] = -428622.47612368,
-        ["zoom"] = 783956.37000065,
+        ["centerX"] = -212364.56683993,
+        ["centerY"] = -382220.13570103,
+        ["zoom"] = 183755.0313924,
     }, -- end of ["map"]
     ["maxDictId"] = 122,
     ["pictureFileNameB"] =
