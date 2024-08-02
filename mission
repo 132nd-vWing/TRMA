@@ -14717,8 +14717,8 @@ mission =
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
                                             ["type"] = "Turning Point",
-                                            ["x"] = -53008.556149733,
-                                            ["y"] = -609837.43315508,
+                                            ["x"] = -71562.258119772,
+                                            ["y"] = -533545.41487508,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                     ["routeRelativeTOT"] = true,
@@ -14767,12 +14767,12 @@ mission =
                                         ["speed"] = 82.222222222222,
                                         ["type"] = "S-3B Tanker",
                                         ["unitId"] = 504,
-                                        ["x"] = -53008.556149733,
-                                        ["y"] = -609837.43315508,
+                                        ["x"] = -71562.258119772,
+                                        ["y"] = -533545.41487508,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
-                                ["x"] = -53008.556149733,
-                                ["y"] = -609837.43315508,
+                                ["x"] = -71562.258119772,
+                                ["y"] = -533545.41487508,
                             }, -- end of [36]
                             [37] =
                             {
@@ -36824,6 +36824,125 @@ mission =
                     ["x"] = -29342.25841764,
                     ["y"] = -340674.88476602,
                 }, -- end of [2]
+                [3] =
+                {
+                    ["callsignStr"] = "SA-11",
+                    ["comment"] = "",
+                    ["id"] = 67,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -215137.082278,
+                    ["y"] = -389750.18814446,
+                }, -- end of [3]
+                [4] =
+                {
+                    ["callsignStr"] = "SA-15",
+                    ["comment"] = "",
+                    ["id"] = 68,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -212641.41779799,
+                    ["y"] = -412704.40007404,
+                }, -- end of [4]
+                [5] =
+                {
+                    ["callsignStr"] = "SA-19",
+                    ["comment"] = "",
+                    ["id"] = 69,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -200740.54753765,
+                    ["y"] = -412469.64659676,
+                }, -- end of [5]
+                [6] =
+                {
+                    ["callsignStr"] = "SA-6",
+                    ["comment"] = "",
+                    ["id"] = 70,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -204352.50506268,
+                    ["y"] = -455270.41596237,
+                }, -- end of [6]
+                [7] =
+                {
+                    ["callsignStr"] = "SA-8",
+                    ["comment"] = "",
+                    ["id"] = 71,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -229984.03172356,
+                    ["y"] = -476884.81577007,
+                }, -- end of [7]
+                [8] =
+                {
+                    ["callsignStr"] = "SA-2",
+                    ["comment"] = "",
+                    ["id"] = 72,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -236411.95424491,
+                    ["y"] = -468021.02317158,
+                }, -- end of [8]
+                [9] =
+                {
+                    ["callsignStr"] = "SA-10",
+                    ["comment"] = "",
+                    ["id"] = 73,
+                    ["properties"] =
+                    {
+                        ["angle"] = 0,
+                        ["scale"] = 0,
+                        ["steer"] = 2,
+                        ["vangle"] = 0,
+                        ["vnav"] = 1,
+                    }, -- end of ["properties"]
+                    ["type"] = "Default",
+                    ["x"] = -292334.34228207,
+                    ["y"] = -497137.40403353,
+                }, -- end of [9]
             }, -- end of ["nav_points"]
         }, -- end of ["blue"]
         ["neutrals"] =
@@ -37547,88 +37666,6 @@ mission =
                             [10] =
                             {
                                 ["dead"] = false,
-                                ["groupId"] = 77,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-10",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = -270203.06605413,
-                                            ["y"] = -8090.2236268688,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-10-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 211,
-                                        ["x"] = -270203.06605413,
-                                        ["y"] = -8090.2236268688,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = -270203.06605413,
-                                ["y"] = -8090.2236268688,
-                            }, -- end of [10]
-                            [11] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 78,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-11",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = -264739.46478968,
-                                            ["y"] = -14590.315302651,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-11-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 212,
-                                        ["x"] = -264739.46478968,
-                                        ["y"] = -14590.315302651,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = -264739.46478968,
-                                ["y"] = -14590.315302651,
-                            }, -- end of [11]
-                            [12] =
-                            {
-                                ["dead"] = false,
                                 ["groupId"] = 79,
                                 ["heading"] = 0,
                                 ["name"] = "Static Warehouse-12",
@@ -37666,8 +37703,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -243221.42067053,
                                 ["y"] = -30866.570109014,
-                            }, -- end of [12]
-                            [13] =
+                            }, -- end of [10]
+                            [11] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 80,
@@ -37707,8 +37744,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -143686.62875589,
                                 ["y"] = 135857.96144101,
-                            }, -- end of [13]
-                            [14] =
+                            }, -- end of [11]
+                            [12] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 81,
@@ -37748,7 +37785,7 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -130881.56471126,
                                 ["y"] = 68090.59816092,
-                            }, -- end of [14]
+                            }, -- end of [12]
                         }, -- end of ["group"]
                     }, -- end of ["static"]
                     ["vehicle"] =
@@ -43819,6 +43856,7 @@ mission =
                             [2] =
                             {
                                 ["communication"] = true,
+                                ["dynSpawnTemplate"] = false,
                                 ["frequency"] = 251.9,
                                 ["groupId"] = 131,
                                 ["hidden"] = false,
@@ -52147,6 +52185,7 @@ mission =
                                 }, -- end of ["route"]
                                 ["start_time"] = 0,
                                 ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
                                 ["tasks"] =
                                 {
                                 }, -- end of ["tasks"]
@@ -52306,6 +52345,7 @@ mission =
                                 }, -- end of ["route"]
                                 ["start_time"] = 0,
                                 ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
                                 ["tasks"] =
                                 {
                                 }, -- end of ["tasks"]
@@ -52465,6 +52505,7 @@ mission =
                                 }, -- end of ["route"]
                                 ["start_time"] = 0,
                                 ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
                                 ["tasks"] =
                                 {
                                 }, -- end of ["tasks"]
@@ -52624,6 +52665,7 @@ mission =
                                 }, -- end of ["route"]
                                 ["start_time"] = 0,
                                 ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
                                 ["tasks"] =
                                 {
                                 }, -- end of ["tasks"]
@@ -52743,6 +52785,294 @@ mission =
                                 ["x"] = -215190.38601884,
                                 ["y"] = -389952.90848378,
                             }, -- end of [14]
+                            [15] =
+                            {
+                                ["groupId"] = 226,
+                                ["hidden"] = false,
+                                ["name"] = "R24_IADS_Army_SBORKA",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 209,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -251006.57664119,
+                                            ["y"] = -385396.70705064,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R24_IADS_Army_SBORKA-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Dog Ear radar",
+                                        ["unitId"] = 559,
+                                        ["x"] = -251006.57664119,
+                                        ["y"] = -385396.70705064,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -251006.57664119,
+                                ["y"] = -385396.70705064,
+                            }, -- end of [15]
+                            [16] =
+                            {
+                                ["groupId"] = 227,
+                                ["hidden"] = false,
+                                ["name"] = "R24_IADS_Army_SA_15_BN",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 251,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -249795.58404865,
+                                            ["y"] = -387111.02969088,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7647488579445,
+                                        ["name"] = "R24_IADS_Army_SA_15_BN-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Tor 9A331",
+                                        ["unitId"] = 565,
+                                        ["x"] = -249795.58404865,
+                                        ["y"] = -387111.02969088,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.82030474843733,
+                                        ["name"] = "R24_IADS_Army_SA_15_BN-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Tor 9A331",
+                                        ["unitId"] = 564,
+                                        ["x"] = -252385.96257313,
+                                        ["y"] = -379243.48857117,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R24_IADS_Army_SA_15_BN-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Tor 9A331",
+                                        ["unitId"] = 563,
+                                        ["x"] = -242402.28420701,
+                                        ["y"] = -388958.6416458,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R24_IADS_Army_SA_15_BN-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Tor 9A331",
+                                        ["unitId"] = 562,
+                                        ["x"] = -245439.050118,
+                                        ["y"] = -379431.23643176,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_IADS_Army_SA_15_BN-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "GAZ-66",
+                                        ["unitId"] = 561,
+                                        ["x"] = -249709.7614998,
+                                        ["y"] = -387040.0041332,
+                                    }, -- end of [5]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -249795.58404865,
+                                ["y"] = -387111.02969088,
+                            }, -- end of [16]
+                            [17] =
+                            {
+                                ["groupId"] = 228,
+                                ["hidden"] = false,
+                                ["name"] = "R24_IADS_Army_SA_8_BN",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 223,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -250960.62354887,
+                                            ["y"] = -384894.58953771,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.1693705988362,
+                                        ["name"] = "R24_IADS_Army_SA_8_BN-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Osa 9A33 ln",
+                                        ["unitId"] = 566,
+                                        ["x"] = -250960.62354887,
+                                        ["y"] = -384894.58953771,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.1138147083434,
+                                        ["name"] = "R24_IADS_Army_SA_8_BN-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Osa 9A33 ln",
+                                        ["unitId"] = 567,
+                                        ["x"] = -250785.92301649,
+                                        ["y"] = -385855.2095461,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_IADS_Army_SA_8_BN-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Osa 9A33 ln",
+                                        ["unitId"] = 568,
+                                        ["x"] = -246234.67720039,
+                                        ["y"] = -389072.98863581,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.0789081233035,
+                                        ["name"] = "R24_IADS_Army_SA_8_BN-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Osa 9A33 ln",
+                                        ["unitId"] = 569,
+                                        ["x"] = -245480.81012223,
+                                        ["y"] = -379083.77855948,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1015237421867,
+                                        ["name"] = "R24_IADS_Army_SA_8_BN-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "GAZ-66",
+                                        ["unitId"] = 570,
+                                        ["x"] = -245398.61687455,
+                                        ["y"] = -379251.45278476,
+                                    }, -- end of [5]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -250960.62354887,
+                                ["y"] = -384894.58953771,
+                            }, -- end of [17]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [2]
@@ -52855,7 +53185,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 325973,
+    ["currentKey"] = 341435,
     ["date"] =
     {
         ["Day"] = 29,
@@ -61292,11 +61622,11 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -212364.56683993,
-        ["centerY"] = -382220.13570103,
-        ["zoom"] = 183755.0313924,
+        ["centerX"] = -232053.66550586,
+        ["centerY"] = -366557.90191422,
+        ["zoom"] = 314437.44647043,
     }, -- end of ["map"]
-    ["maxDictId"] = 122,
+    ["maxDictId"] = 125,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -61367,17 +61697,20 @@ mission =
             [4] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_81\")); mission.trig.func[4]=nil;",
             [5] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_82\")); mission.trig.func[5]=nil;",
             [6] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_122\")); mission.trig.func[6]=nil;",
-            [7] = "a_group_off(38);a_group_off(177); mission.trig.func[7]=nil;",
-            [8] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[8]=nil;",
-            [9] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[9]=nil;",
-            [10] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[10]=nil;",
-            [11] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[11]=nil;",
-            [12] = "a_set_ai_task(197, 1); mission.trig.func[12]=nil;",
-            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[13]=nil;",
-            [14] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[14]=nil;",
-            [15] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[15]=nil;",
-            [16] = "a_set_ai_task(197, 2); mission.trig.func[16]=nil;",
-            [17] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[17]=nil;",
+            [7] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_123\")); mission.trig.func[7]=nil;",
+            [8] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_124\")); mission.trig.func[8]=nil;",
+            [9] = "a_group_off(38);a_group_off(177); mission.trig.func[9]=nil;",
+            [10] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[10]=nil;",
+            [11] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[11]=nil;",
+            [12] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[12]=nil;",
+            [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[13]=nil;",
+            [14] = "a_set_ai_task(197, 1); mission.trig.func[14]=nil;",
+            [15] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_26\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_27\"), 0); mission.trig.func[15]=nil;",
+            [16] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_28\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_29\"), 0); mission.trig.func[16]=nil;",
+            [17] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_30\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_31\"), 0);a_set_flag(\"63\"); mission.trig.func[17]=nil;",
+            [18] = "a_set_ai_task(197, 2); mission.trig.func[18]=nil;",
+            [19] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_34\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_35\"), 0);a_group_on(198); mission.trig.func[19]=nil;",
+            [20] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_125\")); mission.trig.func[20]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
@@ -61387,17 +61720,20 @@ mission =
             [4] = "return(c_time_after(2) )",
             [5] = "return(c_time_after(3) )",
             [6] = "return(c_time_after(3) )",
-            [7] = "return(c_time_after(3) )",
-            [8] = "return(c_time_after(10) )",
-            [9] = "return(c_time_after(13) )",
-            [10] = "return(c_flag_is_true(\"61\") )",
-            [11] = "return(c_group_life_less(104, 90) or c_group_dead(104) )",
-            [12] = "return(c_time_since_flag(\"62\", 120) )",
-            [13] = "return(c_time_since_flag(\"62\", 500) )",
-            [14] = "return(c_time_since_flag(\"62\", 700) )",
-            [15] = "return(c_time_since_flag(\"62\", 1100) )",
-            [16] = "return(c_time_since_flag(\"63\", 120) )",
-            [17] = "return(c_time_since_flag(\"63\", 520) )",
+            [7] = "return(c_time_after(8) )",
+            [8] = "return(c_time_after(11) )",
+            [9] = "return(c_time_after(3) )",
+            [10] = "return(c_time_after(10) )",
+            [11] = "return(c_time_after(13) )",
+            [12] = "return(c_flag_is_true(\"61\") )",
+            [13] = "return(c_group_life_less(104, 90) or c_group_dead(104) )",
+            [14] = "return(c_time_since_flag(\"62\", 120) )",
+            [15] = "return(c_time_since_flag(\"62\", 500) )",
+            [16] = "return(c_time_since_flag(\"62\", 700) )",
+            [17] = "return(c_time_since_flag(\"62\", 1100) )",
+            [18] = "return(c_time_since_flag(\"63\", 120) )",
+            [19] = "return(c_time_since_flag(\"63\", 520) )",
+            [20] = "return(c_time_after(15) or c_flag_is_true(\"21\") )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -61427,6 +61763,9 @@ mission =
             [15] = true,
             [16] = true,
             [17] = true,
+            [18] = true,
+            [19] = true,
+            [20] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
@@ -61446,6 +61785,9 @@ mission =
             [15] = "if mission.trig.conditions[15]() then mission.trig.actions[15]() end",
             [16] = "if mission.trig.conditions[16]() then mission.trig.actions[16]() end",
             [17] = "if mission.trig.conditions[17]() then mission.trig.actions[17]() end",
+            [18] = "if mission.trig.conditions[18]() then mission.trig.actions[18]() end",
+            [19] = "if mission.trig.conditions[19]() then mission.trig.actions[19]() end",
+            [20] = "if mission.trig.conditions[20]() then mission.trig.actions[20]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
@@ -61608,6 +61950,58 @@ mission =
             {
                 [1] =
                 {
+                    ["file"] = "ResKey_Action_123",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x00ff80ff",
+            ["comment"] = "Load MIST",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 8,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [7]
+        [8] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["file"] = "ResKey_Action_124",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x00ff80ff",
+            ["comment"] = "Load Skynet",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 11,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [8]
+        [9] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
                     ["group"] = 38,
                     ["predicate"] = "a_group_off",
                 }, -- end of [1]
@@ -61632,8 +62026,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [7]
-        [8] =
+        }, -- end of [9]
+        [10] =
         {
             ["actions"] =
             {
@@ -61827,8 +62221,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [8]
-        [9] =
+        }, -- end of [10]
+        [11] =
         {
             ["actions"] =
             {
@@ -61872,8 +62266,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [9]
-        [10] =
+        }, -- end of [11]
+        [12] =
         {
             ["actions"] =
             {
@@ -61933,8 +62327,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [10]
-        [11] =
+        }, -- end of [12]
+        [13] =
         {
             ["actions"] =
             {
@@ -61990,8 +62384,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [3]
             }, -- end of ["rules"]
-        }, -- end of [11]
-        [12] =
+        }, -- end of [13]
+        [14] =
         {
             ["actions"] =
             {
@@ -62023,8 +62417,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [12]
-        [13] =
+        }, -- end of [14]
+        [15] =
         {
             ["actions"] =
             {
@@ -62064,8 +62458,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [13]
-        [14] =
+        }, -- end of [15]
+        [16] =
         {
             ["actions"] =
             {
@@ -62105,8 +62499,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [14]
-        [15] =
+        }, -- end of [16]
+        [17] =
         {
             ["actions"] =
             {
@@ -62151,8 +62545,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [15]
-        [16] =
+        }, -- end of [17]
+        [18] =
         {
             ["actions"] =
             {
@@ -62184,8 +62578,8 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [16]
-        [17] =
+        }, -- end of [18]
+        [19] =
         {
             ["actions"] =
             {
@@ -62230,7 +62624,45 @@ mission =
                     ["zone"] = "",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [17]
+        }, -- end of [19]
+        [20] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
+                    ["file"] = "ResKey_Action_125",
+                    ["predicate"] = "a_do_script_file",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0xe180a4ff",
+            ["comment"] = "Load R24 IADS",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["predicate"] = "c_time_after",
+                    ["seconds"] = 15,
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [1]
+                [2] =
+                {
+                    ["predicate"] = "or",
+                }, -- end of [2]
+                [3] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["flag"] = "21",
+                    ["predicate"] = "c_flag_is_true",
+                    ["unitType"] = "ALL",
+                    ["zone"] = "",
+                }, -- end of [3]
+            }, -- end of ["rules"]
+        }, -- end of [20]
     }, -- end of ["trigrules"]
     ["version"] = 22,
     ["weather"] =
