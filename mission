@@ -35521,170 +35521,6 @@ mission =
                         {
                             [1] =
                             {
-                                ["groupId"] = 137,
-                                ["hidden"] = false,
-                                ["name"] = "BLUE SAMs for aggressor SA11",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 83,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                        [1] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 1,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetInvisible",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [1]
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 114830.96744466,
-                                            ["y"] = -130842.16563335,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0,
-                                        ["name"] = "BLUE SAMs for aggressor SA11-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk LN 9A310M1",
-                                        ["unitId"] = 393,
-                                        ["x"] = 114830.96744466,
-                                        ["y"] = -130842.16563335,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 114830.96744466,
-                                ["y"] = -130842.16563335,
-                            }, -- end of [1]
-                            [2] =
-                            {
-                                ["groupId"] = 138,
-                                ["hidden"] = false,
-                                ["name"] = "BLUE SAMs for aggressor SA-6",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 81,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                        [1] =
-                                                        {
-                                                            ["auto"] = false,
-                                                            ["enabled"] = true,
-                                                            ["id"] = "WrappedAction",
-                                                            ["number"] = 1,
-                                                            ["params"] =
-                                                            {
-                                                                ["action"] =
-                                                                {
-                                                                    ["id"] = "SetInvisible",
-                                                                    ["params"] =
-                                                                    {
-                                                                        ["value"] = true,
-                                                                    }, -- end of ["params"]
-                                                                }, -- end of ["action"]
-                                                            }, -- end of ["params"]
-                                                        }, -- end of [1]
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 187847.0270799,
-                                            ["y"] = -141810.01719818,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0,
-                                        ["name"] = "BLUE SAMs for aggressor SA-6-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Kub 2P25 ln",
-                                        ["unitId"] = 394,
-                                        ["x"] = 187847.0270799,
-                                        ["y"] = -141810.01719818,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 187847.0270799,
-                                ["y"] = -141810.01719818,
-                            }, -- end of [2]
-                            [3] =
-                            {
                                 ["groupId"] = 139,
                                 ["hidden"] = false,
                                 ["name"] = "BLUE SAMs for aggressor SA-2",
@@ -35764,8 +35600,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -131689.15426926,
                                 ["y"] = 69916.296713902,
-                            }, -- end of [3]
-                            [4] =
+                            }, -- end of [1]
+                            [2] =
                             {
                                 ["groupId"] = 140,
                                 ["hidden"] = false,
@@ -35846,8 +35682,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -85595.318015391,
                                 ["y"] = 45682.791276819,
-                            }, -- end of [4]
-                            [5] =
+                            }, -- end of [2]
+                            [3] =
                             {
                                 ["groupId"] = 141,
                                 ["hidden"] = false,
@@ -35928,8 +35764,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -152876.67290887,
                                 ["y"] = 151020.80351385,
-                            }, -- end of [5]
-                            [6] =
+                            }, -- end of [3]
+                            [4] =
                             {
                                 ["groupId"] = 105,
                                 ["hidden"] = true,
@@ -36008,8 +35844,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -53060.259669847,
                                 ["y"] = -334855.66863924,
-                            }, -- end of [6]
-                            [7] =
+                            }, -- end of [4]
+                            [5] =
                             {
                                 ["groupId"] = 143,
                                 ["hidden"] = true,
@@ -36089,8 +35925,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -53247.39656337,
                                 ["y"] = -335017.58442768,
-                            }, -- end of [7]
-                            [8] =
+                            }, -- end of [5]
+                            [6] =
                             {
                                 ["groupId"] = 104,
                                 ["hidden"] = true,
@@ -36170,8 +36006,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -53266.143656404,
                                 ["y"] = -334752.11516641,
-                            }, -- end of [8]
-                            [9] =
+                            }, -- end of [6]
+                            [7] =
                             {
                                 ["groupId"] = 195,
                                 ["hidden"] = false,
@@ -36304,8 +36140,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -53092.895586625,
                                 ["y"] = -335043.50599373,
-                            }, -- end of [9]
-                            [10] =
+                            }, -- end of [7]
+                            [8] =
                             {
                                 ["groupId"] = 178,
                                 ["hidden"] = true,
@@ -36421,8 +36257,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -54513.322325269,
                                 ["y"] = -335027.04263352,
-                            }, -- end of [10]
-                            [11] =
+                            }, -- end of [8]
+                            [9] =
                             {
                                 ["groupId"] = 197,
                                 ["hidden"] = false,
@@ -36571,7 +36407,7 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -52559.296290276,
                                 ["y"] = -335421.43599345,
-                            }, -- end of [11]
+                            }, -- end of [9]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [3]
@@ -37297,173 +37133,9 @@ mission =
                             [1] =
                             {
                                 ["dead"] = false,
-                                ["groupId"] = 68,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-1",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = 113156.60655817,
-                                            ["y"] = 18973.343308943,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-1-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 202,
-                                        ["x"] = 113156.60655817,
-                                        ["y"] = 18973.343308943,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = 113156.60655817,
-                                ["y"] = 18973.343308943,
-                            }, -- end of [1]
-                            [2] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 69,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-2",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = 113154.86877244,
-                                            ["y"] = 19118.738048562,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-2-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 203,
-                                        ["x"] = 113154.86877244,
-                                        ["y"] = 19118.738048562,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = 113154.86877244,
-                                ["y"] = 19118.738048562,
-                            }, -- end of [2]
-                            [3] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 70,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-3",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = 113152.26209384,
-                                            ["y"] = 19292.226990856,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-3-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 204,
-                                        ["x"] = 113152.26209384,
-                                        ["y"] = 19292.226990856,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = 113152.26209384,
-                                ["y"] = 19292.226990856,
-                            }, -- end of [3]
-                            [4] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 71,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-4",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = 113150.02310071,
-                                            ["y"] = 19480.743338061,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-4-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 205,
-                                        ["x"] = 113150.02310071,
-                                        ["y"] = 19480.743338061,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = 113150.02310071,
-                                ["y"] = 19480.743338061,
-                            }, -- end of [4]
-                            [5] =
-                            {
-                                ["dead"] = false,
                                 ["groupId"] = 72,
                                 ["heading"] = 0,
-                                ["name"] = "Static Warehouse-5",
+                                ["name"] = "R21_TGT1_",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -37476,8 +37148,8 @@ mission =
                                             ["name"] = "",
                                             ["speed"] = 0,
                                             ["type"] = "",
-                                            ["x"] = 188025.44605984,
-                                            ["y"] = -143629.75888733,
+                                            ["x"] = 188446.17786392,
+                                            ["y"] = -143704.5300717,
                                         }, -- end of [1]
                                     }, -- end of ["points"]
                                 }, -- end of ["route"]
@@ -37487,60 +37159,19 @@ mission =
                                     {
                                         ["category"] = "Warehouses",
                                         ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-5-1",
+                                        ["name"] = "R21_TGT1_",
                                         ["rate"] = 100,
                                         ["shape_name"] = "sklad",
                                         ["type"] = "Warehouse",
                                         ["unitId"] = 206,
-                                        ["x"] = 188025.44605984,
-                                        ["y"] = -143629.75888733,
+                                        ["x"] = 188446.17786392,
+                                        ["y"] = -143704.5300717,
                                     }, -- end of [1]
                                 }, -- end of ["units"]
-                                ["x"] = 188025.44605984,
-                                ["y"] = -143629.75888733,
-                            }, -- end of [5]
-                            [6] =
-                            {
-                                ["dead"] = false,
-                                ["groupId"] = 73,
-                                ["heading"] = 0,
-                                ["name"] = "Static Warehouse-6",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["action"] = "",
-                                            ["alt"] = 0,
-                                            ["formation_template"] = "",
-                                            ["name"] = "",
-                                            ["speed"] = 0,
-                                            ["type"] = "",
-                                            ["x"] = 219999.01044202,
-                                            ["y"] = 25785.717246407,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                }, -- end of ["route"]
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["category"] = "Warehouses",
-                                        ["heading"] = 0,
-                                        ["name"] = "Static Warehouse-6-1",
-                                        ["rate"] = 100,
-                                        ["shape_name"] = "sklad",
-                                        ["type"] = "Warehouse",
-                                        ["unitId"] = 207,
-                                        ["x"] = 219999.01044202,
-                                        ["y"] = 25785.717246407,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["x"] = 219999.01044202,
-                                ["y"] = 25785.717246407,
-                            }, -- end of [6]
-                            [7] =
+                                ["x"] = 188446.17786392,
+                                ["y"] = -143704.5300717,
+                            }, -- end of [1]
+                            [2] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 74,
@@ -37580,8 +37211,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -244485.15800804,
                                 ["y"] = 42366.306967119,
-                            }, -- end of [7]
-                            [8] =
+                            }, -- end of [2]
+                            [3] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 75,
@@ -37621,8 +37252,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -240364.89520426,
                                 ["y"] = 77563.87383794,
-                            }, -- end of [8]
-                            [9] =
+                            }, -- end of [3]
+                            [4] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 76,
@@ -37662,8 +37293,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -231005.7181516,
                                 ["y"] = 80429.880870193,
-                            }, -- end of [9]
-                            [10] =
+                            }, -- end of [4]
+                            [5] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 79,
@@ -37703,8 +37334,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -243221.42067053,
                                 ["y"] = -30866.570109014,
-                            }, -- end of [10]
-                            [11] =
+                            }, -- end of [5]
+                            [6] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 80,
@@ -37744,8 +37375,8 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -143686.62875589,
                                 ["y"] = 135857.96144101,
-                            }, -- end of [11]
-                            [12] =
+                            }, -- end of [6]
+                            [7] =
                             {
                                 ["dead"] = false,
                                 ["groupId"] = 81,
@@ -37785,7 +37416,48 @@ mission =
                                 }, -- end of ["units"]
                                 ["x"] = -130881.56471126,
                                 ["y"] = 68090.59816092,
-                            }, -- end of [12]
+                            }, -- end of [7]
+                            [8] =
+                            {
+                                ["dead"] = false,
+                                ["groupId"] = 229,
+                                ["heading"] = 0,
+                                ["name"] = "R21_TGT1_-1",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["action"] = "",
+                                            ["alt"] = 0,
+                                            ["formation_template"] = "",
+                                            ["name"] = "",
+                                            ["speed"] = 0,
+                                            ["type"] = "",
+                                            ["x"] = 188268.59066911,
+                                            ["y"] = -143754.94192055,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                }, -- end of ["route"]
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["category"] = "Warehouses",
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_TGT1_-1-1",
+                                        ["rate"] = 100,
+                                        ["shape_name"] = "sklad",
+                                        ["type"] = "Warehouse",
+                                        ["unitId"] = 571,
+                                        ["x"] = 188268.59066911,
+                                        ["y"] = -143754.94192055,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["x"] = 188268.59066911,
+                                ["y"] = -143754.94192055,
+                            }, -- end of [8]
                         }, -- end of ["group"]
                     }, -- end of ["static"]
                     ["vehicle"] =
@@ -38478,70 +38150,6 @@ mission =
                             }, -- end of [3]
                             [4] =
                             {
-                                ["groupId"] = 45,
-                                ["hidden"] = false,
-                                ["name"] = "4945th MQT SAM protection",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 304,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 113314.63337962,
-                                            ["y"] = 19199.137323744,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0,
-                                        ["name"] = "Ground-11-1",
-                                        ["playerCanDrive"] = true,
-                                        ["skill"] = "Average",
-                                        ["type"] = "Tor 9A331",
-                                        ["unitId"] = 100,
-                                        ["x"] = 113314.63337962,
-                                        ["y"] = 19199.137323744,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 113314.63337962,
-                                ["y"] = 19199.137323744,
-                            }, -- end of [4]
-                            [5] =
-                            {
                                 ["groupId"] = 46,
                                 ["hidden"] = false,
                                 ["name"] = "Scenario Center - SA10 site",
@@ -38805,8 +38413,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -152537.06717773,
                                 ["y"] = 150981.05256515,
-                            }, -- end of [5]
-                            [6] =
+                            }, -- end of [4]
+                            [5] =
                             {
                                 ["groupId"] = 47,
                                 ["hidden"] = false,
@@ -39035,8 +38643,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -131682.19851632,
                                 ["y"] = 70100.459308461,
-                            }, -- end of [6]
-                            [7] =
+                            }, -- end of [5]
+                            [6] =
                             {
                                 ["groupId"] = 48,
                                 ["hidden"] = false,
@@ -39099,8 +38707,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -121745.78398959,
                                 ["y"] = -37938.096656555,
-                            }, -- end of [7]
-                            [8] =
+                            }, -- end of [6]
+                            [7] =
                             {
                                 ["groupId"] = 49,
                                 ["hidden"] = false,
@@ -39163,8 +38771,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -61919.270343637,
                                 ["y"] = -13896.005399364,
-                            }, -- end of [8]
-                            [9] =
+                            }, -- end of [7]
+                            [8] =
                             {
                                 ["groupId"] = 50,
                                 ["hidden"] = false,
@@ -39345,206 +38953,12 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -85744.675771594,
                                 ["y"] = 45656.070188754,
-                            }, -- end of [9]
-                            [10] =
-                            {
-                                ["groupId"] = 51,
-                                ["hidden"] = false,
-                                ["name"] = "Scenario North S11 Site",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 86,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 5.5555555555556,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 114592.52007496,
-                                            ["y"] = -130877.88609116,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0,
-                                        ["name"] = "Scenario North S11 Site-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk SR 9S18M1",
-                                        ["unitId"] = 147,
-                                        ["x"] = 114592.52007496,
-                                        ["y"] = -130877.88609116,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.7123889803847,
-                                        ["name"] = "Scenario North S11 Site-2",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk LN 9A310M1",
-                                        ["unitId"] = 148,
-                                        ["x"] = 114535.6353386,
-                                        ["y"] = -130847.13497082,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.553343034275,
-                                        ["name"] = "Scenario North S11 Site-3",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk LN 9A310M1",
-                                        ["unitId"] = 149,
-                                        ["x"] = 114588.52949639,
-                                        ["y"] = -130980.13883259,
-                                    }, -- end of [3]
-                                    [4] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.034906585039887,
-                                        ["name"] = "Scenario North S11 Site-4",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk LN 9A310M1",
-                                        ["unitId"] = 150,
-                                        ["x"] = 114486.69847337,
-                                        ["y"] = -130872.99026267,
-                                    }, -- end of [4]
-                                    [5] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 3.1415926535898,
-                                        ["name"] = "Scenario North S11 Site-5",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk LN 9A310M1",
-                                        ["unitId"] = 151,
-                                        ["x"] = 114691.68990614,
-                                        ["y"] = -130881.23246036,
-                                    }, -- end of [5]
-                                    [6] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.3212879051525,
-                                        ["name"] = "Scenario North S11 Site-6",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ATZ-10",
-                                        ["unitId"] = 152,
-                                        ["x"] = 114722.16237449,
-                                        ["y"] = -130982.45515602,
-                                    }, -- end of [6]
-                                    [7] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.4958208303519,
-                                        ["name"] = "Scenario North S11 Site-7",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ATZ-10",
-                                        ["unitId"] = 153,
-                                        ["x"] = 114712.9614231,
-                                        ["y"] = -130989.88669368,
-                                    }, -- end of [7]
-                                    [8] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.5882496193148,
-                                        ["name"] = "Scenario North S11 Site-8",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ZiL-131 APA-80",
-                                        ["unitId"] = 154,
-                                        ["x"] = 114620.15669744,
-                                        ["y"] = -130856.46099338,
-                                    }, -- end of [8]
-                                    [9] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.05235987755983,
-                                        ["name"] = "Scenario North S11 Site-9",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-4320-31",
-                                        ["unitId"] = 155,
-                                        ["x"] = 114634.69256642,
-                                        ["y"] = -130897.90316043,
-                                    }, -- end of [9]
-                                    [10] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.034906585039887,
-                                        ["name"] = "Scenario North S11 Site-10",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-4320-31",
-                                        ["unitId"] = 156,
-                                        ["x"] = 114634.69256642,
-                                        ["y"] = -130906.70482813,
-                                    }, -- end of [10]
-                                    [11] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.5882496193148,
-                                        ["name"] = "Scenario North S11 Site-11",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-375 PBU",
-                                        ["unitId"] = 157,
-                                        ["x"] = 114615.12329427,
-                                        ["y"] = -130856.46099338,
-                                    }, -- end of [11]
-                                    [12] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.553343034275,
-                                        ["name"] = "Scenario North S11 Site-12",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SA-11 Buk CC 9S470M1",
-                                        ["unitId"] = 158,
-                                        ["x"] = 114578.54723124,
-                                        ["y"] = -130895.55375799,
-                                    }, -- end of [12]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 114592.52007496,
-                                ["y"] = -130877.88609116,
-                            }, -- end of [10]
-                            [11] =
+                            }, -- end of [8]
+                            [9] =
                             {
                                 ["groupId"] = 52,
                                 ["hidden"] = false,
-                                ["name"] = "Scenario North S6 Site",
+                                ["name"] = "R21_threat_SA_6",
                                 ["route"] =
                                 {
                                     ["points"] =
@@ -39589,7 +39003,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0,
-                                        ["name"] = "Scenario North S6 Site-1",
+                                        ["name"] = "R21_threat_SA_6-1",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Kub 1S91 str",
@@ -39601,7 +39015,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 4.7123889803847,
-                                        ["name"] = "Scenario North S6 Site-2",
+                                        ["name"] = "R21_threat_SA_6-2",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Kub 2P25 ln",
@@ -39613,7 +39027,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 1.553343034275,
-                                        ["name"] = "Scenario North S6 Site-3",
+                                        ["name"] = "R21_threat_SA_6-3",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Kub 2P25 ln",
@@ -39625,7 +39039,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0.034906585039887,
-                                        ["name"] = "Scenario North S6 Site-4",
+                                        ["name"] = "R21_threat_SA_6-4",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Kub 2P25 ln",
@@ -39637,7 +39051,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 3.1415926535898,
-                                        ["name"] = "Scenario North S6 Site-5",
+                                        ["name"] = "R21_threat_SA_6-5",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Kub 2P25 ln",
@@ -39649,7 +39063,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 2.3212879051525,
-                                        ["name"] = "Scenario North S6 Site-6",
+                                        ["name"] = "R21_threat_SA_6-6",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-10",
@@ -39661,7 +39075,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 2.4958208303519,
-                                        ["name"] = "Scenario North S6 Site-7",
+                                        ["name"] = "R21_threat_SA_6-7",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "ATZ-10",
@@ -39673,7 +39087,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 1.5882496193148,
-                                        ["name"] = "Scenario North S6 Site-8",
+                                        ["name"] = "R21_threat_SA_6-8",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "ZiL-131 APA-80",
@@ -39685,7 +39099,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0.05235987755983,
-                                        ["name"] = "Scenario North S6 Site-9",
+                                        ["name"] = "R21_threat_SA_6-9",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Ural-4320-31",
@@ -39697,7 +39111,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0.034906585039887,
-                                        ["name"] = "Scenario North S6 Site-10",
+                                        ["name"] = "R21_threat_SA_6-10",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Ural-4320-31",
@@ -39709,7 +39123,7 @@ mission =
                                     {
                                         ["coldAtStart"] = false,
                                         ["heading"] = 1.5882496193148,
-                                        ["name"] = "Scenario North S6 Site-11",
+                                        ["name"] = "R21_threat_SA_6-11",
                                         ["playerCanDrive"] = false,
                                         ["skill"] = "High",
                                         ["type"] = "Ural-375 PBU",
@@ -39721,8 +39135,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 187977.66328601,
                                 ["y"] = -141962.60091957,
-                            }, -- end of [11]
-                            [12] =
+                            }, -- end of [9]
+                            [10] =
                             {
                                 ["groupId"] = 82,
                                 ["hidden"] = false,
@@ -39821,8 +39235,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -212998.70393484,
                                 ["y"] = -64121.996252938,
-                            }, -- end of [12]
-                            [13] =
+                            }, -- end of [10]
+                            [11] =
                             {
                                 ["groupId"] = 83,
                                 ["hidden"] = false,
@@ -40003,8 +39417,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -259692.19646894,
                                 ["y"] = -63239.575270324,
-                            }, -- end of [13]
-                            [14] =
+                            }, -- end of [11]
+                            [12] =
                             {
                                 ["groupId"] = 84,
                                 ["hidden"] = false,
@@ -40233,8 +39647,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -242156.05975152,
                                 ["y"] = -30668.047358771,
-                            }, -- end of [14]
-                            [15] =
+                            }, -- end of [12]
+                            [13] =
                             {
                                 ["groupId"] = 87,
                                 ["hidden"] = false,
@@ -40321,8 +39735,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -127138.25717215,
                                 ["y"] = -394774.80313558,
-                            }, -- end of [15]
-                            [16] =
+                            }, -- end of [13]
+                            [14] =
                             {
                                 ["groupId"] = 88,
                                 ["hidden"] = false,
@@ -40409,8 +39823,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -132361.34951725,
                                 ["y"] = -398978.69793908,
-                            }, -- end of [16]
-                            [17] =
+                            }, -- end of [14]
+                            [15] =
                             {
                                 ["groupId"] = 89,
                                 ["hidden"] = false,
@@ -40497,8 +39911,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -168099.21541694,
                                 ["y"] = -361393.59795815,
-                            }, -- end of [17]
-                            [18] =
+                            }, -- end of [15]
+                            [16] =
                             {
                                 ["groupId"] = 90,
                                 ["hidden"] = false,
@@ -40585,8 +39999,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -150990.90595567,
                                 ["y"] = -409346.94252643,
-                            }, -- end of [18]
-                            [19] =
+                            }, -- end of [16]
+                            [17] =
                             {
                                 ["groupId"] = 91,
                                 ["hidden"] = false,
@@ -40673,8 +40087,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -140660.00982458,
                                 ["y"] = -423065.88993049,
-                            }, -- end of [19]
-                            [20] =
+                            }, -- end of [17]
+                            [18] =
                             {
                                 ["groupId"] = 92,
                                 ["hidden"] = false,
@@ -40761,8 +40175,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -163550.30092768,
                                 ["y"] = -363564.15455459,
-                            }, -- end of [20]
-                            [21] =
+                            }, -- end of [18]
+                            [19] =
                             {
                                 ["groupId"] = 93,
                                 ["hidden"] = false,
@@ -40849,8 +40263,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -160813.90239777,
                                 ["y"] = -364414.93492567,
-                            }, -- end of [21]
-                            [22] =
+                            }, -- end of [19]
+                            [20] =
                             {
                                 ["groupId"] = 94,
                                 ["hidden"] = false,
@@ -40937,8 +40351,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -171104.56141138,
                                 ["y"] = -368158.715524,
-                            }, -- end of [22]
-                            [23] =
+                            }, -- end of [20]
+                            [21] =
                             {
                                 ["groupId"] = 95,
                                 ["hidden"] = false,
@@ -41025,8 +40439,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -166490.53258274,
                                 ["y"] = -349848.09689707,
-                            }, -- end of [23]
-                            [24] =
+                            }, -- end of [21]
+                            [22] =
                             {
                                 ["groupId"] = 96,
                                 ["hidden"] = false,
@@ -41113,8 +40527,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -170635.65519755,
                                 ["y"] = -395998.99925772,
-                            }, -- end of [24]
-                            [25] =
+                            }, -- end of [22]
+                            [23] =
                             {
                                 ["groupId"] = 97,
                                 ["hidden"] = false,
@@ -41201,8 +40615,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -96817.902036483,
                                 ["y"] = -365678.66377446,
-                            }, -- end of [25]
-                            [26] =
+                            }, -- end of [23]
+                            [24] =
                             {
                                 ["groupId"] = 98,
                                 ["hidden"] = false,
@@ -41289,8 +40703,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -91578.257680595,
                                 ["y"] = -365803.57977416,
-                            }, -- end of [26]
-                            [27] =
+                            }, -- end of [24]
+                            [25] =
                             {
                                 ["groupId"] = 100,
                                 ["hidden"] = false,
@@ -41377,8 +40791,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -99841.431304818,
                                 ["y"] = -334611.9788033,
-                            }, -- end of [27]
-                            [28] =
+                            }, -- end of [25]
+                            [26] =
                             {
                                 ["groupId"] = 101,
                                 ["hidden"] = false,
@@ -41465,8 +40879,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -97831.675109813,
                                 ["y"] = -340279.48115475,
-                            }, -- end of [28]
-                            [29] =
+                            }, -- end of [26]
+                            [27] =
                             {
                                 ["groupId"] = 102,
                                 ["hidden"] = false,
@@ -41553,8 +40967,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -107555.81701889,
                                 ["y"] = -334909.66876196,
-                            }, -- end of [29]
-                            [30] =
+                            }, -- end of [27]
+                            [28] =
                             {
                                 ["groupId"] = 103,
                                 ["hidden"] = false,
@@ -41641,8 +41055,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -94252.196256728,
                                 ["y"] = -323370.44910932,
-                            }, -- end of [30]
-                            [31] =
+                            }, -- end of [28]
+                            [29] =
                             {
                                 ["groupId"] = 106,
                                 ["hidden"] = false,
@@ -41729,8 +41143,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -11801.03222301,
                                 ["y"] = -313114.08783221,
-                            }, -- end of [31]
-                            [32] =
+                            }, -- end of [29]
+                            [30] =
                             {
                                 ["groupId"] = 107,
                                 ["hidden"] = false,
@@ -41817,8 +41231,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -13507.724778755,
                                 ["y"] = -314908.90507081,
-                            }, -- end of [32]
-                            [33] =
+                            }, -- end of [30]
+                            [31] =
                             {
                                 ["groupId"] = 108,
                                 ["hidden"] = false,
@@ -41905,8 +41319,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -15430.353737329,
                                 ["y"] = -309253.72377423,
-                            }, -- end of [33]
-                            [34] =
+                            }, -- end of [31]
+                            [32] =
                             {
                                 ["groupId"] = 109,
                                 ["hidden"] = false,
@@ -41993,8 +41407,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -663.40556727623,
                                 ["y"] = -306245.90661608,
-                            }, -- end of [34]
-                            [35] =
+                            }, -- end of [32]
+                            [33] =
                             {
                                 ["groupId"] = 110,
                                 ["hidden"] = false,
@@ -42081,8 +41495,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 20761.518090509,
                                 ["y"] = -290523.31226848,
-                            }, -- end of [35]
-                            [36] =
+                            }, -- end of [33]
+                            [34] =
                             {
                                 ["groupId"] = 111,
                                 ["hidden"] = false,
@@ -42169,8 +41583,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 18590.474375049,
                                 ["y"] = -286838.10046836,
-                            }, -- end of [36]
-                            [37] =
+                            }, -- end of [34]
+                            [35] =
                             {
                                 ["groupId"] = 112,
                                 ["hidden"] = false,
@@ -42257,8 +41671,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 86241.044876623,
                                 ["y"] = -289621.72004178,
-                            }, -- end of [37]
-                            [38] =
+                            }, -- end of [35]
+                            [36] =
                             {
                                 ["groupId"] = 113,
                                 ["hidden"] = false,
@@ -42345,8 +41759,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 94956.357009952,
                                 ["y"] = -299139.16686435,
-                            }, -- end of [38]
-                            [39] =
+                            }, -- end of [36]
+                            [37] =
                             {
                                 ["groupId"] = 114,
                                 ["hidden"] = false,
@@ -42433,8 +41847,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 112492.4522407,
                                 ["y"] = -299574.87931442,
-                            }, -- end of [39]
-                            [40] =
+                            }, -- end of [37]
+                            [38] =
                             {
                                 ["groupId"] = 115,
                                 ["hidden"] = false,
@@ -42521,8 +41935,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 76205.016539642,
                                 ["y"] = -305742.67665395,
-                            }, -- end of [40]
-                            [41] =
+                            }, -- end of [38]
+                            [39] =
                             {
                                 ["groupId"] = 116,
                                 ["hidden"] = false,
@@ -42609,8 +42023,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 68146.0600877,
                                 ["y"] = -315522.73139307,
-                            }, -- end of [41]
-                            [42] =
+                            }, -- end of [39]
+                            [40] =
                             {
                                 ["groupId"] = 117,
                                 ["hidden"] = false,
@@ -42697,8 +42111,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 44858.627277878,
                                 ["y"] = -308182.23920707,
-                            }, -- end of [42]
-                            [43] =
+                            }, -- end of [40]
+                            [41] =
                             {
                                 ["groupId"] = 118,
                                 ["hidden"] = false,
@@ -42785,8 +42199,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 34083.707559173,
                                 ["y"] = -368596.33073617,
-                            }, -- end of [43]
-                            [44] =
+                            }, -- end of [41]
+                            [42] =
                             {
                                 ["groupId"] = 119,
                                 ["hidden"] = false,
@@ -42873,8 +42287,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 33271.4270668,
                                 ["y"] = -372095.92522884,
-                            }, -- end of [44]
-                            [45] =
+                            }, -- end of [42]
+                            [43] =
                             {
                                 ["groupId"] = 120,
                                 ["hidden"] = false,
@@ -42961,8 +42375,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 37247.581561748,
                                 ["y"] = -370672.10667553,
-                            }, -- end of [45]
-                            [46] =
+                            }, -- end of [43]
+                            [44] =
                             {
                                 ["groupId"] = 121,
                                 ["hidden"] = false,
@@ -43049,8 +42463,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 37810.291471123,
                                 ["y"] = -368099.73148669,
-                            }, -- end of [46]
-                            [47] =
+                            }, -- end of [44]
+                            [45] =
                             {
                                 ["groupId"] = 122,
                                 ["hidden"] = false,
@@ -43137,8 +42551,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 44149.666229147,
                                 ["y"] = -364974.52487933,
-                            }, -- end of [47]
-                            [48] =
+                            }, -- end of [45]
+                            [46] =
                             {
                                 ["groupId"] = 123,
                                 ["hidden"] = false,
@@ -43225,238 +42639,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 45198.760336194,
                                 ["y"] = -360658.50956006,
-                            }, -- end of [48]
-                            [49] =
-                            {
-                                ["groupId"] = 124,
-                                ["hidden"] = false,
-                                ["name"] = "Scenario NORTH - SA2 site",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 118,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 219815.88645034,
-                                            ["y"] = 26434.781258414,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.0038885041518015,
-                                        ["name"] = "Scenario NORTH - SA2 site-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "SNR_75V",
-                                        ["unitId"] = 363,
-                                        ["x"] = 219815.88645034,
-                                        ["y"] = 26434.781258414,
-                                    }, -- end of [1]
-                                    [2] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.4803338512622,
-                                        ["name"] = "Scenario NORTH - SA2 site-2",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 364,
-                                        ["x"] = 219894.98551211,
-                                        ["y"] = 26387.684561017,
-                                    }, -- end of [2]
-                                    [3] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.535889741755,
-                                        ["name"] = "Scenario NORTH - SA2 site-3",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 365,
-                                        ["x"] = 219816.10465721,
-                                        ["y"] = 26541.581790901,
-                                    }, -- end of [3]
-                                    [4] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.6774823953448,
-                                        ["name"] = "Scenario NORTH - SA2 site-4",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 366,
-                                        ["x"] = 219814.05875607,
-                                        ["y"] = 26336.537032622,
-                                    }, -- end of [4]
-                                    [5] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 3.8048177693476,
-                                        ["name"] = "Scenario NORTH - SA2 site-5",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 367,
-                                        ["x"] = 219730.6314542,
-                                        ["y"] = 26387.911883366,
-                                    }, -- end of [5]
-                                    [6] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.3561944901923,
-                                        ["name"] = "Scenario NORTH - SA2 site-6",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 368,
-                                        ["x"] = 219728.13090837,
-                                        ["y"] = 26492.70748599,
-                                    }, -- end of [6]
-                                    [7] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.92502450355699,
-                                        ["name"] = "Scenario NORTH - SA2 site-7",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "S_75M_Volhov",
-                                        ["unitId"] = 369,
-                                        ["x"] = 219896.57676855,
-                                        ["y"] = 26489.070328415,
-                                    }, -- end of [7]
-                                    [8] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.1713369122664,
-                                        ["name"] = "Scenario NORTH - SA2 site-8",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ZIL-131 KUNG",
-                                        ["unitId"] = 370,
-                                        ["x"] = 219845.84312244,
-                                        ["y"] = 26479.417423516,
-                                    }, -- end of [8]
-                                    [9] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 4.1713369122664,
-                                        ["name"] = "Scenario NORTH - SA2 site-9",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ZIL-131 KUNG",
-                                        ["unitId"] = 371,
-                                        ["x"] = 219841.0134002,
-                                        ["y"] = 26482.670400535,
-                                    }, -- end of [9]
-                                    [10] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 2.2165681500328,
-                                        ["name"] = "Scenario NORTH - SA2 site-10",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "p-19 s-125 sr",
-                                        ["unitId"] = 372,
-                                        ["x"] = 219754.74395211,
-                                        ["y"] = 26600.437108354,
-                                    }, -- end of [10]
-                                    [11] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.68067840827779,
-                                        ["name"] = "Scenario NORTH - SA2 site-11",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-4320 APA-5D",
-                                        ["unitId"] = 373,
-                                        ["x"] = 219765.94540459,
-                                        ["y"] = 26599.166019141,
-                                    }, -- end of [11]
-                                    [12] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0.87266462599716,
-                                        ["name"] = "Scenario NORTH - SA2 site-12",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ATMZ-5",
-                                        ["unitId"] = 374,
-                                        ["x"] = 219697.60081719,
-                                        ["y"] = 26263.619126303,
-                                    }, -- end of [12]
-                                    [13] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.0297442586767,
-                                        ["name"] = "Scenario NORTH - SA2 site-13",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "ATMZ-5",
-                                        ["unitId"] = 375,
-                                        ["x"] = 219678.52702061,
-                                        ["y"] = 26283.522218383,
-                                    }, -- end of [13]
-                                    [14] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.4279739737024,
-                                        ["name"] = "Scenario NORTH - SA2 site-14",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-4320T",
-                                        ["unitId"] = 376,
-                                        ["x"] = 219647.84308699,
-                                        ["y"] = 26349.865858652,
-                                    }, -- end of [14]
-                                    [15] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 5.3407075111026,
-                                        ["name"] = "Scenario NORTH - SA2 site-15",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "Ural-4320T",
-                                        ["unitId"] = 377,
-                                        ["x"] = 219664.42899705,
-                                        ["y"] = 26363.963882209,
-                                    }, -- end of [15]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 219815.88645034,
-                                ["y"] = 26434.781258414,
-                            }, -- end of [49]
-                            [50] =
+                            }, -- end of [46]
+                            [47] =
                             {
                                 ["groupId"] = 179,
                                 ["hidden"] = false,
@@ -43543,8 +42727,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 34413.683162008,
                                 ["y"] = -363553.34809218,
-                            }, -- end of [50]
-                            [51] =
+                            }, -- end of [47]
+                            [48] =
                             {
                                 ["groupId"] = 180,
                                 ["hidden"] = false,
@@ -43631,7 +42815,273 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 27298.869523474,
                                 ["y"] = -372778.27199761,
-                            }, -- end of [51]
+                            }, -- end of [48]
+                            [49] =
+                            {
+                                ["groupId"] = 236,
+                                ["hidden"] = false,
+                                ["name"] = "R21_threat_SA_10",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 16,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = 218775.8183545,
+                                            ["y"] = 24375.833486787,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7123889803847,
+                                        ["name"] = "R21_threat_SA_10-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 40B6M tr",
+                                        ["unitId"] = 622,
+                                        ["x"] = 218775.8183545,
+                                        ["y"] = 24375.833486787,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_10-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 40B6MD sr",
+                                        ["unitId"] = 623,
+                                        ["x"] = 218803.67897869,
+                                        ["y"] = 24586.207935003,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.1415926535898,
+                                        ["name"] = "R21_threat_SA_10-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 54K6 cp",
+                                        ["unitId"] = 624,
+                                        ["x"] = 218799.39758949,
+                                        ["y"] = 24622.388162033,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.1415926535898,
+                                        ["name"] = "R21_threat_SA_10-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 64H6E sr",
+                                        ["unitId"] = 625,
+                                        ["x"] = 218753.30232668,
+                                        ["y"] = 24622.388162033,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.1415926535898,
+                                        ["name"] = "R21_threat_SA_10-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85C ln",
+                                        ["unitId"] = 626,
+                                        ["x"] = 218859.16833778,
+                                        ["y"] = 24374.452800088,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.3161255787892,
+                                        ["name"] = "R21_threat_SA_10-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85D ln",
+                                        ["unitId"] = 627,
+                                        ["x"] = 218858.31699508,
+                                        ["y"] = 24391.938134285,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.9670597283904,
+                                        ["name"] = "R21_threat_SA_10-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85D ln",
+                                        ["unitId"] = 628,
+                                        ["x"] = 218858.36597072,
+                                        ["y"] = 24357.606210297,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_10-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85C ln",
+                                        ["unitId"] = 629,
+                                        ["x"] = 218693.17794817,
+                                        ["y"] = 24375.417860492,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 6.1086523819802,
+                                        ["name"] = "R21_threat_SA_10-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85D ln",
+                                        ["unitId"] = 630,
+                                        ["x"] = 218693.87866953,
+                                        ["y"] = 24392.949119522,
+                                    }, -- end of [9]
+                                    [10] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.17453292519943,
+                                        ["name"] = "R21_threat_SA_10-10",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S-300PS 5P85D ln",
+                                        ["unitId"] = 631,
+                                        ["x"] = 218693.87866953,
+                                        ["y"] = 24357.838943095,
+                                    }, -- end of [10]
+                                    [11] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.5707963267949,
+                                        ["name"] = "R21_threat_SA_10-11",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "generator_5i57",
+                                        ["unitId"] = 632,
+                                        ["x"] = 218766.73247682,
+                                        ["y"] = 24563.510621879,
+                                    }, -- end of [11]
+                                    [12] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.5707963267949,
+                                        ["name"] = "R21_threat_SA_10-12",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "generator_5i57",
+                                        ["unitId"] = 633,
+                                        ["x"] = 218776.65595673,
+                                        ["y"] = 24563.351599711,
+                                    }, -- end of [12]
+                                    [13] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_10-13",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "ATZ-5",
+                                        ["unitId"] = 634,
+                                        ["x"] = 218715.99453552,
+                                        ["y"] = 24544.468171667,
+                                    }, -- end of [13]
+                                    [14] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_10-14",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "ATZ-5",
+                                        ["unitId"] = 635,
+                                        ["x"] = 218715.99453552,
+                                        ["y"] = 24555.09892117,
+                                    }, -- end of [14]
+                                    [15] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.5707963267949,
+                                        ["name"] = "R21_threat_SA_10-15",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "GAZ-66",
+                                        ["unitId"] = 636,
+                                        ["x"] = 218796.76603383,
+                                        ["y"] = 24313.022059571,
+                                    }, -- end of [15]
+                                    [16] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.9269908169872,
+                                        ["name"] = "R21_threat_SA_10-16",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "ATZ-60_Maz",
+                                        ["unitId"] = 637,
+                                        ["x"] = 218842.56971021,
+                                        ["y"] = 24527.189407692,
+                                    }, -- end of [16]
+                                    [17] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.9269908169872,
+                                        ["name"] = "R21_threat_SA_10-17",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "ATZ-60_Maz",
+                                        ["unitId"] = 638,
+                                        ["x"] = 218835.45762369,
+                                        ["y"] = 24534.30149422,
+                                    }, -- end of [17]
+                                    [18] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.5707963267949,
+                                        ["name"] = "R21_threat_SA_10-18",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "KAMAZ Truck",
+                                        ["unitId"] = 639,
+                                        ["x"] = 218759.49112689,
+                                        ["y"] = 24313.360612124,
+                                    }, -- end of [18]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = 218775.8183545,
+                                ["y"] = 24375.833486787,
+                            }, -- end of [49]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -53073,6 +52523,348 @@ mission =
                                 ["x"] = -250960.62354887,
                                 ["y"] = -384894.58953771,
                             }, -- end of [17]
+                            [18] =
+                            {
+                                ["groupId"] = 232,
+                                ["hidden"] = false,
+                                ["name"] = "R21_threat_SA_11_battery",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 85,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = 114659.93807112,
+                                            ["y"] = -130903.20515984,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_11_battery-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "SA-11 Buk SR 9S18M1",
+                                        ["unitId"] = 594,
+                                        ["x"] = 114659.93807112,
+                                        ["y"] = -130903.20515984,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_11_battery-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "SA-11 Buk CC 9S470M1",
+                                        ["unitId"] = 593,
+                                        ["x"] = 114652.21856871,
+                                        ["y"] = -130915.53318657,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.4854961776254,
+                                        ["name"] = "R21_threat_SA_11_battery-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "SA-11 Buk LN 9A310M1",
+                                        ["unitId"] = 592,
+                                        ["x"] = 114678.23949088,
+                                        ["y"] = -130945.33133938,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.9146998508305,
+                                        ["name"] = "R21_threat_SA_11_battery-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "SA-11 Buk LN 9A310M1",
+                                        ["unitId"] = 591,
+                                        ["x"] = 114664.8093375,
+                                        ["y"] = -130852.57934262,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_11_battery-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 590,
+                                        ["x"] = 114628.29610801,
+                                        ["y"] = -130902.1030332,
+                                    }, -- end of [5]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = 114659.93807112,
+                                ["y"] = -130903.20515984,
+                            }, -- end of [18]
+                            [19] =
+                            {
+                                ["groupId"] = 245,
+                                ["hidden"] = false,
+                                ["name"] = "R21_threat_SA_2",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 305,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = 113161.31043627,
+                                            ["y"] = 19154.994305382,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.0038885041518015,
+                                        ["name"] = "R21_threat_SA_2-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "SNR_75V",
+                                        ["unitId"] = 648,
+                                        ["x"] = 113161.31043627,
+                                        ["y"] = 19154.994305382,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.1415926535898,
+                                        ["name"] = "R21_threat_SA_2-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 649,
+                                        ["x"] = 112988.12309985,
+                                        ["y"] = 19154.335798399,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.87266462599716,
+                                        ["name"] = "R21_threat_SA_2-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 650,
+                                        ["x"] = 113241.64828814,
+                                        ["y"] = 19274.18406923,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.5850536063819,
+                                        ["name"] = "R21_threat_SA_2-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 651,
+                                        ["x"] = 113237.69724625,
+                                        ["y"] = 19017.366346021,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.8397243543875,
+                                        ["name"] = "R21_threat_SA_2-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 652,
+                                        ["x"] = 113078.33855646,
+                                        ["y"] = 19015.390825073,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.3561944901923,
+                                        ["name"] = "R21_threat_SA_2-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 653,
+                                        ["x"] = 113077.68004948,
+                                        ["y"] = 19281.427646038,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R21_threat_SA_2-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "S_75M_Volhov",
+                                        ["unitId"] = 654,
+                                        ["x"] = 113313.42554925,
+                                        ["y"] = 19152.360277451,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1713369122664,
+                                        ["name"] = "R21_threat_SA_2-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 655,
+                                        ["x"] = 113191.26710837,
+                                        ["y"] = 19199.630470484,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.1713369122664,
+                                        ["name"] = "R21_threat_SA_2-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 656,
+                                        ["x"] = 113186.43738613,
+                                        ["y"] = 19202.883447503,
+                                    }, -- end of [9]
+                                    [10] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.2165681500328,
+                                        ["name"] = "R21_threat_SA_2-10",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "p-19 s-125 sr",
+                                        ["unitId"] = 657,
+                                        ["x"] = 113139.57970584,
+                                        ["y"] = 19127.995519096,
+                                    }, -- end of [10]
+                                    [11] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.68067840827779,
+                                        ["name"] = "R21_threat_SA_2-11",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 658,
+                                        ["x"] = 113284.45124201,
+                                        ["y"] = 19147.092221591,
+                                    }, -- end of [11]
+                                    [12] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0.87266462599716,
+                                        ["name"] = "R21_threat_SA_2-12",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 659,
+                                        ["x"] = 113225.18561358,
+                                        ["y"] = 19178.042049772,
+                                    }, -- end of [12]
+                                    [13] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.0297442586767,
+                                        ["name"] = "R21_threat_SA_2-13",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 660,
+                                        ["x"] = 113220.5760647,
+                                        ["y"] = 19030.536485673,
+                                    }, -- end of [13]
+                                    [14] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.4279739737024,
+                                        ["name"] = "R21_threat_SA_2-14",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 661,
+                                        ["x"] = 113096.77675198,
+                                        ["y"] = 19052.267216098,
+                                    }, -- end of [14]
+                                    [15] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.3407075111026,
+                                        ["name"] = "R21_threat_SA_2-15",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "34Ya6E Gazetchik E decoy",
+                                        ["unitId"] = 662,
+                                        ["x"] = 113179.0901248,
+                                        ["y"] = 19274.18406923,
+                                    }, -- end of [15]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = 113161.31043627,
+                                ["y"] = 19154.994305382,
+                            }, -- end of [19]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [2]
@@ -53185,7 +52977,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 341435,
+    ["currentKey"] = 356469,
     ["date"] =
     {
         ["Day"] = 29,
@@ -61622,9 +61414,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -232053.66550586,
-        ["centerY"] = -366557.90191422,
-        ["zoom"] = 314437.44647043,
+        ["centerX"] = 25732.085884383,
+        ["centerY"] = -221280.93580325,
+        ["zoom"] = 1251340.35386,
     }, -- end of ["map"]
     ["maxDictId"] = 125,
     ["pictureFileNameB"] =
@@ -61642,6 +61434,7 @@ mission =
     ["requiredModules"] =
     {
         ["476 vFG Range Targets by Noodle & Stuka"] = "476 vFG Range Targets by Noodle & Stuka",
+        ["HighDigitSAMs"] = "HighDigitSAMs",
         ["Insurgent_PickUp"] = "Insurgent_PickUp",
     }, -- end of ["requiredModules"]
     ["result"] =
@@ -61701,7 +61494,7 @@ mission =
             [8] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_124\")); mission.trig.func[8]=nil;",
             [9] = "a_group_off(38);a_group_off(177); mission.trig.func[9]=nil;",
             [10] = "a_group_off(95);a_group_off(96);a_group_off(97);a_group_off(98);a_group_off(100);a_group_off(101);a_group_off(102);a_group_off(103);a_group_off(104);a_group_off(87);a_group_off(106);a_group_off(107);a_group_off(108);a_group_off(109);a_group_off(110);a_group_off(111);a_group_off(112);a_group_off(113);a_group_off(114);a_group_off(88);a_group_off(115);a_group_off(116);a_group_off(117);a_group_off(118);a_group_off(119);a_group_off(120);a_group_off(121);a_group_off(122);a_group_off(123);a_group_off(89);a_group_off(90);a_group_off(91);a_group_off(92);a_group_off(93);a_group_off(94); mission.trig.func[10]=nil;",
-            [11] = "a_group_off(141);a_group_off(139);a_group_off(138);a_group_off(140);a_group_off(137); mission.trig.func[11]=nil;",
+            [11] = "a_group_off(141);a_group_off(139);a_group_off(140); mission.trig.func[11]=nil;",
             [12] = "a_activate_group(178);a_activate_group(105);a_activate_group(104);a_activate_group(143);a_activate_group(195);a_activate_group(197);a_activate_group(198);a_group_off(198); mission.trig.func[12]=nil;",
             [13] = "a_out_text_delay_c(20, getValueDictByKey(\"DictKey_ActionText_22\"), 60, false, 0);a_out_sound_c(20, getValueResourceByKey(\"ResKey_Action_23\"), 0);a_set_flag(\"62\"); mission.trig.func[13]=nil;",
             [14] = "a_set_ai_task(197, 1); mission.trig.func[14]=nil;",
@@ -61798,6 +61591,48 @@ mission =
     {
         ["zones"] =
         {
+            [1] =
+            {
+                ["color"] =
+                {
+                    [1] = 1,
+                    [2] = 0,
+                    [3] = 0,
+                    [4] = 0.14901960784314,
+                }, -- end of ["color"]
+                ["heading"] = 0,
+                ["hidden"] = false,
+                ["name"] = "SA-11",
+                ["properties"] =
+                {
+                }, -- end of ["properties"]
+                ["radius"] = 35052,
+                ["type"] = 0,
+                ["x"] = 114651.75947558,
+                ["y"] = -130912.63232028,
+                ["zoneId"] = 107,
+            }, -- end of [1]
+            [2] =
+            {
+                ["color"] =
+                {
+                    [1] = 1,
+                    [2] = 0,
+                    [3] = 0,
+                    [4] = 0.14901960784314,
+                }, -- end of ["color"]
+                ["heading"] = 0,
+                ["hidden"] = false,
+                ["name"] = "SA-6",
+                ["properties"] =
+                {
+                }, -- end of ["properties"]
+                ["radius"] = 25298.4,
+                ["type"] = 0,
+                ["x"] = 187951.96991901,
+                ["y"] = -141987.07394449,
+                ["zoneId"] = 140,
+            }, -- end of [2]
         }, -- end of ["zones"]
     }, -- end of ["triggers"]
     ["trigrules"] =
@@ -62238,19 +62073,9 @@ mission =
                 }, -- end of [2]
                 [3] =
                 {
-                    ["group"] = 138,
-                    ["predicate"] = "a_group_off",
-                }, -- end of [3]
-                [4] =
-                {
                     ["group"] = 140,
                     ["predicate"] = "a_group_off",
-                }, -- end of [4]
-                [5] =
-                {
-                    ["group"] = 137,
-                    ["predicate"] = "a_group_off",
-                }, -- end of [5]
+                }, -- end of [3]
             }, -- end of ["actions"]
             ["comment"] = "AI off blue SAMs",
             ["eventlist"] = "",
