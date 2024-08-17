@@ -14,4 +14,5 @@ mapResource =
     ["ResKey_Action_123"] = "mist_4_5_107.lua",
     ["ResKey_Action_124"] = "skynet-iads-compiled.lua",
     ["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
+    ["ResKey_Action_128"] = "TRMA_Range_16.lua",
 } -- end of mapResource
