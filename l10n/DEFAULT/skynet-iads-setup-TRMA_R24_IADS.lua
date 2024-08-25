@@ -10,13 +10,21 @@ redIADS:addEarlyWarningRadarsByPrefix('R23_EWR')
 --add all groups begining with group name 'IADS' to the IADS:
 redIADS:addSAMSitesByPrefix('R23_IADS')
 
--- Point Defence for SA-2
+-- Point Defence for SA-2 WEST
 local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_1')
 redIADS:getSAMSiteByGroupName('R23_IADS_SA2-1'):addPointDefence(sa15):setHARMDetectionChance(100)
 
 local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_2')
 redIADS:getSAMSiteByGroupName('R23_IADS_SA2-1'):addPointDefence(sa15):setHARMDetectionChance(100)
 
+
+
+-- Point Defence for SA-2 EAST
+local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_3')
+redIADS:getSAMSiteByGroupName('R23_IADS_SA2-2'):addPointDefence(sa15):setHARMDetectionChance(100)
+
+local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_4')
+redIADS:getSAMSiteByGroupName('R23_IADS_SA2-2'):addPointDefence(sa15):setHARMDetectionChance(100)
 
 
 --activate the IADS
