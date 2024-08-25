@@ -375,7 +375,7 @@ warehouses =
 			}, -- end of ["jet_fuel"]
 			["periodicity"] = 30,
 			["suppliers"] = {},
-			["coalition"] = "NEUTRAL",
+			["coalition"] = "BLUE",
 			["dynamicCargo"] = false,
 			["OperatingLevel_Eqp"] = 10,
 			["gasoline"] = 
@@ -550,7 +550,7 @@ warehouses =
 			}, -- end of ["jet_fuel"]
 			["periodicity"] = 30,
 			["suppliers"] = {},
-			["coalition"] = "NEUTRAL",
+			["coalition"] = "BLUE",
 			["dynamicCargo"] = false,
 			["OperatingLevel_Eqp"] = 10,
 			["gasoline"] = 
