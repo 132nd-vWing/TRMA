@@ -8,7 +8,7 @@ local areSitesSpawned = false
 
 -- Function to start spawning SAM sites
 function start_sam_sites_R23()
-start_sams_r23:Remove()
+    start_sams_r23:Remove()
     -- Create an instance of the IADS
     redIADS = SkynetIADS:create('R23_IADS')
 
@@ -27,7 +27,7 @@ start_sams_r23:Remove()
         "R23_IADS_SA11_1"
     }
 
-    -- Define the table with spawn location templates
+    -- Define the table with spawn location template names
     local spawnLocationTemplates = {
         "R23_SAM_SPAWN_1",
         "R23_SAM_SPAWN_2",
@@ -64,33 +64,21 @@ start_sams_r23:Remove()
         end
     end
 
-    -- Function to spawn a mobile SAM template at a random location
-    local function spawnMobileSam(templateName)
-        if #spawnLocationTemplates == 0 then
-            env.warning("No spawn location templates available.")
-            return
-        end
-
-        -- Pick a random location template
-        local index = getRandomIndex(spawnLocationTemplates)
-        local locationTemplateName = table.remove(spawnLocationTemplates, index)  -- Remove the location template from the list after use
-
-        -- Spawn the location template to get the actual spawn location
-        local locationTemplate = SPAWN:New(locationTemplateName)
-        local locationGroup = locationTemplate:Spawn()
-
-        -- Check if the location group was successfully spawned
+    -- Function to spawn a mobile SAM template at a specific location
+    local function spawnMobileSam(templateName, locationTemplateName)
+        -- Find the location template group in the mission
+        local locationGroup = GROUP:FindByName(locationTemplateName)
         if not locationGroup then
-            env.warning("Failed to spawn location template: " .. locationTemplateName)
+            env.warning("Location template group not found: " .. locationTemplateName)
             return
         end
 
-        -- Get the position of the first unit in the location group
-        local spawnPosition = locationGroup:GetUnits()[1]:GetVec3()
+        -- Get the position of the location group
+        local spawnPosition = locationGroup:GetVec3()
 
         -- Spawn the mobile SAM template at this location
         local mobileSamTemplate = SPAWN:New(templateName)
-        local group = mobileSamTemplate:Spawn(spawnPosition)
+        local group = mobileSamTemplate:SpawnFromVec3(spawnPosition)
         if group then
             env.info("Spawned mobile SAM template: " .. templateName .. " at location template: " .. locationTemplateName)
             -- Track spawned units
@@ -123,9 +111,23 @@ start_sams_r23:Remove()
             spawnStaticSam(templateName)
         end
 
-        -- Spawn each mobile SAM template at a random location
-        for _, templateName in ipairs(mobileSams) do
-            spawnMobileSam(templateName)
+        -- Spawn 3 mobile SAM groups using random templates and locations
+        for i = 1, 3 do
+            if #mobileSams == 0 or #spawnLocationTemplates == 0 then
+                env.warning("Not enough SAM templates or locations left to spawn all groups.")
+                break
+            end
+
+            -- Pick a random SAM template
+            local samIndex = getRandomIndex(mobileSams)
+            local selectedSam = mobileSams[samIndex]
+
+            -- Pick a random location template
+            local locationIndex = getRandomIndex(spawnLocationTemplates)
+            local selectedLocation = table.remove(spawnLocationTemplates, locationIndex) -- Remove to prevent reuse
+
+            -- Spawn the SAM at the selected location
+            spawnMobileSam(selectedSam, selectedLocation)
         end
 
         -- Spawn point defenses
@@ -136,23 +138,25 @@ start_sams_r23:Remove()
             redIADS:activate()
         end
 
-
         env.info("Mission setup complete.")
     end
 
     -- Start the spawning process
     spawn_groups()
-    stop_sams_r23 = MENU_MISSION_COMMAND:New("Stop IADS and Despawn All Units at Range 23", range_23_menu_root,stop_and_despawn)
+    stop_sams_r23 = MENU_MISSION_COMMAND:New("Stop IADS and Despawn All Units at Range 23", range_23_menu_root, stop_and_despawn)
 end
 
 -- Function to stop IADS and despawn all units
 function stop_and_despawn()
-start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root,start_sam_sites_R23)
-stop_sams_r23:Remove()
-    
+    start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root, start_sam_sites_R23)
+    stop_sams_r23:Remove()
+
+    if redIADS then
+            redIADS:deactivate()
+    end
     -- Despawn all tracked units
     for _, unit in ipairs(spawnedUnits) do
-        if unit then
+        if unit and unit:IsAlive() then
             unit:Destroy()
             env.info("Despawned unit: " .. unit:GetName())
         end
@@ -161,7 +165,8 @@ stop_sams_r23:Remove()
     -- Clear the list of spawned units
     spawnedUnits = {}
 
-
     env.info("All units despawned.")
 end
-start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root,start_sam_sites_R23)
+
+-- Initialize the spawn command
+start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root, start_sam_sites_R23)

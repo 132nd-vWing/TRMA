@@ -162,4 +162,4 @@ MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Info", CV73_menu, Carri
 function setminute()
   start_recovery73()
 end
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Set Minute", CV73_menu, setminute)
+--MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Set Minute", CV73_menu, setminute)
