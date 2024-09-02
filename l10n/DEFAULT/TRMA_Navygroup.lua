@@ -7,6 +7,7 @@ RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
 RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
 
 CVN73 = NAVYGROUP:New("CVN-73")
+CVN73:Activate()
 CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
 
 -- Error handling: Check if the carrier unit exists
@@ -20,7 +21,10 @@ CVN73:SetDefaultICLS(13, "I73", CVN_73_beacon_unit)
 CVN73:SetDefaultTACAN(13, "T73", CVN_73_beacon_unit, X)
 CVN73:SetDefaultRadio(309.500)
 CVN73:SetSpeed(12, TRUE,TRUE)
-
+CVN73:SwitchICLS()
+CVN73:SwitchRadio()
+CVN73:SwitchTACAN()
+CVN73:Cruise(12)
 
 -- Define Recovery Tanker
 ArcoWash = RECOVERYTANKER:New(CVN_73_beacon_unit, "CVN73_Tanker#IFF:5327FR")
@@ -40,15 +44,15 @@ extend_recovery_menu_command = nil
 -- Function to create the extend recovery menu option
 function create_extend_recovery_menu()
     if extend_recovery_menu_command == nil then
-        extend_recovery_menu_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend current recovery window by 5 Minutes", CV73_menu, extend_recovery73)
+       extend_recovery_menu_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend current recovery window by 5 Minutes", CV73_menu, extend_recovery73)
     end
 end
 
 -- Function to remove the extend recovery menu option
 function remove_extend_recovery_menu()
     if extend_recovery_menu_command then
-        extend_recovery_menu_command:Remove()
-        extend_recovery_menu_command = nil
+       extend_recovery_menu_command:Remove()
+       extend_recovery_menu_command = nil
     end
 end
 
@@ -73,9 +77,13 @@ SCHEDULER:New(nil, function()
         else
             remove_extend_recovery_menu()
             ArcoWash:RTB()
+            function ArcoWash:OnEventEngineShutdown(EventData)
+            env.info("Arcowash despawning")
+            ArcoWash:Stop()
+            end
         end
     end
-end, {}, 1, 120)
+end, {}, 120, 240)
 
 -- Function to Start Scheduled Recovery
 function start_recovery73()
@@ -143,15 +151,15 @@ function CarrierInfo()
         MESSAGE:New("Current Heading of the Carrier is " .. heading):ToBlue()
         MESSAGE:New(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots)):ToBlue()
         env.info("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute)
-        env.info("Current Heading of the Carrier is " .. heading)
+        env.info("Current Heading of the Carrier is " .. heading.."°")
         env.info(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
     end
 end
 
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Info", CV73_menu, CarrierInfo)
 
----- Optional: Add debugging function to manually start the carrier's turn
---function setminute()
---  start_recovery73()
---end
---MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Set Minute", CV73_menu, setminute)
+-- Optional: Add debugging function to manually start the carrier's turn
+function setminute()
+  start_recovery73()
+end
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Set Minute", CV73_menu, setminute)
