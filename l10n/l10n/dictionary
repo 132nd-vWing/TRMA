@@ -7,18 +7,7 @@ LAST ROUND IS NOW ON GROUND\
 \
 END OF FIREMISSION\
 ",
-	["DictKey_ActionText_22"] = "TO: JTAC\
-FROM: MORTAR\
-\
-WE WILL START A FIREMISSION IN 5 MINUTES.\
-\
-GUN TARGET LINE (GTL): 072 DEGREES\
-TIME OF FLIGHT (TOF) 44 SECONDS\
-MAXORD: 15000ft\
-WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
-\
-WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
-",
+	["DictKey_descriptionText_1"] = "",
 	["DictKey_ActionText_24"] = "",
 	["DictKey_ActionText_30"] = "TO: JTAC\
 FROM: MORTAR\
@@ -44,7 +33,18 @@ I will have the MORTARS start firing a 5 minute suppression in about 10 minutes.
 ",
 	["DictKey_descriptionNeutralsTask_4"] = "",
 	["DictKey_sortie_5"] = "",
-	["DictKey_descriptionText_1"] = "",
+	["DictKey_ActionText_22"] = "TO: JTAC\
+FROM: MORTAR\
+\
+WE WILL START A FIREMISSION IN 5 MINUTES.\
+\
+GUN TARGET LINE (GTL): 072 DEGREES\
+TIME OF FLIGHT (TOF) 44 SECONDS\
+MAXORD: 15000ft\
+WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
+\
+WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
+",
 	["DictKey_descriptionBlueTask_3"] = "",
 	["DictKey_ActionText_32"] = "",
 	["DictKey_ActionText_26"] = "TO: JTAC\
