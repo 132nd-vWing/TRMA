@@ -18,4 +18,5 @@ mapResource =
     ["ResKey_Action_143"] = "TRMA_Range_23.lua",
     ["ResKey_Action_146"] = "TRMA_Range_13.lua",
     ["ResKey_Action_147"] = "TRMA_Range_15.lua",
+    ["ResKey_Action_149"] = "radio_sound.wav",
 } -- end of mapResource

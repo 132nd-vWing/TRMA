@@ -50,6 +50,13 @@ LAST ROUND IS NOW ON GROUND\
 \
 END OF FIREMISSION\
 ",
+    ["DictKey_ActionText_148"] = "TO: JTAC\
+FROM: GFC\
+\
+WE HAVE REPORTING FROM FRIENDLY OBSERVATION POSTS THAT AN ADDITIONAL MBT PLATOON IS SPOTTED  AND ARE \
+UNDERWAY. \
+REQUEST YOU TO NEUTRALIZE THE MBT's AS SOON AS POSSIBLE",
+    ["DictKey_ActionText_150"] = "",
     ["DictKey_descriptionBlueTask_3"] = "",
     ["DictKey_descriptionNeutralsTask_4"] = "",
     ["DictKey_descriptionRedTask_2"] = "",
