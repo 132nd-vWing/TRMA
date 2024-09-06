@@ -7,6 +7,8 @@ LAST ROUND IS NOW ON GROUND\
 \
 END OF FIREMISSION\
 ",
+	["DictKey_descriptionText_1"] = "",
+	["DictKey_ActionText_24"] = "",
 	["DictKey_ActionText_22"] = "TO: JTAC\
 FROM: MORTAR\
 \
@@ -19,8 +21,6 @@ WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
 \
 WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
 ",
-	["DictKey_ActionText_24"] = "",
-	["DictKey_descriptionText_1"] = "",
 	["DictKey_ActionText_30"] = "TO: JTAC\
 FROM: MORTAR\
 \
