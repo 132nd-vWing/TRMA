@@ -19,8 +19,15 @@ WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
 \
 WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
 ",
-	["DictKey_ActionText_24"] = "",
 	["DictKey_descriptionText_1"] = "",
+	["DictKey_ActionText_24"] = "",
+	["DictKey_ActionText_26"] = "TO: JTAC\
+FROM: MORTAR\
+\
+LAST ROUND IS NOW ON GROUND\
+\
+END OF FIREMISSION\
+",
 	["DictKey_ActionText_30"] = "TO: JTAC\
 FROM: MORTAR\
 \
@@ -33,13 +40,7 @@ WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
 \
 WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
 ",
-	["DictKey_ActionText_26"] = "TO: JTAC\
-FROM: MORTAR\
-\
-LAST ROUND IS NOW ON GROUND\
-\
-END OF FIREMISSION\
-",
+	["DictKey_sortie_5"] = "",
 	["DictKey_ActionText_28"] = "TO: JTAC\
 FROM: GROUND FORCE COMMANDER\
 \
@@ -51,7 +52,7 @@ I will have the MORTARS start firing a 5 minute suppression in about 10 minutes.
 \
 ",
 	["DictKey_descriptionNeutralsTask_4"] = "",
-	["DictKey_sortie_5"] = "",
+	["DictKey_ActionText_154"] = "Range 23 IADS activated",
 	["DictKey_ActionText_150"] = "",
 	["DictKey_descriptionBlueTask_3"] = "",
 	["DictKey_ActionText_32"] = "",

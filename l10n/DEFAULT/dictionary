@@ -57,6 +57,7 @@ WE HAVE REPORTING FROM FRIENDLY OBSERVATION POSTS THAT AN ADDITIONAL MBT PLATOON
 UNDERWAY. \
 REQUEST YOU TO NEUTRALIZE THE MBT's AS SOON AS POSSIBLE",
     ["DictKey_ActionText_150"] = "",
+    ["DictKey_ActionText_154"] = "Range 23 IADS activated",
     ["DictKey_descriptionBlueTask_3"] = "",
     ["DictKey_descriptionNeutralsTask_4"] = "",
     ["DictKey_descriptionRedTask_2"] = "",

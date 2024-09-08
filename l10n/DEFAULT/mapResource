@@ -20,4 +20,5 @@ mapResource =
     ["ResKey_Action_147"] = "TRMA_Range_15.lua",
     ["ResKey_Action_149"] = "radio_sound.wav",
     ["ResKey_Action_152"] = "skynet-iads-setup-TRMA_R23_ARMY.lua",
+    ["ResKey_Action_153"] = "skynet-iads-setup-TRMA_R23_IADS.lua",
 } -- end of mapResource
