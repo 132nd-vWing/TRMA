@@ -1,11 +1,10 @@
 mapResource = 
 {
 	["ResKey_Action_81"] = "TRMA_Tankers.lua",
-	["ResKey_Action_138"] = "TRMA_Navygroup.lua",
 	["ResKey_Action_27"] = "radio_sound.wav",
-	["ResKey_Action_35"] = "radio_sound.wav",
-	["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
 	["ResKey_Action_29"] = "radio_sound.wav",
+	["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
+	["ResKey_Action_35"] = "radio_sound.wav",
 	["ResKey_Action_123"] = "mist_4_5_107.lua",
 	["ResKey_Action_80"] = "TRMA_Basic_Ranges.lua",
 	["ResKey_Action_168"] = "TRMA_Range_23.lua",
