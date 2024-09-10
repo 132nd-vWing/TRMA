@@ -168,5 +168,22 @@ function stop_and_despawn()
     env.info("All units despawned.")
 end
 
+local function flag_40()
+  start_SCUD_HUNT_r23:Remove()
+  trigger.action.setUserFlag(40, true)
+  MessageToAll("SCUD Hunt Scenario at Range 23 activated")
+end
+
+local function flag_46()
+  start_SCUD_HUNT_IADS_r23:Remove()
+  trigger.action.setUserFlag(46, true)
+  MessageToAll("SCUD Hunt Scenario with IADS at Range 23 activated")
+end
+
+
 -- Initialize the spawn command
 start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root, start_sam_sites_R23)
+start_SCUD_HUNT_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario at Range 23", range_23_menu_root, flag_40)
+start_SCUD_HUNT_IADS_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario with IADS at Range 23", range_23_menu_root, flag_46)
+
+
