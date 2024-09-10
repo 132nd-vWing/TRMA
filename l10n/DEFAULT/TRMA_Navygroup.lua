@@ -6,10 +6,14 @@ CV73_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73", carrier_root_menu)
 RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
 RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
 
+CVN_73_Group = GROUP:FindByName("CVN-73")
+CVN_73_beacon_unit = CVN_73_Group:GetUnit(1)
+
 CVN73 = NAVYGROUP:New("CVN-73")
 CVN73:Activate()
-CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
 
+env.info("Carrier Group is "..CVN_73_Group:GetName())
+env.info("Carrier Unit is "..CVN_73_beacon_unit:GetName())
 -- Error handling: Check if the carrier unit exists
 if not CVN_73_beacon_unit then
     MESSAGE:New("Error: CVN-73 unit not found! Check mission setup."):ToAll()
@@ -17,14 +21,19 @@ if not CVN_73_beacon_unit then
 end
 
 CVN73:SetPatrolAdInfinitum()
-CVN73:SetDefaultICLS(13, "I73", CVN_73_beacon_unit)
-CVN73:SetDefaultTACAN(13, "T73", CVN_73_beacon_unit, X)
+CVN73:SetDefaultICLS(13, "I73",CVN_73_beacon_unit)
+CVN73:SetDefaultTACAN(13, "T73",CVN_73_beacon_unit,X,FALSE)
 CVN73:SetDefaultRadio(309.500)
+
+
+
 CVN73:SetSpeed(12, TRUE,TRUE)
-CVN73:SwitchICLS()
-CVN73:SwitchRadio()
-CVN73:SwitchTACAN()
+CVN73:SwitchICLS(13, "I73",CVN_73_beacon_unit)
+CVN73:SwitchRadio(309.500)
+CVN73:SwitchTACAN(13, "T73",CVN_73_beacon_unit, X)
 CVN73:Cruise(12)
+
+
 
 -- Define Recovery Tanker
 ArcoWash = RECOVERYTANKER:New(CVN_73_beacon_unit, "CVN73_Tanker#IFF:5327FR")
