@@ -30,7 +30,7 @@ function activateRandomPrimaryGroup()
     trigger.action.activateGroup(Group.getByName(selectedGroup))
 
     -- Print a message to confirm which group was activated (optional, for debug)
-    trigger.action.outText("Activating primary group: " .. selectedGroup, 10)
+    --trigger.action.outText("Activating primary group: " .. selectedGroup, 10)
 end
 
 -- Function to activate 6 random groups from the additional 12
@@ -60,7 +60,7 @@ function activateRandomAdditionalGroups()
     for _, groupName in ipairs(selectedGroups) do
         trigger.action.activateGroup(Group.getByName(groupName))
         -- Print a message to confirm which groups were activated (optional, for debug)
-        trigger.action.outText("Activating additional group: " .. groupName, 10)
+       -- trigger.action.outText("Activating additional group: " .. groupName, 10)
     end
 end
 
@@ -80,10 +80,10 @@ function activateOptionalGroup()
         trigger.action.activateGroup(Group.getByName(selectedGroup))
         
         -- Print a message to confirm which optional group was activated (optional, for debug)
-        trigger.action.outText("Activating optional group: " .. selectedGroup, 10)
+      --  trigger.action.outText("Activating optional group: " .. selectedGroup, 10)
     else
         -- Print a message to confirm no optional group was activated (optional, for debug)
-        trigger.action.outText("No optional group activated", 10)
+        --trigger.action.outText("No optional group activated", 10)
     end
 end
 

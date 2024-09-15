@@ -1,12 +1,5 @@
 dictionary = 
 {
-	["DictKey_ActionText_34"] = "TO: JTAC\
-FROM: MORTAR\
-\
-LAST ROUND IS NOW ON GROUND\
-\
-END OF FIREMISSION\
-",
 	["DictKey_ActionText_22"] = "TO: JTAC\
 FROM: MORTAR\
 \
@@ -19,8 +12,13 @@ WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
 \
 WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
 ",
-	["DictKey_descriptionText_1"] = "",
-	["DictKey_ActionText_24"] = "",
+	["DictKey_ActionText_34"] = "TO: JTAC\
+FROM: MORTAR\
+\
+LAST ROUND IS NOW ON GROUND\
+\
+END OF FIREMISSION\
+",
 	["DictKey_ActionText_26"] = "TO: JTAC\
 FROM: MORTAR\
 \
@@ -28,6 +26,9 @@ LAST ROUND IS NOW ON GROUND\
 \
 END OF FIREMISSION\
 ",
+	["DictKey_descriptionText_1"] = "",
+	["DictKey_ActionText_24"] = "",
+	["DictKey_sortie_5"] = "",
 	["DictKey_ActionText_30"] = "TO: JTAC\
 FROM: MORTAR\
 \
@@ -40,7 +41,7 @@ WE WILL FIRE SUPPRESSION FOR 5 MINUTES. \
 \
 WILL REPORT BACK WHEN LAST ROUND IS ON GROUND\
 ",
-	["DictKey_sortie_5"] = "",
+	["DictKey_ActionText_168"] = "R17 Armored Brigade scenario activated",
 	["DictKey_ActionText_28"] = "TO: JTAC\
 FROM: GROUND FORCE COMMANDER\
 \
