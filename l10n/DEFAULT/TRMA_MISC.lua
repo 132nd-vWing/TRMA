@@ -10,7 +10,7 @@ end
 
 
 
-awacs_root_menu = MENU_MISSION:New("AWACS TANKER and ELINT Control")
+awacs_root_menu = MENU_MISSION:New("AWACS and TANKER Control")
 range_root_menu = MENU_MISSION:New("RANGE Control")
 --RANGE.MenuF10Root=MENU_MISSION:New("Basic Ranges",range_root_menu)
 --range_root_menu1_6 = MENU_MISSION:New("RANGES 1-6",range_root_menu)
