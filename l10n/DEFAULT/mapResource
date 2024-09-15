@@ -22,4 +22,5 @@ mapResource =
     ["ResKey_Action_161"] = "Moose_.lua",
     ["ResKey_Action_166"] = "TRMA_Navygroup.lua",
     ["ResKey_Action_167"] = "R17_AR_Armored_Brigade.lua",
+    ["ResKey_Action_169"] = "TRMA_Range_17.lua",
 } -- end of mapResource
