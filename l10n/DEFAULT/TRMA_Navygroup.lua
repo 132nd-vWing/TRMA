@@ -12,6 +12,9 @@ CVN_73_beacon_unit = CVN_73_Group:GetUnit(1)
 CVN73 = NAVYGROUP:New("CVN-73")
 CVN73:Activate()
 
+CVN_73_beacon_unit:CommandActivateLink4(336,nil,"A73",1)
+CVN_73_beacon_unit:CommandActivateACLS(nil,"A73",1)
+
 env.info("Carrier Group is "..CVN_73_Group:GetName())
 env.info("Carrier Unit is "..CVN_73_beacon_unit:GetName())
 -- Error handling: Check if the carrier unit exists
