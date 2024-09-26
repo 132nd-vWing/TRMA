@@ -15,7 +15,7 @@ local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_1')
 redIADS:getSAMSiteByGroupName('R23_IADS_SA2-1'):addPointDefence(sa15):setHARMDetectionChance(100)
 
 local sa15 = redIADS:getSAMSiteByGroupName('R23_IADS_SA15_pointdefence_2')
-redIADS:getSAMSiteByGroupName('R23_IADS_SA2-1'):addPointDefence(sa15):setHARMDetectionChance(100)
+redIADS:getSAMSiteByGroupName('R23_IADS_SA2-2'):addPointDefence(sa15):setHARMDetectionChance(100)
 
 
 
