@@ -13,7 +13,6 @@ mapResource =
     ["ResKey_Action_128"] = "TRMA_Range_16.lua",
     ["ResKey_Action_131"] = "TRMA_MISC.lua",
     ["ResKey_Action_137"] = "TRMA_Range_22.lua",
-    ["ResKey_Action_143"] = "TRMA_Range_23.lua",
     ["ResKey_Action_146"] = "TRMA_Range_13.lua",
     ["ResKey_Action_147"] = "TRMA_Range_15.lua",
     ["ResKey_Action_149"] = "radio_sound.wav",
@@ -23,4 +22,5 @@ mapResource =
     ["ResKey_Action_166"] = "TRMA_Navygroup.lua",
     ["ResKey_Action_167"] = "R17_AR_Armored_Brigade.lua",
     ["ResKey_Action_169"] = "TRMA_Range_17.lua",
+    ["ResKey_Action_170"] = "TRMA_Range_23.lua",
 } -- end of mapResource

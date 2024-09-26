@@ -5,13 +5,16 @@ range_23_menu_root = MENU_MISSION:New("Range 23", range_root_menu19_24)
 local redIADS
 local spawnedUnits = {}
 local areSitesSpawned = false
+local spawn_delay = 3 -- Delay in seconds for adding SAMs to IADS
 
 -- Function to start spawning SAM sites
 function start_sam_sites_R23()
     start_sams_r23:Remove()
+
     -- Create an instance of the IADS
     redIADS = SkynetIADS:create('R23_IADS')
 
+  
     -- Define the table with static SAM templates
     local staticSams = {
         "R23_EWR_1",
@@ -53,12 +56,6 @@ function start_sam_sites_R23()
             env.info("Spawned static SAM template: " .. templateName)
             -- Track spawned units
             table.insert(spawnedUnits, group)
-            -- Add to IADS if it's an EWR or SAM site
-            if templateName:find("EWR") then
-                redIADS:addEarlyWarningRadarsByPrefix(templateName)
-            elseif templateName:find("IADS") then
-                redIADS:addSAMSitesByPrefix(templateName)
-            end
         else
             env.warning("Failed to spawn static SAM template: " .. templateName)
         end
@@ -80,11 +77,9 @@ function start_sam_sites_R23()
         local mobileSamTemplate = SPAWN:New(templateName)
         local group = mobileSamTemplate:SpawnFromVec3(spawnPosition)
         if group then
-            env.info("Spawned mobile SAM template: " .. templateName .. " at location template: " .. locationTemplateName)
+            env.info("Spawned mobile SAM template: " .. templateName .. " at location: " .. locationTemplateName)
             -- Track spawned units
             table.insert(spawnedUnits, group)
-            -- Add to IADS
-            redIADS:addSAMSitesByPrefix(templateName)
         else
             env.warning("Failed to spawn mobile SAM template: " .. templateName)
         end
@@ -104,7 +99,56 @@ function start_sam_sites_R23()
         end
     end
 
-    -- Define a function to spawn all groups
+    -- Function to manually add spawned SAMs and EWRs to the IADS
+    local function addSAMsToIADS()
+        if redIADS then
+            for _, group in ipairs(spawnedUnits) do
+                if group:IsAlive() then
+                    local groupName = group:GetName() -- Get the group name as a string
+                    local firstUnit = group:GetUnit(1) -- Get the first unit
+                    local unitName = firstUnit:GetName() -- Get the unit name
+
+                    -- Add EWRs to the IADS using unit name
+                    if unitName:find("R23_EWR_") then
+                        redIADS:addEarlyWarningRadar(unitName) -- Pass the UNIT name string
+                        env.info("EWR added to IADS: " .. unitName)
+
+                    -- Add SAM sites using group name
+                    elseif groupName:find("R23_IADS_SA") then
+                        local sam = redIADS:addSAMSite(groupName) -- Pass the group name string
+                        --sam:optimizeAsMobile() -- Ensure SAM is treated as mobile for better control
+                        --sam:setEngagementZone(30) -- Set engagement zone (optional)
+                        env.info("SAM added to IADS: " .. groupName)
+                    end
+                else
+                    env.warning("Group is not alive: " .. group:GetName())
+                end
+            end
+
+        else
+            env.warning("IADS object (redIADS) is nil.")
+        end
+    end
+
+    -- Function to print all SAM sites added to the IADS
+    local function printIADSSamSites()
+        local samSites = redIADS:getSAMSites()
+        if not samSites or #samSites == 0 then
+            env.info("No SAM sites found in IADS.")
+        else
+            env.info("Total SAM sites in IADS: " .. #samSites)
+            for _, samSite in ipairs(samSites) do
+                local samName = samSite:getDCSName() -- Get the SAM site name
+                if samName then
+                    env.info("SAM site in IADS: " .. samName)
+                else
+                    env.info("SAM site has no valid name.")
+                end
+            end
+        end
+    end
+
+    -- Function to spawn all SAMs
     local function spawn_groups()
         -- Spawn all static SAM templates
         for _, templateName in ipairs(staticSams) do
@@ -119,12 +163,9 @@ function start_sam_sites_R23()
             end
 
             -- Pick a random SAM template
-            local samIndex = getRandomIndex(mobileSams)
-            local selectedSam = mobileSams[samIndex]
-
+            local selectedSam = mobileSams[getRandomIndex(mobileSams)]
             -- Pick a random location template
-            local locationIndex = getRandomIndex(spawnLocationTemplates)
-            local selectedLocation = table.remove(spawnLocationTemplates, locationIndex) -- Remove to prevent reuse
+            local selectedLocation = table.remove(spawnLocationTemplates, getRandomIndex(spawnLocationTemplates))
 
             -- Spawn the SAM at the selected location
             spawnMobileSam(selectedSam, selectedLocation)
@@ -133,16 +174,35 @@ function start_sam_sites_R23()
         -- Spawn point defenses
         spawnPointDefenses()
 
-        -- Activate the IADS
-        if redIADS then
-            redIADS:activate()
-        end
-
+        -- Print all SAM sites in the IADS
         env.info("Mission setup complete.")
+    end
+
+    -- Function to add SAMs to IADS after a delay
+    local function addSAMsWithDelay()
+        addSAMsToIADS()
+        printIADSSamSites()
     end
 
     -- Start the spawning process
     spawn_groups()
+
+    -- Schedule the function to add SAMs to the IADS after a delay
+    timer.scheduleFunction(addSAMsWithDelay, nil, timer.getTime() + spawn_delay)
+    redIADS:activate()
+    -- Debug settings for IADS
+    local iadsDebug = redIADS:getDebugSettings()
+    iadsDebug.addedEWRadar = true
+    iadsDebug.addedSAMSite = true
+    iadsDebug.warnings = true
+    iadsDebug.radarWentLive = true
+    iadsDebug.radarWentDark = true
+    iadsDebug.harmDefence = true
+    iadsDebug.samSiteStatusEnvOutput = true
+    iadsDebug.earlyWarningRadarStatusEnvOutput = true
+    iadsDebug.commandCenterStatusEnvOutput = true
+
+    -- Set the menu to stop IADS and despawn units
     stop_sams_r23 = MENU_MISSION_COMMAND:New("Stop IADS and Despawn All Units at Range 23", range_23_menu_root, stop_and_despawn)
 end
 
@@ -152,8 +212,10 @@ function stop_and_despawn()
     stop_sams_r23:Remove()
 
     if redIADS then
-            redIADS:deactivate()
+        redIADS:deactivate()
+        env.info("IADS deactivated.")
     end
+
     -- Despawn all tracked units
     for _, unit in ipairs(spawnedUnits) do
         if unit and unit:IsAlive() then
@@ -168,22 +230,20 @@ function stop_and_despawn()
     env.info("All units despawned.")
 end
 
+-- SCUD Hunt Scenario activation functions
 local function flag_40()
-  start_SCUD_HUNT_r23:Remove()
-  trigger.action.setUserFlag(40, true)
-  MessageToAll("SCUD Hunt Scenario at Range 23 activated")
+    start_SCUD_HUNT_r23:Remove()
+    trigger.action.setUserFlag(40, true)
+    MessageToAll("SCUD Hunt Scenario at Range 23 activated")
 end
 
 local function flag_46()
-  start_SCUD_HUNT_IADS_r23:Remove()
-  trigger.action.setUserFlag(46, true)
-  MessageToAll("SCUD Hunt Scenario with IADS at Range 23 activated")
+    start_SCUD_HUNT_IADS_r23:Remove()
+    trigger.action.setUserFlag(46, true)
+    MessageToAll("SCUD Hunt Scenario with IADS at Range 23 activated")
 end
-
 
 -- Initialize the spawn command
 start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root, start_sam_sites_R23)
 start_SCUD_HUNT_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario at Range 23", range_23_menu_root, flag_40)
 start_SCUD_HUNT_IADS_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario with IADS at Range 23", range_23_menu_root, flag_46)
-
-
