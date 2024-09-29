@@ -1,7 +1,16 @@
 range_33_menu_root = MENU_MISSION:New("Range 33", range_root_menu31_34)
-zoneCAP = ZONE_POLYGON:NewFromGroupName("r23_engagezone")
+local zoneCAP = ZONE_POLYGON:New("zoneCAP",GROUP:FindByName("r23_engagezone"))
+local zoneOrbit = ZONE_POLYGON:New("zoneOrbit",GROUP:FindByName("r23_patrolzone"))
 
-local zoneOrbit = ZONE_POLYGON:NewFromGroupName("r23_patrolzone")
+local zoneRangeViolation = ZONE_POLYGON:New("zoneRangeViolation",GROUP:FindByName("r23_range_violation"))
+
+local setCAP = SET_ZONE:New()
+local setRangeviolation= SET_ZONE:New()
+local setOrbit = SET_ZONE:New()
+
+setCAP:AddZone(zoneCAP)
+setRangeviolation:AddZone(zoneRangeViolation)
+setRangeviolation:AddZone(zoneOrbit)
 
 local r34_BVR_Templates = {
   "Drone_Aggressor_MIG21",
@@ -11,37 +20,42 @@ local r34_BVR_Templates = {
   "Drone_Aggressor_SU27"
 }
 
--- Function to spawn a random 2-ship BVR flight inside zoneCAP
+
 local function bvr(number)
-  -- Randomly select an aircraft type from the BVR templates
+
   local random_template = r34_BVR_Templates[math.random(#r34_BVR_Templates)]
 
-  -- Flightgroup function, handles mission assignment and actions
+
   local function flightgroup(group)
     local bvr = FLIGHTGROUP:New(group)
     local mission_racetrack = AUFTRAG:NewORBIT_RACETRACK(zoneOrbit:GetRandomCoordinate(), 26000, 300, 110, 20)
-
-    bvr:SetEngageDetectedOn(60, {"Air"}, zoneCAP)
-
-
+    bvr:SetEngageDetectedOn(60, {"Air"}, setCAP)
+    bvr:SetCheckZones(setRangeviolation)
     bvr:AddMission(mission_racetrack)
     env.info(group:GetName().." entering racetrack CAP station in Range 33")
-    
-    -- Setup zone leave event to destroy the group
+
+
     function bvr:OnAfterDetectedGroupNew(From,Event,To,Group)
       env.info(bvr:GetName().." detected Target "..Group:GetName())
     end
 
-    function zoneCAP:OnAfterLeftZone(From,Event,To,Controllable)
-      if Controllable == bvr  then
-      bvr:ClearTasks()
-      bvr:SetEngageDetectedOn(60, {"Air"}, zoneCAP)
-      bvr:AddMission(mission_racetrack)
-      env.info(bvr:GetName().." leaving Range 23 Engagement Zone and destroyed.")
+    function bvr:onafterEnterZone(From,Event,To,Zone)
+      if Zone == zoneRangeViolation then
+        local inzoneOrbit = false
+        bvr:MissionStart(mission_racetrack)
+        bvr:SetEngageDetectedOff()
+        env.info(bvr:GetName().." violated Range 33 Boundary, returning to CAP Station")
+        function bvr:onafterEnterZone(From,Event,To,Zone)
+          if Zone == zoneOrbit and inzoneOrbit == false then
+            inzoneOrbit = true
+            env.info(bvr:GetName().." resumed CAP station in Range 33, scanning for Targets")
+            bvr:SetEngageDetectedOn(60, {"Air"}, setCAP)
+            env.info("reset, fight's on")
+          end
+        end
       end
     end
   end
-
   -- Spawn the flight group using the selected template
   local spawnbvr = SPAWN:New(random_template)
   spawnbvr:InitSkill("Average")
