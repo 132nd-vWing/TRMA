@@ -17,7 +17,7 @@ CVN_73_beacon_unit:CommandActivateACLS(nil,"A73",5)
 CVN_73_Beacon:ActivateICLS(13,"I73")
 CVN_73_Beacon:ActivateTACAN(13,"X","T73",true)
 CVN_73_beacon_unit:CommandSetFrequency(309.500)
-CVN_73_beacon_unit:SetSpeed(UTILS.NMToMeters(25),false)
+CVN_73_beacon_unit:SetSpeed(UTILS.KnotsToKmph(16),true)
 
 env.info("Carrier Group is "..CVN_73_Group:GetName())
 env.info("Carrier Unit is "..CVN_73_beacon_unit:GetName())
@@ -27,6 +27,7 @@ if not CVN_73_beacon_unit then
   return
 end
 CVN73:SetPatrolAdInfinitum()
+CVN73:SetSpeed(16)
 
 -- Define Recovery Tanker
 ArcoWash = RECOVERYTANKER:New(CVN_73_beacon_unit, "CVN73_Tanker#IFF:5327FR")
@@ -164,4 +165,4 @@ MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Info", CV73_menu, Carri
 function setminute()
   start_recovery73()
 end
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Set Minute", CV73_menu, setminute)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debugging only: Manually start Recovery, do not use in Missions", CV73_menu, setminute)
