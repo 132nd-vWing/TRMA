@@ -159,7 +159,7 @@ local function DisplayQueueFunction()
       local pushtime = base_pushtime + i
       local adjusted_stackdistance = base_stackdistance + i - 1
       local adjusted_stackangels = base_stackangels + i - 1
-      queue_message = queue_message .. playername .. ", Marshall from Mother at " .. windDirection .. "/" .. adjusted_stackdistance .. " , at Angels " .. adjusted_stackangels .. ". Pushtime Minute " .. pushtime .. "\n"
+      queue_message = queue_message .. playername .. ", Marshall from Mother at " .. reciprocalWindDirection .. "/" .. adjusted_stackdistance .. " , at Angels " .. adjusted_stackangels .. ". Pushtime Minute " .. pushtime .. "\n"
     end
     BroadcastMessageToZone(queue_message)
   end
@@ -251,7 +251,7 @@ local function ClientFunctionIn(client)
   end
 end
 
--- Function to check when clients leave the MarshallZone or disconnect (disconnect handling)
+-- Function to check when clients disconnect (disconnect handling)
 local function CleanUpDisconnectedPlayers()
   clients:ForEachClient(function(client)
     local playername = client:GetClientGroupUnit():GetPlayerName()
@@ -355,7 +355,7 @@ local function setminute()
   start_recovery73()
   trigger.action.setUserFlag(502, true) -- lights on
 end
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debugging only: Manually start Recovery, do not use in Missions", CV73_menu, setminute)
+--MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debugging only: Manually start Recovery, do not use in Missions", CV73_menu, setminute)
 
 
 
