@@ -82,10 +82,10 @@ end
 
 -- Function to remove the extend recovery menu option
 local function remove_extend_recovery_menu()
-    if extend_recovery_menu_command then
-       extend_recovery_menu_command:Remove()
-       extend_recovery_menu_command = nil
-    end
+  if extend_recovery_menu_command then
+    extend_recovery_menu_command:Remove()
+    extend_recovery_menu_command = nil
+  end
 end
 
 -- Function to Start Scheduled Recovery
@@ -111,22 +111,17 @@ local MarshallZone = ZONE_UNIT:New("MarshallZone", CVN_73_beacon_unit, UTILS.NMT
 -- Create a set of active blue coalition clients (initialize this early to avoid nil errors)
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
 
--- Forward declare PlayerActionFunction to prevent circular dependencies
-local PlayerActionFunction
-
--- Variables for queue message formatting
-local stackdistance = 21
-local stackangels = 6
-local pushtime = RecoveryStartatMinute + 10
-
--- Table to store player names in the case 3 stack
-local case3_stack = {}
--- New table to store player names in the queue
+-- Table to store player names in the queue
 local case3_queue = {}
 -- Table to track if "Leave Queue" menu and "Join Queue" menu were created for each player
 local leaveQueueMenus = {}
 local joinQueueMenus = {}
 local displayQueueMenus = {}
+-- Table to track which players have been detected in the Marshall Zone
+local players_in_zone = {}
+
+-- Forward declaration for PlayerActionFunction
+local PlayerActionFunction
 
 -- Function to broadcast a message to players in the Marshall Zone only
 local function BroadcastMessageToZone(message)
@@ -150,9 +145,9 @@ local function DisplayQueueFunction()
       reciprocalWindDirection = reciprocalWindDirection - 360
     end
 
-    local base_stackdistance = stackdistance
-    local base_stackangels = stackangels
-    local base_pushtime = pushtime
+    local base_stackdistance = 21
+    local base_stackangels = 6
+    local base_pushtime = RecoveryStartatMinute + 10
 
     for i, entry in ipairs(case3_queue) do
       local playername = entry:match("position %d+ (.+)")
@@ -231,66 +226,87 @@ PlayerActionFunction = function(playername)
   end
 end
 
--- Function to handle clients inside the MarshallZone
-local function ClientFunctionIn(client)
+-- Function to handle when a player enters the Marshall Zone
+local function PlayerEnterZone(client)
   local clientunit = client:GetClientGroupUnit()
   local playername = clientunit:GetPlayerName()
-  if not case3_stack[playername] then
-    case3_stack[playername] = true
-    table.insert(case3_stack, playername)
-    env.info("Player " .. playername .. " entered Marshall Zone.")
+
+  -- Check if the player has already been detected in the zone
+  if not players_in_zone[playername] then
+    -- Mark the player as being in the zone
+    players_in_zone[playername] = true
+    env.info("Player " .. playername .. " entered the Marshall Zone.")
 
     -- Provide option to display Marshall Stack before joining
     if not displayQueueMenus[playername] then
       displayQueueMenus[playername] = MENU_COALITION_COMMAND:New(coalition.side.BLUE, playername .. " - Display the CASE II/III Marshall Stack", CV73_menu, DisplayQueueFunction)
     end
 
+    -- Provide option to join the Marshall Stack
     if not joinQueueMenus[playername] then
       joinQueueMenus[playername] = MENU_COALITION_COMMAND:New(coalition.side.BLUE, playername .. " - Add Yourself to the CASE II/III Marshall Stack", CV73_menu, PlayerActionFunction, playername)
     end
   end
 end
 
--- Function to check when clients disconnect (disconnect handling)
-local function CleanUpDisconnectedPlayers()
+-- Function to check if clients are entering the Marshall Zone
+local function MonitorMarshallZone()
   clients:ForEachClient(function(client)
-    local playername = client:GetClientGroupUnit():GetPlayerName()
-    if not client:IsAlive() then
-      for i, entry in ipairs(case3_queue) do
-        if entry:find(playername) then
-          table.remove(case3_queue, i)
-          env.info(playername .. " was disconnected and removed from the Case II/III Marshall Stack.")
-          UpdateQueuePositions()
-          BroadcastMessageToZone(playername .. " disconnected, Positions of the Case II/III Marshall Stack updated.")
-          if leaveQueueMenus[playername] then
-            leaveQueueMenus[playername]:Remove()
-            leaveQueueMenus[playername] = nil
-          end
-          if joinQueueMenus[playername] then
-            joinQueueMenus[playername]:Remove()
-            joinQueueMenus[playername] = nil
-          end
-          if displayQueueMenus[playername] then
-            displayQueueMenus[playername]:Remove()
-            displayQueueMenus[playername] = nil
-          end
-          break
-        end
-      end
+    local clientunit = client:GetClientGroupUnit()
+    local playername = clientunit:GetPlayerName()
+
+    -- Check if the player is inside the Marshall Zone and has not been detected yet
+    if MarshallZone:IsCoordinateInZone(clientunit:GetCoordinate()) then
+      PlayerEnterZone(client)
     end
   end)
 end
 
--- Function to check which clients are in the MarshallZone
-local function CheckZones()
-  clients:ForEachClientInZone(MarshallZone, ClientFunctionIn)
+-- Scheduler to monitor clients in the Marshall Zone every 10 seconds
+SCHEDULER:New(nil, MonitorMarshallZone, {}, 5, 10)
+
+-- Event handler for when a player leaves a unit
+local LeaveUnitHandler = EVENTHANDLER:New()
+
+function LeaveUnitHandler:OnEventPlayerLeaveUnit(EventData)
+  local unit = EventData.IniUnit
+  local playername = unit:GetPlayerName()
+
+  if playername and unit then
+    env.info("Player '" .. playername .. "' left unit '" .. unit:GetName() .. "'.")
+
+    -- Handle the player leaving the unit (remove from the stack, clean up, etc.)
+    for i, entry in ipairs(case3_queue) do
+      if entry:find(playername) then
+        table.remove(case3_queue, i)
+        env.info(playername .. " removed from the CASE II/III Marshall Stack.")
+        UpdateQueuePositions()
+        BroadcastMessageToZone(playername .. " left the unit and was removed from the Marshall Stack.")
+
+        -- Clean up player menus
+        if leaveQueueMenus[playername] then
+          leaveQueueMenus[playername]:Remove()
+          leaveQueueMenus[playername] = nil
+        end
+        if joinQueueMenus[playername] then
+          joinQueueMenus[playername]:Remove()
+          joinQueueMenus[playername] = nil
+        end
+        if displayQueueMenus[playername] then
+          displayQueueMenus[playername]:Remove()
+          displayQueueMenus[playername] = nil
+        end
+        break
+      end
+    end
+
+    -- Remove the player from the players_in_zone table (to ensure fresh re-entry)
+    players_in_zone[playername] = nil
+  end
 end
 
--- Scheduler to Check Clients in the Marshall Zone every 10 seconds
-SCHEDULER:New(nil, CheckZones, {}, 5, 30)
-
--- Scheduler to clean up disconnected players every 60 seconds
-SCHEDULER:New(nil, CleanUpDisconnectedPlayers, {}, 5, 60)
+-- Start the event handler to listen for player leave unit events
+LeaveUnitHandler:HandleEvent(EVENTS.PlayerLeaveUnit)
 
 -- Scheduler to Check Time and Start Recovery if Necessary
 SCHEDULER:New(nil, function()
@@ -355,28 +371,3 @@ local function setminute()
   start_recovery73()
   trigger.action.setUserFlag(502, true) -- lights on
 end
---MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debugging only: Manually start Recovery, do not use in Missions", CV73_menu, setminute)
-
-
-
--- Function to handle clients inside the MarshallZone
-local function ClientFunctionIn(client)
-  local clientunit = client:GetClientGroupUnit()
-  local playername = clientunit:GetPlayerName()
-  if not case3_stack[playername] then
-    case3_stack[playername] = true
-    table.insert(case3_stack, playername)
-    env.info("Player " .. playername .. " entered Marshall Zone.")
-
-    -- Provide option to display Marshall Stack before joining
-    if not displayQueueMenus[playername] then
-      displayQueueMenus[playername] = MENU_COALITION_COMMAND:New(coalition.side.BLUE, playername .. " - Display the CASE II/III Marshall Stack", CV73_menu, DisplayQueueFunction)
-    end
-
-    if not joinQueueMenus[playername] then
-      joinQueueMenus[playername] = MENU_COALITION_COMMAND:New(coalition.side.BLUE, playername .. " - Add Yourself to the CASE II/III Marshall Stack", CV73_menu, PlayerActionFunction, playername)
-    end
-  end
-end
-
- 
