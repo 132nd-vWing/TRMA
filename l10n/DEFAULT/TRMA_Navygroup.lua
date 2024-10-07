@@ -188,7 +188,7 @@ local function HandlePlayerQueueAction(playerUnit, playerName, action)
 
         local base_stackdistance = 21
         local base_stackangels = 6
-        local base_pushtime = RecoveryStartatMinute + 10
+        local base_pushtime = RecoveryStartatMinute + 6
 
         for i, entry in ipairs(case3_queue) do
           local playername = entry:match("position %d+ (.+)")
@@ -267,14 +267,14 @@ local LandHandler = EVENTHANDLER:New()
 
 function LandHandler:OnEventLand(EventData)
   local unit = EventData.IniUnit
-  if unit and unit:IsClient() then
+  
     local playername = unit:GetPlayerName()
     env.info("Player '" .. playername .. "' has landed.")
 
     -- Remove the player from the queue if they are in it
     HandlePlayerQueueAction(unit, playername, "leave")
   end
-end
+
 
 LandHandler:HandleEvent(EVENTS.Land)
 -- Function to set up the event handlers
@@ -285,20 +285,11 @@ local function SetupEventHandlers()
   function LeaveUnitHandler:OnEventPlayerLeaveUnit(EventData)
     env.info("PlayerLeaveUnit event triggered.")
     local unit = EventData.IniUnit
-    if unit then
-      env.info("Unit name: " .. unit:GetName() .. ", Type: " .. unit:GetTypeName())
-      if unit:IsClient() then
-        local playerName = unit:GetPlayerName()
-        env.info("Player '" .. playerName .. "' has left the unit '" .. unit:GetName() .. "'.")
+    local playerName = unit:GetPlayerName()
+    env.info("Player '" .. playerName .. "' has left the unit '" .. unit:GetName() .. "'.")
 
-        -- Remove the player from the queue if they are in it
-        HandlePlayerQueueAction(unit, playerName, "leave")
-      else
-        env.info("Unit is not a client.")
-      end
-    else
-      env.info("No valid unit detected.")
-    end
+    -- Remove the player from the queue if they are in it
+    HandlePlayerQueueAction(unit, playerName, "leave")
   end
 
   LeaveUnitHandler:HandleEvent(EVENTS.PlayerLeaveUnit)
@@ -326,28 +317,6 @@ end
 env.info("Initializing event handlers.")
 SetupEventHandlers()
 
--- Polling mechanism to remove players from the queue if their units are no longer valid
-local function PollForActivePlayers()
-  env.info("Polling for active players in CASE III stack.")
-  
-  for i = #case3_queue, 1, -1 do  -- Iterate backwards to safely remove entries
-    local entry = case3_queue[i]
-    local playerName = entry:match("position %d+ (.+)")
-    
-    if playerName then
-      local clientUnit = UNIT:FindByName(playerName)  -- Attempt to find the unit by player name
-      if not clientUnit or not clientUnit:IsAlive() then
-        -- If the unit is not found or not alive, remove the player from the stack
-        env.info("Removing player '" .. playerName .. "' from CASE III stack; unit not found or not alive.")
-        table.remove(case3_queue, i)
-        BroadcastMessageToZone(playerName .. " has been removed from the CASE II/III Marshall Stack due to unit unavailability.")
-      end
-    end
-  end
-end
-
--- Scheduler to run the polling function every 30 seconds
-SCHEDULER:New(nil, PollForActivePlayers, {}, 30, 30)  -- Run every 30 seconds
 
 
 
