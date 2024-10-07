@@ -1,4 +1,4 @@
-env.info('*** MOOSE GITHUB Commit Hash ID: 2024-09-08T13:22:34+02:00-d6d9c9d8cfd871f6f0055c8bb1cc85f57b0afd93 ***')
+env.info('*** MOOSE GITHUB Commit Hash ID: 2024-10-03T14:06:42+02:00-d89ed535b727f9a443f8df1e44e656527e963c85 ***')
 if not MOOSE_DEVELOPMENT_FOLDER then
 MOOSE_DEVELOPMENT_FOLDER='Scripts'
 end
@@ -2532,8 +2532,8 @@ if type_name=="MH-60R"and(unit:getDrawArgumentValue(403)>0 or unit:getDrawArgume
 BASE:T(unit_name.." cargo door is open")
 return true
 end
-if type_name=="OH-58D"and(unit:getDrawArgumentValue(35)>0 or unit:getDrawArgumentValue(421)==-1)then
-BASE:T(unit_name.." cargo door is open")
+if type_name=="OH58D"then
+BASE:T(unit_name.." front door(s) are open")
 return true
 end
 if type_name=="CH-47Fbl1"and(unit:getDrawArgumentValue(86)>0.5)then
@@ -7489,7 +7489,7 @@ Event.IniCategory=Event.IniDCSUnit:getDesc().category
 Event.IniTypeName=Event.IniDCSUnit:getTypeName()
 elseif Event.IniObjectCategory==Object.Category.SCENERY then
 Event.IniDCSUnit=Event.initiator
-Event.IniDCSUnitName=Event.IniDCSUnit:getName()
+Event.IniDCSUnitName=Event.IniDCSUnit.getName and Event.IniDCSUnit:getName()or"Scenery no name "..math.random(1,20000)
 Event.IniUnitName=Event.IniDCSUnitName
 Event.IniUnit=SCENERY:Register(Event.IniDCSUnitName,Event.initiator)
 Event.IniCategory=Event.IniDCSUnit:getDesc().category
@@ -11742,8 +11742,15 @@ end
 return self
 end
 function DATABASE:_RegisterAirbase(airbase)
+local IsSyria=UTILS.GetDCSMap()=="Syria"and true or false
+local countHSyria=0
 if airbase then
 local DCSAirbaseName=airbase:getName()
+if IsSyria and DCSAirbaseName=="H"and countHSyria>0 then
+return self
+elseif IsSyria and DCSAirbaseName=="H"and countHSyria==0 then
+countHSyria=countHSyria+1
+end
 local airbaseID=airbase:getID()
 local airbase=self:AddAirbase(DCSAirbaseName)
 local airbaseUID=airbase:GetID(true)
@@ -16127,11 +16134,7 @@ self:ForEach(IteratorFunction,arg,self:GetSet())
 return self
 end
 function SET_SCENERY:GetCoordinate()
-local Coordinate=COORDINATE:New({0,0,0})
-local Item=self:GetRandomSurely()
-if Item then
-Coordinate:GetCoordinate()
-end
+local Coordinate=self:GetFirst():GetCoordinate()
 local x1=Coordinate.x
 local x2=Coordinate.x
 local y1=Coordinate.y
@@ -20925,7 +20928,8 @@ count=count+_grp:CountAliveUnits()
 end
 end
 end
-return count
+self.AliveUnits=count
+return self
 end
 function SPAWN:_OnDeadOrCrash(EventData)
 local unit=UNIT:FindByName(EventData.IniUnitName)
@@ -20933,7 +20937,7 @@ if unit then
 local EventPrefix=self:_GetPrefixFromGroupName(unit.GroupName)
 if EventPrefix then
 if EventPrefix==self.SpawnTemplatePrefix or(self.SpawnAliasPrefix and EventPrefix==self.SpawnAliasPrefix)and self.AliveUnits>0 then
-self.AliveUnits=self:_CountAliveUnits()
+self:ScheduleOnce(1,self._CountAliveUnits,self)
 end
 end
 end
@@ -29799,6 +29803,7 @@ AIRBASE.Syria={
 ["Gaziantep"]="Gaziantep",
 ["Gazipasa"]="Gazipasa",
 ["Gecitkale"]="Gecitkale",
+["H"]="H",
 ["H3"]="H3",
 ["H3_Northwest"]="H3 Northwest",
 ["H3_Southwest"]="H3 Southwest",
@@ -29936,20 +29941,22 @@ AIRBASE.Sinai={
 AIRBASE.Kola={
 ["Banak"]="Banak",
 ["Bodo"]="Bodo",
+["Ivalo"]="Ivalo",
 ["Jokkmokk"]="Jokkmokk",
 ["Kalixfors"]="Kalixfors",
+["Kallax"]="Kallax",
 ["Kemi_Tornio"]="Kemi Tornio",
+["Kirkenes"]="Kirkenes",
 ["Kiruna"]="Kiruna",
+["Kuusamo"]="Kuusamo",
 ["Monchegorsk"]="Monchegorsk",
 ["Murmansk_International"]="Murmansk International",
 ["Olenya"]="Olenya",
 ["Rovaniemi"]="Rovaniemi",
 ["Severomorsk_1"]="Severomorsk-1",
 ["Severomorsk_3"]="Severomorsk-3",
-["Vuojarvi"]="Vuojarvi",
-["Kirkenes"]="Kirkenes",
-["Kallax"]="Kallax",
 ["Vidsel"]="Vidsel",
+["Vuojarvi"]="Vuojarvi",
 }
 AIRBASE.Afghanistan={
 ["Bost"]="Bost",
@@ -32467,7 +32474,7 @@ agl=UTILS.Round(agl,2)
 self:T(self.lid.." AGL: "..agl or-1)
 local isunloaded=true
 local client
-local playername
+local playername=self.Owner
 if count>0 and(agl>0 or self.testing)then
 self:T(self.lid.." Possible alive helos: "..count or-1)
 if agl~=0 or self.testing then
@@ -32479,6 +32486,11 @@ self.CargoState=DYNAMICCARGO.State.UNLOADED
 self.Owner=playername
 _DATABASE:CreateEventDynamicCargoUnloaded(self)
 end
+elseif count>0 and agl==0 then
+self:T(self.lid.." moved! LOADED -> UNLOADED by "..tostring(playername))
+self.CargoState=DYNAMICCARGO.State.UNLOADED
+self.Owner=playername
+_DATABASE:CreateEventDynamicCargoUnloaded(self)
 end
 end
 self.LastPosition=pos
@@ -35239,10 +35251,11 @@ Excellent={Evade=10,DelayOn={10,30}}
 SEADGroupPrefixes={},
 SuppressedGroups={},
 EngagementRange=75,
-Padding=10,
+Padding=15,
 CallBack=nil,
 UseCallBack=false,
 debug=false,
+WeaponTrack=false,
 }
 SEAD.Harms={
 ["AGM_88"]="AGM_88",
@@ -35299,7 +35312,7 @@ self:HandleEvent(EVENTS.Shot,self.HandleEventShot)
 self:SetStartState("Running")
 self:AddTransition("*","ManageEvasion","*")
 self:AddTransition("*","CalculateHitZone","*")
-self:I("*** SEAD - Started Version 0.4.6")
+self:I("*** SEAD - Started Version 0.4.8")
 return self
 end
 function SEAD:UpdateSet(SEADGroupPrefixes)
@@ -35447,7 +35460,7 @@ local wpndata=SEAD.HarmData[data]
 reach=wpndata[1]*1.1
 local mach=wpndata[2]
 wpnspeed=math.floor(mach*340.29)
-if Weapon then
+if Weapon and Weapon:GetSpeed()>0 then
 wpnspeed=Weapon:GetSpeed()
 self:T(string.format("*** SEAD - Weapon Speed from WEAPON: %f m/s",wpnspeed))
 end
@@ -35514,17 +35527,23 @@ return self
 end
 function SEAD:HandleEventShot(EventData)
 self:T({EventData.id})
+local SEADWeapon=EventData.Weapon
+local SEADWeaponName=EventData.WeaponName or"None"
+if self:_CheckHarms(SEADWeaponName)then
 local SEADPlane=EventData.IniUnit
+if not SEADPlane then return self end
 local SEADGroup=EventData.IniGroup
 local SEADPlanePos=SEADPlane:GetCoordinate()
 local SEADUnit=EventData.IniDCSUnit
 local SEADUnitName=EventData.IniDCSUnitName
-local SEADWeapon=EventData.Weapon
-local SEADWeaponName=EventData.WeaponName
 local WeaponWrapper=WEAPON:New(EventData.Weapon)
 self:T("*** SEAD - Missile Launched = "..SEADWeaponName)
-if self:_CheckHarms(SEADWeaponName)then
 self:T('*** SEAD - Weapon Match')
+if self.WeaponTrack==true then
+WeaponWrapper:SetFuncTrack(function(weapon)env.info(string.format("*** Weapon Speed: %d m/s",weapon:GetSpeed()or-1))end)
+WeaponWrapper:StartTrack(0.1)
+WeaponWrapper:StopTrack(30)
+end
 local _targetskill="Random"
 local _targetgroupname="none"
 local _target=EventData.Weapon:getTarget()
@@ -35576,7 +35595,7 @@ end
 end
 if SEADGroupFound==true then
 if string.find(SEADWeaponName,"ADM_141",1,true)then
-self:__ManageEvasion(2,_targetskill,_targetgroup,SEADPlanePos,SEADWeaponName,SEADGroup,0,WeaponWrapper)
+self:__ManageEvasion(2,_targetskill,_targetgroup,SEADPlanePos,SEADWeaponName,SEADGroup,2,WeaponWrapper)
 else
 self:ManageEvasion(_targetskill,_targetgroup,SEADPlanePos,SEADWeaponName,SEADGroup,0,WeaponWrapper)
 end
@@ -52103,7 +52122,8 @@ end
 function WAREHOUSE:_GetAttribute(group)
 local attribute=WAREHOUSE.Attribute.OTHER_UNKNOWN
 if group then
-local transportplane=group:HasAttribute("Transports")and group:HasAttribute("Planes")
+local groupCat=group:GetCategory()
+local transportplane=group:HasAttribute("Transports")and group:HasAttribute("Planes")and groupCat==Group.Category.AIRPLANE
 local awacs=group:HasAttribute("AWACS")
 local fighter=group:HasAttribute("Fighters")or group:HasAttribute("Interceptors")or group:HasAttribute("Multirole fighters")or(group:HasAttribute("Bombers")and not group:HasAttribute("Strategic bombers"))
 local bomber=group:HasAttribute("Strategic bombers")
@@ -70748,6 +70768,8 @@ pickupZones={},
 DynamicCargo={},
 ChinookTroopCircleRadius=5,
 TroopUnloadDistGround=5,
+TroopUnloadDistGroundHerc=25,
+TroopUnloadDistGroundHook=15,
 TroopUnloadDistHover=1.5,
 UserSetGroup=nil,
 }
@@ -70781,10 +70803,10 @@ CTLD.UnitTypeCapabilities={
 ["AH-64D_BLK_II"]={type="AH-64D_BLK_II",crates=false,troops=true,cratelimit=0,trooplimit=2,length=17,cargoweightlimit=200},
 ["Bronco-OV-10A"]={type="Bronco-OV-10A",crates=false,troops=true,cratelimit=0,trooplimit=5,length=13,cargoweightlimit=1450},
 ["OH-6A"]={type="OH-6A",crates=false,troops=true,cratelimit=0,trooplimit=4,length=7,cargoweightlimit=550},
-["OH-58D"]={type="OH58D",crates=false,troops=false,cratelimit=0,trooplimit=0,length=14,cargoweightlimit=400},
+["OH58D"]={type="OH58D",crates=false,troops=false,cratelimit=0,trooplimit=0,length=14,cargoweightlimit=400},
 ["CH-47Fbl1"]={type="CH-47Fbl1",crates=true,troops=true,cratelimit=4,trooplimit=31,length=20,cargoweightlimit=10800},
 }
-CTLD.version="1.1.16"
+CTLD.version="1.1.17"
 function CTLD:New(Coalition,Prefixes,Alias)
 local self=BASE:Inherit(self,FSM:New())
 BASE:T({Coalition,Prefixes,Alias})
@@ -72185,7 +72207,10 @@ local heading=Group:GetHeading()or 0
 if hoverunload or grounded then
 randomcoord=Group:GetCoordinate()
 local Angle=(heading+270)%360
+if IsHerc or IsHook then Angle=(heading+180)%360 end
 local offset=hoverunload and self.TroopUnloadDistHover or self.TroopUnloadDistGround
+if IsHerc then offset=self.TroopUnloadDistGroundHerc or 25 end
+if IsHook then offset=self.TroopUnloadDistGroundHook or 15 end
 randomcoord:Translate(offset,Angle,nil,true)
 end
 local tempcount=0
@@ -72195,7 +72220,7 @@ for _,_template in pairs(temptable)do
 self.TroopCounter=self.TroopCounter+1
 tempcount=tempcount+1
 local alias=string.format("%s-%d",_template,math.random(1,100000))
-local rad=2.5+tempcount
+local rad=2.5+(tempcount*2)
 local Positions=self:_GetUnitPositions(randomcoord,rad,heading,_template)
 self.DroppedTroops[self.TroopCounter]=SPAWN:NewWithAlias(_template,alias)
 :InitDelayOff()
@@ -74736,7 +74761,7 @@ CSAR.AircraftType["AH-64D_BLK_II"]=2
 CSAR.AircraftType["Bronco-OV-10A"]=2
 CSAR.AircraftType["MH-60R"]=10
 CSAR.AircraftType["OH-6A"]=2
-CSAR.AircraftType["OH-58D"]=2
+CSAR.AircraftType["OH58D"]=2
 CSAR.AircraftType["CH-47Fbl1"]=31
 CSAR.version="1.0.29"
 function CSAR:New(Coalition,Template,Alias)
@@ -74995,9 +75020,9 @@ end
 end
 local BeaconName
 if _playerName then
-BeaconName=_unitName..math.random(1,10000)
-elseif _unitName then
 BeaconName=_playerName..math.random(1,10000)
+elseif _unitName then
+BeaconName=_unitName..math.random(1,10000)
 else
 BeaconName="Ghost-1-1"..math.random(1,10000)
 end
@@ -81059,7 +81084,7 @@ end
 do
 AWACS={
 ClassName="AWACS",
-version="0.2.65",
+version="0.2.66",
 lid="",
 coalition=coalition.side.BLUE,
 coalitiontxt="blue",
@@ -81156,6 +81181,7 @@ TacticalIncrFreq=0.5,
 TacticalModulation=radio.modulation.AM,
 TacticalInterval=120,
 DetectionSet=nil,
+MaxMissionRange=125,
 }
 AWACS.CallSignClear={
 [1]="Overlord",
@@ -81673,6 +81699,10 @@ self:T(self.lid.."SetLocale")
 self.locale=Locale or"en"
 return self
 end
+function AWACS:SetMaxMissionRange(NM)
+self.MaxMissionRange=NM or 125
+return self
+end
 function AWACS:AddFrequencyAndModulation(Frequency,Modulation)
 self:T(self.lid.."AddFrequencyAndModulation")
 table.insert(self.MultiFrequency,Frequency)
@@ -82063,6 +82093,7 @@ for i=1,self.EscortNumber do
 local escort=AUFTRAG:NewESCORT(group,{x=-100*((i+(i%2))/2),y=0,z=(100+100*((i+(i%2))/2))*(-1)^i},45,{"Air"})
 escort:SetRequiredAssets(1)
 escort:SetTime(nil,timeonstation)
+escort:SetMissionRange(self.MaxMissionRange)
 self.AirWing:AddMission(escort)
 self.CatchAllMissions[#self.CatchAllMissions+1]=escort
 if Shiftchange then
@@ -84637,6 +84668,7 @@ local RejectZoneSet=self.RejectZoneSet
 local intercept=AUFTRAG:NewINTERCEPT(Target.Target)
 intercept:SetWeaponExpend(AI.Task.WeaponExpend.ALL)
 intercept:SetWeaponType(ENUMS.WeaponFlag.Auto)
+intercept:SetMissionRange(self.MaxMissionRange)
 intercept:AddConditionSuccess(
 function(target,zoneset,rzoneset)
 local success=true
@@ -84678,6 +84710,7 @@ local AnchorSpeed=self.CapSpeedBase or 270
 AnchorSpeed=UTILS.KnotsToAltKIAS(AnchorSpeed,Angels)
 local Anchor=self.AnchorStacks:ReadByPointer(Pilot.AnchorStackNo)
 local capauftrag=AUFTRAG:NewCAP(Anchor.StationZone,Angels,AnchorSpeed,Anchor.StationZoneCoordinate,0,15,{})
+capauftrag:SetMissionRange(self.MaxMissionRange)
 capauftrag:SetTime(nil,((self.CAPTimeOnStation*3600)+(15*60)))
 Pilot.FlightGroup:AddMission(capauftrag)
 if currmission then
@@ -84752,6 +84785,7 @@ end
 if not self.GCI then
 local AwacsAW=self.AirWing
 local mission=AUFTRAG:NewORBIT_RACETRACK(self.OrbitZone:GetCoordinate(),self.AwacsAngels*1000,self.Speed,self.Heading,self.Leg)
+mission:SetMissionRange(self.MaxMissionRange)
 local timeonstation=(self.AwacsTimeOnStation+self.ShiftChangeTime)*3600
 mission:SetTime(nil,timeonstation)
 self.CatchAllMissions[#self.CatchAllMissions+1]=mission
@@ -85157,6 +85191,7 @@ if auftrag then
 local auftragtype=auftrag:GetType()
 if auftragtype==AUFTRAG.Type.ALERT5 then
 local capauftrag=AUFTRAG:NewCAP(Anchor.StationZone,Angels*1000,AnchorSpeed,Anchor.StationZone:GetCoordinate(),0,15,{})
+capauftrag:SetMissionRange(self.MaxMissionRange)
 capauftrag:SetTime(nil,((self.CAPTimeOnStation*3600)+(15*60)))
 capauftrag:AddAsset(managedgroup.FlightGroup)
 self.CatchAllMissions[#self.CatchAllMissions+1]=capauftrag
@@ -85401,6 +85436,7 @@ local mission=AUFTRAG:NewORBIT_RACETRACK(self.OrbitZone:GetCoordinate(),self.Awa
 self.CatchAllMissions[#self.CatchAllMissions+1]=mission
 local timeonstation=(self.AwacsTimeOnStation+self.ShiftChangeTime)*3600
 mission:SetTime(nil,timeonstation)
+mission:SetMissionRange(self.MaxMissionRange)
 AwacsAW:AddMission(mission)
 self.AwacsMissionReplacement=mission
 end
@@ -111163,7 +111199,7 @@ capdir=45,
 capleg=15,
 maxinterceptsize=2,
 missionrange=100,
-noaltert5=4,
+noalert5=4,
 ManagedAW={},
 ManagedSQ={},
 ManagedCP={},
@@ -111184,12 +111220,12 @@ DespawnAfterLanding=false,
 DespawnAfterHolding=true,
 ListOfAuftrag={}
 }
-EASYGCICAP.version="0.1.13"
+EASYGCICAP.version="0.1.15"
 function EASYGCICAP:New(Alias,AirbaseName,Coalition,EWRName)
 local self=BASE:Inherit(self,FSM:New())
 self.alias=Alias or AirbaseName.." CAP Wing"
 self.coalitionname=string.lower(Coalition)or"blue"
-self.coalition=self.coaltitionname=="blue"and coalition.side.BLUE or coalition.side.RED
+self.coalition=self.coalitionname=="blue"and coalition.side.BLUE or coalition.side.RED
 self.wings={}
 self.EWRName=EWRName or self.coalitionname.." EWR"
 self.airbasename=AirbaseName
@@ -111203,7 +111239,7 @@ self.capdir=90
 self.capleg=15
 self.capgrouping=2
 self.missionrange=100
-self.noaltert5=2
+self.noalert5=2
 self.MaxAliveMissions=8
 self.engagerange=50
 self.repeatsonfailure=3
@@ -111278,13 +111314,13 @@ self:T(self.lid.."SetDefaultMissionRange")
 self.missionrange=Range or 100
 return self
 end
-function EASYGCICAP:SetDefaultNumberAlter5Standby(Airframes)
-self:T(self.lid.."SetDefaultNumberAlter5Standby")
-self.noaltert5=math.abs(Airframes)or 2
+function EASYGCICAP:SetDefaultNumberAlert5Standby(Airframes)
+self:T(self.lid.."SetDefaultNumberAlert5Standby")
+self.noalert5=math.abs(Airframes)or 2
 return self
 end
 function EASYGCICAP:SetDefaultEngageRange(Range)
-self:T(self.lid.."SetDefaultNumberAlter5Standby")
+self:T(self.lid.."SetDefaultEngageRange")
 self.engagerange=Range or 50
 return self
 end
@@ -111398,9 +111434,9 @@ self:Despawn(1,true)
 end
 end
 end
-if self.noaltert5>0 then
+if self.noalert5>0 then
 local alert=AUFTRAG:NewALERT5(AUFTRAG.Type.INTERCEPT)
-alert:SetRequiredAssets(self.noaltert5)
+alert:SetRequiredAssets(self.noalert5)
 alert:SetRepeat(99)
 CAP_Wing:AddMission(alert)
 table.insert(self.ListOfAuftrag,alert)
@@ -122325,8 +122361,9 @@ ConfigFileName="Moose_MSRS.lua",
 ConfigFilePath="Config\\",
 ConfigLoaded=false,
 poptions={},
+UsePowerShell=false,
 }
-MSRS.version="0.3.0"
+MSRS.version="0.3.3"
 MSRS.Voices={
 Microsoft={
 ["Hedda"]="Microsoft Hedda Desktop",
@@ -122905,24 +122942,30 @@ label=label or self.Label
 coordinate=coordinate or self.coordinate
 modus=modus:gsub("0","AM")
 modus=modus:gsub("1","FM")
+local pwsh=string.format('Start-Process -WindowStyle Hidden -WorkingDirectory \"%s\" -FilePath \"%s\" -ArgumentList \'-f "%s" -m "%s" -c %s -p %s -n "%s" -v "%.1f"',path,exe,freqs,modus,coal,port,label,volume)
 local command=string.format('"%s\\%s" -f "%s" -m "%s" -c %s -p %s -n "%s" -v "%.1f"',path,exe,freqs,modus,coal,port,label,volume)
-if voice then
+if voice and self.UsePowerShell~=true then
 command=command..string.format(" --voice=\"%s\"",tostring(voice))
+pwsh=pwsh..string.format(" --voice=\"%s\"",tostring(voice))
 else
 if gender and gender~="female"then
 command=command..string.format(" -g %s",tostring(gender))
+pwsh=pwsh..string.format(" -g %s",tostring(gender))
 end
 if culture and culture~="en-GB"then
 command=command..string.format(" -l %s",tostring(culture))
+pwsh=pwsh..string.format(" -l %s",tostring(culture))
 end
 end
 if coordinate then
 local lat,lon,alt=self:_GetLatLongAlt(coordinate)
 command=command..string.format(" -L %.4f -O %.4f -A %d",lat,lon,alt)
+pwsh=pwsh..string.format(" -L %.4f -O %.4f -A %d",lat,lon,alt)
 end
 if self.provider==MSRS.Provider.GOOGLE then
 local pops=self:GetProviderOptions()
 command=command..string.format(' --ssml -G "%s"',pops.credentials)
+pwsh=pwsh..string.format(' --ssml -G "%s"',pops.credentials)
 elseif self.provider==MSRS.Provider.WINDOWS then
 else
 self:E("ERROR: SRS only supports WINWOWS and GOOGLE as TTS providers! Use DCS-gRPC backend for other providers such as ")
@@ -122932,20 +122975,29 @@ self:E("ERROR: MSRS SRS executable does not exist! FullPath="..fullPath)
 command="CommandNotFound"
 end
 self:T("MSRS command from _GetCommand="..command)
+if self.UsePowerShell==true then
+return pwsh
+else
 return command
 end
+end
 function MSRS:_ExecCommand(command)
-self:F({command=command})
+self:T2({command=command})
 if string.find(command,"CommandNotFound")then return 0 end
 local batContent=command.." && exit"
 local filename=os.getenv('TMP').."\\MSRS-"..MSRS.uuid()..".bat"
+if self.UsePowerShell==true then
+filename=os.getenv('TMP').."\\MSRS-"..MSRS.uuid()..".ps1"
+batContent=command.."\'"
+self:I({batContent=batContent})
+end
 local script=io.open(filename,"w+")
 script:write(batContent)
 script:close()
 self:T("MSRS batch file created: "..filename)
 self:T("MSRS batch content: "..batContent)
 local res=nil
-if true then
+if self.UsePowerShell~=true then
 local filenvbs=os.getenv('TMP').."\\MSRS-"..MSRS.uuid()..".vbs"
 local script=io.open(filenvbs,"w+")
 script:write(string.format('Dim WinScriptHost\n'))
@@ -122960,16 +123012,13 @@ res=os.execute(runvbs)
 timer.scheduleFunction(os.remove,filename,timer.getTime()+1)
 timer.scheduleFunction(os.remove,filenvbs,timer.getTime()+1)
 self:T("MSRS vbs and batch file removed")
-elseif false then
-local filenvbs=os.getenv('TMP').."\\MSRS-"..MSRS.uuid()..".vbs"
-local script=io.open(filenvbs,"w+")
-script:write(string.format('Set oShell = CreateObject ("Wscript.Shell")\n'))
-script:write(string.format('Dim strArgs\n'))
-script:write(string.format('strArgs = "cmd /c %s"\n',filename))
-script:write(string.format('oShell.Run strArgs, 0, false'))
-script:close()
-local runvbs=string.format('cscript.exe //Nologo //B "%s"',filenvbs)
-res=os.execute(runvbs)
+elseif self.UsePowerShell==true then
+local pwsh=string.format('powershell.exe  -ExecutionPolicy Unrestricted -WindowStyle Hidden -Command "%s"',filename)
+if string.len(pwsh)>255 then
+self:E("[MSRS] - pwsh string too long")
+end
+res=os.execute(pwsh)
+timer.scheduleFunction(os.remove,filename,timer.getTime()+1)
 else
 command=string.format('start /b "" "%s"',filename)
 self:T("MSRS execute command="..command)
