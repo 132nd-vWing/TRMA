@@ -14,4 +14,4 @@ local function range14_flag31()
     MessageToAll("R14 Rognan scenario activated")
 end
 
-range_14_scenario["range_14_menu_flag31"] = MENU_MISSION_COMMAND:New("Activate R14 Basic CAS Scenario",range_14_menu_root,range14_flag31)
+range_14_scenario["range_14_menu_flag31"] = MENU_MISSION_COMMAND:New("Activate R14 Rognan Scenario",range_14_menu_root,range14_flag31)
