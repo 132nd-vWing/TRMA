@@ -1,6 +1,6 @@
 -- Carrier Control Menu
 local carrier_root_menu = MENU_MISSION:New("Carrier Control")
-local case3stack = {}
+case3stack = {}
 -- Create Admin Menu
 local CV73_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 Admin", carrier_root_menu)
 
@@ -62,7 +62,7 @@ if GROUP:FindByName("CVN-73") then
     local extend_recovery_menu_command = nil
 
     -- Function to Extend Recovery
-    local function extend_recovery73()
+    function extend_recovery73()
       env.info("Old cycle was " .. timerecovery_start .. " until " .. timerecovery_end)
       local timenow = timer.getAbsTime()
 
@@ -88,7 +88,7 @@ if GROUP:FindByName("CVN-73") then
 
 
     -- Function to create the extend recovery menu option
-    local function create_extend_recovery_menu()
+    function create_extend_recovery_menu()
       if extend_recovery_menu_command == nil then
         extend_recovery_menu_command =  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend current recovery window by 5 Minutes", CV73_admin_menu, extend_recovery73)
 
@@ -96,7 +96,7 @@ if GROUP:FindByName("CVN-73") then
     end
 
     -- Function to remove the extend recovery menu option
-    local function remove_extend_recovery_menu()
+    function remove_extend_recovery_menu()
       if extend_recovery_menu_command then
         extend_recovery_menu_command:Remove()
         extend_recovery_menu_command = nil
@@ -104,7 +104,7 @@ if GROUP:FindByName("CVN-73") then
     end
 
     -- Function to Start Scheduled Recovery
-    local function start_recovery73()
+    function start_recovery73()
       local timenow = timer.getAbsTime()
       timeend = timenow + RecoveryDuration * 60 -- Initialize timeend
 
@@ -202,48 +202,14 @@ local caseIII_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 CASE II/III
 local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", caseIII_menu)
 local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", caseIII_menu)
 
+-- Initialize tables to store submenu references for Panthers and Spectres
+local panthers_submenus = {}
+local spectres_submenus = {}
+
 -- Initialize case3stack table to store bort numbers as a queue
+add_commands = {}
 
-local add_commands = {}
-
-
--- Forward declaration of removeBortFromMarshall
-local removeBortFromMarshall
-
--- Function to add bort number and replace menu with "remove" option
-local function addBortToMarshall(flight_num, range_menu)
-  -- Add the flight to the marshall queue
-  table.insert(case3stack, flight_num)
-  BroadcastMessageToZone("Flight " .. flight_num .. " added to Marshall Queue at position " .. #case3stack)
-
-  -- Remove the "add" menu entry for this bort number (from add_commands table)
-  if add_commands[flight_num] then
-    add_commands[flight_num]:Remove()  -- Explicitly remove the "add" command
-    add_commands[flight_num] = nil  -- Clear the reference
-  end
-
-  -- Create a "remove" option in the same place within the specific range submenu
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " remove from CASE III Marshall Queue", range_menu, function()
-    removeBortFromMarshall(flight_num, range_menu)
-  end)
-end
-
--- Function to create a menu for each range of bort numbers (used for both Panthers and Spectres)
-local function createBortMenu(start_num, end_num, parent_menu)
-  local range_menu = MENU_COALITION:New(coalition.side.BLUE, tostring(start_num) .. "-" .. tostring(end_num), parent_menu)
-
-  for flight_num = start_num, end_num do
-    -- Create the "add to queue" menu option for each bort number directly under the range menu
-    local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-      addBortToMarshall(flight_num, range_menu)  -- Pass the reference to the add_command
-    end)
-    -- Store the add command in the table for later removal
-    add_commands[flight_num] = add_command
-  end
-end
-
--- Function to remove bort number and recreate the add menu
-removeBortFromMarshall = function(flight_num, range_menu)
+function removeBortFromMarshall(flight_num, range_menu)
   local index_to_remove = nil
   for i, bort in ipairs(case3stack) do
     if bort == flight_num then
@@ -263,12 +229,82 @@ removeBortFromMarshall = function(flight_num, range_menu)
   end
 
   -- Remove the "remove" menu entry and recreate the "add" menu option
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-    addBortToMarshall(flight_num, range_menu)
-  end)
+  if add_commands[flight_num] then
+    add_commands[flight_num]:Remove()  -- Explicitly remove the "remove" command
+    add_commands[flight_num] = nil  -- Clear the reference
+  end
+
+  if range_menu then
+    local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
+      addBortToMarshall(flight_num, range_menu)
+    end)
+    add_commands[flight_num] = add_command  -- Store the add command for later reference
+  end
 end
 
-local function displayQueue()
+
+function addBortToMarshall(flight_num, range_menu)
+  -- Add the flight to the marshall queue
+  table.insert(case3stack, flight_num)
+  BroadcastMessageToZone("Flight " .. flight_num .. " added to Marshall Queue at position " .. #case3stack)
+
+  -- Remove the "add" menu entry for this bort number (from add_commands table)
+  if add_commands[flight_num] then
+    add_commands[flight_num]:Remove()  -- Explicitly remove the "add" command
+    add_commands[flight_num] = nil  -- Clear the reference
+  end
+
+  -- Create a "remove" option in the same place within the specific range submenu
+  local remove_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " remove from CASE III Marshall Queue", range_menu, function()
+    removeBortFromMarshall(flight_num, range_menu)
+  end)
+
+  -- Store the remove command in a table if needed (optional)
+  add_commands[flight_num] = remove_command
+end
+
+
+-- Function to create bort number menu
+local function createBortMenu(start_num, end_num, parent_menu, submenu_table)
+  -- Create a range menu under the parent menu
+  local range_menu = MENU_COALITION:New(coalition.side.BLUE, tostring(start_num) .. "-" .. tostring(end_num), parent_menu)
+
+  -- Store the reference to the range menu in the submenu table
+  submenu_table[start_num .. "-" .. end_num] = range_menu
+
+  for flight_num = start_num, end_num do
+    -- Create the "add to queue" menu option for each bort number directly under the range menu
+    local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
+      addBortToMarshall(flight_num, range_menu)
+    end)
+    -- Store the add command in the table for later removal
+    add_commands[flight_num] = add_command
+  end
+end
+
+local function recreateAddMenuForRange(flight_num, submenu_table)
+  for _, submenu in ipairs(submenu_table) do
+    if flight_num >= submenu.start_num and flight_num <= submenu.end_num then
+      local range_menu = submenu.menu
+
+      -- Check if the range_menu exists and directly use it, no need for GetSubMenuByName
+      if range_menu then
+        -- Create the "add to queue" menu option
+        local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
+          addBortToMarshall(flight_num, range_menu)
+        end)
+
+        -- Store the add command in the table for later removal
+        add_commands[flight_num] = add_command
+      else
+        env.warning("Range menu not found for flight range " .. submenu.start_num .. "-" .. submenu.end_num)
+      end
+    end
+  end
+end
+
+
+function displayQueue()
   if #case3stack == 0 then
     BroadcastMessageToZone("No flights currently in Marshall queue")
     return
@@ -334,55 +370,102 @@ end
 -- Create a menu to display the current queue directly under CVN-73 CASE II/III Marshall
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Display the Marshall Stack", caseIII_menu, displayQueue)
 
--- Create menus for Panthers (300-326) and Spectres (200-226)
-createBortMenu(300, 306, panthers_menu)
-createBortMenu(307, 313, panthers_menu)
-createBortMenu(314, 319, panthers_menu)
-createBortMenu(320, 326, panthers_menu)
+-- Create menus for Panthers (300-326)
 
-createBortMenu(200, 206, spectres_menu)
-createBortMenu(207, 213, spectres_menu)
-createBortMenu(214, 219, spectres_menu)
-createBortMenu(220, 226, spectres_menu)
+createBortMenu(300, 306, panthers_menu, panthers_submenus)
+createBortMenu(307, 313, panthers_menu, panthers_submenus)
+createBortMenu(314, 319, panthers_menu, panthers_submenus)
+createBortMenu(320, 326, panthers_menu, panthers_submenus)
 
--- Function to clear the entire marshall queue and reset everything
-local function clearMarshallQueue()
-  -- Create a copy of the case3stack to avoid modifying the table while iterating
-  local stack_copy = {}
-  for i = 1, #case3stack do
-    stack_copy[i] = case3stack[i]
-  end
+createBortMenu(200, 206, spectres_menu, spectres_submenus)
+createBortMenu(207, 213, spectres_menu, spectres_submenus)
+createBortMenu(214, 219, spectres_menu, spectres_submenus)
+createBortMenu(220, 226, spectres_menu, spectres_submenus)
 
-  for _, flight_num in ipairs(stack_copy) do
-    -- Find the correct range menu for the flight number and remove it
-    if flight_num >= 300 and flight_num <= 326 then
-      removeBortFromMarshall(flight_num, panthers_menu)
-    elseif flight_num >= 200 and flight_num <= 226 then
-      removeBortFromMarshall(flight_num, spectres_menu)
+
+
+function clearMarshallQueue()
+  -- Clear the stack after removing all entries
+  for flight_num, command in pairs(add_commands) do
+    if command then
+      command:Remove()  -- Remove all current "add" commands
     end
   end
 
-  -- Clear the stack after removing all entries
   case3stack = {}
+  add_commands = {}
 
-  -- Optionally, you could broadcast a message to notify users that the queue has been cleared
-  BroadcastMessageToZone("The Marshall Queue has been cleared.")
+  -- Recreate the "add to queue" menu options for all bort numbers in both ranges
+  for flight_num = 300, 326 do
+    local range_menu
+
+    -- Find the correct range menu based on flight number
+    if flight_num >= 300 and flight_num <= 306 then
+      range_menu = panthers_submenus["300-306"]
+    elseif flight_num >= 307 and flight_num <= 313 then
+      range_menu = panthers_submenus["307-313"]
+    elseif flight_num >= 314 and flight_num <= 319 then
+      range_menu = panthers_submenus["314-319"]
+    elseif flight_num >= 320 and flight_num <= 326 then
+      range_menu = panthers_submenus["320-326"]
+    end
+
+    -- Ensure range_menu exists
+    if range_menu then
+      -- Create the "add to queue" menu option directly under the specific range_menu
+      local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
+        addBortToMarshall(flight_num, range_menu)
+      end)
+
+      -- Store the add command in the table for later removal
+      add_commands[flight_num] = add_command
+    end
+  end
+
+  for flight_num = 200, 226 do
+    local range_menu
+
+    -- Find the correct range menu based on flight number
+    if flight_num >= 200 and flight_num <= 206 then
+      range_menu = spectres_submenus["200-206"]
+    elseif flight_num >= 207 and flight_num <= 213 then
+      range_menu = spectres_submenus["207-213"]
+    elseif flight_num >= 214 and flight_num <= 219 then
+      range_menu = spectres_submenus["214-219"]
+    elseif flight_num >= 220 and flight_num <= 226 then
+      range_menu = spectres_submenus["220-226"]
+    end
+
+    -- Ensure range_menu exists
+    if range_menu then
+      -- Create the "add to queue" menu option directly under the specific range_menu
+      local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
+        addBortToMarshall(flight_num, range_menu)
+      end)
+
+      -- Store the add command in the table for later removal
+      add_commands[flight_num] = add_command
+    end
+  end
+
+  -- Broadcast a message to notify users that the queue has been cleared and menus refreshed
+  BroadcastMessageToZone("The Marshall Queue has been cleared and menu options have been refreshed.")
 end
 
 
 
-local function scheduleClearQueueAfterTurn()
+function scheduleClearQueueAfterTurn()
   -- Check if there are entries in the queue
   if #case3stack > 0 then
-    -- Schedule the clearMarshallQueue function to run in 5 minutes (300 seconds)
-    SCHEDULER:New(nil, function()
+    -- Use TIMER to delay the execution of clearMarshallQueue by 5 minutes (300 seconds)
+    TIMER:New(function()
       -- Double-check if there are still entries in the queue after 5 minutes
       if #case3stack > 0 then
         clearMarshallQueue()
       else
         env.info("Marshall queue is already empty, no need to clear.")
       end
-    end, {}, 300) -- 300 seconds = 5 minutes
+    end):Start(300)  -- 300 seconds = 5 minutes
   else
     env.info("No entries in the Marshall queue, nothing to clear.")
   end
@@ -391,5 +474,147 @@ end
 
 -- Add a menu option to clear the entire marshall queue
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshall Queue", CV73_admin_menu, clearMarshallQueue)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
