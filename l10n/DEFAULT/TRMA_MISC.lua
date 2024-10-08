@@ -1,4 +1,5 @@
 _SETTINGS:SetPlayerMenuOff()
+_SETTINGS:SetImperial()
 
 ---important: the MessageToAll function was removed from Moose, we add it back here, else all other scripts will break. 
 function MessageToAll( MsgText, MsgTime, MsgName )
