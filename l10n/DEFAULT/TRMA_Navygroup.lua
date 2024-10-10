@@ -138,7 +138,7 @@ if GROUP:FindByName("CVN-73") then
       if CVN_73_beacon_unit then
         local current_minute = tonumber(os.date('%M'))
 
-        if current_minute == 0 + extensions then
+        if current_minute == 0 + (extensions*5) then
           clearMarshallQueue()
           extensions = 0
         end
