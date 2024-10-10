@@ -1,6 +1,7 @@
 -- Carrier Control Menu
 local carrier_root_menu = MENU_MISSION:New("Carrier Control")
 case3stack = {}
+extensions = 0
 -- Create Admin Menu
 local CV73_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 Admin", carrier_root_menu)
 
@@ -9,7 +10,6 @@ local RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
 local RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
 local timeend = nil -- Initialize timeend
-local clearQueueScheduled = false --this ensures that the stackclearing only happens once (after a recovery window end)
 local offset = 0   --this is the offset for the CASEIII Marshall radial
 
 local CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
@@ -23,14 +23,18 @@ local function BroadcastMessageToZone(message)
     MESSAGE:New(message, 15):ToClient(client)
   end)
 end
-local function scheduleClearQueueAfterTurn() --this function will  be defined at the end of the script
-end
 
 local CVN73 = NAVYGROUP:New("CVN-73")
 CVN73:SetPatrolAdInfinitum()
 CVN73:Activate()
 
+function CVN73:OnAfterTurnIntoWindStop(From,Event,To)
+  env.info("Cylce Stopped")
+end
 
+function CVN73:OnAfterTurnIntoWindStop(Eventdata)
+  env.info("Cylce Stopped")
+end
 
 if GROUP:FindByName("CVN-73") then
   trigger.action.setUserFlag(501, true) -- switch lights off on the Carrier at Mission Start
@@ -52,7 +56,7 @@ if GROUP:FindByName("CVN-73") then
     ArcoWash:SetTACAN(64, 'SH1')
     ArcoWash:SetRadio(142.5)
     ArcoWash:SetUnlimitedFuel(true)
-    ArcoWash:SetTakeoffHot()
+    ArcoWash:SetTakeoffAir()
 
     -- Initialize global variables for recovery times
     local timerecovery_start = nil
@@ -63,6 +67,7 @@ if GROUP:FindByName("CVN-73") then
 
     -- Function to Extend Recovery
     function extend_recovery73()
+      extensions = extensions +1
       env.info("Old cycle was " .. timerecovery_start .. " until " .. timerecovery_end)
       local timenow = timer.getAbsTime()
 
@@ -111,10 +116,6 @@ if GROUP:FindByName("CVN-73") then
       timerecovery_start = UTILS.SecondsToClock(timenow, true)
       timerecovery_end = UTILS.SecondsToClock(timeend, true)
 
-      if not clearQueueScheduled then
-        clearQueueScheduled = true
-      end
-
       if CVN73:IsSteamingIntoWind() then
       else
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
@@ -126,9 +127,6 @@ if GROUP:FindByName("CVN-73") then
     local function setminute()
       start_recovery73()
       trigger.action.setUserFlag(502, true)
-      if not clearQueueScheduled then
-        clearQueueScheduled = true
-      end
     end
 
 
@@ -139,6 +137,12 @@ if GROUP:FindByName("CVN-73") then
     SCHEDULER:New(nil, function()
       if CVN_73_beacon_unit then
         local current_minute = tonumber(os.date('%M'))
+
+        if current_minute == 0 + extensions then
+          clearMarshallQueue()
+          extensions = 0
+        end
+
         if current_minute == RecoveryStartatMinute then
           if not CVN73:IsSteamingIntoWind() then
             env.info("Recovery opening at Minute " .. current_minute)
@@ -149,8 +153,6 @@ if GROUP:FindByName("CVN-73") then
       end
     end, {}, 1, 30)
 
-
-
     -- Scheduler to Manage Recovery State
     SCHEDULER:New(nil, function()
       if CVN_73_beacon_unit then
@@ -158,13 +160,8 @@ if GROUP:FindByName("CVN-73") then
           create_extend_recovery_menu()
         else
           remove_extend_recovery_menu()
-          ArcoWash:RTB()
+          ArcoWash:Stop()
           trigger.action.setUserFlag(501, true)
-          scheduleClearQueueAfterTurn()
-          function ArcoWash:OnEventEngineShutdown(EventData)
-            env.info("Arcowash despawning")
-            ArcoWash:Stop()
-          end
         end
       end
     end, {}, 120, 240)
@@ -456,29 +453,7 @@ function clearMarshallQueue()
 
   BroadcastMessageToZone("The Marshall Queue has been cleared and menu options have been refreshed.")
 
-  -- Reset the flag to allow future scheduling
-  clearQueueScheduled = false
 end
-
-
-
-function scheduleClearQueueAfterTurn()
-  -- Only proceed if a recovery has been scheduled and the flag is true
-  if clearQueueScheduled then
-    -- Use TIMER to delay the execution of clearMarshallQueue by 5 minutes (300 seconds)
-    TIMER:New(function()
-      -- Double-check if there are still entries in the queue after 5 minutes
-      if #case3stack > 0 then
-        clearMarshallQueue()
-      else
-        env.info("Marshall queue is already empty, no need to clear.")
-      end
-    end):Start(300)  -- 300 seconds = 5 minutes
-  else
-    env.info("No scheduled recovery active, skipping queue clear.")
-  end
-end
-
 
 
 -- Add a menu option to clear the entire marshall queue
