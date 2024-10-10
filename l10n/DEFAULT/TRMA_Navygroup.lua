@@ -9,7 +9,7 @@ local RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
 local RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
 local timeend = nil -- Initialize timeend
-
+local clearQueueScheduled = false --this ensures that the stackclearing only happens once (after a recovery window end)
 local offset = 0   --this is the offset for the CASEIII Marshall radial
 
 local CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
@@ -111,6 +111,10 @@ if GROUP:FindByName("CVN-73") then
       timerecovery_start = UTILS.SecondsToClock(timenow, true)
       timerecovery_end = UTILS.SecondsToClock(timeend, true)
 
+      if not clearQueueScheduled then
+        clearQueueScheduled = true
+      end
+
       if CVN73:IsSteamingIntoWind() then
       else
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
@@ -122,6 +126,9 @@ if GROUP:FindByName("CVN-73") then
     local function setminute()
       start_recovery73()
       trigger.action.setUserFlag(502, true)
+      if not clearQueueScheduled then
+        clearQueueScheduled = true
+      end
     end
 
 
@@ -224,7 +231,7 @@ function removeBortFromMarshall(flight_num, range_menu)
 
     -- Renumber the remaining entries in the stack
     for i, bort in ipairs(case3stack) do
-      BroadcastMessageToZone("Flight " .. bort .. " is now in position " .. i)
+      displayQueue()
     end
   end
 
@@ -246,7 +253,7 @@ end
 function addBortToMarshall(flight_num, range_menu)
   -- Add the flight to the marshall queue
   table.insert(case3stack, flight_num)
-  BroadcastMessageToZone("Flight " .. flight_num .. " added to Marshall Queue at position " .. #case3stack)
+  displayQueue()
 
   -- Remove the "add" menu entry for this bort number (from add_commands table)
   if add_commands[flight_num] then
@@ -370,17 +377,19 @@ end
 -- Create a menu to display the current queue directly under CVN-73 CASE II/III Marshall
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Display the Marshall Stack", caseIII_menu, displayQueue)
 
--- Create menus for Panthers (300-326)
 
+-- Create menus for Panthers and Spectres
 createBortMenu(300, 306, panthers_menu, panthers_submenus)
 createBortMenu(307, 313, panthers_menu, panthers_submenus)
-createBortMenu(314, 319, panthers_menu, panthers_submenus)
-createBortMenu(320, 326, panthers_menu, panthers_submenus)
+createBortMenu(314, 320, panthers_menu, panthers_submenus)
+createBortMenu(321, 327, panthers_menu, panthers_submenus)
+createBortMenu(328, 334, panthers_menu, panthers_submenus)
+createBortMenu(335, 341, panthers_menu, panthers_submenus)
 
 createBortMenu(200, 206, spectres_menu, spectres_submenus)
 createBortMenu(207, 213, spectres_menu, spectres_submenus)
-createBortMenu(214, 219, spectres_menu, spectres_submenus)
-createBortMenu(220, 226, spectres_menu, spectres_submenus)
+createBortMenu(214, 220, spectres_menu, spectres_submenus)
+createBortMenu(221, 227, spectres_menu, spectres_submenus)
 
 
 
@@ -396,7 +405,7 @@ function clearMarshallQueue()
   add_commands = {}
 
   -- Recreate the "add to queue" menu options for all bort numbers in both ranges
-  for flight_num = 300, 326 do
+  for flight_num = 300, 341 do
     local range_menu
 
     -- Find the correct range menu based on flight number
@@ -404,59 +413,58 @@ function clearMarshallQueue()
       range_menu = panthers_submenus["300-306"]
     elseif flight_num >= 307 and flight_num <= 313 then
       range_menu = panthers_submenus["307-313"]
-    elseif flight_num >= 314 and flight_num <= 319 then
-      range_menu = panthers_submenus["314-319"]
-    elseif flight_num >= 320 and flight_num <= 326 then
-      range_menu = panthers_submenus["320-326"]
+    elseif flight_num >= 314 and flight_num <= 320 then
+      range_menu = panthers_submenus["314-320"]
+    elseif flight_num >= 321 and flight_num <= 327 then
+      range_menu = panthers_submenus["321-327"]
+    elseif flight_num >= 328 and flight_num <= 334 then
+      range_menu = panthers_submenus["328-334"]
+    elseif flight_num >= 335 and flight_num <= 341 then
+      range_menu = panthers_submenus["335-341"]
     end
 
-    -- Ensure range_menu exists
+
     if range_menu then
-      -- Create the "add to queue" menu option directly under the specific range_menu
       local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
         addBortToMarshall(flight_num, range_menu)
       end)
-
-      -- Store the add command in the table for later removal
       add_commands[flight_num] = add_command
     end
   end
 
-  for flight_num = 200, 226 do
+  for flight_num = 200, 227 do
     local range_menu
 
-    -- Find the correct range menu based on flight number
     if flight_num >= 200 and flight_num <= 206 then
       range_menu = spectres_submenus["200-206"]
     elseif flight_num >= 207 and flight_num <= 213 then
       range_menu = spectres_submenus["207-213"]
-    elseif flight_num >= 214 and flight_num <= 219 then
-      range_menu = spectres_submenus["214-219"]
-    elseif flight_num >= 220 and flight_num <= 226 then
-      range_menu = spectres_submenus["220-226"]
+    elseif flight_num >= 214 and flight_num <= 220 then
+      range_menu = spectres_submenus["214-220"]
+    elseif flight_num >= 221 and flight_num <= 227 then
+      range_menu = spectres_submenus["221-227"]
     end
 
-    -- Ensure range_menu exists
+
     if range_menu then
-      -- Create the "add to queue" menu option directly under the specific range_menu
       local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
         addBortToMarshall(flight_num, range_menu)
       end)
-
-      -- Store the add command in the table for later removal
       add_commands[flight_num] = add_command
     end
   end
 
-  -- Broadcast a message to notify users that the queue has been cleared and menus refreshed
   BroadcastMessageToZone("The Marshall Queue has been cleared and menu options have been refreshed.")
+
+  -- Reset the flag to allow future scheduling
+  clearQueueScheduled = false
 end
 
 
 
 function scheduleClearQueueAfterTurn()
-  -- Check if there are entries in the queue
-  if #case3stack > 0 then
+  -- Only proceed if a recovery has been scheduled and the flag is true
+  if clearQueueScheduled then
     -- Use TIMER to delay the execution of clearMarshallQueue by 5 minutes (300 seconds)
     TIMER:New(function()
       -- Double-check if there are still entries in the queue after 5 minutes
@@ -467,154 +475,11 @@ function scheduleClearQueueAfterTurn()
       end
     end):Start(300)  -- 300 seconds = 5 minutes
   else
-    env.info("No entries in the Marshall queue, nothing to clear.")
+    env.info("No scheduled recovery active, skipping queue clear.")
   end
 end
 
 
+
 -- Add a menu option to clear the entire marshall queue
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshall Queue", CV73_admin_menu, clearMarshallQueue)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
