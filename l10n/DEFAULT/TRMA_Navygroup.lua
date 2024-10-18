@@ -23,7 +23,7 @@ local function BroadcastMessageToZone(message)
     MESSAGE:New(message, 15):ToClient(client)
   end)
 end
-
+case = "I"
 local CVN73 = NAVYGROUP:New("CVN-73")
 CVN73:SetPatrolAdInfinitum()
 CVN73:Activate()
@@ -57,6 +57,16 @@ if GROUP:FindByName("CVN-73") then
     ArcoWash:SetRadio(142.5)
     ArcoWash:SetUnlimitedFuel(true)
     ArcoWash:SetTakeoffAir()
+    
+
+    local E2 = RECOVERYTANKER:New(CVN_73_beacon_unit,"CVN73_AWACS#IFF:5603FR")
+    E2:SetAWACS()
+    E2:SetCallsign(CALLSIGN.AWACS.Overlord, 1)
+    E2:SetAltitude(18000)
+    E2:SetRadio(282.77 )
+    E2:SetTakeoffAir()
+    E2:SetUnlimitedFuel(true)
+    E2:Start()
 
     -- Initialize global variables for recovery times
     local timerecovery_start = nil
@@ -119,7 +129,7 @@ if GROUP:FindByName("CVN-73") then
       if CVN73:IsSteamingIntoWind() then
       else
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end)
+        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end..". Expect CASE "..case)
         ArcoWash:Start()
         create_extend_recovery_menu()  -- Create the extend recovery menu option
       end
@@ -183,13 +193,13 @@ if GROUP:FindByName("CVN-73") then
         if fb < 0 then
           fb = fb + 360
         end
-        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end)
+        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end..". CASE "..case.." in Effect")
         BroadcastMessageToZone("BRC is " .. brc)
         BroadcastMessageToZone("FB is " .. fb)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind over deck is from %d degrees at %.1f knots", windDirection, windSpeedOverDeckKnots))
       else
-        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute)
+        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute..". Expect CASE "..case)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
       end
@@ -458,3 +468,25 @@ end
 
 -- Add a menu option to clear the entire marshall queue
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshall Queue", CV73_admin_menu, clearMarshallQueue)
+
+
+local function setCaseI()
+case = "I"
+end
+
+local function setCaseII()
+case = "II"
+end
+
+local function setCaseIII()
+case = "III"
+end
+
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE I", CV73_admin_menu, setCaseI)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE II", CV73_admin_menu, setCaseII)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE III", CV73_admin_menu, setCaseIII)
+
+
+
+
+
