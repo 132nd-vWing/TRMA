@@ -1,7 +1,7 @@
 _SETTINGS:SetPlayerMenuOff()
 _SETTINGS:SetImperial()
 
----important: the MessageToAll function was removed from Moose, we add it back here, else all other scripts will break. 
+---important: the MessageToAll function was removed from Moose, we add it back here, else all other scripts will break.
 function MessageToAll( MsgText, MsgTime, MsgName )
   -- trace.f()
   MESSAGE:New( MsgText, MsgTime, "Message" ):ToCoalition( coalition.side.RED ):ToCoalition( coalition.side.BLUE )
@@ -32,6 +32,14 @@ fox=FOX:New()
 fox:SetExplosionDistance(20)
 fox:SetDisableF10Menu(true)
 fox:SetDefaultLaunchAlerts(false)
+
+-- Custom Fox handler for after missile destoryed
+function fox:OnAfterMissileDestroyed(From, Event, To, missile)
+  if missile.targetPlayer then
+    trigger.action.outSoundForGroup(missile.targetPlayer.group:GetID(), '132nd_Sounds/missile_kill.ogg')
+  end
+end
+
 fox:Start()
 ---/Fox
 
