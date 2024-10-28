@@ -5,7 +5,6 @@ mapResource =
     ["ResKey_Action_29"] = "radio_sound.wav",
     ["ResKey_Action_31"] = "radio_sound.wav",
     ["ResKey_Action_35"] = "radio_sound.wav",
-    ["ResKey_Action_80"] = "TRMA_Basic_Ranges.lua",
     ["ResKey_Action_123"] = "mist_4_5_107.lua",
     ["ResKey_Action_124"] = "skynet-iads-compiled.lua",
     ["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
@@ -30,4 +29,5 @@ mapResource =
     ["ResKey_Action_366"] = "TRMA_AWACS.lua",
     ["ResKey_Action_367"] = "TRMA_Navygroup.lua",
     ["ResKey_Action_368"] = "Moose_.lua",
+    ["ResKey_Action_369"] = "TRMA_Basic_Ranges.lua",
 } -- end of mapResource
