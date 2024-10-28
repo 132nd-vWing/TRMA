@@ -21,7 +21,7 @@ range_root_menu19_24 = MENU_MISSION:New("RANGES 19-24",range_root_menu)
 range_root_menu31_34 = MENU_MISSION:New("RANGES 31-34",range_root_menu)
 --moa_root_menu = MENU_MISSION:New("MOAs")
 
---awacs_menu = MENU_MISSION:New("AWACS Control", awacs_root_menu )
+awacs_menu = MENU_MISSION:New("AWACS Control", awacs_root_menu )
 tanker_menu = MENU_MISSION:New("TANKER Control", awacs_root_menu )
 --elint_menu = MENU_MISSION:New("ELINT Control", awacs_root_menu )
 --elint_menu_elint1 = MENU_MISSION:New("ELINT RANGE 2", elint_menu )

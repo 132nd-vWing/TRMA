@@ -1,4 +1,4 @@
-env.info('*** MOOSE GITHUB Commit Hash ID: 2024-10-03T14:06:42+02:00-d89ed535b727f9a443f8df1e44e656527e963c85 ***')
+env.info('*** MOOSE GITHUB Commit Hash ID: 2024-10-27T13:25:41+01:00-1b3c94cc57f6fc5c99aeb87da923ee5f6525ae08 ***')
 if not MOOSE_DEVELOPMENT_FOLDER then
 MOOSE_DEVELOPMENT_FOLDER='Scripts'
 end
@@ -5567,7 +5567,7 @@ LineFrom=DebugInfoFrom.currentline
 end
 env.info(string.format("%6d(%6d)/%1s:%30s%05d.%s(%s)",LineCurrent,LineFrom,"E",self.ClassName,self.ClassID,Function,UTILS.BasicSerialize(Arguments)))
 else
-env.info(string.format("%1s:%30s%05d(%s)","E",self.ClassName,self.ClassID,BASE:_Serialize(Arguments)))
+env.info(string.format("%1s:%30s%05d(%s)","E",self.ClassName,self.ClassID,UTILS.BasicSerialize(Arguments)))
 end
 end
 function BASE:I(Arguments)
@@ -5585,7 +5585,7 @@ LineFrom=DebugInfoFrom.currentline
 end
 env.info(string.format("%6d(%6d)/%1s:%30s%05d.%s(%s)",LineCurrent,LineFrom,"I",self.ClassName,self.ClassID,Function,UTILS.BasicSerialize(Arguments)))
 else
-env.info(string.format("%1s:%30s%05d(%s)","I",self.ClassName,self.ClassID,BASE:_Serialize(Arguments)))
+env.info(string.format("%1s:%30s%05d(%s)","I",self.ClassName,self.ClassID,UTILS.BasicSerialize(Arguments)))
 end
 end
 ASTAR={
@@ -21569,7 +21569,7 @@ local Eventtext=tostring(Event.text)
 if Eventtext~=nil then
 if self:_MatchTag(Eventtext)then
 local matchtable=self:_MatchKeywords(Eventtext)
-self:MarkAdded(Eventtext,matchtable,coord,Event.idx,coalition)
+self:MarkAdded(Eventtext,matchtable,coord,Event.idx,coalition,Event.PlayerName,Event)
 end
 end
 elseif Event.id==world.event.S_EVENT_MARK_CHANGE then
@@ -21578,7 +21578,7 @@ local Eventtext=tostring(Event.text)
 if Eventtext~=nil then
 if self:_MatchTag(Eventtext)then
 local matchtable=self:_MatchKeywords(Eventtext)
-self:MarkChanged(Eventtext,matchtable,coord,Event.idx,coalition)
+self:MarkChanged(Eventtext,matchtable,coord,Event.idx,coalition,Event.PlayerName,Event)
 end
 end
 elseif Event.id==world.event.S_EVENT_MARK_REMOVED then
@@ -23969,9 +23969,12 @@ local CommandEPLRS={
 id='EPLRS',
 params={
 value=SwitchOnOff,
-groupId=self:GetID(),
+groupId=nil,
 },
 }
+if self:IsGround()then
+CommandEPLRS.params.groupId=self:GetID()
+end
 if Delay and Delay>0 then
 SCHEDULER:New(nil,self.CommandEPLRS,{self,SwitchOnOff},Delay)
 else
@@ -24035,9 +24038,12 @@ local CommandEPLRS={
 id='EPLRS',
 params={
 value=SwitchOnOff,
-groupId=self:GetID(),
+groupId=nil,
 },
 }
+if self:IsGround()then
+CommandEPLRS.params.groupId=self:GetID()
+end
 return self:TaskWrappedAction(CommandEPLRS,idx or 1)
 end
 function CONTROLLABLE:TaskAttackGroup(AttackGroup,WeaponType,WeaponExpend,AttackQty,Direction,Altitude,AttackQtyLimit,GroupAttack)
@@ -28241,7 +28247,7 @@ return threat,maxtl
 end
 return nil,nil
 end
-function GROUP:GetCustomCallSign(ShortCallsign,Keepnumber,CallsignTranslations)
+function GROUP:GetCustomCallSign(ShortCallsign,Keepnumber,CallsignTranslations,CustomFunction,...)
 local callsign="Ghost 1"
 if self:IsAlive()then
 local IsPlayer=self:IsPlayer()
@@ -28252,6 +28258,12 @@ local callnumber=string.match(shortcallsign,"(%d+)$")or"91"
 local callnumbermajor=string.char(string.byte(callnumber,1))
 local callnumberminor=string.char(string.byte(callnumber,2))
 local personalized=false
+local playername=IsPlayer==true and self:GetPlayerName()or shortcallsign
+if CustomFunction and IsPlayer then
+local arguments=arg or{}
+local callsign=CustomFunction(groupname,playername,unpack(arguments))
+return callsign
+end
 if CallsignTranslations and CallsignTranslations[callsignroot]then
 callsignroot=CallsignTranslations[callsignroot]
 elseif IsPlayer and string.find(groupname,"#")then
@@ -28261,8 +28273,8 @@ else
 shortcallsign=string.match(groupname,"#%s*([%a]+)")or"Ghost"
 end
 personalized=true
-elseif IsPlayer and string.find(self:GetPlayerName(),"|")then
-shortcallsign=string.match(self:GetPlayerName(),"|%s*([%a]+)")or string.match(self:GetPlayerName(),"|%s*([%d]+)")or"Ghost"
+elseif IsPlayer and string.find(playername,"|")then
+shortcallsign=string.match(playername,"|%s*([%a]+)")or string.match(self:GetPlayerName(),"|%s*([%d]+)")or"Ghost"
 personalized=true
 end
 if personalized then
@@ -59810,7 +59822,7 @@ end
 self:_CheckRecoveryTimes()
 self.Tqueue=timer.getTime()-60
 self:HandleEvent(EVENTS.Birth)
-self:HandleEvent(EVENTS.Land)
+self:HandleEvent(EVENTS.RunwayTouch)
 self:HandleEvent(EVENTS.EngineShutdown)
 self:HandleEvent(EVENTS.Takeoff)
 self:HandleEvent(EVENTS.Crash)
@@ -60158,7 +60170,7 @@ end
 function AIRBOSS:onafterStop(From,Event,To)
 self:I(self.lid..string.format("Stopping airboss script."))
 self:UnHandleEvent(EVENTS.Birth)
-self:UnHandleEvent(EVENTS.Land)
+self:UnHandleEvent(EVENTS.RunwayTouch)
 self:UnHandleEvent(EVENTS.EngineShutdown)
 self:UnHandleEvent(EVENTS.Takeoff)
 self:UnHandleEvent(EVENTS.Crash)
@@ -62265,7 +62277,7 @@ self:_AddF10Commands(_unitName)
 self:ScheduleOnce(1,self._NewPlayer,self,_unitName)
 end
 end
-function AIRBOSS:OnEventLand(EventData)
+function AIRBOSS:OnEventRunwayTouch(EventData)
 self:F3({eventland=EventData})
 if EventData==nil then
 self:E(self.lid.."ERROR: EventData=nil in event LAND!")
@@ -81084,7 +81096,7 @@ end
 do
 AWACS={
 ClassName="AWACS",
-version="0.2.66",
+version="0.2.67",
 lid="",
 coalition=coalition.side.BLUE,
 coalitiontxt="blue",
@@ -82230,11 +82242,11 @@ return managedgroup.CallSign
 end
 local callsign="Ghost 1"
 if Group and Group:IsAlive()then
-callsign=Group:GetCustomCallSign(self.callsignshort,self.keepnumber,self.callsignTranslations)
+callsign=Group:GetCustomCallSign(self.callsignshort,self.keepnumber,self.callsignTranslations,self.callsignCustomFunc,self.callsignCustomArgs)
 end
 return callsign
 end
-function AWACS:SetCallSignOptions(ShortCallsign,Keepnumber,CallsignTranslations)
+function AWACS:SetCallSignOptions(ShortCallsign,Keepnumber,CallsignTranslations,CallsignCustomFunc,...)
 if not ShortCallsign or ShortCallsign==false then
 self.callsignshort=false
 else
@@ -82242,6 +82254,8 @@ self.callsignshort=true
 end
 self.keepnumber=Keepnumber or false
 self.callsignTranslations=CallsignTranslations
+self.callsignCustomFunc=CallsignCustomFunc
+self.callsignCustomArgs=arg or{}
 return self
 end
 function AWACS:_UpdateContactFromCluster(CID)
