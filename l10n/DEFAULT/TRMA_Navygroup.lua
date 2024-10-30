@@ -23,7 +23,181 @@ local function BroadcastMessageToZone(message)
     MESSAGE:New(message, 15):ToClient(client)
   end)
 end
-case = "I"
+
+
+-- ================================= Carrier ATIS ===================================
+
+-- atis_weather --
+local atis_weather = {}
+
+-- Constants
+local HPA_TO_INHG = 0.02953
+local MMHG_TO_HPA = 1.33322
+local MPS_TO_KNOTS = 1.94384
+
+-- Function to log messages to DCS log
+local function log(message)
+  env.info("[ATIS Weather] " .. message)
+end
+
+-- Function to get QNH (hPa and inHg)
+local function getQNH(weather)
+  local mmHg = weather.qnh or 762.762  -- Use provided QNH or default to 762.762 mmHg
+
+  -- Convert mmHg to hPa
+  local qnh_hpa = mmHg * MMHG_TO_HPA
+  log("RAW QNH: " .. mmHg .. " mmHg (" .. qnh_hpa .. " hPa)")
+
+  -- Convert hPa to inHg
+  local qnh_inhg = qnh_hpa * HPA_TO_INHG  -- Convert hPa to inHg
+  log("Converted QNH: " .. qnh_hpa .. " hPa (" .. qnh_inhg .. " inHg)")
+
+  return qnh_hpa, qnh_inhg
+end
+
+-- Function to get wind data at ground level from DCS weather
+local function getWindDataAtGroundLevel(weather)
+  local wind_data = weather.wind.atGround  -- Get ground-level wind data
+
+  local wind_speed_mps = wind_data.speed  -- Wind speed in meters per second
+  local wind_direction = wind_data.dir  -- Wind direction in degrees
+
+  log("Ground-level Wind Direction: " .. wind_direction .. " degrees")
+  log("Ground-level Wind Speed: " .. wind_speed_mps .. " m/s")
+
+  -- Convert wind speed from meters per second to knots
+  local wind_speed_knots = wind_speed_mps * MPS_TO_KNOTS
+
+  return wind_direction, wind_speed_knots
+end
+
+-- Function to calculate temperature at a specific altitude
+local function getTemperatureAtAltitude(weather, altitude)
+  local sea_level_temperature = weather.season.temperature or 15  -- Default to 15°C if not provided
+  local lapse_rate = 6.5  -- Standard lapse rate in °C per 1000 meters
+  local temperature_at_altitude = sea_level_temperature - (lapse_rate * (altitude / 1000))
+  return temperature_at_altitude
+end
+
+
+-- Function to get weather data and determine carrier case (Case 1, 2, or 3)
+function atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, altitude)
+  log("Getting weather data at altitude: " .. altitude .. " meters")
+
+  local weather = env.mission.weather  -- Access mission weather data
+  log("Weather data retrieved from mission")
+
+  -- Get cloud base (in meters)
+  local cloud_base = weather.clouds.base or 0  -- Cloud base altitude in meters
+  log("Cloud Base: " .. cloud_base .. " meters")
+
+  -- Initialize visibility (in meters)
+  local visibility = weather.visibility.distance or 0  -- Base visibility in meters
+  log("Base Visibility: " .. visibility .. " meters")
+
+  -- Check for fog conditions
+  if weather.fog and weather.fog.thickness > 0 then
+    local fog_visibility = weather.fog.visibility or 0  -- Fog visibility
+    visibility = math.min(visibility, fog_visibility)  -- Adjust visibility based on fog
+    log("Fog detected. Fog Visibility: " .. fog_visibility .. " meters. Adjusted visibility: " .. visibility .. " meters")
+  else
+    log("No fog detected.")
+  end
+
+  -- Check for precipitation (rain) conditions
+  local rain = ""
+  if weather.precipitation then
+    log("Precipitation data found: " .. tostring(weather.precipitation))
+    if type(weather.precipitation) == "number" and weather.precipitation > 0 then
+      rain = "Rain Detected"
+      log("Rain detected with intensity (as number): " .. weather.precipitation)
+    elseif type(weather.precipitation) == "table" and weather.precipitation.value and weather.precipitation.value > 0 then
+      rain = "Rain Detected"
+      visibility = math.min(visibility, weather.precipitation.value * 1000)  -- Adjust visibility based on precipitation intensity
+      log("Rain detected with intensity (as table): " .. weather.precipitation.value .. ". Adjusted visibility: " .. visibility .. " meters")
+    else
+      rain = "No Rain"
+      log("No precipitation detected or intensity is 0.")
+    end
+  else
+    rain = "No Rain"
+    log("No precipitation field in weather data.")
+  end
+
+  -- Get wind data at ground level
+  local wind_direction, wind_speed_knots = getWindDataAtGroundLevel(weather)
+
+  -- Calculate temperature at the given altitude
+  local temperature = getTemperatureAtAltitude(weather, altitude)
+  log("Temperature: " .. temperature .. "°C")
+
+  -- Get QNH and correct for temperature
+  local qnh_hpa, qnh_inhg = getQNH(weather, altitude)
+  log(string.format("Corrected QNH: %.2f hPa (%.2f inHg)", qnh_hpa, qnh_inhg))
+
+  -- Determine the carrier case based on cloud base, visibility, and fog
+  local carrier_case
+  if cloud_base > 914 and visibility > 9260 then
+    carrier_case = "I"  -- Clear conditions for visual landings
+  elseif cloud_base >= 305 and cloud_base <= 914 and visibility > 9260 then
+    carrier_case = "II"  -- Cloud base is lower, but visibility is sufficient
+  else
+    carrier_case = "III"  -- Poor visibility or low cloud base requires IFR
+  end
+  log("Carrier Case: " .. carrier_case)
+
+  return {
+    cloud_base = cloud_base,      -- Cloud base in meters
+    visibility = visibility,      -- Adjusted visibility in meters
+    wind_speed = wind_speed_knots,      -- Wind speed in knots
+    wind_direction = wind_direction,  -- Wind direction in degrees
+    temperature = temperature,    -- Temperature in Celsius
+    qnh_hpa = qnh_hpa,            -- QNH in hPa
+    qnh_inhg = qnh_inhg,          -- QNH in inHg
+    carrier_case = carrier_case,   -- Carrier case (Case 1, 2, or 3)
+    rain = rain                   -- Rain information
+  }
+end
+
+-- Function to return the formatted ATIS message as a string
+function atis_weather.getATISMessage(weatherInfo)
+  -- Determine visibility display
+  local qnh_hpa_rounded = math.floor(weatherInfo.qnh_hpa + 0.5)
+  local visibility_display
+  if weatherInfo.visibility >= 10000 then
+    visibility_display = "10+ km"
+  elseif weatherInfo.visibility >= 1000 then
+    visibility_display = string.format("%d km", math.floor(weatherInfo.visibility / 1000))
+  else
+    visibility_display = string.format("%d meters", weatherInfo.visibility)
+  end
+
+  return string.format(
+          "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %d hPa (%.2f inHg)\nCarrier Case: %s",
+          weatherInfo.cloud_base,
+          visibility_display,
+          weatherInfo.wind_speed,
+          weatherInfo.wind_direction,
+          weatherInfo.temperature,
+          qnh_hpa_rounded,
+          weatherInfo.qnh_inhg,
+          weatherInfo.carrier_case
+  )
+end
+
+-- ================================= Carrier ATIS ===================================
+
+
+
+-- Assuming CVN73 is your carrier unit in MOOSE
+local carrier_name = "CVN-73"
+local carrier_unit = UNIT:FindByName(carrier_name)  -- MOOSE unit object
+
+if carrier_unit then
+  weatherInfo = atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, 0)  -- Get weather at ground level (0 meters)
+end
+
+
 local CVN73 = NAVYGROUP:New("CVN-73")
 CVN73:SetPatrolAdInfinitum()
 CVN73:Activate()
@@ -119,7 +293,7 @@ if GROUP:FindByName("CVN-73") then
       if CVN73:IsSteamingIntoWind() then
       else
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end..". Expect CASE "..case)
+        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end..". Expect CASE "..weatherInfo.carrier_case)
         ArcoWash:Start()
         create_extend_recovery_menu()  -- Create the extend recovery menu option
       end
@@ -183,15 +357,16 @@ if GROUP:FindByName("CVN-73") then
         if fb < 0 then
           fb = fb + 360
         end
-        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end..". CASE "..case.." in Effect")
+        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end..". CASE "..weatherInfo.carrier_case.." in Effect")
         BroadcastMessageToZone("BRC is " .. brc)
         BroadcastMessageToZone("FB is " .. fb)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind over deck is from %d degrees at %.1f knots", windDirection, windSpeedOverDeckKnots))
       else
-        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute..". Expect CASE "..case)
+        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute..". Expect CASE "..weatherInfo.carrier_case)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
+        BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
       end
     end
     -- Top Level: CVN-73 Carrier Information
@@ -460,21 +635,27 @@ end
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshall Queue", CV73_admin_menu, clearMarshallQueue)
 
 
+
 local function setCaseI()
-  case = "I"
+  weatherInfo.carrier_case = "I"
 end
 
 local function setCaseII()
-  case = "II"
+  weatherInfo.carrier_case = "II"
 end
 
 local function setCaseIII()
-  case = "III"
+  weatherInfo.carrier_case = "III"
+end
+
+local function autoSetCarrierAtis()
+  weatherInfo = atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, 0)  -- Get weather at ground level (0 meters)
 end
 
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE I", CV73_admin_menu, setCaseI)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE II", CV73_admin_menu, setCaseII)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE III", CV73_admin_menu, setCaseIII)
+MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Auto-set Carrier ATIS", CV73_admin_menu, autoSetCarrierAtis)
 
 
 
