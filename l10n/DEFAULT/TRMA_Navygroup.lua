@@ -173,14 +173,14 @@ function atis_weather.getATISMessage(weatherInfo)
   end
 
   return string.format(
-          "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %d hPa (%.2f inHg)\nCarrier Case: %s",
+          "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %.2f inHg (%d hPa)\nCarrier Case: %s",
           weatherInfo.cloud_base,
           visibility_display,
           weatherInfo.wind_speed,
           weatherInfo.wind_direction,
           weatherInfo.temperature,
-          qnh_hpa_rounded,
           weatherInfo.qnh_inhg,
+          qnh_hpa_rounded,
           weatherInfo.carrier_case
   )
 end
