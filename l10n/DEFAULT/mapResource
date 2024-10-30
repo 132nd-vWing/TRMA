@@ -29,5 +29,5 @@ mapResource =
     ["ResKey_Action_366"] = "TRMA_AWACS.lua",
     ["ResKey_Action_368"] = "Moose_.lua",
     ["ResKey_Action_369"] = "TRMA_Basic_Ranges.lua",
-    ["ResKey_Action_370"] = "TRMA_Navygroup.lua",
+    ["ResKey_Action_371"] = "TRMA_Navygroup.lua",
 } -- end of mapResource

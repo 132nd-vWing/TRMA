@@ -366,8 +366,8 @@ if GROUP:FindByName("CVN-73") then
         BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute..". Expect CASE "..weatherInfo.carrier_case)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
-        BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
       end
+      BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
     end
     -- Top Level: CVN-73 Carrier Information
     MENU_COALITION_COMMAND:New(coalition.side.BLUE, "CVN-73 Carrier Information", carrier_root_menu, CarrierInfo)
