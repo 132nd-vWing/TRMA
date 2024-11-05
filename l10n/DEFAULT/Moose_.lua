@@ -1,4 +1,4 @@
-env.info('*** MOOSE GITHUB Commit Hash ID: 2024-10-27T13:25:41+01:00-1b3c94cc57f6fc5c99aeb87da923ee5f6525ae08 ***')
+env.info('*** MOOSE GITHUB Commit Hash ID: 2024-10-31T18:16:32+01:00-cd8cbc54c871b97b4e505b89e2f6127a8349066f ***')
 if not MOOSE_DEVELOPMENT_FOLDER then
 MOOSE_DEVELOPMENT_FOLDER='Scripts'
 end
@@ -7564,6 +7564,7 @@ end
 elseif Event.TgtObjectCategory==Object.Category.SCENERY then
 Event.TgtDCSUnit=Event.target
 Event.TgtDCSUnitName=Event.TgtDCSUnit:getName()
+if Event.TgtDCSUnitName==nil then return end
 Event.TgtUnitName=Event.TgtDCSUnitName
 Event.TgtUnit=SCENERY:Register(Event.TgtDCSUnitName,Event.target)
 Event.TgtCategory=Event.TgtDCSUnit:getDesc().category
@@ -23969,12 +23970,9 @@ local CommandEPLRS={
 id='EPLRS',
 params={
 value=SwitchOnOff,
-groupId=nil,
+groupId=self:GetID(),
 },
 }
-if self:IsGround()then
-CommandEPLRS.params.groupId=self:GetID()
-end
 if Delay and Delay>0 then
 SCHEDULER:New(nil,self.CommandEPLRS,{self,SwitchOnOff},Delay)
 else
@@ -24007,7 +24005,7 @@ power=Power or 10,
 },
 }
 if Delay and Delay>0 then
-SCHEDULER:New(nil,self.CommandSetFrequency,{self,Frequency,Modulation,Power})
+SCHEDULER:New(nil,self.CommandSetFrequency,{self,Frequency,Modulation,Power},Delay)
 else
 self:SetCommand(CommandSetFrequency)
 end
@@ -24024,7 +24022,7 @@ power=Power or 10,
 },
 }
 if Delay and Delay>0 then
-SCHEDULER:New(nil,self.CommandSetFrequencyForUnit,{self,Frequency,Modulation,Power,UnitID})
+SCHEDULER:New(nil,self.CommandSetFrequencyForUnit,{self,Frequency,Modulation,Power,UnitID},Delay)
 else
 self:SetCommand(CommandSetFrequencyForUnit)
 end
@@ -24038,12 +24036,9 @@ local CommandEPLRS={
 id='EPLRS',
 params={
 value=SwitchOnOff,
-groupId=nil,
+groupId=self:GetID(),
 },
 }
-if self:IsGround()then
-CommandEPLRS.params.groupId=self:GetID()
-end
 return self:TaskWrappedAction(CommandEPLRS,idx or 1)
 end
 function CONTROLLABLE:TaskAttackGroup(AttackGroup,WeaponType,WeaponExpend,AttackQty,Direction,Altitude,AttackQtyLimit,GroupAttack)
@@ -26892,18 +26887,11 @@ end
 return GroupsFound
 end
 function GROUP:GetDCSObject()
-if(not self.LastCallDCSObject)or(self.LastCallDCSObject and timer.getTime()-self.LastCallDCSObject>1)then
 local DCSGroup=Group.getByName(self.GroupName)
 if DCSGroup then
 self.LastCallDCSObject=timer.getTime()
 self.DCSObject=DCSGroup
 return DCSGroup
-else
-self.DCSObject=nil
-self.LastCallDCSObject=nil
-end
-else
-return self.DCSObject
 end
 return nil
 end
@@ -26946,7 +26934,7 @@ function GROUP:Destroy(GenerateEvent,delay)
 if delay and delay>0 then
 self:ScheduleOnce(delay,GROUP.Destroy,self,GenerateEvent)
 else
-local DCSGroup=self:GetDCSObject()
+local DCSGroup=Group.getByName(self.GroupName)
 if DCSGroup then
 for Index,UnitData in pairs(DCSGroup:getUnits())do
 if GenerateEvent and GenerateEvent==true then
@@ -29749,6 +29737,9 @@ AIRBASE.Normandy={
 ["Villacoublay"]="Villacoublay",
 ["Vrigny"]="Vrigny",
 ["West_Malling"]="West Malling",
+["Eastchurch"]="Eastchurch",
+["Headcorn"]="Headcorn",
+["Hawkinge"]="Hawkinge",
 }
 AIRBASE.PersianGulf={
 ["Abu_Dhabi_Intl"]="Abu Dhabi Intl",
@@ -29863,6 +29854,10 @@ AIRBASE.Syria={
 ["Tha_lah"]="Tha'lah",
 ["Tiyas"]="Tiyas",
 ["Wujah_Al_Hajar"]="Wujah Al Hajar",
+["Ben_Gurion"]="Ben Gurion",
+["Hatzor"]="Hatzor",
+["Palmashim"]="Palmashim",
+["Tel_Nof"]="Tel Nof",
 }
 AIRBASE.MarianaIslands={
 ["Andersen_AFB"]="Andersen AFB",
@@ -29969,6 +29964,8 @@ AIRBASE.Kola={
 ["Severomorsk_3"]="Severomorsk-3",
 ["Vidsel"]="Vidsel",
 ["Vuojarvi"]="Vuojarvi",
+["Andoya"]="Andoya",
+["Alakourtti"]="Alakourtti",
 }
 AIRBASE.Afghanistan={
 ["Bost"]="Bost",
@@ -37046,19 +37043,21 @@ NotInRunwayZone=(Client:IsNotInZone(_runwaydata.zone)==true)and NotInRunwayZone 
 end
 end
 if NotInRunwayZone then
-if IsOnGround then
 local Taxi=Client:GetState(self,"Taxi")
+if IsOnGround then
 self:T(Taxi)
 if Taxi==false then
 local Velocity=VELOCITY:New(AirbaseMeta.KickSpeed or self.KickSpeed)
 Client:Message("Welcome to "..AirbaseID..". The maximum taxiing speed is "..
 Velocity:ToString(),20,"ATC")
 Client:SetState(self,"Taxi",true)
+Client:SetState(self,"Speeding",false)
+Client:SetState(self,"Warnings",0)
 end
 local Velocity=VELOCITY_POSITIONABLE:New(Client)
 local IsAboveRunway=Client:IsAboveRunway()
 self:T({IsAboveRunway,IsOnGround,Velocity:Get()})
-if IsOnGround then
+if IsOnGround and not Taxi then
 local Speeding=false
 if AirbaseMeta.MaximumKickSpeed then
 if Velocity:Get()>AirbaseMeta.MaximumKickSpeed then
@@ -37070,11 +37069,11 @@ Speeding=true
 end
 end
 if Speeding==true then
-MESSAGE:New("Penalty! Player "..Client:GetPlayerName()..
-" has been kicked, due to a severe airbase traffic rule violation ...",10,"ATC"):ToAll()
-Client:Destroy()
-Client:SetState(self,"Speeding",false)
-Client:SetState(self,"Warnings",0)
+Client:SetState(self,"Speeding",true)
+local SpeedingWarnings=Client:GetState(self,"Warnings")
+Client:SetState(self,"Warnings",SpeedingWarnings+1)
+Client:Message("Warning "..SpeedingWarnings.."/3! Airbase traffic rule violation! Slow down now! Your speed is "..
+Velocity:ToString(),5,"ATC")
 end
 end
 if IsOnGround then
@@ -70818,7 +70817,7 @@ CTLD.UnitTypeCapabilities={
 ["OH58D"]={type="OH58D",crates=false,troops=false,cratelimit=0,trooplimit=0,length=14,cargoweightlimit=400},
 ["CH-47Fbl1"]={type="CH-47Fbl1",crates=true,troops=true,cratelimit=4,trooplimit=31,length=20,cargoweightlimit=10800},
 }
-CTLD.version="1.1.17"
+CTLD.version="1.1.18"
 function CTLD:New(Coalition,Prefixes,Alias)
 local self=BASE:Inherit(self,FSM:New())
 BASE:T({Coalition,Prefixes,Alias})
@@ -71384,6 +71383,7 @@ local unitcoord=unit:GetCoordinate()
 local nearestGroup=nil
 local nearestGroupIndex=-1
 local nearestDistance=10000000
+local maxdistance=0
 local nearestList={}
 local distancekeys={}
 local extractdistance=self.CrateDistance*self.ExtractFactor
@@ -71395,6 +71395,11 @@ if distance<=extractdistance and distance~=-1 and(TNow-vtime>300)then
 nearestGroup=v
 nearestGroupIndex=k
 nearestDistance=distance
+if math.floor(distance)>maxdistance then maxdistance=math.floor(distance)end
+if nearestList[math.floor(distance)]then
+distance=maxdistance+1
+maxdistance=distance
+end
 table.insert(nearestList,math.floor(distance),v)
 distancekeys[#distancekeys+1]=math.floor(distance)
 end
@@ -71440,7 +71445,7 @@ self.CargoCounter=self.CargoCounter+1
 nearestGroup.ExtractTime=timer.getTime()
 local loadcargotype=CTLD_CARGO:New(self.CargoCounter,Cargotype.Name,Cargotype.Templates,Cargotype.CargoType,true,true,Cargotype.CratesNeeded,nil,nil,Cargotype.PerCrateMass)
 self:T({cargotype=loadcargotype})
-local running=math.floor(nearestDistance/4)+10
+local running=math.floor(nearestDistance/4)+20
 loaded.Troopsloaded=loaded.Troopsloaded+troopsize
 table.insert(loaded.Cargo,loadcargotype)
 self.Loaded_Cargo[unitname]=loaded
@@ -71455,24 +71460,29 @@ local heading=unit:GetHeading()or 0
 local Angle=math.floor((heading+160)%360)
 Point=coord:Translate(8,Angle):GetVec2()
 if Point then
-nearestGroup:RouteToVec2(Point,4)
+nearestGroup:RouteToVec2(Point,5)
 end
 end
+local hassecondaries=false
 if type(Cargotype.Templates)=="table"and Cargotype.Templates[2]then
 for _,_key in pairs(Cargotype.Templates)do
 table.insert(secondarygroups,_key)
+hassecondaries=true
 end
 end
-nearestGroup:Destroy(false,running)
+local destroytimer=math.random(10,20)
+nearestGroup:Destroy(false,destroytimer)
 end
 end
 end
+if hassecondaries==true then
 for _,_name in pairs(secondarygroups)do
 for _,_group in pairs(nearestList)do
 if _group and _group:IsAlive()then
 local groupname=string.match(_group:GetName(),"(.+)-(.+)$")
 if _name==groupname then
 _group:Destroy(false,15)
+end
 end
 end
 end
@@ -72158,8 +72168,8 @@ function CTLD:_GetUnitPositions(Coordinate,Radius,Heading,Template)
 local Positions={}
 local template=_DATABASE:GetGroupTemplate(Template)
 local numbertroops=#template.units
-local slightshift=math.abs(math.random(0,200)/100)
-local newcenter=Coordinate:Translate(Radius+slightshift,((Heading+270)%360))
+local slightshift=math.abs(math.random(1,500)/100)
+local newcenter=Coordinate:Translate(Radius+slightshift,((Heading+270+math.random(1,10))%360))
 for i=1,360,math.floor(360/numbertroops)do
 local phead=((Heading+270+i)%360)
 local post=newcenter:Translate(Radius,phead)
