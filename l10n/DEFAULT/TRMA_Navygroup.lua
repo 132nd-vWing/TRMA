@@ -1,15 +1,14 @@
 -- Carrier Control Menu
 local carrier_root_menu = MENU_MISSION:New("Carrier Control")
-case3stack = {}
-extensions = 0
+local case3stack = {}
+local extensions = 0
 -- Create Admin Menu
 local CV73_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 Admin", carrier_root_menu)
 
 -- Recovery Window Parameters
-local RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
-local RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
+RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
+RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
-local timeend = nil -- Initialize timeend
 local offset = 0   --this is the offset for the CASEIII Marshall radial
 
 local CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
@@ -137,10 +136,18 @@ function atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, altitude)
 
   -- Determine the carrier case based on cloud base, visibility, and fog
   local carrier_case
+  local carrierpos = carrier_unit:GetCoordinate()
   if cloud_base > 914 and visibility > 9260 then
     carrier_case = "I"  -- Clear conditions for visual landings
+    if carrierpos:IsDay() then
+    else carrier_case = "III"  -- override CASE I with CASE III at nighttime
+    end
   elseif cloud_base >= 305 and cloud_base <= 914 and visibility > 9260 then
     carrier_case = "II"  -- Cloud base is lower, but visibility is sufficient
+    if carrierpos:IsDay() then
+    else carrier_case = "III"  -- override CASE II with CASE III at nighttime
+    end
+
   else
     carrier_case = "III"  -- Poor visibility or low cloud base requires IFR
   end
@@ -173,15 +180,15 @@ function atis_weather.getATISMessage(weatherInfo)
   end
 
   return string.format(
-          "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %.2f inHg (%d hPa)\nCarrier Case: %s",
-          weatherInfo.cloud_base,
-          visibility_display,
-          weatherInfo.wind_speed,
-          weatherInfo.wind_direction,
-          weatherInfo.temperature,
-          weatherInfo.qnh_inhg,
-          qnh_hpa_rounded,
-          weatherInfo.carrier_case
+    "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %.2f inHg (%d hPa)\nCarrier Case: %s",
+    weatherInfo.cloud_base,
+    visibility_display,
+    weatherInfo.wind_speed,
+    weatherInfo.wind_direction,
+    weatherInfo.temperature,
+    weatherInfo.qnh_inhg,
+    qnh_hpa_rounded,
+    weatherInfo.carrier_case
   )
 end
 
@@ -211,7 +218,7 @@ function CVN73:OnAfterTurnIntoWindStop(Eventdata)
 end
 
 if GROUP:FindByName("CVN-73") then
-  trigger.action.setUserFlag(501, true) -- switch lights off on the Carrier at Mission Start
+  trigger.action.setUserFlag("501", false) -- switch lights off on the Carrier at Mission Start
 
   if CVN_73_beacon_unit then
     local CVN_73_Beacon = CVN_73_beacon_unit:GetBeacon()
@@ -232,10 +239,6 @@ if GROUP:FindByName("CVN-73") then
     ArcoWash:SetUnlimitedFuel(true)
     ArcoWash:SetTakeoffAir()
 
-    -- Initialize global variables for recovery times
-    local timerecovery_start = nil
-    local timerecovery_end = nil
-
     -- Initialize the menu command variable
     local extend_recovery_menu_command = nil
 
@@ -243,15 +246,9 @@ if GROUP:FindByName("CVN-73") then
     function extend_recovery73()
       extensions = extensions +1
       env.info("Old cycle was " .. timerecovery_start .. " until " .. timerecovery_end)
-      local timenow = timer.getAbsTime()
-
-      if timeend == nil then timeend = timenow + RecoveryDuration * 60 end  -- Ensure timeend is initialized
-
       timeend = timeend + 5 * 60 -- Extend time by 5 minutes
-
-      timerecovery_start = UTILS.SecondsToClock(timenow, true)
-      timerecovery_end = UTILS.SecondsToClock(timeend, true)
-
+      timerecovery_start = UTILS.SecondsToClock(timenow,false)
+      timerecovery_end = UTILS.SecondsToClock(timeend, false)
       if CVN73:IsSteamingIntoWind() then
         env.info("New cycle is " .. timerecovery_start .. " until " .. timerecovery_end)
         CVN73:ClearTasks()
@@ -262,9 +259,6 @@ if GROUP:FindByName("CVN-73") then
         BroadcastMessageToZone("CVN-73 is not steaming into wind, cannot extend recovery window")
       end
     end
-
-
-
 
     -- Function to create the extend recovery menu option
     function create_extend_recovery_menu()
@@ -284,23 +278,30 @@ if GROUP:FindByName("CVN-73") then
 
     -- Function to Start Scheduled Recovery
     function start_recovery73()
-      local timenow = timer.getAbsTime()
-      timeend = timenow + RecoveryDuration * 60 -- Initialize timeend
+      timenow = timer.getAbsTime()
+      duration_seconds = RecoveryDuration * 60
+      timeend = timenow + duration_seconds -- Initialize timeend
 
-      timerecovery_start = UTILS.SecondsToClock(timenow, true)
-      timerecovery_end = UTILS.SecondsToClock(timeend, true)
+      -- Calculate the recovery start and end times as clock strings
+      timerecovery_start = UTILS.SecondsToClock(timenow,false)
+      timerecovery_end = UTILS.SecondsToClock(timeend,false)
 
       if CVN73:IsSteamingIntoWind() then
+        return
+        -- Do nothing if already steaming into the wind
       else
+        -- Turn into the wind for recovery
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end..". Expect CASE "..weatherInfo.carrier_case)
+        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
         ArcoWash:Start()
-        create_extend_recovery_menu()  -- Create the extend recovery menu option
+        create_extend_recovery_menu() -- Create the extend recovery menu option
       end
     end
+
+
     local function setminute()
       start_recovery73()
-      trigger.action.setUserFlag(502, true)
+      trigger.action.setUserFlag("501", true)
     end
 
 
@@ -321,7 +322,7 @@ if GROUP:FindByName("CVN-73") then
           if not CVN73:IsSteamingIntoWind() then
             env.info("Recovery opening at Minute " .. current_minute)
             start_recovery73()
-            trigger.action.setUserFlag(502, true) -- lights on
+            trigger.action.setUserFlag("501", true) -- lights on
           end
         end
       end
@@ -334,8 +335,12 @@ if GROUP:FindByName("CVN-73") then
           create_extend_recovery_menu()
         else
           remove_extend_recovery_menu()
-          ArcoWash:Stop()
-          trigger.action.setUserFlag(501, true)
+          if ArcoWash:IsRunning() then
+            ArcoWash:Stop()
+          end
+          if trigger.misc.getUserFlag("501") == true then
+            trigger.action.setUserFlag("501", false)
+          end
         end
       end
     end, {}, 120, 240)
@@ -656,13 +661,3 @@ MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE I", CV73_admin_menu, s
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE II", CV73_admin_menu, setCaseII)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE III", CV73_admin_menu, setCaseIII)
 MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Auto-set Carrier ATIS", CV73_admin_menu, autoSetCarrierAtis)
-
-
-
-
-
-
-
-
-
-
