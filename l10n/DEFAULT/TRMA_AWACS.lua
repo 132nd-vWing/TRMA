@@ -74,7 +74,6 @@ end
 -- Menu command to list active AWACS
 list_active_AWACS = MENU_MISSION_COMMAND:New("List Active AWACS", awacs_menu, AWACS_active)
 
-AWACSpawn(1)
 AWACSpawn(3)
 
 

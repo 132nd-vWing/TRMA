@@ -235,7 +235,7 @@ if GROUP:FindByName("CVN-73") then
     local ArcoWash = RECOVERYTANKER:New(CVN_73_beacon_unit, "CVN73_Tanker#IFF:5327FR")
     ArcoWash:SetAltitude(10000)
     ArcoWash:SetTACAN(64, 'SH1')
-    ArcoWash:SetRadio(142.5)
+    ArcoWash:SetRadio(282.5)
     ArcoWash:SetUnlimitedFuel(true)
     ArcoWash:SetTakeoffAir()
 
