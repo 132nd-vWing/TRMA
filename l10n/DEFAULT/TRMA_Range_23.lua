@@ -246,7 +246,24 @@ local function flag_46()
   MessageToAll("SCUD Hunt Scenario with IADS at Range 23 activated")
 end
 
+-- SAT SME and EX GREEN SHIELD
+local function flag_22()
+  start_EXGS_Course_r23:Remove()
+  trigger.action.setUserFlag(22, true)
+  MessageToAll("Range 23 EX GREEN SHIELD activated")
+end
+
+local function flag_23()
+  start_SME_SAT_Course_r23:Remove()
+  trigger.action.setUserFlag(23, true)
+  MessageToAll("Range 23 SME SAT Course activated")
+end
+
 -- Initialize the spawn command
 start_sams_r23 = MENU_MISSION_COMMAND:New("Spawn SAM Sites at Range 23", range_23_menu_root, start_sam_sites_R23)
 start_SCUD_HUNT_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario at Range 23", range_23_menu_root, flag_40)
 start_SCUD_HUNT_IADS_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scenario with IADS at Range 23", range_23_menu_root, flag_46)
+start_SME_SAT_Course_r23 = MENU_MISSION_COMMAND:New("Activate SME SAT course in range 23", range_23_menu_root, flag_23)
+start_EXGS_Course_r23 = MENU_MISSION_COMMAND:New("Activate EX GREEN SHIELD in range 23", range_23_menu_root, flag_22)
+
+
