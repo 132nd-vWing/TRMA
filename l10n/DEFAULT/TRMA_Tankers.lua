@@ -13,6 +13,7 @@ local tankerTemplates = {
   {name = "AR401 #IFF:5401FR", spawnMenuText = "Spawn Red TANKER AR401", despawnMenuText = "Despawn Red TANKER AR401", menuGroup = "RED"},
   {name = "AR402 #IFF:5402FR", spawnMenuText = "Spawn Red TANKER AR402", despawnMenuText = "Despawn Red TANKER AR402", menuGroup = "RED"},
   {name = "AR403 #IFF:5403FR", spawnMenuText = "Spawn Red TANKER AR403", despawnMenuText = "Despawn Red TANKER AR403", menuGroup = "RED"},
+  {name = "AR404 #IFF:5404FR", spawnMenuText = "Spawn Red TANKER AR404", despawnMenuText = "Despawn Red TANKER AR404", menuGroup = "RED"},
   {name = "AR501 #IFF:5501FR", spawnMenuText = "Spawn Red TANKER AR501", despawnMenuText = "Despawn Red TANKER AR501", menuGroup = "RED"},
   {name = "AR502 #IFF:5502FR", spawnMenuText = "Spawn Red TANKER AR502", despawnMenuText = "Despawn Red TANKER AR502", menuGroup = "RED"},
   {name = "AR503 #IFF:5503FR", spawnMenuText = "Spawn Red TANKER AR503", despawnMenuText = "Despawn Red TANKER AR503", menuGroup = "RED"}
