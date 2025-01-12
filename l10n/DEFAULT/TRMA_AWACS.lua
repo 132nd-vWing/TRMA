@@ -3,6 +3,8 @@ local activeAWACS = {}
 local AWACSMenus = {}
 local AWACSTemplates = {
   {name = "FOCUS #IFF:5602FR", spawnMenuText = "Spawn Red AWACS FOCUS", despawnMenuText = "Despawn Red AWACS FOCUS", menuGroup = "RED"},
+  {name = "FOCUS2 #IFF:5604FR", spawnMenuText = "Spawn Red AWACS FOCUS2", despawnMenuText = "Despawn Red AWACS FOCUS2", menuGroup = "RED"},
+  {name = "FOCUS3 #IFF:5605FR", spawnMenuText = "Spawn Red AWACS FOCUS3", despawnMenuText = "Despawn Red AWACS FOCUS3", menuGroup = "RED"},
   {name = "WIZARD #IFF:5601FR", spawnMenuText = "Spawn Red AWACS WIZARD", despawnMenuText = "Despawn Red AWACS WIZARD", menuGroup = "RED"},
   {name = "DARKSTAR #IFF:5612FR", spawnMenuText = "Spawn Blue AWACS Darkstar", despawnMenuText = "Despawn Blue AWACS Darkstar", menuGroup = "BLUE"},
   {name = "MAGIC #IFF:5611FR", spawnMenuText = "Spawn Blue AWACS MAGIC", despawnMenuText = "Despawn Blue AWACS MAGIC ", menuGroup = "BLUE"},
