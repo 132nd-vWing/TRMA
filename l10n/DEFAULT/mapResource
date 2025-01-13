@@ -32,5 +32,5 @@ mapResource =
     ["ResKey_Action_401"] = "skynet-iads-setup-TRMA_R23_EX_Green_Shield.lua",
     ["ResKey_Action_402"] = "TRMA_Range_15_AR.lua",
     ["ResKey_Action_403"] = "TRMA_Range_24.lua",
-    ["ResKey_Action_404"] = "Moose_.lua",
+    ["ResKey_Action_405"] = "Moose.lua",
 } -- end of mapResource
