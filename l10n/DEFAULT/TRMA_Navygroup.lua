@@ -299,14 +299,31 @@ if GROUP:FindByName("CVN-73") then
     end
 
 
-    local function setminute()
-      start_recovery73()
+    local function QualDay()
+      timenow = timer.getAbsTime()
+      duration_seconds = 95 * 60
+      timeend = timenow + duration_seconds -- Initialize timeend
+
+      -- Calculate the recovery start and end times as clock strings
+      timerecovery_start = UTILS.SecondsToClock(timenow,false)
+      timerecovery_end = UTILS.SecondsToClock(timeend,false)
+
+      if CVN73:IsSteamingIntoWind() then
+        return
+        -- Do nothing if already steaming into the wind
+      else
+        -- Turn into the wind for recovery
+        CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
+        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
+        ArcoWash:Start()
+        create_extend_recovery_menu() -- Create the extend recovery menu option
+      end
       trigger.action.setUserFlag("501", true)
     end
 
 
     -- Nest Debug and Extend Recovery under CVN-73 Admin
-    MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug: Start Cycle Manually", CV73_admin_menu, setminute)
+    MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Qualification Day (Start 90-Min Cycle now)", CV73_admin_menu, QualDay)
 
     -- Scheduler to Check Time and Start Recovery if Necessary
     SCHEDULER:New(nil, function()
