@@ -364,9 +364,7 @@ if GROUP:FindByName("CVN-73") then
 
     local function CarrierInfo()
       local heading = math.floor(CVN_73_beacon_unit:GetHeading() + 0.5)
-      local windData = CVN73:GetWind(24)
-      local windDirection = math.floor(windData)
-      local windSpeedMps = (windData - windDirection) * 1000000
+      local windDirection, windSpeedMps = CVN73:GetWind(24)  -- Correct usage
       local windSpeedKnots = UTILS.MpsToKnots(windSpeedMps)
 
       if CVN73:IsSteamingIntoWind() then
@@ -375,24 +373,28 @@ if GROUP:FindByName("CVN-73") then
         local windSpeedOverDeckKnots = windSpeedKnots + carrierSpeedKnots
         local fb = (brc - 9) % 360
 
-        -- If fb becomes negative, add 360 to bring it back into the 0-360 range
         if fb < 0 then
           fb = fb + 360
         end
-        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end..". CASE "..weatherInfo.carrier_case.." in Effect")
+
+        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end .. ". CASE " .. weatherInfo.carrier_case .. " in Effect")
         BroadcastMessageToZone("BRC is " .. brc)
         BroadcastMessageToZone("FB is " .. fb)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind over deck is from %d degrees at %.1f knots", windDirection, windSpeedOverDeckKnots))
       else
-        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute..". Expect CASE "..weatherInfo.carrier_case)
+        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute .. ". Expect CASE " .. weatherInfo.carrier_case)
         BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
         BroadcastMessageToZone(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
       end
-      BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
+
+      -- removed the atis message until fixed
+      -- BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
     end
+
     -- Top Level: CVN-73 Carrier Information
     MENU_COALITION_COMMAND:New(coalition.side.BLUE, "CVN-73 Carrier Information", carrier_root_menu, CarrierInfo)
+
   end
 end
 
