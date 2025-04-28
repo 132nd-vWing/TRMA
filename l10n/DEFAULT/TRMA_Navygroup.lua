@@ -6,8 +6,8 @@ local extensions = 0
 local CV73_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 Admin", carrier_root_menu)
 
 -- Recovery Window Parameters
-RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts
-RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open
+RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts 20 default
+RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open  35 default
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
 local offset = 0   --this is the offset for the CASEIII Marshall radial
 
@@ -245,15 +245,15 @@ if GROUP:FindByName("CVN-73") then
     -- Function to Extend Recovery
     function extend_recovery73()
       extensions = extensions +1
+      extendduration = 5 * 60
       env.info("Old cycle was " .. timerecovery_start .. " until " .. timerecovery_end)
-      timeend = timeend + 5 * 60 -- Extend time by 5 minutes
+      timeend = timeend + extendduration
       timerecovery_start = UTILS.SecondsToClock(timenow,false)
       timerecovery_end = UTILS.SecondsToClock(timeend, false)
+      
       if CVN73:IsSteamingIntoWind() then
         env.info("New cycle is " .. timerecovery_start .. " until " .. timerecovery_end)
-        CVN73:ClearTasks()
-        CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-
+        CVN73:ExtendTurnIntoWind(extendduration)
         BroadcastMessageToZone("Current cycle extended by 5 minutes, new cycle end will be " .. timerecovery_end)
       else
         BroadcastMessageToZone("CVN-73 is not steaming into wind, cannot extend recovery window")
@@ -299,7 +299,7 @@ if GROUP:FindByName("CVN-73") then
     end
 
 
-    local function QualDay()
+    function QualDay()
       timenow = timer.getAbsTime()
       duration_seconds = 95 * 60
       timeend = timenow + duration_seconds -- Initialize timeend
@@ -309,12 +309,14 @@ if GROUP:FindByName("CVN-73") then
       timerecovery_end = UTILS.SecondsToClock(timeend,false)
 
       if CVN73:IsSteamingIntoWind() then
-        return
-        -- Do nothing if already steaming into the wind
+        CVN73:ExtendTurnIntoWind(duration_seconds)
+        BroadcastMessageToZone("Qual Day, current cycle extended by 95 Minutes. Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
+        create_extend_recovery_menu() -- Create the extend recovery menu option
+
       else
         -- Turn into the wind for recovery
         CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
+        BroadcastMessageToZone("Qual Day, CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
         ArcoWash:Start()
         create_extend_recovery_menu() -- Create the extend recovery menu option
       end
@@ -516,7 +518,7 @@ function displayQueue()
   -- Define the base values
   local adjusted_stackdistance = 21
   local adjusted_stackangels = 6
-  local base_pushtime = RecoveryStartatMinute + 10
+  local base_pushtime = RecoveryStartatMinute + 5
 
   -- Calculate reciprocalFB based on wind direction
   CVN73:GetCoordinate()
