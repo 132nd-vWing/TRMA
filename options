@@ -18,8 +18,10 @@ options =
 		["f5_nearest_ac"] = true,
 		["F2_view_effects"] = 1,
 		["launcher"] = true,
-		["backupTime"] = 5,
 		["allow_server_screenshots"] = true,
+		["mgrs_grid_visible"] = true,
+		["backupTime"] = 5,
+		["geo_grid_visible"] = false,
 		["force_feedback_enabled"] = true,
 	}, -- end of ["miscellaneous"]
 	["difficulty"] = 
@@ -147,17 +149,10 @@ options =
 	}, -- end of ["graphics"]
 	["plugins"] = 
 	{
-		["CA"] = 
+		["Su-25T"] = 
 		{
-			["kompass_options"] = 1,
-			["ground_aim_helper"] = true,
-			["ground_platform_shake"] = true,
-			["ground_target_info"] = true,
-			["ground_isometric"] = true,
-			["ground_engine_autostart"] = true,
-			["ground_automatic"] = true,
-			["automatic_clutch"] = true,
-		}, -- end of ["CA"]
+			["CPLocalList"] = "default",
+		}, -- end of ["Su-25T"]
 		["UltraLeap"] = 
 		{
 			["handOffsetY"] = 0,
@@ -208,44 +203,6 @@ options =
 			["tacviewRemoteControlPassword"] = "",
 			["tacviewExportPath"] = "",
 		}, -- end of ["Tacview"]
-		["F-16C"] = 
-		{
-			["hmdEye"] = 1,
-			["CPLocalList"] = "default",
-			["rollForceStickGradient"] = 1,
-			["abDetent"] = 0,
-			["canopyReflections"] = 0,
-			["pitchDeadzoneValue"] = 4.375,
-			["rollDeadzoneValue"] = 5.9,
-			["mfdReflections"] = 0,
-			["canopyTint"] = 1,
-			["pitchForceStickGradient"] = 1,
-		}, -- end of ["F-16C"]
-		["DCS-SRS"] = 
-		{
-			["srsOverlayHelpTextEnabled"] = false,
-			["srsOverlayEnabled"] = false,
-			["srsAutoLaunchEnabled"] = true,
-			["srsOverlayCompactModeEnabled"] = false,
-		}, -- end of ["DCS-SRS"]
-		["Su-25T"] = 
-		{
-			["CPLocalList"] = "default",
-		}, -- end of ["Su-25T"]
-		["VRFree"] = 
-		{
-			["handUseThrottle"] = false,
-			["handUseStick"] = false,
-			["set_debug"] = false,
-			["enable"] = false,
-			["mouseClickSrc"] = 0,
-		}, -- end of ["VRFree"]
-		["TF-51D"] = 
-		{
-			["assistance"] = 100,
-			["CPLocalList"] = "default",
-			["autoRudder"] = false,
-		}, -- end of ["TF-51D"]
 		["CaptoGlove"] = 
 		{
 			["fingerPinkyBentRight"] = "0",
@@ -309,6 +266,51 @@ options =
 			["gloveRotationRoll_Right"] = 0,
 			["fingerPinkyBentLeft"] = "0",
 		}, -- end of ["CaptoGlove"]
+		["DCS-SRS"] = 
+		{
+			["srsOverlayHelpTextEnabled"] = false,
+			["srsOverlayEnabled"] = false,
+			["srsAutoLaunchEnabled"] = true,
+			["srsOverlayCompactModeEnabled"] = false,
+		}, -- end of ["DCS-SRS"]
+		["CA"] = 
+		{
+			["kompass_options"] = 1,
+			["ground_aim_helper"] = true,
+			["ground_platform_shake"] = true,
+			["ground_target_info"] = true,
+			["ground_isometric"] = true,
+			["ground_engine_autostart"] = true,
+			["ground_automatic"] = true,
+			["automatic_clutch"] = true,
+		}, -- end of ["CA"]
+		["VRFree"] = 
+		{
+			["handUseThrottle"] = false,
+			["handUseStick"] = false,
+			["set_debug"] = false,
+			["enable"] = false,
+			["mouseClickSrc"] = 0,
+		}, -- end of ["VRFree"]
+		["TF-51D"] = 
+		{
+			["assistance"] = 100,
+			["CPLocalList"] = "default",
+			["autoRudder"] = false,
+		}, -- end of ["TF-51D"]
+		["F-16C"] = 
+		{
+			["hmdEye"] = 1,
+			["CPLocalList"] = "default",
+			["rollForceStickGradient"] = 1,
+			["abDetent"] = 0,
+			["canopyReflections"] = 0,
+			["pitchDeadzoneValue"] = 4.375,
+			["rollDeadzoneValue"] = 5.9,
+			["mfdReflections"] = 0,
+			["canopyTint"] = 1,
+			["pitchForceStickGradient"] = 1,
+		}, -- end of ["F-16C"]
 		["LotAtc"] = 
 		{
 			["enable"] = false,
@@ -320,25 +322,24 @@ options =
 	{
 		["main_output"] = "{0.0.0.00000000}.{525d84a5-89be-4a2b-82cf-c3cef1c7a899}",
 		["FakeAfterburner"] = true,
-		["voiceChatInVolume"] = 50,
 		["volume"] = 52,
 		["headphones_on_external_views"] = true,
-		["voiceChatInSensitivity"] = -50,
 		["subtitles"] = true,
+		["voiceChatInVolume"] = 50,
 		["world"] = 10,
 		["hear_in_helmet"] = false,
-		["music"] = 0,
-		["headphones"] = 87,
-		["main_layout"] = "",
 		["hp_output"] = "{0.0.0.00000000}.{525d84a5-89be-4a2b-82cf-c3cef1c7a899}",
+		["music"] = 0,
+		["main_layout"] = "",
+		["headphones"] = 87,
 		["cockpit"] = 66,
 		["voice_chat_output"] = "",
 		["voice_chat"] = false,
-		["radioSpeech"] = false,
 		["GBreathEffect"] = true,
+		["radioSpeech"] = false,
 		["switches"] = 100,
 		["play_audio_while_minimized"] = false,
-		["use_turn_servers"] = false,
+		["voiceChatInSensitivity"] = -50,
 		["microphone_use"] = 2,
 		["voice_chat_input"] = "{0.0.1.00000000}.{04677cc0-928d-4db8-94ec-fbb7c77dc214}",
 		["gui"] = 60,
