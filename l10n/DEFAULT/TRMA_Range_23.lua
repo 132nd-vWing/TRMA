@@ -13,6 +13,8 @@ function start_sam_sites_R23()
 
   -- Create an instance of the IADS
   redIADS = SkynetIADS:create('R23_IADS')
+  -- Export the IADS instance globally so that other scripts (e.g., advanced scramble logic) can access it.  Without this assignment the IADS variable remains local to this file and cannot be referenced from separate modules.  See issue #43 TRMA Github for details.
+  _G.redIADS_R23 = redIADS
 
 
   -- Define the table with static SAM templates
