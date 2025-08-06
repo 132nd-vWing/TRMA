@@ -1,5 +1,9 @@
 dictionary = 
 {
+    ["DictKey_ActionRadioText_425"] = "Activate scenario units",
+    ["DictKey_ActionRadioText_426"] = "Activate scenario units",
+    ["DictKey_ActionRadioText_427"] = "Start friendly column",
+    ["DictKey_ActionRadioText_428"] = "Start friendly column",
     ["DictKey_ActionText_22"] = "TO: JTAC\
 FROM: MORTAR\
 \
