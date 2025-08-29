@@ -14,7 +14,6 @@ mapResource =
     ["ResKey_Action_149"] = "radio_sound.wav",
     ["ResKey_Action_152"] = "skynet-iads-setup-TRMA_R23_ARMY.lua",
     ["ResKey_Action_167"] = "R17_AR_Armored_Brigade.lua",
-    ["ResKey_Action_169"] = "TRMA_Range_17.lua",
     ["ResKey_Action_176"] = "skynet-iads-setup-TRMA_R23_IADS.lua",
     ["ResKey_Action_183"] = "TRMA_Range_23.lua",
     ["ResKey_Action_185"] = "TRMA_Range_34.lua",
@@ -33,5 +32,7 @@ mapResource =
     ["ResKey_Action_403"] = "TRMA_Range_24.lua",
     ["ResKey_Action_408"] = "skynet-iads-setup-TRMA_R23_2FLUG.lua",
     ["ResKey_Action_423"] = "TRMA_Navygroup.lua",
-    ["ResKey_Action_429"] = "Moose_.lua",
+    ["ResKey_Action_430"] = "TRMA_Range_33-dev.lua",
+    ["ResKey_Action_434"] = "TRMA_Range_17.lua",
+    ["ResKey_Action_435"] = "Moose_.lua",
 } -- end of mapResource

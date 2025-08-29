@@ -6,7 +6,14 @@ local function range17_flag101()
   MessageToAll("R17 AR scenario Armored Brigade activated")
 end
 
+local function range17_flag102()
+  range_17_menu_StrikeDefenses:Remove()
+  trigger.action.setUserFlag(102, true)
+  MessageToAll("R17 Air Defenses at Strike Target activated")
+end
 range_17_menu_ARscenario_ArmoredBrigade = MENU_MISSION_COMMAND:New("Activate AR scenario Armored Brigade",range_17_menu_root,range17_flag101)
+range_17_menu_StrikeDefenses = MENU_MISSION_COMMAND:New("Activate Airdefenses at Range 17 Strike Targets",range_17_menu_root,range17_flag102)
+
 
 
 
