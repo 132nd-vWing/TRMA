@@ -34,5 +34,4 @@ mapResource =
     ["ResKey_Action_423"] = "TRMA_Navygroup.lua",
     ["ResKey_Action_434"] = "TRMA_Range_17.lua",
     ["ResKey_Action_435"] = "Moose_.lua",
-    ["ResKey_Action_436"] = "TRMA_Range_33_dev.lua",
 } -- end of mapResource
