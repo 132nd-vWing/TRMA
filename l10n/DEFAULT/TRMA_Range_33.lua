@@ -91,11 +91,13 @@ local function a2a()
     end
   end
   -- Spawn the flight group using the selected template
-  local spawna2a = SPAWN:New(template)
+  local alias = template .. "-" .. tostring(math.random(100000))
+  local spawna2a = SPAWN:NewWithAlias(template, alias)
   spawna2a:InitLimit(3, 0)
   spawna2a:InitSkill("Average")
   spawna2a:InitGrouping(number)
   spawna2a:InitSpeedKnots(500)
+  spawna2a:InitRandomizeCallsign()
   spawna2a:OnSpawnGroup(flightgroup)
   spawna2a:SpawnInZone(zoneOrbit, true, 10000, 11000)
 end
