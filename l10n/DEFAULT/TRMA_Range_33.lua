@@ -54,11 +54,11 @@ local function a2a()
 
   local function flightgroup(group)
     local a2a = FLIGHTGROUP:New(group)
-    local mission_racetrack = AUFTRAG:NewORBIT_RACETRACK(zoneOrbit:GetRandomCoordinate(), 26000, 300, 110, 20)
+    local mission_racetrack = AUFTRAG:NewORBIT_RACETRACK(zoneOrbit:GetRandomCoordinate(), math.random(20000, 30000), 300, 110, 20)
     if mode == "BFM" then
-      a2a:SetEngageDetectedOn(20, {"Air"}, setCAP)
+      a2a:SetEngageDetectedOn(40, {"Air"}, setCAP)
     else
-      a2a:SetEngageDetectedOn(60, {"Air"}, setCAP)
+      a2a:SetEngageDetectedOn(185, {"Air"}, setCAP)
     end
     a2a:SetCheckZones(setRangeviolation)
     a2a:AddMission(mission_racetrack)
@@ -80,9 +80,9 @@ local function a2a()
             inzoneOrbit = true
             env.info(a2a:GetName().." resumed CAP station in Range 33, scanning for Targets")
             if mode == "BFM" then 
-              a2a:SetEngageDetectedOn(20, {"Air"}, setCAP)
+              a2a:SetEngageDetectedOn(40, {"Air"}, setCAP)
             else
-              a2a:SetEngageDetectedOn(60, {"Air"}, setCAP)
+              a2a:SetEngageDetectedOn(185, {"Air"}, setCAP)
             end
             env.info("reset, fight's on")
           end
