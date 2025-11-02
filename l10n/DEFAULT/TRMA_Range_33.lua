@@ -1,69 +1,115 @@
--- local variables
-local zoneCAP = ZONE_POLYGON:New("zoneCAP",GROUP:FindByName("r23_engagezone"))
-local zoneOrbit = ZONE_POLYGON:New("zoneOrbit",GROUP:FindByName("r23_patrolzone"))
-local zoneRangeViolation = ZONE_POLYGON:New("zoneRangeViolation",GROUP:FindByName("r23_range_violation"))
-
+-- R33 A2A 1.5
+-- engagement zone definition
+local zoneCAP = ZONE_POLYGON:New("zoneCAP",GROUP:FindByName("R33_engagezone"))
 local setCAP = SET_ZONE:New()
-local setRangeviolation= SET_ZONE:New()
-local setOrbit = SET_ZONE:New()
-
 setCAP:AddZone(zoneCAP)
-setRangeviolation:AddZone(zoneRangeViolation)
-setRangeviolation:AddZone(zoneOrbit)
 
--- Defaul spawn group and config store
-local aaConfig = { 
-  mode = "BVR",
-  airframe = "MIG29A", 
-  size = 2
+-- violation zone definition
+local zoneRangeViolation = ZONE_POLYGON:New("zoneRangeViolation",GROUP:FindByName("R33_range_violation")) 
+
+-- patrol/spawn zone definition
+local patrolZones = {
+  ZONE_POLYGON:New("R33_patrolzone", GROUP:FindByName("R33_patrolzone")),
+  ZONE_POLYGON:New("R33_patrolzone_2", GROUP:FindByName("R33_patrolzone_2")),
+  ZONE_POLYGON:New("R33_patrolzone_3", GROUP:FindByName("R33_patrolzone_3"))
 }
-local aaRandom = 0
+local zoneOrbit = patrolZones[1]  -- default spawnzone
+
+local aaMode = "BVR" -- or "BFM"
+
+-- Airframes in mission
 local airframes = {
-  "MIG21",
+  "MIG23",
   "MIG29A",
-  "MIG29S",
-  "MIG31",
-  "SU27"
+  "SU30",
+  "JF17",
+  "MIG25",
+  "SU27",
+  "J11A",
+  "MIG31"
 }
 
-local function a2a()
-  
-  MESSAGE:New(string.format("R33: Spawning %s %s %d",aaConfig.mode, aaConfig.airframe, aaConfig.size))
+-- Default spawn group and config store
+local aaConfig = { 
+  airframe = "JF17", 
+  size = 2,
+  patrolzone = "RANDOM", -- options: RANDOM, 1, 2, 3
+  random = false -- true = airframe and flight size
+}
+-- === Preset A2A group definitions ===
+local presets = {
+  {
+    airframe = "MIG23",
+    size = 2, 
+    zone = 3
+  },
+  {
+    airframe = "MIG29A",
+    size = 2, 
+    zone = 1
+  },
+  {
+    airframe = "SU30",
+    size = 2, 
+    zone = 2
+  } 
+}
 
-  -- find mode, airframe, size
-  local mode = aaConfig.mode
-  local template
-  local number
+local function a2a(airframe, size, zone)
+  local mode = aaMode
 
-  if aaRandom == 1 then 
-    template = string.format("Drone_Aggressor_%s", airframes[math.random(#airframes)])
-    number = math.random(1, 4)
-    aaRandom = 0
-  else 
-    template = string.format("Drone_Aggressor_%s", aaConfig.airframe)
-    number = aaConfig.size
+  -- select airframe and size
+  if aaConfig.random then 
+    airframe = airframes[math.random(#airframes)]
+    size = math.random(1,4)
+  else
+    airframe = airframe or aaConfig.airframe
+    size = size or aaConfig.size
   end
-    
-  if aaConfig.mode == "BFM" then 
+
+  -- select patrol zone
+  if zone then 
+    zoneIndex = tonumber(zone)
+  elseif aaConfig.random or aaConfig.patrolzone == "RANDOM" then
+    zoneIndex = math.random(#patrolZones)
+  else 
+    zoneIndex = tonumber(aaConfig.patrolzone)
+  end
+  
+  local zoneOrbit = patrolZones[zoneIndex]
+
+  -- set range violation zones. 
+  local setRangeviolation = SET_ZONE:New()
+  setRangeviolation:AddZone(zoneRangeViolation)
+  setRangeviolation:AddZone(zoneOrbit)
+ 
+  -- build template
+  local template = string.format("Drone_Aggressor_%s", airframe)
+  if mode == "BFM" then 
     template = template.."_BFM"
   end
 
-  if template == "Drone_Aggressor_MIG31_BFM" then
-    template = "Drone_Aggressor_MIG21_BFM" -- switch MIG31 BFM to MIG21
+  -- send message
+  local zoneLabel = string.format("Zone %d", zoneIndex)
+  if aaConfig.random then 
+    MESSAGE:New(string.format( "R33: Spawning random CAP flight." ), 10):ToAll()
+  else
+    MESSAGE:New(string.format( "R33: Spawning %s %s %d-ship in %s.", mode, airframe, size, zoneLabel ), 10):ToAll()
   end
 
   local function flightgroup(group)
     local a2a = FLIGHTGROUP:New(group)
     local mission_racetrack = AUFTRAG:NewORBIT_RACETRACK(zoneOrbit:GetRandomCoordinate(), math.random(20000, 30000), 300, 110, 20)
+    
     if mode == "BFM" then
       a2a:SetEngageDetectedOn(40, {"Air"}, setCAP)
     else
       a2a:SetEngageDetectedOn(185, {"Air"}, setCAP)
     end
+    
     a2a:SetCheckZones(setRangeviolation)
     a2a:AddMission(mission_racetrack)
     env.info(group:GetName().." entering racetrack CAP station in Range 33")
-
 
     function a2a:OnAfterDetectedGroupNew(From,Event,To,Group)
       env.info(a2a:GetName().." detected Target "..Group:GetName())
@@ -95,7 +141,7 @@ local function a2a()
   local spawna2a = SPAWN:NewWithAlias(template, alias)
   spawna2a:InitLimit(3, 0)
   spawna2a:InitSkill("Average")
-  spawna2a:InitGrouping(number)
+  spawna2a:InitGrouping(size)
   spawna2a:InitSpeedKnots(500)
   spawna2a:InitRandomizeCallsign()
   spawna2a:OnSpawnGroup(flightgroup)
@@ -105,67 +151,77 @@ end
 -- Menu references
 local r33Menu
 
--- Show current config - not required as its in the menu item now. 
-local function showConfig()
-  MESSAGE:New(string.format("R33 AA set to: %s %s %s-ship.", aaConfig.mode, aaConfig.airframe, aaConfig.size),10):ToAll()
-end
-
 -- Build the whole menu system
 local function BuildAAMenu()
   if r33Menu then r33Menu:Remove() end
   r33Menu = MENU_MISSION:New("Range 33", range_root_menu31_34)
 
-  -- Show Config
-  MENU_MISSION_COMMAND:New("Show Config", r33Menu, showConfig)
 
-  -- === Mode Menu ===
-  local modeMenu = MENU_MISSION:New("Set Engagement Mode", r33Menu)
-
+  -- Mode Menu
+  local modeMenu = MENU_MISSION:New(string.format("Engagement Mode (%s)", aaMode), r33Menu)
   for _, mode in ipairs({"BVR", "BFM"}) do
-    MENU_MISSION_COMMAND:New(mode, modeMenu, function()
-      if aaConfig.airframe == "MIG31" and mode == "BFM" then
-        MESSAGE:New("BFM against MIG31 not supported.", 10):ToAll()
-      else
-        aaConfig.mode = mode
-        BuildAAMenu()
-        --showConfig()
-      end
+    local display = (mode == aaMode) and (mode .. " ★") or mode
+    MENU_MISSION_COMMAND:New(display, modeMenu, function()
+      aaMode = mode
+      BuildAAMenu()
     end)
   end
 
-  -- === Airframe Menu ===
-  local airframeMenu = MENU_MISSION:New("Set Airframe", r33Menu)
-
-  for _, name in ipairs(airframes) do
-    MENU_MISSION_COMMAND:New(name, airframeMenu, function()
-      if aaConfig.mode == "BFM" and name == "MIG31" then
-        MESSAGE:New("BFM against MIG31 not supported.", 10):ToAll()
-      else
-        aaConfig.airframe = name
-        BuildAAMenu()
-        --showConfig()
-      end
+  -- Preset Spawns
+  for _, preset in ipairs(presets) do
+    local display = string.format("Preset %d-ship %s", preset.size, preset.airframe)
+    MENU_MISSION_COMMAND:New(display, r33Menu, function()
+      a2a(preset.airframe, preset.size, preset.zone)
     end)
   end
 
-  -- === Size Menu ===
-  local sizeMenu = MENU_MISSION:New("Set Flight Size", r33Menu)
+  -- custom Spawn
+  local customLabel = string.format("Custom %d-ship %s", aaConfig.size, aaConfig.airframe)
+  MENU_MISSION_COMMAND:New(customLabel, r33Menu, function()
+    a2a()
+  end)
+  
+  -- custom config menu
+  local configMenu = MENU_MISSION:New("Configure Custom Group", r33Menu)
+
+  -- Group Size
+  local sizeMenu = MENU_MISSION:New("Set Flight Size", configMenu)
   for i = 1, 4 do
-    MENU_MISSION_COMMAND:New(i.."-ship", sizeMenu, function()
+    local display = (i == aaConfig.size) and (i .. "-ship ★") or (i .. "-ship")
+    MENU_MISSION_COMMAND:New(display, sizeMenu, function()
       aaConfig.size = i
       BuildAAMenu()
-      --showConfig()
     end)
   end
 
-  -- === Spawn Menu Item ===
-  local spawnTitle = string.format("Spawn %s %s %d-ship", aaConfig.mode, aaConfig.airframe, aaConfig.size)
-  MENU_MISSION_COMMAND:New(spawnTitle, r33Menu, a2a)
-  MENU_MISSION_COMMAND:New(string.format("Spawn random %s Cap flight",aaConfig.mode), r33Menu, function()
-    aaRandom = 1
-    a2a()  
-  end)
+  -- Airframe Menu
+  local airframeMenu = MENU_MISSION:New("Set Airframe", configMenu)
+  for _, name in ipairs(airframes) do
+    local display = (name == aaConfig.airframe) and (name .. " ★") or name
+    MENU_MISSION_COMMAND:New(display, airframeMenu, function()
+      aaConfig.airframe = name
+      BuildAAMenu()
+    end)
+  end
 
+  -- Patrol Zone Menu
+  local patrolMenu = MENU_MISSION:New("Set Patrol Zone", configMenu)
+  for _, label in ipairs({"RANDOM", "1", "2", "3"}) do
+    local display = (label == aaConfig.patrolzone) and
+                    ((label == "RANDOM") and "Random ★" or ("Zone " .. label .. " ★")) or
+                    ((label == "RANDOM") and "Random" or ("Zone " .. label))
+    MENU_MISSION_COMMAND:New(display, patrolMenu, function()
+      aaConfig.patrolzone = label
+      BuildAAMenu()
+    end)
+
+    -- Random Spawn
+    MENU_MISSION_COMMAND:New(string.format("Spawn random %s Cap flight", aaMode), r33Menu, function()
+      aaConfig.random = true
+      a2a()
+      aaConfig.random = false 
+    end)
+  end
 end
 
 -- Initial build
