@@ -348,8 +348,12 @@ options =
 	{
 		["cockpit"] = 
 		{
-			["mirrors"] = false,
 			["reflections"] = true,
+			["mirrorsSequentialRendering"] = false,
+			["avionicsMFDEveryFrame"] = false,
+			["mirrors"] = false,
+			["mirrorsEveryFrame"] = false,
+			["mirrorsResolution"] = 1,
 			["avionics"] = 3,
 		}, -- end of ["cockpit"]
 	}, -- end of ["views"]
