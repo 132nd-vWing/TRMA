@@ -170,3 +170,25 @@ MENU_MISSION_COMMAND:New("Deactivate IADS", range_24_iads_menu, deactivateIADS)
 -- The entire functionality is now integrated under "Range 24" 
 -- within the "RANGES 19-24" menu.
 ----------------------------------------------------------------
+
+----------------------------------------------------------------
+-- Range 24: Scenarios (Armored Brigade via flag120)
+----------------------------------------------------------------
+-- Assumes that 'range_24_menu_root' is already defined earlier in this file.
+
+local function activateArmoredBrigade()
+  -- Set flag120 = 1 to trigger DO SCRIPT FILE (TRMA_R24_AR_Armored_Brigade.lua) in the .miz
+  trigger.action.setUserFlag("120", 1)
+  MESSAGE:New("Range 24: Armored Brigade — activation requested (Flag 120 set).", 10):ToAll()
+
+  -- Reset the flag after 1 second so the same menu option can be used again
+  timer.scheduleFunction(function()
+    trigger.action.setUserFlag("120", 0)
+  end, {}, timer.getTime() + 1)
+end
+
+-- Add menu
+local range_24_scenarios_menu = MENU_MISSION:New("Scenarios", range_24_menu_root)
+MENU_MISSION_COMMAND:New("Activate Armored Brigade (Flag 120)", range_24_scenarios_menu, activateArmoredBrigade)
+MENU_MISSION_COMMAND:New("Deactivate Armored Brigade (Flag 120)", range_24_scenarios_menu, deactivateArmoredBrigade)
+
