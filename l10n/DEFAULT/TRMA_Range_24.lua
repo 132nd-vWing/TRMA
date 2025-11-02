@@ -171,24 +171,82 @@ MENU_MISSION_COMMAND:New("Deactivate IADS", range_24_iads_menu, deactivateIADS)
 -- within the "RANGES 19-24" menu.
 ----------------------------------------------------------------
 
-----------------------------------------------------------------
--- Range 24: Scenarios (Armored Brigade via flag120)
-----------------------------------------------------------------
--- Assumes that 'range_24_menu_root' is already defined earlier in this file.
 
-local function activateArmoredBrigade()
-  -- Set flag120 = 1 to trigger DO SCRIPT FILE (TRMA_R24_AR_Armored_Brigade.lua) in the .miz
-  trigger.action.setUserFlag("120", 1)
-  MESSAGE:New("Range 24: Armored Brigade — activation requested (Flag 120 set).", 10):ToAll()
+----------------------------------------------------------------
+-- Range 24: AR Scenario - Armored Brigade (Flag 120)
+----------------------------------------------------------------
 
-  -- Reset the flag after 1 second so the same menu option can be used again
+-- Create Range 24 root menu (assumes range_root_menu19_24 already exists)
+range_24_menu_root = MENU_MISSION:New("Range 24", range_root_menu19_24)
+
+------------------------------------------------------------
+-- ACTIVATE Armored Brigade
+------------------------------------------------------------
+local function range24_flag120()
+  -- Remove the activation menu to prevent repeated activation
+  range_24_menu_ARscenario_ArmoredBrigade_Activate:Remove()
+
+  -- Set user flag 120 to trigger DO SCRIPT FILE (TRMA_R24_AR_Armored_Brigade.lua)
+  trigger.action.setUserFlag(120, true)
+
+  -- Inform all players
+  MessageToAll("R24 AR scenario Armored Brigade activated")
+
+  -- Reset flag after 1 second (allows reuse if desired)
   timer.scheduleFunction(function()
-    trigger.action.setUserFlag("120", 0)
+    trigger.action.setUserFlag(120, false)
   end, {}, timer.getTime() + 1)
 end
 
--- Add menu
-local range_24_scenarios_menu = MENU_MISSION:New("Scenarios", range_24_menu_root)
-MENU_MISSION_COMMAND:New("Activate Armored Brigade (Flag 120)", range_24_scenarios_menu, activateArmoredBrigade)
-MENU_MISSION_COMMAND:New("Deactivate Armored Brigade (Flag 120)", range_24_scenarios_menu, deactivateArmoredBrigade)
+range_24_menu_ARscenario_ArmoredBrigade_Activate = MENU_MISSION_COMMAND:New(
+  "Activate AR scenario Armored Brigade",
+  range_24_menu_root,
+  range24_flag120
+)
 
+------------------------------------------------------------
+-- DEACTIVATE Armored Brigade
+------------------------------------------------------------
+local function range24_deactivateArmoredBrigade()
+  -- List of all possible unit group names from the scenario
+  local allGroups = {
+    -- Primary (3)
+    "R24_Artillery_battery_1","R24_Artillery_battery_2","R24_Artillery_battery_3",
+    -- Additional (12)
+    "R24_armored_company_1","R24_armored_company_2","R24_armored_company_3","R24_armored_company_4",
+    "R24_armored_company_5","R24_armored_company_6","R24_armored_company_7","R24_armored_companyy_8",
+    "R24_armored_company_9","R24_armored_company_10","R24_armored_company_11","R24_armored_company_12",
+    -- Optional (3)
+    "R24_Surface_surface_BN","R24_Rocket_artillery_BN","R24_Heavy_Rocket_artillery_BN"
+  }
+
+  local countTotal, countDeactivated = #allGroups, 0
+  for _, name in ipairs(allGroups) do
+    local grp = Group.getByName(name)
+    if grp and grp:isExist() then
+      trigger.action.deactivateGroup(grp)
+      countDeactivated = countDeactivated + 1
+    end
+  end
+
+  MessageToAll(string.format(
+    "R24 AR scenario Armored Brigade deactivated (%d of %d groups).",
+    countDeactivated, countTotal
+  ))
+
+  -- Optionally re-add the activation menu so it can be used again
+  range_24_menu_ARscenario_ArmoredBrigade_Activate = MENU_MISSION_COMMAND:New(
+    "Activate AR scenario Armored Brigade",
+    range_24_menu_root,
+    range24_flag120
+  )
+
+  -- Remove this deactivate menu to keep menu clean
+  range_24_menu_ARscenario_ArmoredBrigade_Deactivate:Remove()
+end
+
+range_24_menu_ARscenario_ArmoredBrigade_Deactivate = MENU_MISSION_COMMAND:New(
+  "Deactivate AR scenario Armored Brigade",
+  range_24_menu_root,
+  range24_deactivateArmoredBrigade
+)
