@@ -10,7 +10,7 @@ local primaryGroups = {
 -- List of 12 additional groups
 local additionalGroups = {
     "R24_armored_company_1", "R24_armored_company_2", "R24_armored_company_3", "R24_armored_company_4", "R24_armored_company_5", "R24_armored_company_6",
-    "R24_armored_company_7", "R24_armored_companyy_8", "R24_armored_company_9", "R24_armored_company_10", "R24_armored_company_11", "R24_armored_company_12"
+    "R24_armored_company_7", "R24_armored_company_8", "R24_armored_company_9", "R24_armored_company_10", "R24_armored_company_11", "R24_armored_company_12"
 }
 
 -- List of the optional groups (one or none will be chosen)
