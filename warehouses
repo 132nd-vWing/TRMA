@@ -1650,7 +1650,7 @@ warehouses =
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
 		}, -- end of [423]
-		[1961] = 
+		[436] = 
 		{
 			["allowHotStart"] = false,
 			["unlimitedMunitions"] = true,
@@ -1684,7 +1684,7 @@ warehouses =
 			["weapons"] = {},
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
-		}, -- end of [1961]
+		}, -- end of [436]
 		[2272] = 
 		{
 			["allowHotStart"] = false,
@@ -1755,7 +1755,7 @@ warehouses =
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
 		}, -- end of [3495]
-		[436] = 
+		[1961] = 
 		{
 			["allowHotStart"] = false,
 			["unlimitedMunitions"] = true,
@@ -1789,7 +1789,7 @@ warehouses =
 			["weapons"] = {},
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
-		}, -- end of [436]
+		}, -- end of [1961]
 		[1960] = 
 		{
 			["allowHotStart"] = false,
