@@ -1,684 +1,861 @@
--- Carrier Control Menu
-local carrier_root_menu = MENU_MISSION:New("Carrier Control")
-local case3stack = {}
-local extensions = 0
--- Create Admin Menu
-local CV73_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 Admin", carrier_root_menu)
+------------------------------------------------------------------
+-- CARRIER SCRIPT rev 3.6 (marshal alpha)
+------------------------------------------------------------------
+env.info("[Carrier Ops] Script loading 3.6")
 
--- Recovery Window Parameters
-RecoveryStartatMinute = 20 -- Minute at every hour when recovery starts 20 default
-RecoveryDuration = 35  -- Duration in Minutes for Recovery Window to stay open  35 default
-local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart()
-local offset = 0   --this is the offset for the CASEIII Marshall radial
+------------------------------------------------------------------
+-- CONFIGURATION / CONSTANTS
+------------------------------------------------------------------
+local debug = false
 
-local CVN_73_beacon_unit = UNIT:FindByName("CVN-73")
+local RecoveryStartMinute = 25        -- 20 Real-World Cycle Start minute
+local RecoveryDuration = 32           -- 32 cycle duration minutes
+local RecoveryOpenOffset = 5          -- 5  window open offset 
+local RecoveryCloseOffset = 30        -- 30 window close offset
+local RecoveryTurnOutOffset = 32      -- 32 ship turnout offset (marshal reset)
 
--- Define MarshallZone
-local MarshallZone = ZONE_UNIT:New("MarshallZone", CVN_73_beacon_unit, UTILS.NMToMeters(60))
+local HPA_TO_INHG   = 0.02953
+local MMHG_TO_HPA   = 1.33322
+local MPS_TO_KNOTS  = 1.94384
+local MAGVAR_EAST_DEG = 4             -- Static magvar; TRMA 4, OPAC 10
 
--- Function to broadcast messages to players in the Marshall Zone
+------------------------------------------------------------------
+-- GLOBAL TABLES / STATE
+------------------------------------------------------------------
+local carrier_info = { weather = {}, ship = {}, recovery= {}, marshal= { stack = {}, assigned_minutes = {} } } 
+
+local carrier_name = "CVN-73"         -- DCS unit name (unit, not group)
+local tanker_name = "CVN73_Tanker#IFF:5327FR" -- DCS tanker unit name
+
+local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
+local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn the carrier
+local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone
+local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- capture spawned clients
+
+local recovery_tanker = nil
+local carrier_root_menu = nil  
+local carrier_admin_menu = nil
+local cycle_extend_menu = nil
+-- local carrier_lights_menu = nil
+
+------------------------------------------------------------------
+-- HELPERS
+------------------------------------------------------------------
+
+-- Broadcaster to clients within Marshal Zone
 local function BroadcastMessageToZone(message)
-  clients:ForEachClientInZone(MarshallZone, function(client)
+  if not marshal_zone then return end
+
+  clients:ForEachClientInZone(marshal_zone, function(client)
     MESSAGE:New(message, 15):ToClient(client)
   end)
 end
 
+-- Logs
+local function log(message) env.info("[Carrier Ops] " .. message) end
 
--- ================================= Carrier ATIS ===================================
+-- Magvar for East offset
+local function trueToMag(true_deg) return (true_deg - MAGVAR_EAST_DEG) % 360 end
 
--- atis_weather --
-local atis_weather = {}
-
--- Constants
-local HPA_TO_INHG = 0.02953
-local MMHG_TO_HPA = 1.33322
-local MPS_TO_KNOTS = 1.94384
-
--- Function to log messages to DCS log
-local function log(message)
-  env.info("[ATIS Weather] " .. message)
-end
-
--- Function to get QNH (hPa and inHg)
+-- QNH (mmHg -> hPa -> inHg)
 local function getQNH(weather)
-  local mmHg = weather.qnh or 762.762  -- Use provided QNH or default to 762.762 mmHg
-
-  -- Convert mmHg to hPa
-  local qnh_hpa = mmHg * MMHG_TO_HPA
-  log("RAW QNH: " .. mmHg .. " mmHg (" .. qnh_hpa .. " hPa)")
-
-  -- Convert hPa to inHg
-  local qnh_inhg = qnh_hpa * HPA_TO_INHG  -- Convert hPa to inHg
-  log("Converted QNH: " .. qnh_hpa .. " hPa (" .. qnh_inhg .. " inHg)")
-
+  local mmHg     = weather.qnh or 762.762
+  local qnh_hpa  = mmHg * MMHG_TO_HPA
+  local qnh_inhg = qnh_hpa * HPA_TO_INHG
   return qnh_hpa, qnh_inhg
 end
 
--- Function to get wind data at ground level from DCS weather
+-- Wind at ground
 local function getWindDataAtGroundLevel(weather)
-  local wind_data = weather.wind.atGround  -- Get ground-level wind data
-
-  local wind_speed_mps = wind_data.speed  -- Wind speed in meters per second
-  local wind_direction = wind_data.dir  -- Wind direction in degrees
-
-  log("Ground-level Wind Direction: " .. wind_direction .. " degrees")
-  log("Ground-level Wind Speed: " .. wind_speed_mps .. " m/s")
-
-  -- Convert wind speed from meters per second to knots
-  local wind_speed_knots = wind_speed_mps * MPS_TO_KNOTS
-
-  return wind_direction, wind_speed_knots
+  local wind_data     = weather.wind.atGround
+  local wind_speed_mps= wind_data.speed
+  local wind_to_true  = wind_data.dir
+  local wind_from_true= (wind_to_true + 180) % 360
+  local wind_speed_kn = wind_speed_mps * MPS_TO_KNOTS
+  return trueToMag(wind_from_true), wind_speed_kn
 end
 
--- Function to calculate temperature at a specific altitude
-local function getTemperatureAtAltitude(weather, altitude)
-  local sea_level_temperature = weather.season.temperature or 15  -- Default to 15°C if not provided
-  local lapse_rate = 6.5  -- Standard lapse rate in °C per 1000 meters
-  local temperature_at_altitude = sea_level_temperature - (lapse_rate * (altitude / 1000))
-  return temperature_at_altitude
+-- UTC time
+local function getUtcEpoch()
+  return os.time(os.date("!*t"))
+end
+
+-- Sun times checker DCS does wierd things for sunrise/sunset
+local function IsValidClockString(t)
+  return type(t) == "string" and t:match("^%d%d:%d%d:%d%d$")
+end
+
+-- Next Recovery Window
+local function nextRecoveryStartup()
+  local now = getUtcEpoch()
+  local t = os.date("!*t", now)
+  t.min, t.sec = RecoveryStartMinute, 0
+
+  local start_utc = os.time(t)
+  if start_utc <= now then start_utc = start_utc + 3600 end
+
+  local r = carrier_info.recovery
+  r.state         = "IDLE"
+  r.start_utc     = start_utc
+  r.end_utc       = start_utc + RecoveryDuration * 60
+  r.open_utc      = start_utc + RecoveryOpenOffset * 60
+  r.close_utc     = start_utc + RecoveryCloseOffset * 60
+  r.turnout_utc   = start_utc + RecoveryTurnOutOffset * 60
+  r.open_reported = false
+  r.close_reported= false
 end
 
 
--- Function to get weather data and determine carrier case (Case 1, 2, or 3)
-function atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, altitude)
-  log("Getting weather data at altitude: " .. altitude .. " meters")
+------------------------------------------------------------------
+-- CARRIER ENVIRONMENT (weather, ship data)
+------------------------------------------------------------------
 
-  local weather = env.mission.weather  -- Access mission weather data
-  log("Weather data retrieved from mission")
+local function updateCarrierWeather()
+  if not carrier_unit or not carrier_unit:IsAlive() then return end
 
-  -- Get cloud base (in meters)
-  local cloud_base = weather.clouds.base or 0  -- Cloud base altitude in meters
-  log("Cloud Base: " .. cloud_base .. " meters")
-
-  -- Initialize visibility (in meters)
-  local visibility = weather.visibility.distance or 0  -- Base visibility in meters
-  log("Base Visibility: " .. visibility .. " meters")
-
-  -- Check for fog conditions
+  local weather = env.mission.weather
+  local qnh_hpa, qnh_inhg = getQNH(weather)
+  local wind_dir_mag, wind_speed_knots = getWindDataAtGroundLevel(weather)
+  local cloud_base = weather.clouds.base or 0
+  local visibility = weather.visibility.distance or 0
   if weather.fog and weather.fog.thickness > 0 then
-    local fog_visibility = weather.fog.visibility or 0  -- Fog visibility
-    visibility = math.min(visibility, fog_visibility)  -- Adjust visibility based on fog
-    log("Fog detected. Fog Visibility: " .. fog_visibility .. " meters. Adjusted visibility: " .. visibility .. " meters")
-  else
-    log("No fog detected.")
+    local fog_vis = weather.fog.visibility or 0
+    visibility = math.min(visibility, fog_vis)
   end
 
-  -- Check for precipitation (rain) conditions
-  local rain = ""
-  if weather.precipitation then
-    log("Precipitation data found: " .. tostring(weather.precipitation))
-    if type(weather.precipitation) == "number" and weather.precipitation > 0 then
-      rain = "Rain Detected"
-      log("Rain detected with intensity (as number): " .. weather.precipitation)
-    elseif type(weather.precipitation) == "table" and weather.precipitation.value and weather.precipitation.value > 0 then
-      rain = "Rain Detected"
-      visibility = math.min(visibility, weather.precipitation.value * 1000)  -- Adjust visibility based on precipitation intensity
-      log("Rain detected with intensity (as table): " .. weather.precipitation.value .. ". Adjusted visibility: " .. visibility .. " meters")
+  -- Daylight at boat
+  local coord = carrier_unit:GetCoordinate()
+  local sunrise_raw = coord:GetSunrise()
+  local sunset_raw = coord:GetSunset()
+  local missionDate = env.mission.date
+  local month = missionDate.Month
+  local isNight
+  local now = timer.getAbsTime() % 86400
+  local sunrise_ok = IsValidClockString(sunrise_raw)
+  local sunset_ok  = IsValidClockString(sunset_raw)
+
+  if not sunrise_ok or not sunset_ok then
+    -- Polar or undefined sun state
+    if month == 6 or month == 7 or month == 8 then
+      isNight = false
+    elseif month == 11 or month == 12 or month == 1 then
+      isNight = true
     else
-      rain = "No Rain"
-      log("No precipitation detected or intensity is 0.")
+      isNight = false
     end
   else
-    rain = "No Rain"
-    log("No precipitation field in weather data.")
+    local sunrise = UTILS.ClockToSeconds(sunrise_raw)
+    local sunset  = UTILS.ClockToSeconds(sunset_raw)
+
+    local night_start = sunset + 1800
+    local night_end   = sunrise - 1800
+    isNight = (now >= night_start) or (now <= night_end)
   end
 
-  -- Get wind data at ground level
-  local wind_direction, wind_speed_knots = getWindDataAtGroundLevel(weather)
-
-  -- Calculate temperature at the given altitude
-  local temperature = getTemperatureAtAltitude(weather, altitude)
-  log("Temperature: " .. temperature .. "°C")
-
-  -- Get QNH and correct for temperature
-  local qnh_hpa, qnh_inhg = getQNH(weather, altitude)
-  log(string.format("Corrected QNH: %.2f hPa (%.2f inHg)", qnh_hpa, qnh_inhg))
-
-  -- Determine the carrier case based on cloud base, visibility, and fog
+  -- CASE logic
   local carrier_case
-  local carrierpos = carrier_unit:GetCoordinate()
-  if cloud_base > 914 and visibility > 9260 then
-    carrier_case = "I"  -- Clear conditions for visual landings
-    if carrierpos:IsDay() then
-    else carrier_case = "III"  -- override CASE I with CASE III at nighttime
-    end
-  elseif cloud_base >= 305 and cloud_base <= 914 and visibility > 9260 then
-    carrier_case = "II"  -- Cloud base is lower, but visibility is sufficient
-    if carrierpos:IsDay() then
-    else carrier_case = "III"  -- override CASE II with CASE III at nighttime
-    end
-
+  if isNight then
+    carrier_case = "III"
+  elseif cloud_base > 914 and visibility > 9260 then  -- >3000ft >5nm
+    carrier_case = "I"
+  elseif cloud_base >= 305 and cloud_base <= 914 and visibility > 9260 then -- 1000-3000ft >5nm
+    carrier_case = "II"
   else
-    carrier_case = "III"  -- Poor visibility or low cloud base requires IFR
+    carrier_case = "III"
   end
-  log("Carrier Case: " .. carrier_case)
 
-  return {
-    cloud_base = cloud_base,      -- Cloud base in meters
-    visibility = visibility,      -- Adjusted visibility in meters
-    wind_speed = wind_speed_knots,      -- Wind speed in knots
-    wind_direction = wind_direction,  -- Wind direction in degrees
-    temperature = temperature,    -- Temperature in Celsius
-    qnh_hpa = qnh_hpa,            -- QNH in hPa
-    qnh_inhg = qnh_inhg,          -- QNH in inHg
-    carrier_case = carrier_case,   -- Carrier case (Case 1, 2, or 3)
-    rain = rain                   -- Rain information
+  -- Weather info update
+  carrier_info.weather = {
+    cloud_base    = cloud_base,
+    visibility    = visibility,
+    vis_report    = visibility >= 10000 and "10+ km" or (visibility >= 1000 and string.format("%d km", math.floor(visibility / 1000)) or string.format("%d meters", visibility)),
+    wind_dir      = wind_dir_mag,
+    wind_speed    = wind_speed_knots,
+    temperature   = weather.season.temperature or 15,
+    qnh_hpa       = qnh_hpa,
+    qnh_inhg      = qnh_inhg,
+    case          = carrier_case,
   }
+
+  if debug then 
+    log(string.format(
+      "WeatherInfo: gt=%s | sunrise=%s | sunset=%s | case=%s | cloud=%s | vis=%s | wind_dir=%s | wind_spd=%s",
+      UTILS.SecondsToClock(now),
+      sunrise_raw,
+      sunset_raw,
+      tostring(carrier_case),
+      tostring(cloud_base), 
+      tostring(visibility),
+      tostring(wind_dir_mag), 
+      tostring(wind_speed_knots)
+    ))
+  end
 end
 
--- Function to return the formatted ATIS message as a string
-function atis_weather.getATISMessage(weatherInfo)
-  -- Determine visibility display
-  local qnh_hpa_rounded = math.floor(weatherInfo.qnh_hpa + 0.5)
-  local visibility_display
-  if weatherInfo.visibility >= 10000 then
-    visibility_display = "10+ km"
-  elseif weatherInfo.visibility >= 1000 then
-    visibility_display = string.format("%d km", math.floor(weatherInfo.visibility / 1000))
-  else
-    visibility_display = string.format("%d meters", weatherInfo.visibility)
-  end
+local function updateCarrierInfo()
+  if not carrier_unit or not carrier_unit:IsAlive() then return end
 
-  return string.format(
-    "ATIS Info:\nCloud Base: %d meters\nVisibility: %s\nWind: %.1f knots from %.0f°\nTemperature: %.1f°C\nQNH: %.2f inHg (%d hPa)\nCarrier Case: %s",
-    weatherInfo.cloud_base,
-    visibility_display,
-    weatherInfo.wind_speed,
-    weatherInfo.wind_direction,
-    weatherInfo.temperature,
-    weatherInfo.qnh_inhg,
-    qnh_hpa_rounded,
-    weatherInfo.carrier_case
+  local heading_mag = trueToMag(math.floor(carrier_unit:GetHeading() + 0.5))
+  local speed_knots  = carrier_unit:GetVelocityKNOTS()
+  local brc_mag = trueToMag(math.floor(carrier_navygroup:GetHeadingIntoWind(0, 25) + 0.5))
+  local fb_mag  = (brc_mag - 9 + 360) % 360  
+
+  -- Ship data update
+  carrier_info.ship = {
+    heading_mag    = heading_mag,
+    speed_knots    = speed_knots,
+    brc_mag        = brc_mag,
+    fb_mag         = fb_mag,
+    wind_over_deck = (carrier_info.weather.wind_speed or 0) + speed_knots,
+  }
+ 
+  if debug then 
+    log(string.format(
+      "CarrierInfo: state=%s | start=%s | open=%s | close=%s | end=%s | turnout=%s",
+      tostring(carrier_info.recovery.state),
+      os.date("!%H:%M:%S", carrier_info.recovery.start_utc),
+      os.date("!%H:%M:%S", carrier_info.recovery.open_utc),
+      os.date("!%H:%M:%S", carrier_info.recovery.close_utc),
+      os.date("!%H:%M:%S", carrier_info.recovery.end_utc), 
+      os.date("!%H:%M:%S", carrier_info.recovery.turnout_utc)
+    ))
+  end
+end
+
+------------------------------------------------------------------
+-- RECOVERY CYCLE CONTROL (UTC driven) 
+------------------------------------------------------------------
+
+-- Trigger MOOSE turnintowind mission.
+local function startRecoveryCycle()
+  local timenow = timer.getAbsTime()
+  local duration = RecoveryDuration * 60
+  local timeend  = timenow + duration
+
+  -- Turn into wind 
+  carrier_navygroup:AddTurnIntoWind(
+    UTILS.SecondsToClock(timenow, false),
+    UTILS.SecondsToClock(timeend, false),
+    25, true
   )
+
 end
 
--- ================================= Carrier ATIS ===================================
-
-
-
--- Assuming CVN73 is your carrier unit in MOOSE
-local carrier_name = "CVN-73"
-local carrier_unit = UNIT:FindByName(carrier_name)  -- MOOSE unit object
-
-if carrier_unit then
-  weatherInfo = atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, 0)  -- Get weather at ground level (0 meters)
-end
-
-
-local CVN73 = NAVYGROUP:New("CVN-73")
-CVN73:SetPatrolAdInfinitum()
-CVN73:Activate()
-
-function CVN73:OnAfterTurnIntoWindStop(From,Event,To)
-  env.info("Cylce Stopped")
-end
-
-function CVN73:OnAfterTurnIntoWindStop(Eventdata)
-  env.info("Cylce Stopped")
-end
-
-if GROUP:FindByName("CVN-73") then
-  trigger.action.setUserFlag("501", false) -- switch lights off on the Carrier at Mission Start
-
-  if CVN_73_beacon_unit then
-    local CVN_73_Beacon = CVN_73_beacon_unit:GetBeacon()
-    CVN_73_beacon_unit:CommandActivateLink4(331, nil, "A73", 5)
-    CVN_73_beacon_unit:CommandActivateACLS(nil, "A73", 5)
-    CVN_73_beacon_unit:CommandSetFrequency(309.5)
-    CVN_73_Beacon:ActivateICLS(13, "I73")
-    CVN_73_Beacon:ActivateTACAN(13, "X", "T73", true)
-    CVN_73_beacon_unit:CommandSetFrequency(309.5) -- Set Carrier Frequency
-    CVN_73_beacon_unit:SetSpeed(UTILS.KnotsToMps(16), true)
-    env.info("Carrier Unit is " .. CVN_73_beacon_unit:GetName())
-
-    -- Define Recovery Tanker
-    local ArcoWash = RECOVERYTANKER:New(CVN_73_beacon_unit, "CVN73_Tanker#IFF:5327FR")
-    ArcoWash:SetAltitude(10000)
-    ArcoWash:SetTACAN(64, 'SH1')
-    ArcoWash:SetRadio(282.5)
-    ArcoWash:SetUnlimitedFuel(true)
-    ArcoWash:SetTakeoffAir()
-
-    -- Initialize the menu command variable
-    local extend_recovery_menu_command = nil
-
-    -- Function to Extend Recovery
-    function extend_recovery73()
-      extensions = extensions +1
-      extendduration = 5 * 60
-      env.info("Old cycle was " .. timerecovery_start .. " until " .. timerecovery_end)
-      timeend = timeend + extendduration
-      timerecovery_start = UTILS.SecondsToClock(timenow,false)
-      timerecovery_end = UTILS.SecondsToClock(timeend, false)
-      
-      if CVN73:IsSteamingIntoWind() then
-        env.info("New cycle is " .. timerecovery_start .. " until " .. timerecovery_end)
-        CVN73:ExtendTurnIntoWind(extendduration)
-        BroadcastMessageToZone("Current cycle extended by 5 minutes, new cycle end will be " .. timerecovery_end)
-      else
-        BroadcastMessageToZone("CVN-73 is not steaming into wind, cannot extend recovery window")
-      end
-    end
-
-    -- Function to create the extend recovery menu option
-    function create_extend_recovery_menu()
-      if extend_recovery_menu_command == nil then
-        extend_recovery_menu_command =  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend current recovery window by 5 Minutes", CV73_admin_menu, extend_recovery73)
-
-      end
-    end
-
-    -- Function to remove the extend recovery menu option
-    function remove_extend_recovery_menu()
-      if extend_recovery_menu_command then
-        extend_recovery_menu_command:Remove()
-        extend_recovery_menu_command = nil
-      end
-    end
-
-    -- Function to Start Scheduled Recovery
-    function start_recovery73()
-      timenow = timer.getAbsTime()
-      duration_seconds = RecoveryDuration * 60
-      timeend = timenow + duration_seconds -- Initialize timeend
-
-      -- Calculate the recovery start and end times as clock strings
-      timerecovery_start = UTILS.SecondsToClock(timenow,false)
-      timerecovery_end = UTILS.SecondsToClock(timeend,false)
-
-      if CVN73:IsSteamingIntoWind() then
-        return
-        -- Do nothing if already steaming into the wind
-      else
-        -- Turn into the wind for recovery
-        CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
-        ArcoWash:Start()
-        create_extend_recovery_menu() -- Create the extend recovery menu option
-      end
-    end
-
-
-    function QualDay()
-      timenow = timer.getAbsTime()
-      duration_seconds = 95 * 60
-      timeend = timenow + duration_seconds -- Initialize timeend
-
-      -- Calculate the recovery start and end times as clock strings
-      timerecovery_start = UTILS.SecondsToClock(timenow,false)
-      timerecovery_end = UTILS.SecondsToClock(timeend,false)
-
-      if CVN73:IsSteamingIntoWind() then
-        CVN73:ExtendTurnIntoWind(duration_seconds)
-        BroadcastMessageToZone("Qual Day, current cycle extended by 95 Minutes. Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
-        create_extend_recovery_menu() -- Create the extend recovery menu option
-
-      else
-        -- Turn into the wind for recovery
-        CVN73:AddTurnIntoWind(timerecovery_start, timerecovery_end, 25, true)
-        BroadcastMessageToZone("Qual Day, CVN-73 is turning, Recovery Window open from " .. timerecovery_start .. " until " .. timerecovery_end .. ". Expect CASE " .. weatherInfo.carrier_case)
-        ArcoWash:Start()
-        create_extend_recovery_menu() -- Create the extend recovery menu option
-      end
-      trigger.action.setUserFlag("501", true)
-    end
-
-
-    -- Nest Debug and Extend Recovery under CVN-73 Admin
-    MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Qualification Day (Start 90-Min Cycle now)", CV73_admin_menu, QualDay)
-
-    -- Scheduler to Check Time and Start Recovery if Necessary
-    SCHEDULER:New(nil, function()
-      if CVN_73_beacon_unit then
-        local current_minute = tonumber(os.date('%M'))
-
-        if current_minute == 0 + (extensions*5) then
-          clearMarshallQueue()
-          extensions = 0
-        end
-
-        if current_minute == RecoveryStartatMinute then
-          if not CVN73:IsSteamingIntoWind() then
-            env.info("Recovery opening at Minute " .. current_minute)
-            start_recovery73()
-            trigger.action.setUserFlag("501", true) -- lights on
-          end
-        end
-      end
-    end, {}, 1, 30)
-
-    -- Scheduler to Manage Recovery State
-    SCHEDULER:New(nil, function()
-      if CVN_73_beacon_unit then
-        if CVN73:IsSteamingIntoWind() then
-          create_extend_recovery_menu()
-        else
-          remove_extend_recovery_menu()
-          if ArcoWash:IsRunning() then
-            ArcoWash:Stop()
-          end
-          if trigger.misc.getUserFlag("501") == true then
-            trigger.action.setUserFlag("501", false)
-          end
-        end
-      end
-    end, {}, 120, 240)
-
-    local function CarrierInfo()
-      local heading = math.floor(CVN_73_beacon_unit:GetHeading() + 0.5)
-      local windDirection, windSpeedMps = CVN73:GetWind(24)  -- Correct usage
-      local windSpeedKnots = UTILS.MpsToKnots(windSpeedMps)
-
-      if CVN73:IsSteamingIntoWind() then
-        local brc = math.floor(CVN73:GetHeadingIntoWind(0, 25) + 0.5)
-        local carrierSpeedKnots = CVN_73_beacon_unit:GetVelocityKNOTS()
-        local windSpeedOverDeckKnots = windSpeedKnots + carrierSpeedKnots
-        local fb = (brc - 9) % 360
-
-        if fb < 0 then
-          fb = fb + 360
-        end
-
-        BroadcastMessageToZone("CVN-73 is recovering, from " .. timerecovery_start .. " until " .. timerecovery_end .. ". CASE " .. weatherInfo.carrier_case .. " in Effect")
-        BroadcastMessageToZone("BRC is " .. brc)
-        BroadcastMessageToZone("FB is " .. fb)
-        BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
-        BroadcastMessageToZone(string.format("Wind over deck is from %d degrees at %.1f knots", windDirection, windSpeedOverDeckKnots))
-      else
-        BroadcastMessageToZone("CVN-73 is currently not recovering. Next Cyclic Ops Window start at Minute " .. RecoveryStartatMinute .. ". Expect CASE " .. weatherInfo.carrier_case)
-        BroadcastMessageToZone("Current Heading of the Carrier is " .. heading)
-        BroadcastMessageToZone(string.format("Wind is from %d degrees at %.1f knots", windDirection, windSpeedKnots))
-      end
-
-      -- removed the atis message until fixed
-      -- BroadcastMessageToZone(atis_weather.getATISMessage(weatherInfo))
-    end
-
-    -- Top Level: CVN-73 Carrier Information
-    MENU_COALITION_COMMAND:New(coalition.side.BLUE, "CVN-73 Carrier Information", carrier_root_menu, CarrierInfo)
-
-  end
-end
-
--- Create CASE II/III Marshall Menu
-local caseIII_menu = MENU_COALITION:New(coalition.side.BLUE, "CVN-73 CASE II/III Marshall", carrier_root_menu)
-
--- Create menus for Panthers and Spectres bort number ranges
-local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", caseIII_menu)
-local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", caseIII_menu)
-
--- Initialize tables to store submenu references for Panthers and Spectres
-local panthers_submenus = {}
-local spectres_submenus = {}
-
--- Initialize case3stack table to store bort numbers as a queue
-add_commands = {}
-
-function removeBortFromMarshall(flight_num, range_menu)
-  local index_to_remove = nil
-  for i, bort in ipairs(case3stack) do
-    if bort == flight_num then
-      index_to_remove = i
-      break
-    end
-  end
-
-  if index_to_remove then
-    table.remove(case3stack, index_to_remove)
-    BroadcastMessageToZone("Flight " .. flight_num .. " removed from Marshall")
-
-    -- Renumber the remaining entries in the stack
-    for i, bort in ipairs(case3stack) do
-      displayQueue()
-    end
-  end
-
-  -- Remove the "remove" menu entry and recreate the "add" menu option
-  if add_commands[flight_num] then
-    add_commands[flight_num]:Remove()  -- Explicitly remove the "remove" command
-    add_commands[flight_num] = nil  -- Clear the reference
-  end
-
-  if range_menu then
-    local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-      addBortToMarshall(flight_num, range_menu)
-    end)
-    add_commands[flight_num] = add_command  -- Store the add command for later reference
-  end
-end
-
-
-function addBortToMarshall(flight_num, range_menu)
-  -- Add the flight to the marshall queue
-  table.insert(case3stack, flight_num)
-  displayQueue()
-
-  -- Remove the "add" menu entry for this bort number (from add_commands table)
-  if add_commands[flight_num] then
-    add_commands[flight_num]:Remove()  -- Explicitly remove the "add" command
-    add_commands[flight_num] = nil  -- Clear the reference
-  end
-
-  -- Create a "remove" option in the same place within the specific range submenu
-  local remove_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " remove from CASE III Marshall Queue", range_menu, function()
-    removeBortFromMarshall(flight_num, range_menu)
-  end)
-
-  -- Store the remove command in a table if needed (optional)
-  add_commands[flight_num] = remove_command
-end
-
-
--- Function to create bort number menu
-local function createBortMenu(start_num, end_num, parent_menu, submenu_table)
-  -- Create a range menu under the parent menu
-  local range_menu = MENU_COALITION:New(coalition.side.BLUE, tostring(start_num) .. "-" .. tostring(end_num), parent_menu)
-
-  -- Store the reference to the range menu in the submenu table
-  submenu_table[start_num .. "-" .. end_num] = range_menu
-
-  for flight_num = start_num, end_num do
-    -- Create the "add to queue" menu option for each bort number directly under the range menu
-    local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-      addBortToMarshall(flight_num, range_menu)
-    end)
-    -- Store the add command in the table for later removal
-    add_commands[flight_num] = add_command
-  end
-end
-
-local function recreateAddMenuForRange(flight_num, submenu_table)
-  for _, submenu in ipairs(submenu_table) do
-    if flight_num >= submenu.start_num and flight_num <= submenu.end_num then
-      local range_menu = submenu.menu
-
-      -- Check if the range_menu exists and directly use it, no need for GetSubMenuByName
-      if range_menu then
-        -- Create the "add to queue" menu option
-        local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-          addBortToMarshall(flight_num, range_menu)
-        end)
-
-        -- Store the add command in the table for later removal
-        add_commands[flight_num] = add_command
-      else
-        env.warning("Range menu not found for flight range " .. submenu.start_num .. "-" .. submenu.end_num)
-      end
-    end
-  end
-end
-
-
-function displayQueue()
-  if #case3stack == 0 then
-    BroadcastMessageToZone("No flights currently in Marshall queue")
+-- Add extension to existing MOOSE mission
+local function extendRecoveryCycle(minutes)
+  if not carrier_info.recovery.end_utc then
+    if debug then log("No active recovery cycle to extend.") end
     return
   end
 
-  -- Define the base values
-  local adjusted_stackdistance = 21
-  local adjusted_stackangels = 6
-  local base_pushtime = RecoveryStartatMinute + 5
+  local extension_seconds = minutes * 60
 
-  -- Calculate reciprocalFB based on wind direction
-  CVN73:GetCoordinate()
-  local windData = CVN73:GetWind(24)
-  local carierpos = CVN73:GetCoordinate()
-  local pressure = carierpos:GetPressureText(0)
-  local windDirection = math.floor(windData)
-  local reciprocalWindDirection = (windDirection + 180) % 360
-
-  -- Calculate reciprocalFB as reciprocalWindDirection - 9 degrees + offset
-  local reciprocalFB = reciprocalWindDirection - 9 + offset
-  if reciprocalFB < 0 then
-    reciprocalFB = reciprocalFB + 360
+  if carrier_navygroup:IsSteamingIntoWind() then 
+    carrier_info.recovery.end_utc = carrier_info.recovery.end_utc + extension_seconds
+    carrier_info.recovery.close_utc = carrier_info.recovery.close_utc + extension_seconds
+    carrier_info.recovery.turnout_utc = carrier_info.recovery.turnout_utc + extension_seconds
+    carrier_navygroup:ExtendTurnIntoWind(extension_seconds)
+  
+    if debug then log("Recovery cycle extended to " .. UTILS.SecondsToClock(carrier_info.recovery.end_utc, true)) end
+  
+    BroadcastMessageToZone("99, recovery window extended to " .. UTILS.SecondsToClock(carrier_info.recovery.close_utc,true))
+  else
+    BroadcastMessageToZone("No active recovery cycle to extend.")
   end
-
-  local FB = windDirection - 9
-  if FB < 0 then
-    FB = reciprocalFB + 360
-  end
-
-  -- Initialize the queue message with the header
-  local queue_message = "Current Marshall Queue:\n"
-  queue_message = queue_message .. "Expect Final Bearing " .. FB .. ", QNH " .. pressure .. ".\n"
-
-  -- Iterate over the stack and display the information for each bort number
-  for i, bort in ipairs(case3stack) do
-    -- Determine the aircraft type based on the bort number
-    local aircraft_type = ""
-    if bort >= 300 and bort <= 399 then
-      aircraft_type = "Hornet"
-    elseif bort >= 200 and bort <= 299 then
-      aircraft_type = "Tomcat"
-    else
-      aircraft_type = "Unknown"
-    end
-
-    -- Calculate adjusted values for each position in the stack
-    local stack_distance = adjusted_stackdistance + i - 1  -- Increment distance for each position
-    local stack_angels = adjusted_stackangels + i - 1      -- Increment angels for each position
-    local pushtime = base_pushtime + i - 1                  -- Increment pushtime for each position
-
-    -- Create the message for each bort number
-    queue_message = queue_message .. aircraft_type .. " " .. bort .. ", Marshall from Mother at "
-      .. reciprocalFB .. "/" .. stack_distance
-      .. ", at Angels " .. stack_angels
-      .. ". Pushtime Minute " .. pushtime .. "\n"
-  end
-
-  -- Broadcast the constructed message
-  BroadcastMessageToZone(queue_message)
 end
 
+-- Cycle Controller
+local function recoveryHeartbeat()
+  if not carrier_unit or not carrier_unit:IsAlive() then return end
+  updateCarrierInfo()
 
--- Create a menu to display the current queue directly under CVN-73 CASE II/III Marshall
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Display the Marshall Stack", caseIII_menu, displayQueue)
+  local r = carrier_info.recovery
+  local now_utc = getUtcEpoch()
 
+  -- IDLE → TURNING_IN
+  if r.state == "IDLE" and now_utc >= r.start_utc and not r.open_reported then
+    startRecoveryCycle()
+    trigger.action.setUserFlag("502", 2) -- lights to launch AC
 
--- Create menus for Panthers and Spectres
-createBortMenu(300, 306, panthers_menu, panthers_submenus)
-createBortMenu(307, 313, panthers_menu, panthers_submenus)
-createBortMenu(314, 320, panthers_menu, panthers_submenus)
-createBortMenu(321, 327, panthers_menu, panthers_submenus)
-createBortMenu(328, 334, panthers_menu, panthers_submenus)
-createBortMenu(335, 341, panthers_menu, panthers_submenus)
+    BroadcastMessageToZone(string.format(
+      "99, %s Recovering from %s to %s zulu. Case %s. BRC %d, FB %d.",
+      carrier_unit:GetName(),
+      os.date("!%H:%M", r.open_utc),
+      os.date("!%H:%M", r.close_utc),
+      carrier_info.weather.case,
+      carrier_info.ship.brc_mag,
+      carrier_info.ship.fb_mag
+    ))  
 
-createBortMenu(200, 206, spectres_menu, spectres_submenus)
-createBortMenu(207, 213, spectres_menu, spectres_submenus)
-createBortMenu(214, 220, spectres_menu, spectres_submenus)
-createBortMenu(221, 227, spectres_menu, spectres_submenus)
+    r.open_reported = true
+    r.state = "TURNING_IN"
+    -- create extend menu
+    cycle_extend_menu = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend recovery cycle (5m)", carrier_admin_menu, function() extendRecoveryCycle(5) end )
+    log("Recovery cycle started TURNING IN")
 
-
-
-function clearMarshallQueue()
-  -- Clear the stack after removing all entries
-  for flight_num, command in pairs(add_commands) do
-    if command then
-      command:Remove()  -- Remove all current "add" commands
+    -- Launch the tanker
+    if recovery_tanker then
+      recovery_tanker:Start()
+      if debug then log("Recovery tanker launched") end
     end
   end
 
-  case3stack = {}
-  add_commands = {}
-
-  -- Recreate the "add to queue" menu options for all bort numbers in both ranges
-  for flight_num = 300, 341 do
-    local range_menu
-
-    -- Find the correct range menu based on flight number
-    if flight_num >= 300 and flight_num <= 306 then
-      range_menu = panthers_submenus["300-306"]
-    elseif flight_num >= 307 and flight_num <= 313 then
-      range_menu = panthers_submenus["307-313"]
-    elseif flight_num >= 314 and flight_num <= 320 then
-      range_menu = panthers_submenus["314-320"]
-    elseif flight_num >= 321 and flight_num <= 327 then
-      range_menu = panthers_submenus["321-327"]
-    elseif flight_num >= 328 and flight_num <= 334 then
-      range_menu = panthers_submenus["328-334"]
-    elseif flight_num >= 335 and flight_num <= 341 then
-      range_menu = panthers_submenus["335-341"]
-    end
-
-
-    if range_menu then
-      local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-        addBortToMarshall(flight_num, range_menu)
-      end)
-      add_commands[flight_num] = add_command
-    end
+  -- TURNING_IN → OPEN
+  if r.state == "TURNING_IN" and now_utc >= r.open_utc and carrier_navygroup:IsSteamingIntoWind() then
+    trigger.action.setUserFlag("502", 3) -- lights to recover AC
+    r.state = "OPEN"
+    if debug then log("Recovery state → OPEN") end
   end
 
-  for flight_num = 200, 227 do
-    local range_menu
+  -- OPEN → CLOSED
+  if r.state == "OPEN" and now_utc >= r.close_utc and not r.close_reported then
 
-    if flight_num >= 200 and flight_num <= 206 then
-      range_menu = spectres_submenus["200-206"]
-    elseif flight_num >= 207 and flight_num <= 213 then
-      range_menu = spectres_submenus["207-213"]
-    elseif flight_num >= 214 and flight_num <= 220 then
-      range_menu = spectres_submenus["214-220"]
-    elseif flight_num >= 221 and flight_num <= 227 then
-      range_menu = spectres_submenus["221-227"]
+    BroadcastMessageToZone(string.format(
+      "99, %s Recovery CLOSED at %s.",
+      carrier_unit:GetName(),
+      os.date("!%H:%M", now_utc)
+    ))
+
+    r.close_reported = true
+    r.state = "CLOSED"
+    -- remove extend menu
+    if cycle_extend_menu then
+      cycle_extend_menu:Remove()
+      cycle_extend_menu = nil
     end
-
-
-    if range_menu then
-      local add_command = MENU_COALITION_COMMAND:New(coalition.side.BLUE, flight_num .. " add to CASE III Marshall Queue", range_menu, function()
-        addBortToMarshall(flight_num, range_menu)
-      end)
-      add_commands[flight_num] = add_command
-    end
+    if debug then log("Recovery state → CLOSED") end
   end
 
-  BroadcastMessageToZone("The Marshall Queue has been cleared and menu options have been refreshed.")
+  -- CLOSED → IDLE (turn downwind)
+  if r.state == "CLOSED" and now_utc >= r.turnout_utc then
+    carrier_unit:SetSpeed(UTILS.KnotsToMps(20), true)
+    -- DCS bug, Recovery > anything needs OFF first
+    trigger.action.setUserFlag("502", 0) 
+    SCHEDULER:New(nil, function()
+      trigger.action.setUserFlag("502", 1) 
+    end, {}, 3)
 
+    -- ClearMarshalAssignments()
+    nextRecoveryStartup()
+    log("Recovery cycle complete, scheduling next window")
+  end
+end
+
+-- Forced Recovery Cycle
+local function ForceRecoveryCycle(duration_minutes)
+  local now = getUtcEpoch()
+  local duration = duration_minutes * 60
+
+  carrier_info.recovery = {
+    state = "IDLE",
+    start_utc   = now,
+    end_utc     = now + duration,
+    open_utc    = now + (RecoveryOpenOffset * 60),
+    close_utc   = now + duration - (RecoveryDuration - RecoveryCloseOffset) * 60,
+    turnout_utc = now + duration,
+
+    open_reported  = false,
+    close_reported = false,
+  }
+
+  BroadcastMessageToZone(string.format(
+    "99, Recovery override. New cycle starts NOW and runs for %d minutes.",
+    duration_minutes
+  ))
+
+  if debug then 
+    log(string.format(
+      "Manual recovery override: start=%s end=%s",
+      os.date("!%H:%M:%S", carrier_info.recovery.start_utc),
+      os.date("!%H:%M:%S", carrier_info.recovery.end_utc)
+    )) 
+  end
+end
+
+------------------------------------------------------------------
+-- CARRIER SYSTEM CONFIGURATION (ICLS/TACAN/Link-4/ACLS)
+------------------------------------------------------------------
+
+-- Carrier Emitters / lights to NAV at start
+local function configureCarrierSystems()
+  if not carrier_unit then return end
+
+  local beacon = carrier_unit:GetBeacon()
+  carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
+  carrier_unit:CommandActivateACLS(nil, "A73", 5)
+  carrier_unit:CommandSetFrequency(309.5)
+  carrier_unit:SetSpeed(UTILS.KnotsToMps(16), true)
+  trigger.action.setUserFlag("502", 1) -- lights to NAV
+
+  beacon:ActivateICLS(13, "I73")
+  beacon:ActivateTACAN(13, "X", "T73", true)
+
+  -- This is a restart to harden an MP consistency issue. 
+  SCHEDULER:New(nil, function()
+    if carrier_unit and carrier_unit:IsAlive() then
+      carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
+      carrier_unit:CommandActivateACLS(nil, "A73", 5)
+      if debug then log(carrier_unit:GetName() .. " datalinks refreshed") end
+    end
+  end, {}, 60)
+
+  if debug then log(carrier_unit:GetName() .. " systems configured") end
 end
 
 
--- Add a menu option to clear the entire marshall queue
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshall Queue", CV73_admin_menu, clearMarshallQueue)
-
-
-
-local function setCaseI()
-  weatherInfo.carrier_case = "I"
+-- Tanker setup (It's launched from carrier cycle or menu)
+local function setupRecoveryTanker()
+  if not carrier_unit then return end
+  local tanker = RECOVERYTANKER:New(carrier_unit, tanker_name)
+  tanker:SetAltitude(10000)
+  tanker:SetTACAN(64, 'SH7')
+  tanker:SetRadio(282.5)
+  tanker:SetUnlimitedFuel(true)
+  tanker:SetTakeoffAir()
+  tanker:SetCallsign(2,1)
+  recovery_tanker = tanker
 end
 
-local function setCaseII()
-  weatherInfo.carrier_case = "II"
+-- Tanker start stop menu function
+local function controlRecoveryTanker()
+  if not recovery_tanker then
+    if debug then log("Recovery tanker not define.") end
+    return
+  end
+  if recovery_tanker:IsRunning() then
+    recovery_tanker:Stop()
+    -- BroadcastMessageToZone("99, Recovery tanker off station.") 
+  else 
+    recovery_tanker:Start()
+    -- BroadcastMessageToZone("99, Recovery tanker on station.") 
+  end
 end
 
-local function setCaseIII()
-  weatherInfo.carrier_case = "III"
+-- Status report
+local function reportCarrierInformation()
+  local w = carrier_info.weather
+  local s = carrier_info.ship
+  local r = carrier_info.recovery
+
+  local lines = {}
+
+  table.insert(lines, string.format(
+    "99, %s INFORMATION",
+    carrier_unit:GetName() 
+  ))
+
+  table.insert(lines, string.format(
+    "Case %s Wind %.0f° @ %.1f kts | Visibility %s | QNH %.2f inHg",
+    w.case,
+    w.wind_dir,
+    w.wind_speed,
+    w.vis_report,
+    w.qnh_inhg
+  ))
+
+  table.insert(lines, string.format(
+    "Ship: Hdg %d°M | Spd %.1f kts | BRC %d | FB %d",
+    s.heading_mag,
+    s.speed_knots,
+    s.brc_mag,
+    s.fb_mag
+  ))
+
+  if r.state ~= "IDLE" then
+    table.insert(lines, string.format(
+      "Recovering from %s to %s zulu",
+      UTILS.SecondsToClock(r.open_utc, true):sub(1,5),
+      UTILS.SecondsToClock(r.close_utc, true):sub(1,5)
+    ))
+  else
+    table.insert(lines, string.format(
+      "Next Recovery window: %s – %s zulu",
+      UTILS.SecondsToClock(r.open_utc, true):sub(1,5),
+      UTILS.SecondsToClock(r.close_utc, true):sub(1,5)
+    ))
+  end
+
+  BroadcastMessageToZone(table.concat(lines, "\n"))
 end
 
-local function autoSetCarrierAtis()
-  weatherInfo = atis_weather.getWeatherAndCarrierCaseAtPosition(carrier_unit, 0)  -- Get weather at ground level (0 meters)
+
+
+
+
+
+
+----------------------------------------------------------------
+-- MARSHAL QUEUE
+----------------------------------------------------------------
+
+local function buildMarshalStack()
+  local radialOffsets = { 0, 15, -15, 30, -30 }
+  local angelsList    = { 6, 7, 8, 9 }
+
+  local idCounter = 1
+
+  for _, offset in ipairs(radialOffsets) do
+      for _, angels in ipairs(angelsList) do
+          
+          local slot = {
+              id            = idCounter,
+              offset        = offset,               -- radial offset
+              angles        = angels,               -- angels
+              dme           = angels + 15,          -- DME rule
+              occupant      = nil,                  -- modex/sidenumber
+              approach_time = nil                   -- assigned later
+          }
+
+          table.insert(carrier_info.marshal.stack, slot)
+          idCounter = idCounter + 1
+      end
+  end
 end
 
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE I", CV73_admin_menu, setCaseI)
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE II", CV73_admin_menu, setCaseII)
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Set CASE III", CV73_admin_menu, setCaseIII)
-MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Auto-set Carrier ATIS", CV73_admin_menu, autoSetCarrierAtis)
+local function IsMarshalRequired()
+  local c = carrier_info.weather.case
+  return c == "II" or c == "III"
+end
+
+local function FindApproachTime(carrier_info, AssignedMinutes)
+    local now = getUtcEpoch()
+
+    -- Rules
+    local min_from_now     = now + (3 * 60)
+    local min_before_open  = carrier_info.recovery.open_utc - (5 * 60)
+    local max_before_close = carrier_info.recovery.close_utc - (7 * 60)
+
+    local earliest = math.max(min_from_now, min_before_open)
+    local latest   = max_before_close
+
+    if earliest > latest then
+        return nil -- no valid times
+    end
+
+    -- Round earliest up to the next full minute
+    local t = earliest - (earliest % 60)
+
+    -- Search minute-by-minute until we hit the limit
+    while t <= latest do
+        if not AssignedMinutes[t] then
+            return t -- found a free minute
+        end
+        t = t + 60
+    end
+
+    return nil -- no free minute found
+end
+
+local function ShowMarshalStack()
+  local lines = {}
+  table.insert(lines, "MARSHAL STACK QUEUE:")
+
+    -- Collect occupied slots
+  local occupied = {}
+  for _, slot in ipairs(carrier_info.marshal.stack) do
+      if slot.occupant then
+          table.insert(occupied, slot)
+      end
+  end
+
+  -- Sort by occupant number (numeric ascending)
+  table.sort(occupied, function(a, b)
+      return tonumber(a.occupant) < tonumber(b.occupant)
+  end)
+
+  
+  for _, slot in ipairs(occupied) do
+    local actual_radial = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+    local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
+
+    table.insert(lines, string.format(
+      "%s mothers %d DME%d Angels %d approach minute %s",
+      slot.occupant,
+      actual_radial,
+      slot.dme,
+      slot.angles,
+      appr
+    ))
+  end
+
+  BroadcastMessageToZone(table.concat(lines, "\n"))
+end
+
+local function ShowMarshalInfo(sideNumber)
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        if slot.occupant == sideNumber then
+          local actual_radial = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+          local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
+
+          local text = string.format(
+              "%s marshal on mothers %03d dme %02d angels %02d approach time %s",
+              sideNumber,
+              actual_radial,
+              slot.dme,
+              slot.angles,
+              appr
+          )
+
+          BroadcastMessageToZone(text)
+          return
+        end
+    end
+    -- If no slot found
+    BroadcastMessageToZone(sideNumber .. " not in queue, join first")
+end
+
+local function JoinMarshal(sideNumber)
+
+    -- First: check if this sideNumber is already in the stack
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        if slot.occupant == sideNumber then
+            -- Already assigned → just repeat their marshal info
+            ShowMarshalInfo(sideNumber)
+            return
+        end
+    end
+
+    -- Find first empty slot
+    local freeSlot = nil
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        if slot.occupant == nil then
+            freeSlot = slot
+            break
+        end
+    end
+
+    if not freeSlot then
+        BroadcastMessageToZone(sideNumber .. " stack full hold current position.")
+        return
+    end
+
+    -- Find next valid approach time
+    local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
+    if not t then
+        BroadcastMessageToZone(sideNumber .. " approach not possible this cycle.")
+        return
+    end
+
+    -- Assign
+    freeSlot.occupant = sideNumber
+    freeSlot.approach_time = t
+    freeSlot.last_update = getUtcEpoch()
+    carrier_info.marshal.assigned_minutes[t] = sideNumber
+
+    -- Report assignment
+    ShowMarshalInfo(sideNumber)
+end
+
+local function LeaveMarshal(sideNumber)
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        if slot.occupant == sideNumber then
+            -- Free the minute
+            if slot.approach_time then
+                carrier_info.marshal.assigned_minutes[slot.approach_time] = nil
+            end
+
+            -- Clear slot
+            slot.occupant = nil
+            slot.approach_time = nil
+            slot.last_update = nil
+
+            BroadcastMessageToZone(sideNumber .. " vacated marshal queue.")
+            return true
+        end
+    end
+
+    return false -- modex not found in stack
+end
+
+local function UpdateMarshalTime(sideNumber)
+
+    -- Step 1: find their slot
+    local slot = nil
+    for _, s in ipairs(carrier_info.marshal.stack) do
+        if s.occupant == sideNumber then
+            slot = s
+            break
+        end
+    end
+
+    if not slot then
+        BroadcastMessageToZone(sideNumber .. " you are not in the marshal stack.")
+        return
+    end
+
+    -- Step 2: find a new valid approach time
+    local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
+    if not newTime then
+        BroadcastMessageToZone(sideNumber .. " no new approach time available this cycle.")
+        return
+    end
+
+    -- Step 3: free their old approach minute
+    if slot.approach_time then
+        carrier_info.marshal.assigned_minutes[slot.approach_time] = nil
+    end
+
+
+    -- Step 4: assign new time
+    slot.approach_time = newTime
+    slot.last_update = getUtcEpoch()
+    carrier_info.marshal.assigned_minutes[newTime] = sideNumber
+
+    -- Step 5: report updated marshal info
+    ShowMarshalInfo(sideNumber)
+end
+
+local function ResetMarshalStack()
+    -- Clear all slot occupants + approach times
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        slot.occupant = nil
+        slot.approach_time = nil
+    end
+
+    -- Clear assigned minute lookup
+    carrier_info.marshal.assigned_minutes = {}
+
+    -- Optional: log/debug
+    if debug then env.info("Marshal stack reset") end
+end
+
+local function MarshalHeartbeat() -- auto cleanup
+
+    if not IsMarshalRequired() then
+        return
+    end
+    
+    local now = getUtcEpoch()
+
+    for _, slot in ipairs(carrier_info.marshal.stack) do
+        if slot.occupant and slot.approach_time then
+
+            -- Grace window: 3 minutes after approach time
+            local expiry = slot.approach_time + (3 * 60)
+
+            if now > expiry then
+                -- Auto-clear this slot
+                carrier_info.marshal.assigned_minutes[slot.approach_time] = nil
+                if debug then 
+                  BroadcastMessageToZone(slot.occupant .. " removed from marshal.")
+                end
+
+                slot.occupant = nil
+                slot.approach_time = nil
+                slot.last_update = nil
+            end
+        end
+    end
+end
+
+------------------------------------------------------------------
+-- MENUS 
+------------------------------------------------------------------
+
+local function createMenus()
+  carrier_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Control")
+  carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Information", carrier_root_menu, reportCarrierInformation)
+  local marshal_root = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu)
+  
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery NOW (DEBUG)", carrier_admin_menu, function() ForceRecoveryCycle(30) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start CQ 90m Recovery", carrier_admin_menu, function() ForceRecoveryCycle(90) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start/Stop Recovery Tanker", carrier_admin_menu, controlRecoveryTanker)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", carrier_admin_menu, ShowMarshalStack)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack (DEBUG)", carrier_admin_menu, ResetMarshalStack)
+  local carrier_lights_menu = MENU_COALITION:New(coalition.side.BLUE, "Set Carrier Lights", carrier_admin_menu)
+
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights OFF", carrier_lights_menu, function() trigger.action.setUserFlag("502", 0) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights NAV", carrier_lights_menu, function() trigger.action.setUserFlag("502", 1) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights LAUNCH", carrier_lights_menu, function() trigger.action.setUserFlag("502", 2) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights RECOVER", carrier_lights_menu, function() trigger.action.setUserFlag("502", 3) end)  
+
+  -- MARHSAL MENUS
+  local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", marshal_root)
+  local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", marshal_root)
+
+  -- SIDENUMBER LISTS
+  local panthers = { 300, 310, 320, 330 }   -- 30x / 31x / 32x / 33x
+  local spectres = { 200, 210, 220 }             -- 20x / 21x
+
+  local function BuildMarshalLeafMenu(parentMenu, block)
+      -- First level: the block (e.g. "300")
+      local blockLabel = tostring(block)
+      local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockLabel, parentMenu)
+
+      -- Now expand the block into individual aircraft
+      for i = 0, 9 do
+          local sn = block + i
+          local label = tostring(sn)
+
+          local leaf = MENU_COALITION:New(coalition.side.BLUE, label, blockMenu)
+
+          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Queue", leaf, function() JoinMarshal(sn) end )
+          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Queue", leaf, function() LeaveMarshal(sn) end )
+          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Info", leaf, function() ShowMarshalInfo(sn) end )
+          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", leaf, function() UpdateMarshalTime(sn) end )
+      end
+  end
+
+  -- BUILD PANTHERS
+  for _, block in ipairs(panthers) do
+  BuildMarshalLeafMenu(panthers_menu, block)
+  end
+
+  -- BUILD SPECTRES
+  for _, block in ipairs(spectres) do
+  BuildMarshalLeafMenu(spectres_menu, block)
+  end
+
+  if debug then log("Static Menu Created") end
+end
+
+------------------------------------------------------------------
+-- MP SAFE STARTUP
+------------------------------------------------------------------
+
+-- INITIALISATION
+local carrier_initialised = false
+local function InitCarrierSystems()
+  if carrier_initialised then 
+    if debug then log("InitCarrierSystems - already initialised") end
+    return true
+  end
+
+  carrier_unit = UNIT:FindByName(carrier_name)
+  if not carrier_unit or not carrier_unit:IsAlive() then return false end
+  log("Carrier initialising")
+
+  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate()
+  marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
+
+  -- Core systems
+  configureCarrierSystems()
+  setupRecoveryTanker()
+  nextRecoveryStartup()
+  createMenus()
+  buildMarshalStack()
+
+  -- Schedulers
+  SCHEDULER:New(nil, updateCarrierWeather, {}, 1, 600) -- 10 minute weather update
+  SCHEDULER:New(nil, recoveryHeartbeat, {}, 1, 30) -- 30 second recovery cycle
+  SCHEDULER:New(nil, MarshalHeartbeat, {}, 30, 30 ) -- 30 marshal auto clean
+
+  carrier_initialised = true
+  return true
+end
+
+-- CARRIER STARTUP SCHEDULER
+SCHEDULER:New(nil, function()
+  if InitCarrierSystems() then
+    log("Carrier initialization complete")
+    return false  -- stops once successful
+  end
+end, {}, 5, 5)
+
+
+
+
+
+
+
