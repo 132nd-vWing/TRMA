@@ -1,5 +1,5 @@
 ------------------------------------------------------------------
--- CARRIER SCRIPT rev 3.6 (marshal alpha)
+-- CARRIER SCRIPT rev 3.6 (marshal beta)
 ------------------------------------------------------------------
 env.info("[Carrier Ops] Script loading 3.6")
 
