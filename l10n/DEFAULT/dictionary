@@ -67,6 +67,18 @@ REQUEST YOU TO NEUTRALIZE THE MBT's AS SOON AS POSSIBLE",
 	["DictKey_ActionRadioText_425"] = "Activate scenario units",
 	["DictKey_ActionText_150"] = "",
 	["DictKey_ActionText_168"] = "R17 Armored Brigade scenario activated",
-	["DictKey_descriptionText_1"] = "",
+	["DictKey_descriptionText_1"] = "=TRMA - Standard Training=\
+\
+https://132nd-vwing.github.io/TRMA-Brief/\
+\
+Month Day Year by 132nd.IP\
+\
+METAR:\
+- ENBO RWYxy ...\
+(Default: - ENBO RWY07 09104KT 9999 SCT180 FEW360 15/4 Q10147 A2994 NOSIG)\
+\
+TL: FL090\
+TA: 7.000FT MSL\
+",
 	["DictKey_sortie_5"] = "",
 } -- end of dictionary
