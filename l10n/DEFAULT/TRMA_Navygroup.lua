@@ -1,23 +1,34 @@
 ------------------------------------------------------------------
--- CARRIER SCRIPT rev 3.6 (marshal beta)
+-- CARRIER SCRIPT rev 3.7 (alpha)
+-- getbearingintowind i added the -9 deck offset
+
+-- startRecoveryCycle 
+-- - changed AbsTime to Time
+-- - simplified starter (no start time = immediately, no 180)
+-- - changed wod speed default (20)
+
+-- case detection changed sunrise/sunset time to 15 from 30minutes
+-- added default cruise speed 25
+-- fixed true to mag logic
+
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.6")
+env.info("[Carrier Ops] Script loading 3.7 beta")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
 ------------------------------------------------------------------
-local debug = false
+local debug = true
 
-local RecoveryStartMinute = 25        -- 20 Real-World Cycle Start minute
-local RecoveryDuration = 32           -- 32 cycle duration minutes
-local RecoveryOpenOffset = 5          -- 5  window open offset 
-local RecoveryCloseOffset = 30        -- 30 window close offset
-local RecoveryTurnOutOffset = 32      -- 32 ship turnout offset (marshal reset)
+local RecoveryStartMinute = 20        -- 20 Real-World Cycle Start minute
+local RecoveryDuration = 37           -- 37 cycle duration minutes
+local RecoveryOpenOffset = 10         -- 10  window open offset 
+local RecoveryCloseOffset = 35        -- 35 window close offset
+local RecoveryTurnOutOffset = 37      -- 37 ship turnout offset (marshal reset)
 
 local HPA_TO_INHG   = 0.02953
 local MMHG_TO_HPA   = 1.33322
 local MPS_TO_KNOTS  = 1.94384
-local MAGVAR_EAST_DEG = 4             -- Static magvar; TRMA 4, OPAC 10
+local MAGVAR = -4                     -- Read from F10 carrier
 
 ------------------------------------------------------------------
 -- GLOBAL TABLES / STATE
@@ -28,7 +39,7 @@ local carrier_name = "CVN-73"         -- DCS unit name (unit, not group)
 local tanker_name = "CVN73_Tanker#IFF:5327FR" -- DCS tanker unit name
 
 local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
-local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn the carrier
+local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate():SetDefaultSpeed(25) -- spawn the carrier
 local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- capture spawned clients
 
@@ -55,7 +66,7 @@ end
 local function log(message) env.info("[Carrier Ops] " .. message) end
 
 -- Magvar for East offset
-local function trueToMag(true_deg) return (true_deg - MAGVAR_EAST_DEG) % 360 end
+local function trueToMag(true_deg) return (true_deg + MAGVAR) % 360 end
 
 -- QNH (mmHg -> hPa -> inHg)
 local function getQNH(weather)
@@ -147,8 +158,8 @@ local function updateCarrierWeather()
     local sunrise = UTILS.ClockToSeconds(sunrise_raw)
     local sunset  = UTILS.ClockToSeconds(sunset_raw)
 
-    local night_start = sunset + 1800
-    local night_end   = sunrise - 1800
+    local night_start = sunset + 900
+    local night_end   = sunrise - 900
     isNight = (now >= night_start) or (now <= night_end)
   end
 
@@ -197,7 +208,7 @@ local function updateCarrierInfo()
 
   local heading_mag = trueToMag(math.floor(carrier_unit:GetHeading() + 0.5))
   local speed_knots  = carrier_unit:GetVelocityKNOTS()
-  local brc_mag = trueToMag(math.floor(carrier_navygroup:GetHeadingIntoWind(0, 25) + 0.5))
+  local brc_mag = trueToMag(math.floor(carrier_navygroup:GetHeadingIntoWind(1, 25) + 9)) -- added angled deck offset
   local fb_mag  = (brc_mag - 9 + 360) % 360  
 
   -- Ship data update
@@ -228,17 +239,13 @@ end
 
 -- Trigger MOOSE turnintowind mission.
 local function startRecoveryCycle()
-  local timenow = timer.getAbsTime()
+  local timenow = timer.getAbsTime() 
   local duration = RecoveryDuration * 60
   local timeend  = timenow + duration
 
   -- Turn into wind 
-  carrier_navygroup:AddTurnIntoWind(
-    UTILS.SecondsToClock(timenow, false),
-    UTILS.SecondsToClock(timeend, false),
-    25, true
-  )
-
+  --carrier_navygroup:AddTurnIntoWind(UTILS.SecondsToClock(timenow, false), UTILS.SecondsToClock(timeend, false),25, true)
+  carrier_navygroup:AddTurnIntoWind(nil, RecoveryDuration * 60, nil, nil)   -- update to simplify cycle startup
 end
 
 -- Add extension to existing MOOSE mission
@@ -328,7 +335,7 @@ local function recoveryHeartbeat()
 
   -- CLOSED → IDLE (turn downwind)
   if r.state == "CLOSED" and now_utc >= r.turnout_utc then
-    carrier_unit:SetSpeed(UTILS.KnotsToMps(20), true)
+    carrier_unit:SetSpeed(UTILS.KnotsToMps(25), true)
     -- DCS bug, Recovery > anything needs OFF first
     trigger.action.setUserFlag("502", 0) 
     SCHEDULER:New(nil, function()
@@ -826,7 +833,7 @@ local function InitCarrierSystems()
   if not carrier_unit or not carrier_unit:IsAlive() then return false end
   log("Carrier initialising")
 
-  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate()
+  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate():SetDefaultSpeed(25)
   marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
 
   -- Core systems
@@ -837,9 +844,9 @@ local function InitCarrierSystems()
   buildMarshalStack()
 
   -- Schedulers
-  SCHEDULER:New(nil, updateCarrierWeather, {}, 1, 600) -- 10 minute weather update
-  SCHEDULER:New(nil, recoveryHeartbeat, {}, 1, 30) -- 30 second recovery cycle
-  SCHEDULER:New(nil, MarshalHeartbeat, {}, 30, 30 ) -- 30 marshal auto clean
+  SCHEDULER:New(nil, updateCarrierWeather, {}, 10, 600) -- 10 minute weather update
+  SCHEDULER:New(nil, recoveryHeartbeat, {}, 15, 30) -- 30 second recovery cycle
+  SCHEDULER:New(nil, MarshalHeartbeat, {}, 300, 30 ) -- 30 marshal auto clean
 
   carrier_initialised = true
   return true
