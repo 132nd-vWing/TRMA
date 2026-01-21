@@ -1,14 +1,14 @@
 mapResource = 
 {
-	["ResKey_Action_423"] = "TRMA_Navygroup.lua",
 	["ResKey_Action_212"] = "skynet-iads-setup-TRMA_R21_IADS.lua",
 	["ResKey_Action_29"] = "radio_sound.wav",
+	["ResKey_Action_447"] = "TRMA_Navygroup.lua",
 	["ResKey_Action_408"] = "skynet-iads-setup-TRMA_R23_2FLUG.lua",
 	["ResKey_Action_434"] = "TRMA_Range_17.lua",
 	["ResKey_Action_400"] = "TRMA_AWACS.lua",
 	["ResKey_Action_213"] = "TRMA_Range_21.lua",
 	["ResKey_Action_35"] = "radio_sound.wav",
-	["ResKey_Action_446"] = "TRMA_Range_33.lua",
+	["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
 	["ResKey_Action_183"] = "TRMA_Range_23.lua",
 	["ResKey_Action_403"] = "TRMA_Range_24.lua",
 	["ResKey_Action_442"] = "TRMA_R24_AR_Armored_Brigade.lua",
@@ -32,7 +32,7 @@ mapResource =
 	["ResKey_Action_137"] = "TRMA_Range_22.lua",
 	["ResKey_Action_401"] = "skynet-iads-setup-TRMA_R23_EX_Green_Shield.lua",
 	["ResKey_Action_298"] = "TRMA_Range_14.lua",
-	["ResKey_Action_440"] = "TRMA_Range_13.lua",
 	["ResKey_Action_402"] = "TRMA_Range_15_AR.lua",
-	["ResKey_Action_125"] = "skynet-iads-setup-TRMA_R24_ARMY.lua",
+	["ResKey_Action_440"] = "TRMA_Range_13.lua",
+	["ResKey_Action_446"] = "TRMA_Range_33.lua",
 } -- end of mapResource

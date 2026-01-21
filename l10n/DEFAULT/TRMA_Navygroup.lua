@@ -1,5 +1,5 @@
 ------------------------------------------------------------------
--- CARRIER SCRIPT rev 3.7 (alpha)
+-- CARRIER SCRIPT rev 3.7.1 (alpha)
 -- getbearingintowind i added the -9 deck offset
 
 -- startRecoveryCycle 
@@ -10,9 +10,10 @@
 -- case detection changed sunrise/sunset time to 15 from 30minutes
 -- added default cruise speed 25
 -- fixed true to mag logic
+-- fixed show stack ordering. 
 
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.7 beta")
+env.info("[Carrier Ops] Script loading 3.7.1 beta")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
@@ -567,7 +568,7 @@ local function ShowMarshalStack()
 
   -- Sort by occupant number (numeric ascending)
   table.sort(occupied, function(a, b)
-      return tonumber(a.occupant) < tonumber(b.occupant)
+      return tonumber(a.approach_time) < tonumber(b.approach_time)
   end)
 
   
@@ -603,12 +604,12 @@ local function ShowMarshalInfo(sideNumber)
               appr
           )
 
-          BroadcastMessageToZone(text)
-          return
+          -- BroadcastMessageToZone(text)
+          return text
         end
     end
     -- If no slot found
-    BroadcastMessageToZone(sideNumber .. " not in queue, join first")
+    return string.format(sideNumber .. " not in queue.")
 end
 
 local function JoinMarshal(sideNumber)
@@ -616,8 +617,7 @@ local function JoinMarshal(sideNumber)
     -- First: check if this sideNumber is already in the stack
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
-            -- Already assigned → just repeat their marshal info
-            ShowMarshalInfo(sideNumber)
+            BroadcastMessageToZone(sideNumber .. " already in queue.")
             return
         end
     end
@@ -632,7 +632,7 @@ local function JoinMarshal(sideNumber)
     end
 
     if not freeSlot then
-        BroadcastMessageToZone(sideNumber .. " stack full hold current position.")
+        BroadcastMessageToZone(sideNumber .. " queue full hold current position.")
         return
     end
 
@@ -650,7 +650,7 @@ local function JoinMarshal(sideNumber)
     carrier_info.marshal.assigned_minutes[t] = sideNumber
 
     -- Report assignment
-    ShowMarshalInfo(sideNumber)
+    BroadcastMessageToZone(ShowMarshalInfo(sideNumber))
 end
 
 local function LeaveMarshal(sideNumber)
@@ -709,7 +709,7 @@ local function UpdateMarshalTime(sideNumber)
     carrier_info.marshal.assigned_minutes[newTime] = sideNumber
 
     -- Step 5: report updated marshal info
-    ShowMarshalInfo(sideNumber)
+    BroadcastMessageToZone(ShowMarshalInfo(sideNumber))
 end
 
 local function ResetMarshalStack()
