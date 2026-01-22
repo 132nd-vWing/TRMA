@@ -21,7 +21,7 @@ options =
 		["allow_server_screenshots"] = true,
 		["mgrs_grid_visible"] = true,
 		["backupTime"] = 5,
-		["geo_grid_visible"] = false,
+		["geo_grid_visible"] = true,
 		["force_feedback_enabled"] = true,
 	}, -- end of ["miscellaneous"]
 	["difficulty"] = 

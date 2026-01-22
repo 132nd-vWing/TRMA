@@ -1,16 +1,9 @@
 ------------------------------------------------------------------
--- CARRIER SCRIPT rev 3.7.1 (alpha)
--- getbearingintowind i added the -9 deck offset
+-- CARRIER SCRIPT rev 3.7.2 (alpha)
 
--- startRecoveryCycle 
--- - changed AbsTime to Time
--- - simplified starter (no start time = immediately, no 180)
--- - changed wod speed default (20)
-
--- case detection changed sunrise/sunset time to 15 from 30minutes
--- added default cruise speed 25
--- fixed true to mag logic
 -- fixed show stack ordering. 
+-- fixed approach time logic to be window locked and not allow rollover stacking.
+-- reordered menu
 
 ------------------------------------------------------------------
 env.info("[Carrier Ops] Script loading 3.7.1 beta")
@@ -18,18 +11,22 @@ env.info("[Carrier Ops] Script loading 3.7.1 beta")
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
 ------------------------------------------------------------------
-local debug = true
+local debug = false
 
 local RecoveryStartMinute = 20        -- 20 Real-World Cycle Start minute
 local RecoveryDuration = 37           -- 37 cycle duration minutes
 local RecoveryOpenOffset = 10         -- 10  window open offset 
 local RecoveryCloseOffset = 35        -- 35 window close offset
 local RecoveryTurnOutOffset = 37      -- 37 ship turnout offset (marshal reset)
+local deckAngle = 0                   -- -9.1 for Nimitz, but results in a scaled BRC. 
+
+local ApproachPositioning = 3         -- buffer for positioning
+local ApproachDuration = 5            -- time iaf - ball
 
 local HPA_TO_INHG   = 0.02953
 local MMHG_TO_HPA   = 1.33322
 local MPS_TO_KNOTS  = 1.94384
-local MAGVAR = -4                     -- Read from F10 carrier
+local MAGVAR = 4                       -- Average for CVOA using F10 Map compass Rose. 
 
 ------------------------------------------------------------------
 -- GLOBAL TABLES / STATE
@@ -40,7 +37,7 @@ local carrier_name = "CVN-73"         -- DCS unit name (unit, not group)
 local tanker_name = "CVN73_Tanker#IFF:5327FR" -- DCS tanker unit name
 
 local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
-local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate():SetDefaultSpeed(25) -- spawn the carrier
+local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn the carrier
 local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- capture spawned clients
 
@@ -48,7 +45,6 @@ local recovery_tanker = nil
 local carrier_root_menu = nil  
 local carrier_admin_menu = nil
 local cycle_extend_menu = nil
--- local carrier_lights_menu = nil
 
 ------------------------------------------------------------------
 -- HELPERS
@@ -67,7 +63,10 @@ end
 local function log(message) env.info("[Carrier Ops] " .. message) end
 
 -- Magvar for East offset
-local function trueToMag(true_deg) return (true_deg + MAGVAR) % 360 end
+local function trueToMag(true_deg) return (true_deg - MAGVAR) % 360 end
+
+-- Normalise bearings. 
+local function norm360(deg) return (deg % 360 + 360) % 360 end
 
 -- QNH (mmHg -> hPa -> inHg)
 local function getQNH(weather)
@@ -78,13 +77,13 @@ local function getQNH(weather)
 end
 
 -- Wind at ground
-local function getWindDataAtGroundLevel(weather)
+local function getWind(weather)
   local wind_data     = weather.wind.atGround
   local wind_speed_mps= wind_data.speed
   local wind_to_true  = wind_data.dir
   local wind_from_true= (wind_to_true + 180) % 360
   local wind_speed_kn = wind_speed_mps * MPS_TO_KNOTS
-  return trueToMag(wind_from_true), wind_speed_kn
+  return wind_from_true, wind_speed_kn
 end
 
 -- UTC time
@@ -127,7 +126,10 @@ local function updateCarrierWeather()
 
   local weather = env.mission.weather
   local qnh_hpa, qnh_inhg = getQNH(weather)
-  local wind_dir_mag, wind_speed_knots = getWindDataAtGroundLevel(weather)
+  
+  local wind_from_true, wind_speed_knots = getWind(weather)
+  local wind_from_mag = trueToMag(wind_from_true)
+
   local cloud_base = weather.clouds.base or 0
   local visibility = weather.visibility.distance or 0
   if weather.fog and weather.fog.thickness > 0 then
@@ -159,7 +161,7 @@ local function updateCarrierWeather()
     local sunrise = UTILS.ClockToSeconds(sunrise_raw)
     local sunset  = UTILS.ClockToSeconds(sunset_raw)
 
-    local night_start = sunset + 900
+    local night_start = sunset + 900  -- 15 minutes
     local night_end   = sunrise - 900
     isNight = (now >= night_start) or (now <= night_end)
   end
@@ -181,8 +183,9 @@ local function updateCarrierWeather()
     cloud_base    = cloud_base,
     visibility    = visibility,
     vis_report    = visibility >= 10000 and "10+ km" or (visibility >= 1000 and string.format("%d km", math.floor(visibility / 1000)) or string.format("%d meters", visibility)),
-    wind_dir      = wind_dir_mag,
-    wind_speed    = wind_speed_knots,
+    wind_from_true = wind_from_true,
+    wind_from_mag = wind_from_mag,
+    wind_speed_knots = wind_speed_knots,
     temperature   = weather.season.temperature or 15,
     qnh_hpa       = qnh_hpa,
     qnh_inhg      = qnh_inhg,
@@ -191,14 +194,14 @@ local function updateCarrierWeather()
 
   if debug then 
     log(string.format(
-      "WeatherInfo: gt=%s | sunrise=%s | sunset=%s | case=%s | cloud=%s | vis=%s | wind_dir=%s | wind_spd=%s",
+      "WeatherInfo: gt=%s | sunrise=%s | sunset=%s | case=%s | cloud=%s | vis=%s | wind_true=%s | wind_spd=%s",
       UTILS.SecondsToClock(now),
       sunrise_raw,
       sunset_raw,
       tostring(carrier_case),
       tostring(cloud_base), 
       tostring(visibility),
-      tostring(wind_dir_mag), 
+      tostring(wind_from_true), 
       tostring(wind_speed_knots)
     ))
   end
@@ -207,18 +210,22 @@ end
 local function updateCarrierInfo()
   if not carrier_unit or not carrier_unit:IsAlive() then return end
 
-  local heading_mag = trueToMag(math.floor(carrier_unit:GetHeading() + 0.5))
+  local heading_true = norm360(carrier_unit:GetHeading())
   local speed_knots  = carrier_unit:GetVelocityKNOTS()
-  local brc_mag = trueToMag(math.floor(carrier_navygroup:GetHeadingIntoWind(1, 25) + 9)) -- added angled deck offset
-  local fb_mag  = (brc_mag - 9 + 360) % 360  
+  
+  local brc_true = norm360(carrier_navygroup:GetHeadingIntoWind(deckAngle, 20))
+  local fb_true = norm360(brc_true - 9)
 
   -- Ship data update
   carrier_info.ship = {
-    heading_mag    = heading_mag,
-    speed_knots    = speed_knots,
-    brc_mag        = brc_mag,
+    heading_true   = heading_true,
+    heading_mag    = trueToMag(heading_true),
+    brc_true        = brc_true,
+    brc_mag        = trueToMag(brc_true),
     fb_mag         = fb_mag,
-    wind_over_deck = (carrier_info.weather.wind_speed or 0) + speed_knots,
+    fb_mag         = trueToMag(fb_true),
+    speed_knots    = speed_knots,
+    wind_over_deck = (carrier_info.weather.wind_speed_knots or 0) + speed_knots,
   }
  
   if debug then 
@@ -240,13 +247,17 @@ end
 
 -- Trigger MOOSE turnintowind mission.
 local function startRecoveryCycle()
-  local timenow = timer.getAbsTime() 
-  local duration = RecoveryDuration * 60
-  local timeend  = timenow + duration
+  -- local timenow = timer.getAbsTime() 
+  -- local duration = RecoveryDuration * 60
+  -- local timeend  = timenow + duration
 
   -- Turn into wind 
-  --carrier_navygroup:AddTurnIntoWind(UTILS.SecondsToClock(timenow, false), UTILS.SecondsToClock(timeend, false),25, true)
-  carrier_navygroup:AddTurnIntoWind(nil, RecoveryDuration * 60, nil, nil)   -- update to simplify cycle startup
+  -- carrier_navygroup:AddTurnIntoWind(
+  --   UTILS.SecondsToClock(timenow, false),
+  --   UTILS.SecondsToClock(timeend, false),
+  --   25, true
+  -- )
+  carrier_navygroup:AddTurnIntoWind(nil, RecoveryDuration * 60, nil, true)   -- update to simplify cycle startup
 end
 
 -- Add extension to existing MOOSE mission
@@ -314,7 +325,7 @@ local function recoveryHeartbeat()
     r.state = "OPEN"
     if debug then log("Recovery state → OPEN") end
   end
-
+ 
   -- OPEN → CLOSED
   if r.state == "OPEN" and now_utc >= r.close_utc and not r.close_reported then
 
@@ -336,7 +347,7 @@ local function recoveryHeartbeat()
 
   -- CLOSED → IDLE (turn downwind)
   if r.state == "CLOSED" and now_utc >= r.turnout_utc then
-    carrier_unit:SetSpeed(UTILS.KnotsToMps(25), true)
+    carrier_unit:SetSpeed(UTILS.KnotsToMps(20), true)
     -- DCS bug, Recovery > anything needs OFF first
     trigger.action.setUserFlag("502", 0) 
     SCHEDULER:New(nil, function()
@@ -455,8 +466,8 @@ local function reportCarrierInformation()
   table.insert(lines, string.format(
     "Case %s Wind %.0f° @ %.1f kts | Visibility %s | QNH %.2f inHg",
     w.case,
-    w.wind_dir,
-    w.wind_speed,
+    w.wind_from_mag,
+    w.wind_speed_knots,
     w.vis_report,
     w.qnh_inhg
   ))
@@ -477,9 +488,8 @@ local function reportCarrierInformation()
     ))
   else
     table.insert(lines, string.format(
-      "Next Recovery window: %s – %s zulu",
-      UTILS.SecondsToClock(r.open_utc, true):sub(1,5),
-      UTILS.SecondsToClock(r.close_utc, true):sub(1,5)
+      "Next Recovery window starts: %s zulu",
+      UTILS.SecondsToClock(r.open_utc, true):sub(1,5)
     ))
   end
 
@@ -526,32 +536,34 @@ local function IsMarshalRequired()
 end
 
 local function FindApproachTime(carrier_info, AssignedMinutes)
-    local now = getUtcEpoch()
 
-    -- Rules
-    local min_from_now     = now + (3 * 60)
-    local min_before_open  = carrier_info.recovery.open_utc - (5 * 60)
-    local max_before_close = carrier_info.recovery.close_utc - (7 * 60)
+  -- work in minutes
+  local now_min = math.floor(getUtcEpoch() / 60)
+  local open_min = math.floor(carrier_info.recovery.open_utc / 60)
+  local close_min = math.floor(carrier_info.recovery.close_utc / 60)
 
-    local earliest = math.max(min_from_now, min_before_open)
-    local latest   = max_before_close
+  -- Rules for allocation
+  local earliest_min = math.max(
+    now_min + ApproachPositioning, 
+    open_min - ApproachDuration
+  )
+  local latest_min   = close_min - ApproachDuration
 
-    if earliest > latest then
-        return nil -- no valid times
-    end
+  -- Window no longer viable
+  if earliest_min > latest_min then
+      return nil
+  end
 
-    -- Round earliest up to the next full minute
-    local t = earliest - (earliest % 60)
+  -- Find a viable minute
+  for m = earliest_min, latest_min do
+      local t = m * 60
+      if not AssignedMinutes[t] then
+          return t
+      end
+  end
 
-    -- Search minute-by-minute until we hit the limit
-    while t <= latest do
-        if not AssignedMinutes[t] then
-            return t -- found a free minute
-        end
-        t = t + 60
-    end
+  return nil
 
-    return nil -- no free minute found
 end
 
 local function ShowMarshalStack()
@@ -573,13 +585,14 @@ local function ShowMarshalStack()
 
   
   for _, slot in ipairs(occupied) do
-    local actual_radial = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+    local radial_true = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+    local radial_mag = trueToMag(radial_true)
     local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
 
     table.insert(lines, string.format(
-      "%s mothers %d DME%d Angels %d approach minute %s",
+      "%s mothers %d / %d angels %d approach %s",
       slot.occupant,
-      actual_radial,
+      radial_mag,
       slot.dme,
       slot.angles,
       appr
@@ -592,13 +605,14 @@ end
 local function ShowMarshalInfo(sideNumber)
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
-          local actual_radial = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+          local radial_true = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
+          local radial_mag = trueToMag(radial_true)
           local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
 
           local text = string.format(
               "%s marshal on mothers %03d dme %02d angels %02d approach time %s",
               sideNumber,
-              actual_radial,
+              radial_mag,
               slot.dme,
               slot.angles,
               appr
@@ -614,7 +628,7 @@ end
 
 local function JoinMarshal(sideNumber)
 
-    -- First: check if this sideNumber is already in the stack
+  -- First: check if this sideNumber is already in the stack
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
             BroadcastMessageToZone(sideNumber .. " already in queue.")
@@ -728,9 +742,9 @@ end
 
 local function MarshalHeartbeat() -- auto cleanup
 
-    if not IsMarshalRequired() then
-        return
-    end
+    -- if not IsMarshalRequired() then
+    --     return
+    -- end
     
     local now = getUtcEpoch()
 
@@ -761,16 +775,19 @@ end
 
 local function createMenus()
   carrier_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Control")
-  carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Information", carrier_root_menu, reportCarrierInformation)
   local marshal_root = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_root_menu, function() end)  -- spacer
+  carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)
   
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery NOW (DEBUG)", carrier_admin_menu, function() ForceRecoveryCycle(30) end)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start CQ 90m Recovery", carrier_admin_menu, function() ForceRecoveryCycle(90) end)
+  -- ADMIN MENU
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start CQ 90m Recovery", carrier_admin_menu, function() ForceRecoveryCycle(107) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start/Stop Recovery Tanker", carrier_admin_menu, controlRecoveryTanker)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", carrier_admin_menu, ShowMarshalStack)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack (DEBUG)", carrier_admin_menu, ResetMarshalStack)
   local carrier_lights_menu = MENU_COALITION:New(coalition.side.BLUE, "Set Carrier Lights", carrier_admin_menu)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_admin_menu, function() end)  -- spacer
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack (DEBUG)", carrier_admin_menu, ResetMarshalStack)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery NOW (DEBUG)", carrier_admin_menu, function() ForceRecoveryCycle(47) end)
+
 
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights OFF", carrier_lights_menu, function() trigger.action.setUserFlag("502", 0) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights NAV", carrier_lights_menu, function() trigger.action.setUserFlag("502", 1) end)
@@ -780,6 +797,7 @@ local function createMenus()
   -- MARHSAL MENUS
   local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", marshal_root)
   local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", marshal_root)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_root, ShowMarshalStack)
 
   -- SIDENUMBER LISTS
   local panthers = { 300, 310, 320, 330 }   -- 30x / 31x / 32x / 33x
@@ -833,7 +851,7 @@ local function InitCarrierSystems()
   if not carrier_unit or not carrier_unit:IsAlive() then return false end
   log("Carrier initialising")
 
-  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate():SetDefaultSpeed(25)
+  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate()
   marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
 
   -- Core systems
@@ -844,9 +862,9 @@ local function InitCarrierSystems()
   buildMarshalStack()
 
   -- Schedulers
-  SCHEDULER:New(nil, updateCarrierWeather, {}, 10, 600) -- 10 minute weather update
-  SCHEDULER:New(nil, recoveryHeartbeat, {}, 15, 30) -- 30 second recovery cycle
-  SCHEDULER:New(nil, MarshalHeartbeat, {}, 300, 30 ) -- 30 marshal auto clean
+  SCHEDULER:New(nil, updateCarrierWeather, {}, 1, 600) -- 10 minute weather update
+  SCHEDULER:New(nil, recoveryHeartbeat, {}, 1, 30) -- 30 second recovery cycle
+  SCHEDULER:New(nil, MarshalHeartbeat, {}, 30, 30 ) -- 30 marshal auto clean
 
   carrier_initialised = true
   return true

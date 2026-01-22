@@ -1265,6 +1265,41 @@ warehouses =
 	}, -- end of ["airports"]
 	["warehouses"] = 
 	{
+		[3793] = 
+		{
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
+			["unlimitedMunitions"] = true,
+			["methanol_mixture"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["methanol_mixture"]
+			["OperatingLevel_Air"] = 10,
+			["diesel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["diesel"]
+			["speed"] = 16.666666,
+			["dynamicSpawn"] = false,
+			["unlimitedAircrafts"] = true,
+			["periodicity"] = 30,
+			["jet_fuel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["jet_fuel"]
+			["size"] = 100,
+			["suppliers"] = {},
+			["coalition"] = "blue",
+			["dynamicCargo"] = false,
+			["OperatingLevel_Eqp"] = 10,
+			["allowHotStart"] = false,
+			["aircrafts"] = {},
+			["weapons"] = {},
+			["OperatingLevel_Fuel"] = 10,
+			["unlimitedFuel"] = true,
+		}, -- end of [3793]
 		[417] = 
 		{
 			["allowHotStart"] = false,
@@ -1720,41 +1755,6 @@ warehouses =
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
 		}, -- end of [1964]
-		[423] = 
-		{
-			["allowHotStart"] = false,
-			["unlimitedMunitions"] = true,
-			["methanol_mixture"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["methanol_mixture"]
-			["OperatingLevel_Air"] = 10,
-			["diesel"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["diesel"]
-			["speed"] = 16.666666,
-			["dynamicSpawn"] = false,
-			["unlimitedAircrafts"] = true,
-			["unlimitedFuel"] = true,
-			["jet_fuel"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["jet_fuel"]
-			["periodicity"] = 30,
-			["suppliers"] = {},
-			["coalition"] = "red",
-			["dynamicCargo"] = false,
-			["OperatingLevel_Eqp"] = 10,
-			["gasoline"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["gasoline"]
-			["aircrafts"] = {},
-			["weapons"] = {},
-			["OperatingLevel_Fuel"] = 10,
-			["size"] = 100,
-		}, -- end of [423]
 		[398] = 
 		{
 			["allowHotStart"] = false,
@@ -1790,6 +1790,111 @@ warehouses =
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
 		}, -- end of [398]
+		[1960] = 
+		{
+			["allowHotStart"] = false,
+			["unlimitedMunitions"] = true,
+			["methanol_mixture"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["methanol_mixture"]
+			["OperatingLevel_Air"] = 10,
+			["diesel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["diesel"]
+			["speed"] = 16.666666,
+			["dynamicSpawn"] = false,
+			["unlimitedAircrafts"] = true,
+			["unlimitedFuel"] = true,
+			["jet_fuel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["jet_fuel"]
+			["periodicity"] = 30,
+			["suppliers"] = {},
+			["coalition"] = "red",
+			["dynamicCargo"] = false,
+			["OperatingLevel_Eqp"] = 10,
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
+			["aircrafts"] = {},
+			["weapons"] = {},
+			["OperatingLevel_Fuel"] = 10,
+			["size"] = 100,
+		}, -- end of [1960]
+		[423] = 
+		{
+			["allowHotStart"] = false,
+			["unlimitedMunitions"] = true,
+			["methanol_mixture"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["methanol_mixture"]
+			["OperatingLevel_Air"] = 10,
+			["diesel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["diesel"]
+			["speed"] = 16.666666,
+			["dynamicSpawn"] = false,
+			["unlimitedAircrafts"] = true,
+			["unlimitedFuel"] = true,
+			["jet_fuel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["jet_fuel"]
+			["periodicity"] = 30,
+			["suppliers"] = {},
+			["coalition"] = "red",
+			["dynamicCargo"] = false,
+			["OperatingLevel_Eqp"] = 10,
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
+			["aircrafts"] = {},
+			["weapons"] = {},
+			["OperatingLevel_Fuel"] = 10,
+			["size"] = 100,
+		}, -- end of [423]
+		[3783] = 
+		{
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
+			["unlimitedMunitions"] = true,
+			["methanol_mixture"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["methanol_mixture"]
+			["OperatingLevel_Air"] = 10,
+			["diesel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["diesel"]
+			["speed"] = 16.666666,
+			["dynamicSpawn"] = false,
+			["unlimitedAircrafts"] = true,
+			["periodicity"] = 30,
+			["jet_fuel"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["jet_fuel"]
+			["size"] = 100,
+			["suppliers"] = {},
+			["coalition"] = "blue",
+			["dynamicCargo"] = false,
+			["OperatingLevel_Eqp"] = 10,
+			["allowHotStart"] = false,
+			["aircrafts"] = {},
+			["weapons"] = {},
+			["OperatingLevel_Fuel"] = 10,
+			["unlimitedFuel"] = true,
+		}, -- end of [3783]
 		[1962] = 
 		{
 			["allowHotStart"] = false,
@@ -1862,10 +1967,7 @@ warehouses =
 		}, -- end of [3756]
 		[3758] = 
 		{
-			["gasoline"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["gasoline"]
+			["allowHotStart"] = false,
 			["unlimitedMunitions"] = true,
 			["methanol_mixture"] = 
 			{
@@ -1879,21 +1981,24 @@ warehouses =
 			["speed"] = 16.666666,
 			["dynamicSpawn"] = false,
 			["unlimitedAircrafts"] = true,
-			["periodicity"] = 30,
+			["unlimitedFuel"] = true,
 			["jet_fuel"] = 
 			{
 				["InitFuel"] = 100,
 			}, -- end of ["jet_fuel"]
-			["size"] = 100,
+			["periodicity"] = 30,
 			["suppliers"] = {},
 			["coalition"] = "blue",
 			["dynamicCargo"] = false,
 			["OperatingLevel_Eqp"] = 10,
-			["allowHotStart"] = false,
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
 			["aircrafts"] = {},
 			["weapons"] = {},
 			["OperatingLevel_Fuel"] = 10,
-			["unlimitedFuel"] = true,
+			["size"] = 100,
 		}, -- end of [3758]
 		[2272] = 
 		{
@@ -1930,9 +2035,12 @@ warehouses =
 			["OperatingLevel_Fuel"] = 10,
 			["size"] = 100,
 		}, -- end of [2272]
-		[1960] = 
+		[3794] = 
 		{
-			["allowHotStart"] = false,
+			["gasoline"] = 
+			{
+				["InitFuel"] = 100,
+			}, -- end of ["gasoline"]
 			["unlimitedMunitions"] = true,
 			["methanol_mixture"] = 
 			{
@@ -1946,24 +2054,21 @@ warehouses =
 			["speed"] = 16.666666,
 			["dynamicSpawn"] = false,
 			["unlimitedAircrafts"] = true,
-			["unlimitedFuel"] = true,
+			["periodicity"] = 30,
 			["jet_fuel"] = 
 			{
 				["InitFuel"] = 100,
 			}, -- end of ["jet_fuel"]
-			["periodicity"] = 30,
+			["size"] = 100,
 			["suppliers"] = {},
-			["coalition"] = "red",
+			["coalition"] = "blue",
 			["dynamicCargo"] = false,
 			["OperatingLevel_Eqp"] = 10,
-			["gasoline"] = 
-			{
-				["InitFuel"] = 100,
-			}, -- end of ["gasoline"]
+			["allowHotStart"] = false,
 			["aircrafts"] = {},
 			["weapons"] = {},
 			["OperatingLevel_Fuel"] = 10,
-			["size"] = 100,
-		}, -- end of [1960]
+			["unlimitedFuel"] = true,
+		}, -- end of [3794]
 	}, -- end of ["warehouses"]
 } -- end of warehouses
