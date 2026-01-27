@@ -1,54 +1,74 @@
 ------------------------------------------------------------------
--- CARRIER SCRIPT rev 3.7.2 (alpha)
-
--- fixed show stack ordering. 
--- fixed approach time logic to be window locked and not allow rollover stacking.
--- reordered menu
+-- CARRIER SCRIPT
 
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.7.1 beta")
+env.info("[Carrier Ops] Script loading 3.8")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
 ------------------------------------------------------------------
-local debug = false
+local debug = true                     -- enable debug to dcs.log           
 
-local RecoveryStartMinute = 20        -- 20 Real-World Cycle Start minute
-local RecoveryDuration = 37           -- 37 cycle duration minutes
-local RecoveryOpenOffset = 10         -- 10  window open offset 
-local RecoveryCloseOffset = 35        -- 35 window close offset
-local RecoveryTurnOutOffset = 37      -- 37 ship turnout offset (marshal reset)
-local deckAngle = 0                   -- -9.1 for Nimitz, but results in a scaled BRC. 
+local recovery_start_minute = 20        -- 20 Real-World Cycle Start minute
+local open_buffer   = 10                -- Minutes from Start until Window Opens (Ship prep/turning)
+local default_window = 25               -- Default length of the "Open" window (Case I/II/III ops)
+local close_buffer  = 2                 -- Minutes from Window Close until Turnout (Cleanup/Reset)
 
-local ApproachPositioning = 3         -- buffer for positioning
-local ApproachDuration = 5            -- time iaf - ball
+local deckAngle = 0                     -- -9.1 for Nimitz, but results in a scaled BRC. 
+
+local approach_buffer = 3               -- buffer for marshal positioning
+local approach_duration = 5             -- time for approach from iaf - ball
 
 local HPA_TO_INHG   = 0.02953
 local MMHG_TO_HPA   = 1.33322
 local MPS_TO_KNOTS  = 1.94384
-local MAGVAR = 4                       -- Average for CVOA using F10 Map compass Rose. 
+local MAGVAR = 4                        -- fallback magvar from F10 rose
+
+local SIDEREG_PATH = lfs.writedir() .. "carrier_player_sides.lua" -- Path to Saved Games/DCS/
 
 ------------------------------------------------------------------
 -- GLOBAL TABLES / STATE
 ------------------------------------------------------------------
-local carrier_info = { weather = {}, ship = {}, recovery= {}, marshal= { stack = {}, assigned_minutes = {} } } 
+local carrier_info = { weather = {}, ship = {}, recovery= {}, marshal= { stack = {}, assigned_minutes = {} } }  -- register for all working data. 
 
 local carrier_name = "CVN-73"         -- DCS unit name (unit, not group)
 local tanker_name = "CVN73_Tanker#IFF:5327FR" -- DCS tanker unit name
 
 local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
-local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn the carrier
-local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone
-local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- capture spawned clients
+local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn and task the carrier 
+local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone for broadcasts
+local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- list spawned blue human clients
 
-local recovery_tanker = nil
+local recovery_tanker = nil     
 local carrier_root_menu = nil  
 local carrier_admin_menu = nil
 local cycle_extend_menu = nil
 
+PlayerSideRegistry = {}
+
+-- Magvar detection
+local hasMagvar, magvar = pcall(require, "magvar")
+local hasTerrain, terrain = pcall(require, "terrain")
+
+
+if hasMagvar and hasTerrain then 
+  magvar.init(env.mission.date.Month, env.mission.date.Year) -- call map/date magvar tables once. 
+else
+  env.info("Magvar unavailable, using static")
+end
+
+
 ------------------------------------------------------------------
 -- HELPERS
 ------------------------------------------------------------------
+
+-- Logs and Debugging
+local function log(message, isDebug)
+  if isDebug and not debug then return end
+
+  local prefix = isDebug and "[Carrier Debug] " or "[Carrier Ops] "
+  env.info(prefix .. message) 
+end
 
 -- Broadcaster to clients within Marshal Zone
 local function BroadcastMessageToZone(message)
@@ -59,11 +79,10 @@ local function BroadcastMessageToZone(message)
   end)
 end
 
--- Logs
-local function log(message) env.info("[Carrier Ops] " .. message) end
-
--- Magvar for East offset
-local function trueToMag(true_deg) return (true_deg - MAGVAR) % 360 end
+-- Magvar from DCS  
+local function trueToMag(true_deg)
+  return (true_deg - ((carrier_info and carrier_info.weather and carrier_info.weather.mag_var) or MAGVAR)) % 360
+end
 
 -- Normalise bearings. 
 local function norm360(deg) return (deg % 360 + 360) % 360 end
@@ -78,11 +97,11 @@ end
 
 -- Wind at ground
 local function getWind(weather)
-  local wind_data     = weather.wind.atGround
-  local wind_speed_mps= wind_data.speed
-  local wind_to_true  = wind_data.dir
-  local wind_from_true= (wind_to_true + 180) % 360
-  local wind_speed_kn = wind_speed_mps * MPS_TO_KNOTS
+  local wind_data      = weather.wind.atGround
+  local wind_speed_mps = wind_data.speed
+  local wind_to_true   = wind_data.dir
+  local wind_from_true = (wind_to_true + 180) % 360
+  local wind_speed_kn  = wind_speed_mps * MPS_TO_KNOTS
   return wind_from_true, wind_speed_kn
 end
 
@@ -96,26 +115,91 @@ local function IsValidClockString(t)
   return type(t) == "string" and t:match("^%d%d:%d%d:%d%d$")
 end
 
--- Next Recovery Window
-local function nextRecoveryStartup()
-  local now = getUtcEpoch()
-  local t = os.date("!*t", now)
-  t.min, t.sec = RecoveryStartMinute, 0
-
-  local start_utc = os.time(t)
-  if start_utc <= now then start_utc = start_utc + 3600 end
-
-  local r = carrier_info.recovery
-  r.state         = "IDLE"
-  r.start_utc     = start_utc
-  r.end_utc       = start_utc + RecoveryDuration * 60
-  r.open_utc      = start_utc + RecoveryOpenOffset * 60
-  r.close_utc     = start_utc + RecoveryCloseOffset * 60
-  r.turnout_utc   = start_utc + RecoveryTurnOutOffset * 60
-  r.open_reported = false
-  r.close_reported= false
+local function GetMyMetadata()
+  local metadata = "Could not identify unit."
+  
+  -- We iterate the set you already have globally defined
+  clients:ForEachClient(function(client)
+    -- We check which client is currently 'active' in the cockpit
+    if client:IsPlayer() and client:IsActive() then
+      local groupName = client:GetClientGroupName()
+      local unitName = client:GetName()
+      local playerName = client:GetPlayerName()
+      local acType = client:GetTypeName()
+      
+      metadata = string.format(
+        "ME Group: %s\nME Unit: %s\nAircraft: %s\nPlayer: %s",
+        groupName, 
+        unitName, 
+        acType, 
+        playerName
+      )
+    end
+  end)
+  
+  return metadata
 end
 
+-- Load the sidenumber registry from disk
+local function LoadPlayerSideRegistry()
+    local f = io.open(SIDEREG_PATH, "r")
+    if f then
+        f:close()
+        dofile(SIDEREG_PATH)
+        log("Player Side Registry loaded.", true)
+    else
+        log("No existing registry found, starting fresh.", true)
+        PlayerSideRegistry = {}
+    end
+
+    -- DEBUG: Print the table structure to the log
+    for name, data in pairs(PlayerSideRegistry) do
+        for ac, sn in pairs(data) do
+            log("Registry Check: " .. name .. " | " .. ac .. " | " .. sn, true)
+        end
+    end
+end
+
+-- Save the sidenumber registry to disk
+local function SavePlayerSideRegistry()
+    local file, err = io.open(SIDEREG_PATH, "w")
+    if not file then
+        log("Error opening registry for writing: " .. tostring(err), true)
+        return
+    end
+
+    file:write("PlayerSideRegistry = {\n")
+    for playerName, aircrafts in pairs(PlayerSideRegistry) do
+        file:write(string.format("  [\"%s\"] = {\n", playerName))
+        for acType, sideNumber in pairs(aircrafts) do
+            file:write(string.format("    [\"%s\"] = %d,\n", acType, sideNumber))
+        end
+        file:write("  },\n")
+    end
+    file:write("}\n")
+    file:close()
+    log("Player Side Registry saved to " .. SIDEREG_PATH, true)
+end
+
+-- Claim a side number
+local function RegisterSideNumber(selectedSN)
+  clients:ForEachClient(function(client)
+    if client:IsPlayer() and client:IsActive() then
+      local playerName = client:GetPlayerName()
+      local acType = client:GetTypeName()
+      
+      PlayerSideRegistry[playerName] = PlayerSideRegistry[playerName] or {}
+      PlayerSideRegistry[playerName][acType] = selectedSN
+      
+      -- Persistence (optional, requires desanitized io/lfs)
+      SavePlayerSideRegistry() 
+      
+      local msg = string.format("REGISTERED: %s is now #%d in the %s", playerName, selectedSN, acType)
+      MESSAGE:New(msg, 10):ToClient(client)
+      log(msg, true)
+    end
+  end)
+end
 
 ------------------------------------------------------------------
 -- CARRIER ENVIRONMENT (weather, ship data)
@@ -124,6 +208,17 @@ end
 local function updateCarrierWeather()
   if not carrier_unit or not carrier_unit:IsAlive() then return end
 
+  -- Magnetic variation at carrier
+  local mvDeg = MAGVAR
+  if hasMagvar and hasTerrain then 
+    local pos = carrier_unit:GetPosition().p
+    local lat, lon = terrain.convertMetersToLatLon(pos.x, pos.z)
+
+    local mvRad = magvar.get_mag_decl(lat, lon)
+    mvDeg = norm360(math.deg(mvRad))   -- normalised +East -West
+  end
+
+  -- Weather from mission
   local weather = env.mission.weather
   local qnh_hpa, qnh_inhg = getQNH(weather)
   
@@ -137,13 +232,13 @@ local function updateCarrierWeather()
     visibility = math.min(visibility, fog_vis)
   end
 
-  -- Daylight at boat
+  -- Daylight at the carrier
   local coord = carrier_unit:GetCoordinate()
   local sunrise_raw = coord:GetSunrise()
   local sunset_raw = coord:GetSunset()
   local missionDate = env.mission.date
   local month = missionDate.Month
-  local isNight
+  local is_night
   local now = timer.getAbsTime() % 86400
   local sunrise_ok = IsValidClockString(sunrise_raw)
   local sunset_ok  = IsValidClockString(sunset_raw)
@@ -151,11 +246,11 @@ local function updateCarrierWeather()
   if not sunrise_ok or not sunset_ok then
     -- Polar or undefined sun state
     if month == 6 or month == 7 or month == 8 then
-      isNight = false
+      is_night = false
     elseif month == 11 or month == 12 or month == 1 then
-      isNight = true
+      is_night = true
     else
-      isNight = false
+      is_night = false
     end
   else
     local sunrise = UTILS.ClockToSeconds(sunrise_raw)
@@ -163,12 +258,12 @@ local function updateCarrierWeather()
 
     local night_start = sunset + 900  -- 15 minutes
     local night_end   = sunrise - 900
-    isNight = (now >= night_start) or (now <= night_end)
+    is_night = (now >= night_start) or (now <= night_end)
   end
 
   -- CASE logic
   local carrier_case
-  if isNight then
+  if is_night then
     carrier_case = "III"
   elseif cloud_base > 914 and visibility > 9260 then  -- >3000ft >5nm
     carrier_case = "I"
@@ -189,26 +284,14 @@ local function updateCarrierWeather()
     temperature   = weather.season.temperature or 15,
     qnh_hpa       = qnh_hpa,
     qnh_inhg      = qnh_inhg,
+    mag_var       = mvDeg,
     case          = carrier_case,
   }
 
-  if debug then 
-    log(string.format(
-      "WeatherInfo: gt=%s | sunrise=%s | sunset=%s | case=%s | cloud=%s | vis=%s | wind_true=%s | wind_spd=%s",
-      UTILS.SecondsToClock(now),
-      sunrise_raw,
-      sunset_raw,
-      tostring(carrier_case),
-      tostring(cloud_base), 
-      tostring(visibility),
-      tostring(wind_from_true), 
-      tostring(wind_speed_knots)
-    ))
-  end
 end
 
 local function updateCarrierInfo()
-  if not carrier_unit or not carrier_unit:IsAlive() then return end
+  if not carrier_unit or not carrier_unit:IsAlive() then log("No Carrier", true) return end
 
   local heading_true = norm360(carrier_unit:GetHeading())
   local speed_knots  = carrier_unit:GetVelocityKNOTS()
@@ -220,70 +303,83 @@ local function updateCarrierInfo()
   carrier_info.ship = {
     heading_true   = heading_true,
     heading_mag    = trueToMag(heading_true),
-    brc_true        = brc_true,
+    brc_true       = brc_true,
     brc_mag        = trueToMag(brc_true),
-    fb_mag         = fb_mag,
+    fb_true        = fb_true,
     fb_mag         = trueToMag(fb_true),
     speed_knots    = speed_knots,
     wind_over_deck = (carrier_info.weather.wind_speed_knots or 0) + speed_knots,
   }
- 
-  if debug then 
-    log(string.format(
-      "CarrierInfo: state=%s | start=%s | open=%s | close=%s | end=%s | turnout=%s",
-      tostring(carrier_info.recovery.state),
-      os.date("!%H:%M:%S", carrier_info.recovery.start_utc),
-      os.date("!%H:%M:%S", carrier_info.recovery.open_utc),
-      os.date("!%H:%M:%S", carrier_info.recovery.close_utc),
-      os.date("!%H:%M:%S", carrier_info.recovery.end_utc), 
-      os.date("!%H:%M:%S", carrier_info.recovery.turnout_utc)
-    ))
-  end
+
 end
 
 ------------------------------------------------------------------
--- RECOVERY CYCLE CONTROL (UTC driven) 
+-- RECOVERY CYCLE CONTROL (Wallclock UTC driven) 
 ------------------------------------------------------------------
 
--- Trigger MOOSE turnintowind mission.
+-- defines next cycle timing depending on how its triggered
+local function setRecoveryCycle(window_duration, start_time)
+  local now = getUtcEpoch()
+  local r = carrier_info.recovery
+
+  -- No override 
+  if window_duration then 
+    if r.state ~= "IDLE" and r.state ~= nil then BroadcastMessageToZone("Unable, cycle in progress.") return false end
+  end
+
+  -- 1. Determine Start Time: If start_time is nil, calculate next 20m wall-clock
+  local start_utc = start_time
+  if not start_utc then
+    local t = os.date("!*t", now)
+    t.min, t.sec = recovery_start_minute, 0
+    start_utc = os.time(t)
+    -- if start_utc <= now then start_utc = start_utc + 3600 end
+    while start_utc <= now do start_utc = start_utc + 3600 end 
+  end
+
+  -- 2. Apply deration (nil = standard, 85 = CQ)
+  local duration = window_duration or default_window
+  
+  r.state         = "IDLE"
+  r.start_utc     = start_utc
+  r.open_utc      = start_utc + (open_buffer * 60)
+  r.close_utc     = r.open_utc + (duration * 60)
+  r.end_utc       = r.close_utc + (close_buffer * 60)
+  r.total_cycle_seconds = r.end_utc - r.start_utc
+  
+  r.open_reported  = false
+  r.close_reported = false
+
+  if window_duration then 
+    if start_time then
+      BroadcastMessageToZone("Recovery Cycle Override, cycle start imminent.")
+    else
+      BroadcastMessageToZone("Carrier Qualification Scheduled for next recovery cycle.")
+    end
+  end
+  return true
+end
+
+-- MOOSE TIW trigger
 local function startRecoveryCycle()
-  -- local timenow = timer.getAbsTime() 
-  -- local duration = RecoveryDuration * 60
-  -- local timeend  = timenow + duration
-
-  -- Turn into wind 
-  -- carrier_navygroup:AddTurnIntoWind(
-  --   UTILS.SecondsToClock(timenow, false),
-  --   UTILS.SecondsToClock(timeend, false),
-  --   25, true
-  -- )
-  carrier_navygroup:AddTurnIntoWind(nil, RecoveryDuration * 60, nil, true)   -- update to simplify cycle startup
+  local r = carrier_info.recovery
+  carrier_navygroup:AddTurnIntoWind(nil, r.total_cycle_seconds, nil, nil)   -- update to simplify cycle startup
 end
 
--- Add extension to existing MOOSE mission
 local function extendRecoveryCycle(minutes)
-  if not carrier_info.recovery.end_utc then
-    if debug then log("No active recovery cycle to extend.") end
-    return
-  end
-
+  local r = carrier_info.recovery
   local extension_seconds = minutes * 60
 
   if carrier_navygroup:IsSteamingIntoWind() then 
-    carrier_info.recovery.end_utc = carrier_info.recovery.end_utc + extension_seconds
-    carrier_info.recovery.close_utc = carrier_info.recovery.close_utc + extension_seconds
-    carrier_info.recovery.turnout_utc = carrier_info.recovery.turnout_utc + extension_seconds
+    r.close_utc = r.close_utc + extension_seconds
+    r.end_utc = r.end_utc + extension_seconds
     carrier_navygroup:ExtendTurnIntoWind(extension_seconds)
   
-    if debug then log("Recovery cycle extended to " .. UTILS.SecondsToClock(carrier_info.recovery.end_utc, true)) end
-  
-    BroadcastMessageToZone("99, recovery window extended to " .. UTILS.SecondsToClock(carrier_info.recovery.close_utc,true))
-  else
-    BroadcastMessageToZone("No active recovery cycle to extend.")
+    BroadcastMessageToZone("99, Recovery window extended to " .. os.date("!%H:%M", r.close_utc))
   end
 end
 
--- Cycle Controller
+-- Cycle Controller 
 local function recoveryHeartbeat()
   if not carrier_unit or not carrier_unit:IsAlive() then return end
   updateCarrierInfo()
@@ -297,7 +393,7 @@ local function recoveryHeartbeat()
     trigger.action.setUserFlag("502", 2) -- lights to launch AC
 
     BroadcastMessageToZone(string.format(
-      "99, %s Recovering from %s to %s zulu. Case %s. BRC %d, FB %d.",
+      "99, %s Recovering from %s to %s Zulu. Case %s. BRC %d, FB %d.",
       carrier_unit:GetName(),
       os.date("!%H:%M", r.open_utc),
       os.date("!%H:%M", r.close_utc),
@@ -309,13 +405,12 @@ local function recoveryHeartbeat()
     r.open_reported = true
     r.state = "TURNING_IN"
     -- create extend menu
-    cycle_extend_menu = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend recovery cycle (5m)", carrier_admin_menu, function() extendRecoveryCycle(5) end )
+    cycle_extend_menu = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend Recovery Window (5m)", carrier_admin_menu, function() extendRecoveryCycle(5) end )
     log("Recovery cycle started TURNING IN")
 
     -- Launch the tanker
     if recovery_tanker then
       recovery_tanker:Start()
-      if debug then log("Recovery tanker launched") end
     end
   end
 
@@ -323,7 +418,7 @@ local function recoveryHeartbeat()
   if r.state == "TURNING_IN" and now_utc >= r.open_utc and carrier_navygroup:IsSteamingIntoWind() then
     trigger.action.setUserFlag("502", 3) -- lights to recover AC
     r.state = "OPEN"
-    if debug then log("Recovery state → OPEN") end
+    log("Recovery state → OPEN", true) 
   end
  
   -- OPEN → CLOSED
@@ -342,52 +437,20 @@ local function recoveryHeartbeat()
       cycle_extend_menu:Remove()
       cycle_extend_menu = nil
     end
-    if debug then log("Recovery state → CLOSED") end
+    log("Recovery state → CLOSED", true)
   end
 
   -- CLOSED → IDLE (turn downwind)
-  if r.state == "CLOSED" and now_utc >= r.turnout_utc then
+  if r.state == "CLOSED" and now_utc >= r.end_utc then
     carrier_unit:SetSpeed(UTILS.KnotsToMps(20), true)
-    -- DCS bug, Recovery > anything needs OFF first
+    -- DCS bug, lights OFF, then to NAV. 
     trigger.action.setUserFlag("502", 0) 
     SCHEDULER:New(nil, function()
       trigger.action.setUserFlag("502", 1) 
-    end, {}, 3)
+    end, {}, 30)
 
-    -- ClearMarshalAssignments()
-    nextRecoveryStartup()
-    log("Recovery cycle complete, scheduling next window")
-  end
-end
-
--- Forced Recovery Cycle
-local function ForceRecoveryCycle(duration_minutes)
-  local now = getUtcEpoch()
-  local duration = duration_minutes * 60
-
-  carrier_info.recovery = {
-    state = "IDLE",
-    start_utc   = now,
-    end_utc     = now + duration,
-    open_utc    = now + (RecoveryOpenOffset * 60),
-    close_utc   = now + duration - (RecoveryDuration - RecoveryCloseOffset) * 60,
-    turnout_utc = now + duration,
-
-    open_reported  = false,
-    close_reported = false,
-  }
-
-  BroadcastMessageToZone(string.format(
-    "99, Recovery override. New cycle starts NOW and runs for %d minutes.",
-    duration_minutes
-  ))
-
-  if debug then 
-    log(string.format(
-      "Manual recovery override: start=%s end=%s",
-      os.date("!%H:%M:%S", carrier_info.recovery.start_utc),
-      os.date("!%H:%M:%S", carrier_info.recovery.end_utc)
-    )) 
+    setRecoveryCycle()
+    log("Recovery cycle complete, scheduling next window", true)
   end
 end
 
@@ -414,11 +477,11 @@ local function configureCarrierSystems()
     if carrier_unit and carrier_unit:IsAlive() then
       carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
       carrier_unit:CommandActivateACLS(nil, "A73", 5)
-      if debug then log(carrier_unit:GetName() .. " datalinks refreshed") end
+      log(carrier_unit:GetName() .. " datalinks refreshed", true) 
     end
   end, {}, 60)
 
-  if debug then log(carrier_unit:GetName() .. " systems configured") end
+  log(carrier_unit:GetName() .. " systems configured", true)
 end
 
 
@@ -438,15 +501,17 @@ end
 -- Tanker start stop menu function
 local function controlRecoveryTanker()
   if not recovery_tanker then
-    if debug then log("Recovery tanker not define.") end
+    log("Recovery tanker not define.", true)
     return
   end
   if recovery_tanker:IsRunning() then
     recovery_tanker:Stop()
-    -- BroadcastMessageToZone("99, Recovery tanker off station.") 
+    BroadcastMessageToZone("99, Recovery Tanker off station")
+    log("Recovery tanker stopped", true) 
   else 
     recovery_tanker:Start()
-    -- BroadcastMessageToZone("99, Recovery tanker on station.") 
+    BroadcastMessageToZone("99, Recovery Tanker on station")
+    log("Recovery tanker started", true) 
   end
 end
 
@@ -464,16 +529,16 @@ local function reportCarrierInformation()
   ))
 
   table.insert(lines, string.format(
-    "Case %s Wind %.0f° @ %.1f kts | Visibility %s | QNH %.2f inHg",
-    w.case,
+    "Wind %.0f° @ %.1f kts | Visibility %s | QNH %.2f inHg | Temp %d°C",
     w.wind_from_mag,
     w.wind_speed_knots,
     w.vis_report,
-    w.qnh_inhg
+    w.qnh_inhg,
+    w.temperature
   ))
 
   table.insert(lines, string.format(
-    "Ship: Hdg %d°M | Spd %.1f kts | BRC %d | FB %d",
+    "Ship: Hdg %d° | Spd %.1f kts | BRC %d | FB %d",
     s.heading_mag,
     s.speed_knots,
     s.brc_mag,
@@ -482,25 +547,73 @@ local function reportCarrierInformation()
 
   if r.state ~= "IDLE" then
     table.insert(lines, string.format(
-      "Recovering from %s to %s zulu",
+      "Recovering from %s to %s Zulu Case %s in effect",
       UTILS.SecondsToClock(r.open_utc, true):sub(1,5),
-      UTILS.SecondsToClock(r.close_utc, true):sub(1,5)
+      UTILS.SecondsToClock(r.close_utc, true):sub(1,5), 
+      w.case
     ))
   else
     table.insert(lines, string.format(
-      "Next Recovery window starts: %s zulu",
-      UTILS.SecondsToClock(r.open_utc, true):sub(1,5)
+      "Next Recovery window: %s to %s Zulu expect Case %s",
+      UTILS.SecondsToClock(r.open_utc, true):sub(1,5), 
+      UTILS.SecondsToClock(r.close_utc, true):sub(1,5),
+      w.case
     ))
   end
 
   BroadcastMessageToZone(table.concat(lines, "\n"))
 end
 
+local function debugReport()
 
+  local w = carrier_info.weather
+  local s = carrier_info.ship
+  local r = carrier_info.recovery
 
+  local lines = {}
 
+  table.insert(lines, string.format(
+    "Weather: Cloud %d | Vis %d | VisRep %s | Wind %d (%dM) | WindSpd %d | Temp %d | QNH %d (%d) | Magvar %.2f | Case %s", 
+    w.cloud_base,    
+    w.visibility, 
+    w.vis_report,   
+    w.wind_from_true,
+    w.wind_from_mag,
+    w.wind_speed_knots,
+    w.temperature,
+    w.qnh_hpa,  
+    w.qnh_inhg,      
+    w.mag_var,     
+    w.case
+    )
+  )          
 
+  table.insert(lines, string.format(
+    "Ship: HDG %d (%dM) | BRC %d (%dM) | FB %d (%dM) | Spd %d | WoD %d", 
+    s.heading_true,
+    s.heading_mag,
+    s.brc_true,   
+    s.brc_mag,      
+    s.fb_true,       
+    s.fb_mag,        
+    s.speed_knots,    
+    s.wind_over_deck
+    )
+  )
 
+  table.insert(lines, string.format(
+    "Recovery: State %s | Start %s | Open %s | Close %s | End %s | Cycle %dm",
+    r.state, 
+    os.date("!%H:%M", r.start_utc),
+    os.date("!%H:%M", r.open_utc),
+    os.date("!%H:%M", r.close_utc),
+    os.date("!%H:%M",r.end_utc), 
+    r.total_cycle_seconds / 60
+    )
+  )
+
+  BroadcastMessageToZone(table.concat(lines, "\n"))
+end
 
 ----------------------------------------------------------------
 -- MARSHAL QUEUE
@@ -535,6 +648,10 @@ local function IsMarshalRequired()
   return c == "II" or c == "III"
 end
 
+---MARSHAL TEST-----------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------
+
 local function FindApproachTime(carrier_info, AssignedMinutes)
 
   -- work in minutes
@@ -544,10 +661,10 @@ local function FindApproachTime(carrier_info, AssignedMinutes)
 
   -- Rules for allocation
   local earliest_min = math.max(
-    now_min + ApproachPositioning, 
-    open_min - ApproachDuration
+    now_min + approach_buffer, 
+    open_min - approach_duration
   )
-  local latest_min   = close_min - ApproachDuration
+  local latest_min   = close_min - approach_duration
 
   -- Window no longer viable
   if earliest_min > latest_min then
@@ -585,12 +702,11 @@ local function ShowMarshalStack()
 
   
   for _, slot in ipairs(occupied) do
-    local radial_true = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
-    local radial_mag = trueToMag(radial_true)
+    local radial_mag = norm360(carrier_info.ship.fb_mag + 180 + slot.offset) 
     local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
 
     table.insert(lines, string.format(
-      "%s mothers %d / %d angels %d approach %s",
+      "%s mothers %03d / %02d angels %d approach %s",
       slot.occupant,
       radial_mag,
       slot.dme,
@@ -605,12 +721,11 @@ end
 local function ShowMarshalInfo(sideNumber)
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
-          local radial_true = (carrier_info.ship.fb_mag + 180 + slot.offset) % 360
-          local radial_mag = trueToMag(radial_true)
+          local radial_mag = norm360(carrier_info.ship.fb_mag + 180 + slot.offset)
           local appr = slot.approach_time and os.date("!%M", slot.approach_time) or "N/A"
 
           local text = string.format(
-              "%s marshal on mothers %03d dme %02d angels %02d approach time %s",
+              "%s marshal on mothers %03d dme %02d angels %d approach time %s",
               sideNumber,
               radial_mag,
               slot.dme,
@@ -618,12 +733,11 @@ local function ShowMarshalInfo(sideNumber)
               appr
           )
 
-          -- BroadcastMessageToZone(text)
           return text
         end
     end
     -- If no slot found
-    return string.format(sideNumber .. " not in queue.")
+    return sideNumber .. " not in queue."
 end
 
 local function JoinMarshal(sideNumber)
@@ -631,8 +745,7 @@ local function JoinMarshal(sideNumber)
   -- First: check if this sideNumber is already in the stack
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
-            BroadcastMessageToZone(sideNumber .. " already in queue.")
-            return
+            return sideNumber .. " already in queue."
         end
     end
 
@@ -646,15 +759,13 @@ local function JoinMarshal(sideNumber)
     end
 
     if not freeSlot then
-        BroadcastMessageToZone(sideNumber .. " queue full hold current position.")
-        return
+        return sideNumber .. " queue full hold current position."
     end
 
     -- Find next valid approach time
     local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
     if not t then
-        BroadcastMessageToZone(sideNumber .. " approach not possible this cycle.")
-        return
+        return sideNumber .. " approach not possible this cycle."
     end
 
     -- Assign
@@ -664,83 +775,90 @@ local function JoinMarshal(sideNumber)
     carrier_info.marshal.assigned_minutes[t] = sideNumber
 
     -- Report assignment
-    BroadcastMessageToZone(ShowMarshalInfo(sideNumber))
+    return ShowMarshalInfo(sideNumber)
 end
 
 local function LeaveMarshal(sideNumber)
     for _, slot in ipairs(carrier_info.marshal.stack) do
         if slot.occupant == sideNumber then
-            -- Free the minute
             if slot.approach_time then
                 carrier_info.marshal.assigned_minutes[slot.approach_time] = nil
             end
-
-            -- Clear slot
             slot.occupant = nil
             slot.approach_time = nil
             slot.last_update = nil
-
-            BroadcastMessageToZone(sideNumber .. " vacated marshal queue.")
-            return true
+            return sideNumber .. " vacated marshal queue."
         end
     end
 
-    return false -- modex not found in stack
+    return sideNumber .. " not found in stack."
 end
 
 local function UpdateMarshalTime(sideNumber)
-
-    -- Step 1: find their slot
     local slot = nil
     for _, s in ipairs(carrier_info.marshal.stack) do
-        if s.occupant == sideNumber then
-            slot = s
-            break
-        end
+        if s.occupant == sideNumber then slot = s; break end
     end
 
-    if not slot then
-        BroadcastMessageToZone(sideNumber .. " you are not in the marshal stack.")
-        return
-    end
-
-    -- Step 2: find a new valid approach time
+    if not slot then return sideNumber .. " not found in stack." end
+    
     local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
-    if not newTime then
-        BroadcastMessageToZone(sideNumber .. " no new approach time available this cycle.")
-        return
-    end
+    if not newTime then return sideNumber .. " unable cycle ending." end
 
-    -- Step 3: free their old approach minute
-    if slot.approach_time then
-        carrier_info.marshal.assigned_minutes[slot.approach_time] = nil
-    end
+    if slot.approach_time then carrier_info.marshal.assigned_minutes[slot.approach_time] = nil end
 
-
-    -- Step 4: assign new time
     slot.approach_time = newTime
     slot.last_update = getUtcEpoch()
     carrier_info.marshal.assigned_minutes[newTime] = sideNumber
 
-    -- Step 5: report updated marshal info
-    BroadcastMessageToZone(ShowMarshalInfo(sideNumber))
+    return ShowMarshalInfo(sideNumber)
+end
+
+local function ExecuteAutoAction(actionType)
+  clients:ForEachClient(function(client)
+    if client:IsPlayer() and client:IsActive() then
+      local playerName = client:GetPlayerName()
+      local acType = client:GetTypeName()
+      
+      -- Look up the registration
+      local sn = PlayerSideRegistry[playerName] and PlayerSideRegistry[playerName][acType]
+      
+      if not sn then
+        MESSAGE:New("ERROR: No side number registered for this aircraft type!", 10):ToClient(client)
+        return
+      end
+
+      local response = ""
+      if actionType == "JOIN" then
+        response = JoinMarshal(sn)
+      elseif actionType == "LEAVE" then
+        response = LeaveMarshal(sn)
+      elseif actionType == "UPDATE" then
+        response = UpdateMarshalTime(sn)
+      elseif actionType == "SHOW" then
+        response = ShowMarshalInfo(sn)
+      end
+
+      if response ~= "" then 
+        MESSAGE:New(response, 15):ToClient(client)
+      end
+    end
+  end)
 end
 
 local function ResetMarshalStack()
-    -- Clear all slot occupants + approach times
     for _, slot in ipairs(carrier_info.marshal.stack) do
         slot.occupant = nil
         slot.approach_time = nil
     end
 
-    -- Clear assigned minute lookup
     carrier_info.marshal.assigned_minutes = {}
 
-    -- Optional: log/debug
-    if debug then env.info("Marshal stack reset") end
+    log("Marshal stack reset", true)
 end
 
-local function MarshalHeartbeat() -- auto cleanup
+-- Marshal cleanup 
+local function marshalHeartbeat() 
 
     -- if not IsMarshalRequired() then
     --     return
@@ -776,63 +894,86 @@ end
 local function createMenus()
   carrier_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Control")
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Information", carrier_root_menu, reportCarrierInformation)
-  local marshal_root = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_root_menu, function() end)  -- spacer
+  local marshal_test_menu = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu) -- new menu in dev
   carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)
-  
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_root_menu, function() end)  -- spacer
+  carrier_debug_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Debug", carrier_root_menu)
+
   -- ADMIN MENU
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start CQ 90m Recovery", carrier_admin_menu, function() ForceRecoveryCycle(107) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Schedule CQ Recovery", carrier_admin_menu, function() setRecoveryCycle(85) end)  
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start/Stop Recovery Tanker", carrier_admin_menu, controlRecoveryTanker)
-  local carrier_lights_menu = MENU_COALITION:New(coalition.side.BLUE, "Set Carrier Lights", carrier_admin_menu)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_admin_menu, function() end)  -- spacer
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack (DEBUG)", carrier_admin_menu, ResetMarshalStack)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery NOW (DEBUG)", carrier_admin_menu, function() ForceRecoveryCycle(47) end)
+  local carrier_lights_menu = MENU_COALITION:New(coalition.side.BLUE, "Configure Carrier Lights", carrier_admin_menu)
 
+  -- DEBUG MENU
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery Cycle Now", carrier_debug_menu, function() setRecoveryCycle(25, getUtcEpoch()) end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Report", carrier_debug_menu, debugReport)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack", carrier_debug_menu, ResetMarshalStack)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Identify My Aircraft (DEBUG)", carrier_debug_menu, function() BroadcastMessageToZone(GetMyMetadata()) end)
+  local marshal_root = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_debug_menu)
 
+  -- LIGHTS MENU
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights OFF", carrier_lights_menu, function() trigger.action.setUserFlag("502", 0) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights NAV", carrier_lights_menu, function() trigger.action.setUserFlag("502", 1) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights LAUNCH", carrier_lights_menu, function() trigger.action.setUserFlag("502", 2) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights RECOVER", carrier_lights_menu, function() trigger.action.setUserFlag("502", 3) end)  
 
-  -- MARHSAL MENUS
+  -- OLD MARHSAL MENUS ------------ moved to debug incase
   local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", marshal_root)
   local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", marshal_root)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_root, ShowMarshalStack)
 
   -- SIDENUMBER LISTS
   local panthers = { 300, 310, 320, 330 }   -- 30x / 31x / 32x / 33x
-  local spectres = { 200, 210, 220 }             -- 20x / 21x
-
+  local spectres = { 200, 210, 220 }             -- 20x / 21
   local function BuildMarshalLeafMenu(parentMenu, block)
-      -- First level: the block (e.g. "300")
-      local blockLabel = tostring(block)
-      local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockLabel, parentMenu)
+    -- First level: the block (e.g. "300")
+    local blockLabel = tostring(block)
+    local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockLabel, parentMenu)
 
-      -- Now expand the block into individual aircraft
-      for i = 0, 9 do
-          local sn = block + i
-          local label = tostring(sn)
-
-          local leaf = MENU_COALITION:New(coalition.side.BLUE, label, blockMenu)
-
-          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Queue", leaf, function() JoinMarshal(sn) end )
-          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Queue", leaf, function() LeaveMarshal(sn) end )
-          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Info", leaf, function() ShowMarshalInfo(sn) end )
-          MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", leaf, function() UpdateMarshalTime(sn) end )
-      end
+    -- Now expand the block into individual aircraft
+    for i = 0, 9 do
+        local sn = block + i
+        local label = tostring(sn)
+        local leaf = MENU_COALITION:New(coalition.side.BLUE, label, blockMenu)
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Queue", leaf, function() JoinMarshal(sn) end )
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Queue", leaf, function() LeaveMarshal(sn) end )
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Info", leaf, function() ShowMarshalInfo(sn) end )
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", leaf, function() UpdateMarshalTime(sn) end )
+    end
   end
-
   -- BUILD PANTHERS
   for _, block in ipairs(panthers) do
-  BuildMarshalLeafMenu(panthers_menu, block)
+    BuildMarshalLeafMenu(panthers_menu, block)
   end
-
   -- BUILD SPECTRES
   for _, block in ipairs(spectres) do
-  BuildMarshalLeafMenu(spectres_menu, block)
+    BuildMarshalLeafMenu(spectres_menu, block)
+  end
+  ---END OLD MENUS ------------------------------------
+
+  -- NEW MARSHAL MENUS
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Marshal Queue", marshal_test_menu, function() ExecuteAutoAction("JOIN") end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Marshal Queue", marshal_test_menu, function() ExecuteAutoAction("LEAVE") end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", marshal_test_menu, function() ExecuteAutoAction("UPDATE") end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show My Marshal Info", marshal_test_menu, function() ExecuteAutoAction("SHOW") end)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_test_menu, ShowMarshalStack)
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", marshal_test_menu, function() end)  -- spacer
+
+  local set_side_root = MENU_COALITION:New(coalition.side.BLUE, "Set My Modex", marshal_test_menu)
+  local registration_config = { { name = "Panthers", blocks = { 300, 310, 320, 330 } }, { name = "Spectres", blocks = { 200, 210, 220 } } }
+
+  for _, group in ipairs(registration_config) do
+    local group_root = MENU_COALITION:New(coalition.side.BLUE, group.name, set_side_root)
+    for _, blockStart in ipairs(group.blocks) do 
+      local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockStart .. " Series", group_root)    
+      for i = 0, 9 do
+        local sn = blockStart + i
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Register as " .. sn, blockMenu, function() RegisterSideNumber(sn) end)
+      end
+    end
   end
 
-  if debug then log("Static Menu Created") end
+  log("Static Menu Created", true)
 end
 
 ------------------------------------------------------------------
@@ -843,7 +984,7 @@ end
 local carrier_initialised = false
 local function InitCarrierSystems()
   if carrier_initialised then 
-    if debug then log("InitCarrierSystems - already initialised") end
+    log("InitCarrierSystems - already initialised", true)
     return true
   end
 
@@ -855,20 +996,25 @@ local function InitCarrierSystems()
   marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
 
   -- Core systems
+  LoadPlayerSideRegistry()
   configureCarrierSystems()
   setupRecoveryTanker()
-  nextRecoveryStartup()
+  setRecoveryCycle()
   createMenus()
   buildMarshalStack()
+  updateCarrierWeather()
+  updateCarrierInfo()
+
 
   -- Schedulers
   SCHEDULER:New(nil, updateCarrierWeather, {}, 1, 600) -- 10 minute weather update
   SCHEDULER:New(nil, recoveryHeartbeat, {}, 1, 30) -- 30 second recovery cycle
-  SCHEDULER:New(nil, MarshalHeartbeat, {}, 30, 30 ) -- 30 marshal auto clean
+  SCHEDULER:New(nil, marshalHeartbeat, {}, 30, 30 ) -- 30 marshal auto clean
 
   carrier_initialised = true
   return true
 end
+
 
 -- CARRIER STARTUP SCHEDULER
 SCHEDULER:New(nil, function()
@@ -877,10 +1023,4 @@ SCHEDULER:New(nil, function()
     return false  -- stops once successful
   end
 end, {}, 5, 5)
-
-
-
-
-
-
 
