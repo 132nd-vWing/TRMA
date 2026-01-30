@@ -7,7 +7,7 @@ env.info("[Carrier Ops] Script loading 3.8")
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
 ------------------------------------------------------------------
-local debug = true                     -- enable debug to dcs.log           
+local debug = false                     -- enable debug to dcs.log           
 
 local recovery_start_minute = 20        -- 20 Real-World Cycle Start minute
 local open_buffer   = 10                -- Minutes from Start until Window Opens (Ship prep/turning)
@@ -363,7 +363,7 @@ end
 -- MOOSE TIW trigger
 local function startRecoveryCycle()
   local r = carrier_info.recovery
-  carrier_navygroup:AddTurnIntoWind(nil, r.total_cycle_seconds, nil, nil)   -- update to simplify cycle startup
+  carrier_navygroup:AddTurnIntoWind(nil, r.total_cycle_seconds, 25, true, nil)   -- update to simplify cycle startup
 end
 
 local function extendRecoveryCycle(minutes)

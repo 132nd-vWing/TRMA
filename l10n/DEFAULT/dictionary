@@ -19,7 +19,7 @@ I WILL TASK MY MORTARS TO FIRE SEAD AT SUSPECTED ENEMY SAM LOCATION: N67 26.000 
 I will have the MORTARS start firing a 5 minute suppression in about 10 minutes.\
 \
 ",
-	["DictKey_sortie_5"] = "",
+	["DictKey_ActionRadioText_428"] = "Start friendly column",
 	["DictKey_ActionText_32"] = "",
 	["DictKey_ActionText_26"] = "TO: JTAC\
 FROM: MORTAR\
@@ -80,5 +80,5 @@ METAR:\
 TL: FL090\
 TA: 7.000FT MSL\
 ",
-	["DictKey_ActionRadioText_428"] = "Start friendly column",
+	["DictKey_sortie_5"] = "",
 } -- end of dictionary

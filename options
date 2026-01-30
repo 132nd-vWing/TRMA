@@ -65,7 +65,7 @@ options =
 	{
 		["handOffsetZ"] = 0,
 		["enableHMDMask"] = false,
-		["box_mouse_cursor"] = false,
+		["box_mouse_cursor"] = true,
 		["handOffsetY"] = 0,
 		["mirror_crop"] = false,
 		["pointer_use_type"] = 0,
@@ -116,7 +116,7 @@ options =
 		["BlurFlatShadows"] = 0,
 		["cockpitGI"] = 1,
 		["terrainTextures"] = "max",
-		["box_mouse_cursor"] = false,
+		["box_mouse_cursor"] = true,
 		["multiMonitorSetup"] = "1camera",
 		["messagesFontScale"] = 1,
 		["defaultFOV"] = 78,
@@ -479,7 +479,7 @@ options =
 	{
 		["main_output"] = "{0.0.0.00000000}.{6f982fd3-2bea-4982-a438-fb658ebddfb0}",
 		["FakeAfterburner"] = false,
-		["volume"] = 5,
+		["volume"] = 54,
 		["headphones_on_external_views"] = true,
 		["subtitles"] = true,
 		["voiceChatInVolume"] = 50,
