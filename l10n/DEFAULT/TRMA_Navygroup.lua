@@ -16,8 +16,8 @@ local close_buffer  = 2                 -- Minutes from Window Close until Turno
 
 local deckAngle = 0                     -- -9.1 for Nimitz, but results in a scaled BRC. 
 
-local approach_buffer = 3               -- buffer for marshal positioning
-local approach_duration = 5             -- time for approach from iaf - ball
+local approach_buffer = 3               -- minutes to next earliest push time.
+local approach_duration = 5             -- minutes from slot dme - ball
 
 local HPA_TO_INHG   = 0.02953
 local MMHG_TO_HPA   = 1.33322
@@ -652,7 +652,7 @@ end
 
 --------------------------------------------------------------------------------------------------------------
 
-local function FindApproachTime(carrier_info, AssignedMinutes)
+local function FindApproachTime(carrier_info, AssignedMinutes, pushBuffer)
 
   -- work in minutes
   local now_min = math.floor(getUtcEpoch() / 60)
@@ -661,7 +661,7 @@ local function FindApproachTime(carrier_info, AssignedMinutes)
 
   -- Rules for allocation
   local earliest_min = math.max(
-    now_min + approach_buffer, 
+    now_min + pushBuffer, 
     open_min - approach_duration
   )
   local latest_min   = close_min - approach_duration
@@ -763,7 +763,7 @@ local function JoinMarshal(sideNumber)
     end
 
     -- Find next valid approach time
-    local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
+    local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 10)
     if not t then
         return sideNumber .. " approach not possible this cycle."
     end
@@ -802,7 +802,7 @@ local function UpdateMarshalTime(sideNumber)
 
     if not slot then return sideNumber .. " not found in stack." end
     
-    local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes)
+    local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 3)
     if not newTime then return sideNumber .. " unable cycle ending." end
 
     if slot.approach_time then carrier_info.marshal.assigned_minutes[slot.approach_time] = nil end

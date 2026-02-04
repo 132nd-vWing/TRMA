@@ -479,7 +479,7 @@ options =
 	{
 		["main_output"] = "{0.0.0.00000000}.{6f982fd3-2bea-4982-a438-fb658ebddfb0}",
 		["FakeAfterburner"] = false,
-		["volume"] = 54,
+		["volume"] = 9,
 		["headphones_on_external_views"] = true,
 		["subtitles"] = true,
 		["voiceChatInVolume"] = 50,
