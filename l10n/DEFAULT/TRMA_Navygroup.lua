@@ -115,92 +115,6 @@ local function IsValidClockString(t)
   return type(t) == "string" and t:match("^%d%d:%d%d:%d%d$")
 end
 
-local function GetMyMetadata()
-  local metadata = "Could not identify unit."
-  
-  -- We iterate the set you already have globally defined
-  clients:ForEachClient(function(client)
-    -- We check which client is currently 'active' in the cockpit
-    if client:IsPlayer() and client:IsActive() then
-      local groupName = client:GetClientGroupName()
-      local unitName = client:GetName()
-      local playerName = client:GetPlayerName()
-      local acType = client:GetTypeName()
-      
-      metadata = string.format(
-        "ME Group: %s\nME Unit: %s\nAircraft: %s\nPlayer: %s",
-        groupName, 
-        unitName, 
-        acType, 
-        playerName
-      )
-    end
-  end)
-  
-  return metadata
-end
-
--- Load the sidenumber registry from disk
-local function LoadPlayerSideRegistry()
-    local f = io.open(SIDEREG_PATH, "r")
-    if f then
-        f:close()
-        dofile(SIDEREG_PATH)
-        log("Player Side Registry loaded.", true)
-    else
-        log("No existing registry found, starting fresh.", true)
-        PlayerSideRegistry = {}
-    end
-
-    -- DEBUG: Print the table structure to the log
-    for name, data in pairs(PlayerSideRegistry) do
-        for ac, sn in pairs(data) do
-            log("Registry Check: " .. name .. " | " .. ac .. " | " .. sn, true)
-        end
-    end
-end
-
--- Save the sidenumber registry to disk
-local function SavePlayerSideRegistry()
-    local file, err = io.open(SIDEREG_PATH, "w")
-    if not file then
-        log("Error opening registry for writing: " .. tostring(err), true)
-        return
-    end
-
-    file:write("PlayerSideRegistry = {\n")
-    for playerName, aircrafts in pairs(PlayerSideRegistry) do
-        file:write(string.format("  [\"%s\"] = {\n", playerName))
-        for acType, sideNumber in pairs(aircrafts) do
-            file:write(string.format("    [\"%s\"] = %d,\n", acType, sideNumber))
-        end
-        file:write("  },\n")
-    end
-    file:write("}\n")
-    file:close()
-    log("Player Side Registry saved to " .. SIDEREG_PATH, true)
-end
-
--- Claim a side number
-local function RegisterSideNumber(selectedSN)
-  clients:ForEachClient(function(client)
-    if client:IsPlayer() and client:IsActive() then
-      local playerName = client:GetPlayerName()
-      local acType = client:GetTypeName()
-      
-      PlayerSideRegistry[playerName] = PlayerSideRegistry[playerName] or {}
-      PlayerSideRegistry[playerName][acType] = selectedSN
-      
-      -- Persistence (optional, requires desanitized io/lfs)
-      SavePlayerSideRegistry() 
-      
-      local msg = string.format("REGISTERED: %s is now #%d in the %s", playerName, selectedSN, acType)
-      MESSAGE:New(msg, 10):ToClient(client)
-      log(msg, true)
-    end
-  end)
-end
-
 ------------------------------------------------------------------
 -- CARRIER ENVIRONMENT (weather, ship data)
 ------------------------------------------------------------------
@@ -620,8 +534,8 @@ end
 ----------------------------------------------------------------
 
 local function buildMarshalStack()
-  local radialOffsets = { 0, 15, -15, 30, -30 }
-  local angelsList    = { 6, 7, 8, 9 }
+  local radialOffsets = { 0, 30, -30 }
+  local angelsList    = { 6, 7, 8, 9, 10, 11 }
 
   local idCounter = 1
 
@@ -814,36 +728,25 @@ local function UpdateMarshalTime(sideNumber)
     return ShowMarshalInfo(sideNumber)
 end
 
-local function ExecuteAutoAction(actionType)
-  clients:ForEachClient(function(client)
-    if client:IsPlayer() and client:IsActive() then
-      local playerName = client:GetPlayerName()
-      local acType = client:GetTypeName()
-      
-      -- Look up the registration
-      local sn = PlayerSideRegistry[playerName] and PlayerSideRegistry[playerName][acType]
-      
-      if not sn then
-        MESSAGE:New("ERROR: No side number registered for this aircraft type!", 10):ToClient(client)
-        return
-      end
+local function ExecuteAutoAction(actionType, sn)
+  if not sn then return
+  end
 
-      local response = ""
-      if actionType == "JOIN" then
-        response = JoinMarshal(sn)
-      elseif actionType == "LEAVE" then
-        response = LeaveMarshal(sn)
-      elseif actionType == "UPDATE" then
-        response = UpdateMarshalTime(sn)
-      elseif actionType == "SHOW" then
-        response = ShowMarshalInfo(sn)
-      end
+  local response = ""
 
-      if response ~= "" then 
-        MESSAGE:New(response, 15):ToClient(client)
-      end
-    end
-  end)
+  if actionType == "JOIN" then
+    response = JoinMarshal(sn)
+  elseif actionType == "LEAVE" then
+    response = LeaveMarshal(sn)
+  elseif actionType == "UPDATE" then
+    response = UpdateMarshalTime(sn)
+  elseif actionType == "SHOW" then
+    response = ShowMarshalInfo(sn)
+  end
+
+  if response ~= "" then
+    BroadcastMessageToZone(response)
+  end
 end
 
 local function ResetMarshalStack()
@@ -892,10 +795,10 @@ end
 ------------------------------------------------------------------
 
 local function createMenus()
-  carrier_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Control")
+  carrier_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Control")  -- global because extend is dynamic
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Carrier Information", carrier_root_menu, reportCarrierInformation)
-  local marshal_test_menu = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu) -- new menu in dev
-  carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)
+  local marshal_root_menu = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_root_menu)
+  carrier_admin_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Admin", carrier_root_menu)  -- global because extend is dynamic
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", carrier_root_menu, function() end)  -- spacer
   carrier_debug_menu = MENU_COALITION:New(coalition.side.BLUE, "Carrier Debug", carrier_root_menu)
 
@@ -908,8 +811,6 @@ local function createMenus()
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Start Recovery Cycle Now", carrier_debug_menu, function() setRecoveryCycle(25, getUtcEpoch()) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Debug Report", carrier_debug_menu, debugReport)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Clear Marshal Stack", carrier_debug_menu, ResetMarshalStack)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Identify My Aircraft (DEBUG)", carrier_debug_menu, function() BroadcastMessageToZone(GetMyMetadata()) end)
-  local marshal_root = MENU_COALITION:New(coalition.side.BLUE, "Marshal Options", carrier_debug_menu)
 
   -- LIGHTS MENU
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights OFF", carrier_lights_menu, function() trigger.action.setUserFlag("502", 0) end)
@@ -917,58 +818,29 @@ local function createMenus()
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights LAUNCH", carrier_lights_menu, function() trigger.action.setUserFlag("502", 2) end)
   MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Lights RECOVER", carrier_lights_menu, function() trigger.action.setUserFlag("502", 3) end)  
 
-  -- OLD MARHSAL MENUS ------------ moved to debug incase
-  local panthers_menu = MENU_COALITION:New(coalition.side.BLUE, "Panthers", marshal_root)
-  local spectres_menu = MENU_COALITION:New(coalition.side.BLUE, "Spectres", marshal_root)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_root, ShowMarshalStack)
+  -- MARSHAL MENUS
+  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_root_menu, ShowMarshalStack) 
 
-  -- SIDENUMBER LISTS
-  local panthers = { 300, 310, 320, 330 }   -- 30x / 31x / 32x / 33x
-  local spectres = { 200, 210, 220 }             -- 20x / 21
-  local function BuildMarshalLeafMenu(parentMenu, block)
-    -- First level: the block (e.g. "300")
-    local blockLabel = tostring(block)
-    local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockLabel, parentMenu)
+  local menu_sets = { { name = "Panthers", blocks = { 300, 310, 320, 330 } }, { name = "Spectres", blocks = { 200, 210, 220 } } }
 
-    -- Now expand the block into individual aircraft
-    for i = 0, 9 do
-        local sn = block + i
-        local label = tostring(sn)
-        local leaf = MENU_COALITION:New(coalition.side.BLUE, label, blockMenu)
-        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Queue", leaf, function() JoinMarshal(sn) end )
-        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Queue", leaf, function() LeaveMarshal(sn) end )
-        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Info", leaf, function() ShowMarshalInfo(sn) end )
-        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", leaf, function() UpdateMarshalTime(sn) end )
-    end
-  end
-  -- BUILD PANTHERS
-  for _, block in ipairs(panthers) do
-    BuildMarshalLeafMenu(panthers_menu, block)
-  end
-  -- BUILD SPECTRES
-  for _, block in ipairs(spectres) do
-    BuildMarshalLeafMenu(spectres_menu, block)
-  end
-  ---END OLD MENUS ------------------------------------
+  -- LOOP THROUGH GROUPS
+  for _, group in ipairs(menu_sets) do
+    local group_root = MENU_COALITION:New(coalition.side.BLUE, group.name, marshal_root_menu)
 
-  -- NEW MARSHAL MENUS
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Marshal Queue", marshal_test_menu, function() ExecuteAutoAction("JOIN") end)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Marshal Queue", marshal_test_menu, function() ExecuteAutoAction("LEAVE") end)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", marshal_test_menu, function() ExecuteAutoAction("UPDATE") end)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show My Marshal Info", marshal_test_menu, function() ExecuteAutoAction("SHOW") end)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show Marshal Stack", marshal_test_menu, ShowMarshalStack)
-  MENU_COALITION_COMMAND:New(coalition.side.BLUE, "---", marshal_test_menu, function() end)  -- spacer
+    for _, blockStart in ipairs(group.blocks) do
+      local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockStart .. " Series", group_root)
 
-  local set_side_root = MENU_COALITION:New(coalition.side.BLUE, "Set My Modex", marshal_test_menu)
-  local registration_config = { { name = "Panthers", blocks = { 300, 310, 320, 330 } }, { name = "Spectres", blocks = { 200, 210, 220 } } }
-
-  for _, group in ipairs(registration_config) do
-    local group_root = MENU_COALITION:New(coalition.side.BLUE, group.name, set_side_root)
-    for _, blockStart in ipairs(group.blocks) do 
-      local blockMenu = MENU_COALITION:New(coalition.side.BLUE, blockStart .. " Series", group_root)    
       for i = 0, 9 do
         local sn = blockStart + i
-        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Register as " .. sn, blockMenu, function() RegisterSideNumber(sn) end)
+
+        -- Create the sidenumber root menu
+        local sn_root = MENU_COALITION:New(coalition.side.BLUE, sn .. " actions", blockMenu )
+
+        -- Marshal actions now live INSIDE the sidenumber menu
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Join Marshal Queue", sn_root, function() ExecuteAutoAction("JOIN", sn) end)
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Leave Marshal Queue", sn_root, function() ExecuteAutoAction("LEAVE", sn) end)
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Update Approach Time", sn_root, function() ExecuteAutoAction("UPDATE", sn) end)
+        MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Show My Marshal Info", sn_root, function() ExecuteAutoAction("SHOW", sn) end)
       end
     end
   end
@@ -996,7 +868,6 @@ local function InitCarrierSystems()
   marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
 
   -- Core systems
-  LoadPlayerSideRegistry()
   configureCarrierSystems()
   setupRecoveryTanker()
   setRecoveryCycle()
