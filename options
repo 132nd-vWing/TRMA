@@ -271,11 +271,13 @@ options =
 		["UH-1H"] = 
 		{
 			["UHRudderTrimmer"] = false,
+			["UH1HThrottleFullRange"] = false,
 			["autoPilot"] = true,
-			["UH1HCockpitShake"] = 50,
+			["UHTrimmingMethod"] = 0,
+			["UH1HThrottleDetent"] = 0,
 			["CPLocalList"] = "default",
 			["weapTooltips"] = true,
-			["UHTrimmingMethod"] = 0,
+			["UH1HCockpitShake"] = 50,
 		}, -- end of ["UH-1H"]
 		["F-16C"] = 
 		{

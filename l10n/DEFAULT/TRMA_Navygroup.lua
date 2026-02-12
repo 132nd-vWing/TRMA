@@ -24,8 +24,6 @@ local MMHG_TO_HPA   = 1.33322
 local MPS_TO_KNOTS  = 1.94384
 local MAGVAR = 4                        -- fallback magvar from F10 rose
 
-local SIDEREG_PATH = lfs.writedir() .. "carrier_player_sides.lua" -- Path to Saved Games/DCS/
-
 ------------------------------------------------------------------
 -- GLOBAL TABLES / STATE
 ------------------------------------------------------------------
