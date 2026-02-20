@@ -2,7 +2,7 @@
 -- CARRIER SCRIPT
 
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.8")
+env.info("[Carrier Ops] Script loading 3.9")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
@@ -31,10 +31,13 @@ local carrier_info = { weather = {}, ship = {}, recovery= {}, marshal= { stack =
 
 local carrier_name = "CVN-73"         -- DCS unit name (unit, not group)
 local tanker_name = "CVN73_Tanker#IFF:5327FR" -- DCS tanker unit name
+local rescue_name = "CVN73_Rescue"     -- DCS rescue helo unit name 
+local rescue_airbase = "Plane Guard"    -- DCS escort ship name to land helo.
 
 local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
 local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn and task the carrier 
-local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60)) -- define the marshal zone for broadcasts
+local rescue_helo = RESCUEHELO:New(carrier_name, rescue_name):SetTakeoffHot():SetAltitude(70):SetHomeBase(AIRBASE:FindByName(rescue_airbase)) -- define rescue helo
+local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(50)) -- define the marshal zone for broadcasts
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- list spawned blue human clients
 
 local recovery_tanker = nil     
@@ -301,8 +304,10 @@ local function recoveryHeartbeat()
 
   -- IDLE → TURNING_IN
   if r.state == "IDLE" and now_utc >= r.start_utc and not r.open_reported then
+    if rescue_helo then rescue_helo:Start() end
     startRecoveryCycle()
     trigger.action.setUserFlag("502", 2) -- lights to launch AC
+
 
     BroadcastMessageToZone(string.format(
       "99, %s Recovering from %s to %s Zulu. Case %s. BRC %d, FB %d.",
@@ -349,12 +354,13 @@ local function recoveryHeartbeat()
       cycle_extend_menu:Remove()
       cycle_extend_menu = nil
     end
+    if rescue_helo then rescue_helo:RTB() end
     log("Recovery state → CLOSED", true)
   end
 
   -- CLOSED → IDLE (turn downwind)
   if r.state == "CLOSED" and now_utc >= r.end_utc then
-    carrier_unit:SetSpeed(UTILS.KnotsToMps(20), true)
+    --carrier_navygroup:SetSpeed(30, true, nil)
     -- DCS bug, lights OFF, then to NAV. 
     trigger.action.setUserFlag("502", 0) 
     SCHEDULER:New(nil, function()
@@ -374,26 +380,31 @@ end
 local function configureCarrierSystems()
   if not carrier_unit then return end
 
-  local beacon = carrier_unit:GetBeacon()
-  carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
-  carrier_unit:CommandActivateACLS(nil, "A73", 5)
   carrier_unit:CommandSetFrequency(309.5)
-  carrier_unit:SetSpeed(UTILS.KnotsToMps(16), true)
+  --carrier_navygroup:SetSpeed(30, true, nil)
   trigger.action.setUserFlag("502", 1) -- lights to NAV
 
-  beacon:ActivateICLS(13, "I73")
-  beacon:ActivateTACAN(13, "X", "T73", true)
+  local function pulseSystems(count)
+    if not carrier_unit:IsAlive() then return end
 
-  -- This is a restart to harden an MP consistency issue. 
-  SCHEDULER:New(nil, function()
-    if carrier_unit and carrier_unit:IsAlive() then
-      carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
-      carrier_unit:CommandActivateACLS(nil, "A73", 5)
-      log(carrier_unit:GetName() .. " datalinks refreshed", true) 
+    carrier_unit:CommandActivateLink4(331, nil, "A73", 5)
+    carrier_unit:CommandActivateACLS(nil, "A73", 5)
+    
+    local beacon = carrier_unit:GetBeacon()
+    if beacon then 
+      beacon:ActivateICLS(13, "I73")
+      beacon:ActivateTACAN(13, "X", "T73", true)
     end
-  end, {}, 60)
 
-  log(carrier_unit:GetName() .. " systems configured", true)
+    log(string.format("%s System Pulse %d executed", carrier_unit:GetName(), count), true)
+  end
+
+  pulseSystems(1)
+
+  SCHEDULER:New(nil, pulseSystems, {2}, 30)
+  SCHEDULER:New(nil, pulseSystems, {3}, 60)
+
+      log(string.format("%s systems initilized", carrier_unit:GetName(), count), true)
 end
 
 
@@ -408,6 +419,11 @@ local function setupRecoveryTanker()
   tanker:SetTakeoffAir()
   tanker:SetCallsign(2,1)
   recovery_tanker = tanker
+end
+
+-- Helo landing tracker
+function rescue_helo:OnAfterReturned(From, Event, To, airbase)
+  self:Stop()
 end
 
 -- Tanker start stop menu function
@@ -515,7 +531,7 @@ local function debugReport()
 
   table.insert(lines, string.format(
     "Recovery: State %s | Start %s | Open %s | Close %s | End %s | Cycle %dm",
-    r.state, 
+    r.state,
     os.date("!%H:%M", r.start_utc),
     os.date("!%H:%M", r.open_utc),
     os.date("!%H:%M", r.close_utc),
@@ -675,7 +691,7 @@ local function JoinMarshal(sideNumber)
     end
 
     -- Find next valid approach time
-    local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 10)
+    local t = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 15)
     if not t then
         return sideNumber .. " approach not possible this cycle."
     end
@@ -714,7 +730,7 @@ local function UpdateMarshalTime(sideNumber)
 
     if not slot then return sideNumber .. " not found in stack." end
     
-    local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 3)
+    local newTime = FindApproachTime(carrier_info, carrier_info.marshal.assigned_minutes, 3) 
     if not newTime then return sideNumber .. " unable cycle ending." end
 
     if slot.approach_time then carrier_info.marshal.assigned_minutes[slot.approach_time] = nil end

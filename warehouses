@@ -1989,7 +1989,7 @@ warehouses =
 			["periodicity"] = 30,
 			["suppliers"] = {},
 			["coalition"] = "blue",
-			["dynamicCargo"] = false,
+			["dynamicCargo"] = true,
 			["OperatingLevel_Eqp"] = 10,
 			["gasoline"] = 
 			{
