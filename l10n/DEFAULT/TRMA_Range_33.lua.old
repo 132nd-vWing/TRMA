@@ -1,6 +1,6 @@
--- R33 A2A ver1.7
--- changed zones - west, mid, close
--- removed random zone.
+-- R33 A2A 1.6
+-- change spawn groups to all configable.
+-- mapped zones to north/centre/south 
 
 -- engagement zone definition
 local zoneCAP = ZONE_POLYGON:New("zoneCAP",GROUP:FindByName("R33_engagezone"))
