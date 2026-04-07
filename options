@@ -492,7 +492,7 @@ options =
 	["format"] = 1,
 	["sound"] = 
 	{
-		["main_output"] = "{0.0.0.00000000}.{88520a93-07fd-4923-9269-61530eaebfd1}",
+		["main_output"] = "{0.0.0.00000000}.{7ea3ff19-b75b-4a77-a031-795acbc4dba4}",
 		["FakeAfterburner"] = true,
 		["volume"] = 71,
 		["headphones_on_external_views"] = false,
@@ -500,7 +500,7 @@ options =
 		["voiceChatInVolume"] = 50,
 		["world"] = 63,
 		["hear_in_helmet"] = true,
-		["hp_output"] = "{0.0.0.00000000}.{88520a93-07fd-4923-9269-61530eaebfd1}",
+		["hp_output"] = "{0.0.0.00000000}.{7ea3ff19-b75b-4a77-a031-795acbc4dba4}",
 		["music"] = 0,
 		["main_layout"] = "",
 		["headphones"] = 72,
