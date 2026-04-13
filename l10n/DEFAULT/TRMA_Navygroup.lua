@@ -2,7 +2,7 @@
 -- CARRIER SCRIPT
 
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.9")
+env.info("[Carrier Ops] Script loading 3.9.3")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
@@ -879,7 +879,9 @@ local function InitCarrierSystems()
   log("Carrier initialising")
 
   carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate()
-  marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(60))
+  local carrier_group = carrier_navygroup:GetGroup() 
+  carrier_group:OptionROE(ENUMS.ROE.WeaponHold)
+  marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(50))
 
   -- Core systems
   configureCarrierSystems()
