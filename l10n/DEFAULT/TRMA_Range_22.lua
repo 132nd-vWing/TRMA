@@ -115,7 +115,7 @@ MENU_MISSION_COMMAND:New("Activate AR scenario WEST", range_22_menu_root, range2
 -- A2A initializer
 local range22_A2A = TRMA_A2A.Range:New("Range 22", {
   engageZone = "R22_AA_Engage",
-  patrolZones = {
+  capZones = {
     { name = "Mid", zoneName = "R22_AA_Spawn_1" },
     { name = "East", zoneName = "R22_AA_Spawn_2" }
   }

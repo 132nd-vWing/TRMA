@@ -11,7 +11,7 @@ range_21_menu_R21_scenario_IADS = MENU_MISSION_COMMAND:New("Activate R21 IADS",r
 -- A2A initializer
 local range21_A2A = TRMA_A2A.Range:New("Range 21", {
   engageZone = "R21_AA_Engage",
-  patrolZones = {
+  capZones = {
     { name = "East", zoneName = "R21_AA_Spawn_1" },
     { name = "West", zoneName = "R21_AA_Spawn_2" }
   }

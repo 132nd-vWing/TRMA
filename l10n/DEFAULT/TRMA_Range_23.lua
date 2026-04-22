@@ -271,7 +271,7 @@ start_EXGS_Course_r23 = MENU_MISSION_COMMAND:New("Activate EX GREEN SHIELD in ra
 -- A2A initializer
 local range23_A2A = TRMA_A2A.Range:New("Range 23", {
   engageZone = "R23_AA_Engage",
-  patrolZones = {
+  capZones = {
     { name = "Mid", zoneName = "R23_AA_Spawn_1" },
     { name = "East", zoneName = "R23_AA_Spawn_2" }
   }
