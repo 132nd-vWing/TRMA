@@ -1,3 +1,7 @@
+---------------------
+-- Range 22
+---------------------
+
 -- Define the root menu for Range 22
 range_22_menu_root = MENU_MISSION:New("Range 22", range_root_menu19_24)
 
@@ -111,8 +115,9 @@ end
 -- Create a mission command to trigger the scenario
 MENU_MISSION_COMMAND:New("Activate AR scenario WEST", range_22_menu_root, range22_AR_scenario_WEST)
 
--- AA drones
+-------------------------------
 -- A2A initializer
+-------------------------------
 local range22_A2A = TRMA_A2A.Range:New("Range 22", {
   engageZone = "R22_AA_Engage",
   capZones = {

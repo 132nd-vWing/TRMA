@@ -5,15 +5,38 @@
 -- Instructions for Mission Makers:
 -- 1. engageZone is the area where combat is allowed. The range. 
 -- 2. capZones are the specific areas where drones will spawn and patrol.
+-- 3. Define capZones / engagaZones in Range Lua. 
 -- ============================================================================
+
+-- ============================================================================
+-- Range LUA Embed Range 33 example: 
+-- ----------------------------
+-- -- A2A initializer
+-- ----------------------------
+-- local range33_A2A = TRMA_A2A.Range:New("Range 33", {
+--   engageZone = "R33_AA_Engage",
+--   capZones = {
+--     { name = "West", zoneName = "R33_AA_Spawn_1" },
+--     { name = "Mid", zoneName = "R33_AA_Spawn_2" }
+--   }
+-- }, range_33_menu_root)
+-- ===========================================================================
+
+-- Start
 local debug = false
 
 TRMA_A2A = {}
 
 -- USER SETTINGS: Air frames must be called Drone_{airframe} or Drone_{airframe}_BFM in ME
 TRMA_A2A.Airframes = { 
-  "SU27", 
-  "MIG29A" 
+  "MIG23",
+  "MIG29A",
+  "SU30",
+  "JF17",
+  "MIG25",
+  "SU27",
+  "J11A",
+  "MIG31" 
 }
 
 -- ============================================================================
@@ -43,8 +66,9 @@ function TRMA_A2A.Range:New(rangeName, config, parentMenu)
 
   -- Default Group Templates
   self.capGroups = {
-    { airframe = TRMA_A2A.Airframes[2], size = 2, capZoneID = 1 },
-    { airframe = TRMA_A2A.Airframes[1], size = 2, capZoneID = 2 },
+    { airframe = TRMA_A2A.Airframes[3], size = 2, capZoneID = 1 }, -- 2x SU30
+    { airframe = TRMA_A2A.Airframes[1], size = 2, capZoneID = 2 }, -- 2x MIG23
+    { airframe = TRMA_A2A.Airframes[2], size = 2, capZoneID = 1 }  -- 2x MIG29A
   }
 
   self:BuildMenu()

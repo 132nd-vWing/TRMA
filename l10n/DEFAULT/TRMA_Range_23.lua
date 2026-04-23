@@ -1,3 +1,7 @@
+--------------------------
+-- Range 23 
+--------------------------
+
 -- Create a menu root for Range 23
 range_23_menu_root = MENU_MISSION:New("Range 23", range_root_menu19_24)
 
@@ -268,11 +272,13 @@ start_SCUD_HUNT_IADS_r23 = MENU_MISSION_COMMAND:New("Activate the SCUD Hunt Scen
 start_SME_SAT_Course_r23 = MENU_MISSION_COMMAND:New("Activate SME SAT course in range 23", range_23_menu_root, flag_23)
 start_EXGS_Course_r23 = MENU_MISSION_COMMAND:New("Activate EX GREEN SHIELD in range 23", range_23_menu_root, flag_22)
 
+--------------------------------
 -- A2A initializer
+--------------------------------
 local range23_A2A = TRMA_A2A.Range:New("Range 23", {
   engageZone = "R23_AA_Engage",
   capZones = {
-    { name = "Mid", zoneName = "R23_AA_Spawn_1" },
-    { name = "East", zoneName = "R23_AA_Spawn_2" }
+    { name = "East", zoneName = "R23_AA_Spawn_1" },
+    { name = "Mid", zoneName = "R23_AA_Spawn_2" }
   }
 }, range_23_menu_root) 
