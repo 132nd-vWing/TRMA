@@ -72,11 +72,11 @@ REQUEST YOU TO NEUTRALIZE THE MBT's AS SOON AS POSSIBLE",
 \
 https://132nd-vwing.github.io/TRMA-Brief/\
 \
-Month Day Year by 132nd.IP\
+(Month Day Year) by 132nd.(IP name)\
 \
 METAR:\
-- ENBO RWYxy ...\
-(Default: - ENBO RWY07 09104KT 9999 SCT180 FEW360 15/4 Q10147 A2994 NOSIG)\
+- ENBO RWY(xy) ...\
+(Default: - ENBO RWY07 09104KT 9999 SCT180 FEW360 13/2 Q1014 A2994 NOSIG)\
 \
 TL: FL090\
 TA: 7.000FT MSL\
