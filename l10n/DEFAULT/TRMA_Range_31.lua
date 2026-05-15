@@ -15,5 +15,11 @@ local range31_A2A = TRMA_A2A.Range:New("Range 31", {
   }
 }, range_31_menu_root) 
 
+----------------------------
+-- Naval Operations
+----------------------------
+local range31_SAG = TRMA_SAG.Range:New("Range 31", {
+  spawnZone = "R31_Naval_Spawn" -- Define this zone in the ME
+}, range_31_menu_root)
 
 
