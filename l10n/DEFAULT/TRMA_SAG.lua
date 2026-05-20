@@ -8,11 +8,17 @@
 -- 4. Red_Convoy moves west
 -- 5. Pirate scenario small craft attack a freighter. 
 -- 6. Clear all navy units. 
+-- 
+-- Mission Designer: 
+-- 1. in ME add "R31_Naval_Spawn" trigger zone for each range you want ships in. 
+-- 2. create Naval groups with the names above. Red_SAG etc. 
+-- 3. load this before the range scripts. 
+-- 4. add and edit the snip below to the range script. 
 
 -- ==== RANGE LUA EMBED =============================================
 -- add the following to the range lua where units are required 
 -- ---------------------------------------------------------------------
--- -- Navy Unit Activator
+-- -- Naval Initializer.
 -- ---------------------------------------------------------------------
 -- local range31_SAG = TRMA_SAG.Range:New("Range 31", {
 --   spawnZone = "R31_Naval_Spawn" -- Define this zone in the ME

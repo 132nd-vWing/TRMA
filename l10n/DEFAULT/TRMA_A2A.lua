@@ -3,13 +3,13 @@
 -- ============================================================================
 -- Purpose: Automated A2A Spawning with "Leash" logic.
 -- Instructions for Mission Makers:
--- 1. engageZone is the area where combat is allowed. The range. 
--- 2. capZones are the specific areas where drones will spawn and patrol.
--- 3. Define capZones / engagaZones in Range Lua. 
+-- 1. in ME make sure there is R31_AA_Spawn_1 and _2, and R31_AA_Engage  trigger zone. (replace R31 with the range)
+-- 2. in ME make sur ethe drones exist with name format Drone_{airframe} or Drone_{airframe}_BFM
+-- 3. load this lua before the range luas. 
+-- 4. Add and edit the snip A2A initializer below to the range lua.  
 -- ============================================================================
 
 -- ============================================================================
--- Range LUA Embed Range 33 example: 
 -- ----------------------------
 -- -- A2A initializer
 -- ----------------------------
@@ -22,6 +22,7 @@
 -- }, range_33_menu_root)
 -- ===========================================================================
 
+-- ==============================================================================
 -- Start
 local debug = false
 

@@ -2,17 +2,17 @@
 local activeTankers = {}
 local tankerMenus = {}
 local tankerTemplates = {
-  {name = "AR101 #IFF:5101FR", callsign = { id = "Texaco", major = 1, minor = 1 }, spawnMenuText = "Spawn AR101", despawnMenuText = "Despawn AR101", menuGroup = "BLUE"},
-  {name = "AR102 #IFF:5102FR", callsign = { id = "Texaco", major = 2, minor = 1 }, spawnMenuText = "Spawn AR102", despawnMenuText = "Despawn AR102", menuGroup = "BLUE"},
-  {name = "AR201 #IFF:5201FR", callsign = { id = "Arco", major = 1, minor = 1 }, spawnMenuText = "Spawn AR201", despawnMenuText = "Despawn AR201", menuGroup = "BLUE"},
-  {name = "AR202 #IFF:5202FR", callsign = { id = "Arco", major = 2, minor = 1 }, spawnMenuText = "Spawn AR202", despawnMenuText = "Despawn AR202", menuGroup = "BLUE"},
-  {name = "AR203 #IFF:5203FR", callsign = { id = "Arco", major = 3, minor = 1 }, spawnMenuText = "Spawn AR203", despawnMenuText = "Despawn AR203", menuGroup = "BLUE"},
-  {name = "AR204 #IFF:5204FR", callsign = { id = "Arco", major = 4, minor = 1 }, spawnMenuText = "Spawn AR204", despawnMenuText = "Despawn AR204", menuGroup = "BLUE"},
-  {name = "AR301 #IFF:5301FR", callsign = { id = "Shell", major = 1, minor = 1 }, spawnMenuText = "Spawn AR301", despawnMenuText = "Despawn AR301", menuGroup = "BLUE"},
-  {name = "AR302 #IFF:5302FR", callsign = { id = "Shell", major = 2, minor = 1 }, spawnMenuText = "Spawn AR302", despawnMenuText = "Despawn AR302", menuGroup = "BLUE"},
-  {name = "AR303 #IFF:5303FR", callsign = { id = "Shell", major = 3, minor = 1 }, spawnMenuText = "Spawn AR303", despawnMenuText = "Despawn AR303", menuGroup = "BLUE"},
-  {name = "AR304 #IFF:5304FR", callsign = { id = "Shell", major = 4, minor = 1 }, spawnMenuText = "Spawn AR304", despawnMenuText = "Despawn AR304", menuGroup = "BLUE"},
-  --{name = "AR305 #IFF:5307FR", callsign = { id = "Shell", major = 5, minor = 1 }, spawnMenuText = "Spawn AR305", despawnMenuText = "Despawn AR305", menuGroup = "BLUE"},
+  {name = "AR101 #IFF:5101FR", callsign = { id = "Texaco", major = 1, minor = 1 }, spawnMenuText = "Spawn AR101", despawnMenuText = "Despawn AR101", menuGroup = "BLUE_BOOM"},
+  {name = "AR102 #IFF:5102FR", callsign = { id = "Texaco", major = 2, minor = 1 }, spawnMenuText = "Spawn AR102", despawnMenuText = "Despawn AR102", menuGroup = "BLUE_BOOM"},
+  {name = "AR201 #IFF:5201FR", callsign = { id = "Arco", major = 1, minor = 1 }, spawnMenuText = "Spawn AR201", despawnMenuText = "Despawn AR201", menuGroup = "BLUE_BOOM"},
+  {name = "AR202 #IFF:5202FR", callsign = { id = "Arco", major = 2, minor = 1 }, spawnMenuText = "Spawn AR202", despawnMenuText = "Despawn AR202", menuGroup = "BLUE_BOOM"},
+  {name = "AR203 #IFF:5203FR", callsign = { id = "Arco", major = 3, minor = 1 }, spawnMenuText = "Spawn AR203", despawnMenuText = "Despawn AR203", menuGroup = "BLUE_BOOM"},
+  {name = "AR204 #IFF:5204FR", callsign = { id = "Arco", major = 4, minor = 1 }, spawnMenuText = "Spawn AR204", despawnMenuText = "Despawn AR204", menuGroup = "BLUE_BOOM"},
+  {name = "AR301 #IFF:5301FR", callsign = { id = "Shell", major = 1, minor = 1 }, spawnMenuText = "Spawn AR301", despawnMenuText = "Despawn AR301", menuGroup = "BLUE_DROGUE"},
+  {name = "AR302 #IFF:5302FR", callsign = { id = "Shell", major = 2, minor = 1 }, spawnMenuText = "Spawn AR302", despawnMenuText = "Despawn AR302", menuGroup = "BLUE_DROGUE"},
+  {name = "AR303 #IFF:5303FR", callsign = { id = "Shell", major = 3, minor = 1 }, spawnMenuText = "Spawn AR303", despawnMenuText = "Despawn AR303", menuGroup = "BLUE_DROGUE"},
+  {name = "AR304 #IFF:5304FR", callsign = { id = "Shell", major = 4, minor = 1 }, spawnMenuText = "Spawn AR304", despawnMenuText = "Despawn AR304", menuGroup = "BLUE_DROGUE"},
+  {name = "AR305 #IFF:5305FR", callsign = { id = "Shell", major = 5, minor = 1 }, spawnMenuText = "Spawn AR305", despawnMenuText = "Despawn AR305", menuGroup = "BLUE_DROGUE"},
   {name = "AR401 #IFF:5401FR", callsign = { id = "Arco", major = 6, minor = 1 }, spawnMenuText = "Spawn AR401", despawnMenuText = "Despawn AR401", menuGroup = "RED"},
   {name = "AR402 #IFF:5402FR", callsign = { id = "Arco", major = 7, minor = 1 }, spawnMenuText = "Spawn AR402", despawnMenuText = "Despawn AR402", menuGroup = "RED"},
   {name = "AR403 #IFF:5403FR", callsign = { id = "Arco", major = 8, minor = 1 }, spawnMenuText = "Spawn AR403", despawnMenuText = "Despawn AR403", menuGroup = "RED"},
@@ -35,7 +35,14 @@ end
 
 local function tankerDespawn(tankerIndex)
   local tankerTemplate = tankerTemplates[tankerIndex]
-  local menuGroup = tankerTemplate.menuGroup == "BLUE" and tanker_menu_blue1 or tanker_menu_red1
+  local menuGroup
+  if tankerTemplate.menuGroup == "BLUE_BOOM" then
+    menuGroup = tanker_menu_blue_boom
+  elseif tankerTemplate.menuGroup == "BLUE_DROGUE" then
+    menuGroup = tanker_menu_blue_drogue
+  else
+    menuGroup = tanker_menu_red1
+  end
 
   if tankerMenus[tankerIndex] and tankerMenus[tankerIndex].despawnMenu then
     tankerMenus[tankerIndex].despawnMenu:Remove()
@@ -65,7 +72,14 @@ function tankerSpawn(tankerIndex)
     function(tankerGroup)
       activeTankers[tankerIndex] = tankerGroup:GetName()
       env.info("Group " .. tankerGroup:GetName() .. " spawned")
-      local menuGroup = tankerTemplate.menuGroup == "BLUE" and tanker_menu_blue1 or tanker_menu_red1
+      local menuGroup
+      if tankerTemplate.menuGroup == "BLUE_BOOM" then
+        menuGroup = tanker_menu_blue_boom
+      elseif tankerTemplate.menuGroup == "BLUE_DROGUE" then
+        menuGroup = tanker_menu_blue_drogue
+      else
+        menuGroup = tanker_menu_red1
+      end
       if tankerMenus[tankerIndex] and tankerMenus[tankerIndex].spawnMenu then
         tankerMenus[tankerIndex].spawnMenu:Remove()
         tankerMenus[tankerIndex].spawnMenu = nil
@@ -76,13 +90,22 @@ function tankerSpawn(tankerIndex)
 end
 
 -- Menu groups
-tanker_menu_blue1 = MENU_MISSION:New("Blue Tankers", tanker_menu )
-tanker_menu_red1 = MENU_MISSION:New("Red Tankers", tanker_menu )
+local tanker_menu_blue = MENU_MISSION:New("Blue Tankers", tanker_menu)
+local tanker_menu_blue_boom = MENU_MISSION:New("Boom", tanker_menu_blue)
+local tanker_menu_blue_drogue = MENU_MISSION:New("Drogue", tanker_menu_blue)
+local tanker_menu_red1 = MENU_MISSION:New("Red Tankers", tanker_menu)
 
 -- Initialize menus for each tanker
 for i, tankerTemplate in ipairs(tankerTemplates) do
   tankerMenus[i] = {}
-  local menuGroup = tankerTemplate.menuGroup == "BLUE" and tanker_menu_blue1 or tanker_menu_red1
+  local menuGroup
+  if tankerTemplate.menuGroup == "BLUE_BOOM" then
+    menuGroup = tanker_menu_blue_boom
+  elseif tankerTemplate.menuGroup == "BLUE_DROGUE" then
+    menuGroup = tanker_menu_blue_drogue
+  else
+    menuGroup = tanker_menu_red1
+  end
   tankerMenus[i].spawnMenu = MENU_MISSION_COMMAND:New(tankerTemplate.spawnMenuText, menuGroup, function() tankerSpawn(i) end)
 end
 
