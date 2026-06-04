@@ -37,9 +37,9 @@ function TRMA_SAG.Range:New(rangeName, config, parentMenu)
   
   self.name       = rangeName
   self.parentMenu = parentMenu
-  self.zone       = ZONE:New(config.spawnZone)
+  self.spawn      = ZONE:New(config.spawnZone)
+  self.range      = ZONE:New(config.engageZone)
   self.spawnedGroups  = {}
-
   self:BuildMenu()
 
   env.info("[TRMA_SAG] Loaded Range: " .. self.name)
@@ -55,6 +55,8 @@ function TRMA_SAG.Range:StartPatrol(group, speed)
 
   local navy = NAVYGROUP:New(group)
   navy:SetSpeed(speed or 15)
+  local engageZone = SET_ZONE:New():AddZone(self.range)
+  navy:SetEngageDetectedOn(100, {"Air"}, engageZone, nil)
 
   -- internal state
   local waypointCount = 4
@@ -63,7 +65,7 @@ function TRMA_SAG.Range:StartPatrol(group, speed)
     navy:ClearWaypoints()
 
     for i = 1, waypointCount do
-      local coord = self.zone:GetRandomCoordinate()
+      local coord = self.spawn:GetRandomCoordinate()
       navy:AddWaypoint(coord, speed, i - 1, 0, true)
     end
 
@@ -96,7 +98,7 @@ end
 -- ==============================================================================
 function TRMA_SAG.Range:SpawnPatrolGroup(templateName, speed)
   local alias = string.format("%s-%s", templateName, self.name:gsub("%s+","_"))
-  local coord = self.zone:GetRandomCoordinate()
+  local coord = self.spawn:GetRandomCoordinate()
   
   SPAWN:NewWithAlias(templateName, alias)
     :OnSpawnGroup(function(group)
@@ -113,7 +115,7 @@ end
 -- ============================================================================
 function TRMA_SAG.Range:SpawnConvoy(templateName, speed)
   local alias = string.format("%s-%s", templateName, self.name:gsub("%s+","_"))
-  local coord = self.zone:GetRandomCoordinate()
+  local coord = self.spawn:GetRandomCoordinate()
 
   SPAWN:NewWithAlias(templateName, alias)
     :OnSpawnGroup(function(group)
@@ -132,11 +134,11 @@ end
 -- ============================================================================
 function TRMA_SAG.Range:SpawnPiracy()
   local blueAlias = "Blue_Freighter_" .. self.name:gsub("%s+", "_")
-  local spawnCoord = self.zone:GetRandomCoordinate()
+  local spawnCoord = self.spawn:GetRandomCoordinate()
 
   SPAWN:NewWithAlias("Blue_Freighter", blueAlias)
     :OnSpawnGroup(function(blueGroup)
-      table.insert(self.spawnedGroups, group)
+      table.insert(self.spawnedGroups, blueGroup)
      
       local now = blueGroup:GetCoordinate()
       local destination = now:Translate(200000, 270)
@@ -150,7 +152,7 @@ function TRMA_SAG.Range:SpawnPiracy()
 
         SPAWN:NewWithAlias("Red_Pirate", redAlias)
           :OnSpawnGroup(function(redGroup)
-            table.insert(self.spawnedGroups, group)
+            table.insert(self.spawnedGroups, redGroup)
             
             local function ChaseLoop()
               if redGroup:IsAlive() and blueGroup:IsAlive() then
@@ -200,4 +202,9 @@ function TRMA_SAG.Range:BuildMenu()
   MENU_MISSION_COMMAND:New("Activate Convoy", self.menu, function() self:SpawnConvoy("Red_Convoy", 12) end)
   MENU_MISSION_COMMAND:New("Activate Piracy Scenario", self.menu, function() self:SpawnPiracy() end)
   MENU_MISSION_COMMAND:New("Deactivate ALL NAVAL UNITS", self.menu, function() self:ClearAll() end)
+  
+  self.submenu = MENU_MISSION:New("Single Ships Targets", self.menu)
+  MENU_MISSION_COMMAND:New("Activate Type 52B", self.submenu, function() self:SpawnPatrolGroup("Red_52B", 10) end)
+  MENU_MISSION_COMMAND:New("Activate Type 52C", self.submenu, function() self:SpawnPatrolGroup("Red_52C", 10) end)
+  MENU_MISSION_COMMAND:New("Activate Type 52D", self.submenu, function() self:SpawnPatrolGroup("Red_52D", 10) end)  
 end
