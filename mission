@@ -22089,7 +22089,7 @@ mission =
                             {
                                 ["groupId"] = 142,
                                 ["hidden"] = false,
-                                ["lateActivation"] = true,
+                                ["lateActivation"] = false,
                                 ["name"] = "CVN-73",
                                 ["route"] =
                                 {

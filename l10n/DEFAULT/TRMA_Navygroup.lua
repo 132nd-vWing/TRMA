@@ -35,7 +35,7 @@ local rescue_name = "CVN73_Rescue"     -- DCS rescue helo unit name
 local rescue_airbase = "Plane Guard"    -- DCS escort ship name to land helo.
 
 local carrier_unit = UNIT:FindByName(carrier_name)  -- find the ME unit
-local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate() -- spawn and task the carrier 
+local carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum() -- task the carrier 
 local rescue_helo = RESCUEHELO:New(carrier_name, rescue_name):SetTakeoffHot():SetAltitude(70):SetHomeBase(AIRBASE:FindByName(rescue_airbase)) -- define rescue helo
 local marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(50)) -- define the marshal zone for broadcasts
 local clients = SET_CLIENT:New():FilterActive(true):FilterCoalitions("blue"):FilterStart() -- list spawned blue human clients
@@ -142,9 +142,13 @@ local function updateCarrierWeather()
 
   local cloud_base = weather.clouds.base or 0
   local visibility = weather.visibility.distance or 0
-  if weather.fog and weather.fog.thickness > 0 then
-    local fog_vis = weather.fog.visibility or 0
-    visibility = math.min(visibility, fog_vis)
+  
+  if world.weather and world.weather.getFogVisibilityDistance then
+    local fog_vis = world.weather.getFogVisibilityDistance()
+
+    if fog_vis and fog_vis > 0 then
+        visibility = math.min(visibility, fog_vis)
+    end
   end
 
   -- Daylight at the carrier
@@ -878,7 +882,7 @@ local function InitCarrierSystems()
   if not carrier_unit or not carrier_unit:IsAlive() then return false end
   log("Carrier initialising")
 
-  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum():Activate()
+  carrier_navygroup = NAVYGROUP:New(carrier_name):SetPatrolAdInfinitum()
   local carrier_group = carrier_navygroup:GetGroup() 
   carrier_group:OptionROE(ENUMS.ROE.WeaponHold)
   marshal_zone = ZONE_UNIT:New("MarshalZone", carrier_unit, UTILS.NMToMeters(50))
