@@ -2,12 +2,12 @@
 -- CARRIER SCRIPT
 
 ------------------------------------------------------------------
-env.info("[Carrier Ops] Script loading 3.9.3")
+env.info("[Carrier Ops] Script loading 3.9.4")
 
 ------------------------------------------------------------------
 -- CONFIGURATION / CONSTANTS
 ------------------------------------------------------------------
-local debug = false                     -- enable debug to dcs.log           
+local debug = false                    -- enable debug to dcs.log           
 
 local recovery_start_minute = 20        -- 20 Real-World Cycle Start minute
 local open_buffer   = 10                -- Minutes from Start until Window Opens (Ship prep/turning)
@@ -23,6 +23,8 @@ local HPA_TO_INHG   = 0.02953
 local MMHG_TO_HPA   = 1.33322
 local MPS_TO_KNOTS  = 1.94384
 local MAGVAR = 4                        -- fallback magvar from F10 rose
+local MAP_ZULU_OFFSET = 3                -- Kola 3
+local SUN_ELEV_NIGHT_THRESHOLD = -2     -- Sun elevation threashold for night
 
 ------------------------------------------------------------------
 -- GLOBAL TABLES / STATE
@@ -116,6 +118,40 @@ local function IsValidClockString(t)
   return type(t) == "string" and t:match("^%d%d:%d%d:%d%d$")
 end
 
+-- Sun elevation check
+local function GetSolarElevationDeg(lat, lon, day, month, year, absTimeSec)
+  local function dayOfYear(d, m, y)
+    local dim = {31,28,31,30,31,30,31,31,30,31,30,31}
+    local leap = (y % 4 == 0 and (y % 100 ~= 0 or y % 400 == 0))
+    if leap then dim[2] = 29 end
+    local n = d
+    for i = 1, m - 1 do n = n + dim[i] end
+    return n
+  end
+
+  local n   = dayOfYear(day, month, year)
+  local rad = math.pi / 180
+
+  -- Solar declination (deg)
+  local decl = 23.45 * math.sin(rad * (360/365) * (284 + n))
+
+  -- Equation of time correction (minutes) -- keeps sunrise/sunset
+  -- times accurate to a few minutes rather than up to ~15
+  local gamma = 2 * math.pi / 365 * (n - 1)
+  local eqtime = 229.18 * (0.000075 + 0.001868*math.cos(gamma) - 0.032077*math.sin(gamma)
+                 - 0.014615*math.cos(2*gamma) - 0.040849*math.sin(2*gamma))
+
+  -- absTimeSec assumed Zulu (UTC) seconds-since-midnight -- see caveat below
+  local utc_hours = (absTimeSec / 3600) - MAP_ZULU_OFFSET
+  local solar_time = (utc_hours + lon/15 + eqtime/60) % 24
+  local hour_angle  = 15 * (solar_time - 12) -- deg
+
+  local lat_r, decl_r, ha_r = lat*rad, decl*rad, hour_angle*rad
+  local sin_elev = math.sin(lat_r)*math.sin(decl_r) + math.cos(lat_r)*math.cos(decl_r)*math.cos(ha_r)
+
+  return math.asin(sin_elev) / rad
+end
+
 ------------------------------------------------------------------
 -- CARRIER ENVIRONMENT (weather, ship data)
 ------------------------------------------------------------------
@@ -125,9 +161,10 @@ local function updateCarrierWeather()
 
   -- Magnetic variation at carrier
   local mvDeg = MAGVAR
+  local pos, lat, lon
   if hasMagvar and hasTerrain then 
-    local pos = carrier_unit:GetPosition().p
-    local lat, lon = terrain.convertMetersToLatLon(pos.x, pos.z)
+    pos = carrier_unit:GetPosition().p
+    lat, lon = terrain.convertMetersToLatLon(pos.x, pos.z)
 
     local mvRad = magvar.get_mag_decl(lat, lon)
     mvDeg = norm360(math.deg(mvRad))   -- normalised +East -West
@@ -136,13 +173,12 @@ local function updateCarrierWeather()
   -- Weather from mission
   local weather = env.mission.weather
   local qnh_hpa, qnh_inhg = getQNH(weather)
-  
   local wind_from_true, wind_speed_knots = getWind(weather)
   local wind_from_mag = trueToMag(wind_from_true)
-
   local cloud_base = weather.clouds.base or 0
   local visibility = weather.visibility.distance or 0
-  
+
+  -- Fog consideration. 
   if world.weather and world.weather.getFogVisibilityDistance then
     local fog_vis = world.weather.getFogVisibilityDistance()
 
@@ -152,33 +188,18 @@ local function updateCarrierWeather()
   end
 
   -- Daylight at the carrier
-  local coord = carrier_unit:GetCoordinate()
-  local sunrise_raw = coord:GetSunrise()
-  local sunset_raw = coord:GetSunset()
-  local missionDate = env.mission.date
-  local month = missionDate.Month
-  local is_night
   local now = timer.getAbsTime() % 86400
-  local sunrise_ok = IsValidClockString(sunrise_raw)
-  local sunset_ok  = IsValidClockString(sunset_raw)
+  local missionDate = env.mission.date
+  local coord = carrier_unit:GetCoordinate()
+  local lat, lon = coord:GetLLDDM()
+  local elev = GetSolarElevationDeg(lat, lon, missionDate.Day, missionDate.Month, missionDate.Year, now)
+  local is_night = elev <= SUN_ELEV_NIGHT_THRESHOLD
 
-  if not sunrise_ok or not sunset_ok then
-    -- Polar or undefined sun state
-    if month == 6 or month == 7 or month == 8 then
-      is_night = false
-    elseif month == 11 or month == 12 or month == 1 then
-      is_night = true
-    else
-      is_night = false
-    end
-  else
-    local sunrise = UTILS.ClockToSeconds(sunrise_raw)
-    local sunset  = UTILS.ClockToSeconds(sunset_raw)
-
-    local night_start = sunset + 900  -- 15 minutes
-    local night_end   = sunrise - 900
-    is_night = (now >= night_start) or (now <= night_end)
-  end
+  log(string.format(
+      "Date %02d/%02d/%04d  Now=%s  SunElev=%.1f  is_night=%s",
+      missionDate.Day, missionDate.Month, missionDate.Year,
+      UTILS.SecondsToClock(now), elev, tostring(is_night)
+  ), true)
 
   -- CASE logic
   local carrier_case
@@ -205,6 +226,7 @@ local function updateCarrierWeather()
     qnh_inhg      = qnh_inhg,
     mag_var       = mvDeg,
     case          = carrier_case,
+    sun_elev      = elev,
   }
 
 end
@@ -327,7 +349,7 @@ local function recoveryHeartbeat()
     r.state = "TURNING_IN"
     -- create extend menu
     cycle_extend_menu = MENU_COALITION_COMMAND:New(coalition.side.BLUE, "Extend Recovery Window (5m)", carrier_admin_menu, function() extendRecoveryCycle(5) end )
-    log("Recovery cycle started TURNING IN")
+    log("Recovery cycle started TURNING IN", true)
 
     -- Launch the tanker
     if recovery_tanker then
@@ -505,7 +527,7 @@ local function debugReport()
   local lines = {}
 
   table.insert(lines, string.format(
-    "Weather: Cloud %d | Vis %d | VisRep %s | Wind %d (%dM) | WindSpd %d | Temp %d | QNH %d (%d) | Magvar %.2f | Case %s", 
+    "Weather: Cloud %d | Vis %d | VisRep %s | Wind %d (%dM) | WindSpd %d | Temp %d | QNH %d (%d) | Magvar %.2f | Case %s | Sun %.1f", 
     w.cloud_base,    
     w.visibility, 
     w.vis_report,   
@@ -513,10 +535,11 @@ local function debugReport()
     w.wind_from_mag,
     w.wind_speed_knots,
     w.temperature,
-    w.qnh_hpa,  
+    w.qnh_hpa,
     w.qnh_inhg,      
     w.mag_var,     
-    w.case
+    w.case,
+    w.sun_elev
     )
   )          
 
