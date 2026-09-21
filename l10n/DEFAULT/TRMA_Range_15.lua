@@ -30,6 +30,17 @@ end
 range_15_menu_AR = MENU_MISSION_COMMAND:New("Activate Range 15 AR Scenario",range_15_menu_root,range15_flag65)
 
 
+local function range15_flag35()
+  range_15_menu_R15_CAS2_ON:Remove()
+  trigger.action.setUserFlag(35, true)
+  MessageToAll("Range 15 CAS Scenario-2 activated")
+end
+
+range_15_menu_R15_CAS2_ON = MENU_MISSION_COMMAND:New("Activate Range 15 CAS Scenario-2",range_15_menu_root,range15_flag35)
+
+
+
+
 local function range15_R15_CAS3_ON()
   range_15_menu_R15_CAS3_ON:Remove()
   trigger.action.setUserFlag("R15_CAS3_ON", true)
@@ -37,4 +48,6 @@ local function range15_R15_CAS3_ON()
 end
 
 range_15_menu_R15_CAS3_ON = MENU_MISSION_COMMAND:New("Activate Range 15 CAS Scenario-3",range_15_menu_root,range15_R15_CAS3_ON)
+
+
 

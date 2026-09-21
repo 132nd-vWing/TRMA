@@ -260497,7 +260497,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 8628035,
+    ["currentKey"] = 8652213,
     ["date"] =
     {
         ["Day"] = 5,
@@ -270544,7 +270544,7 @@ mission =
         ["centerY"] = -330773.25719381,
         ["zoom"] = 40219.011750912,
     }, -- end of ["map"]
-    ["maxDictId"] = 467,
+    ["maxDictId"] = 468,
     ["pictureFileNameB"] =
     {
     }, -- end of ["pictureFileNameB"]
@@ -270623,7 +270623,7 @@ mission =
             [10] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_441\")); mission.trig.func[10]=nil;",
             [11] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_440\")); mission.trig.func[11]=nil;",
             [12] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_298\")); mission.trig.func[12]=nil;",
-            [13] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_467\")); mission.trig.func[13]=nil;",
+            [13] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_468\")); mission.trig.func[13]=nil;",
             [14] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_128\")); mission.trig.func[14]=nil;",
             [15] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_434\")); mission.trig.func[15]=nil;",
             [16] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_213\")); mission.trig.func[16]=nil;",
@@ -273211,7 +273211,7 @@ mission =
             {
                 [1] =
                 {
-                    ["file"] = "ResKey_Action_467",
+                    ["file"] = "ResKey_Action_468",
                     ["predicate"] = "a_do_script_file",
                 }, -- end of [1]
             }, -- end of ["actions"]
@@ -278388,7 +278388,7 @@ mission =
         ["atmosphere_type"] = 0,
         ["clouds"] =
         {
-            ["base"] = 5500,
+            ["base"] = 5460,
             ["density"] = 8,
             ["iprecptns"] = 0,
             ["preset"] = "Preset8",

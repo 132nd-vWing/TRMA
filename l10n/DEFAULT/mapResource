@@ -38,5 +38,5 @@ mapResource =
     ["ResKey_Action_460"] = "TRMA_Range_32.lua",
     ["ResKey_Action_461"] = "TRMA_Range_33.lua",
     ["ResKey_Action_464"] = "TRMA_SAG.lua",
-    ["ResKey_Action_467"] = "TRMA_Range_15.lua",
+    ["ResKey_Action_468"] = "TRMA_Range_15.lua",
 } -- end of mapResource
