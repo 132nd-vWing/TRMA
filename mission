@@ -15009,7 +15009,7 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0141",
                                             ["VoiceCallsignLabel"] = "PG",
-                                            ["VoiceCallsignNumber"] = "41",
+                                            ["VoiceCallsignNumber"] = "61",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -15211,7 +15211,7 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0142",
                                             ["VoiceCallsignLabel"] = "PG",
-                                            ["VoiceCallsignNumber"] = "42",
+                                            ["VoiceCallsignNumber"] = "62",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -17547,8 +17547,8 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0161",
-                                            ["VoiceCallsignLabel"] = "SD",
-                                            ["VoiceCallsignNumber"] = "61",
+                                            ["VoiceCallsignLabel"] = "TK",
+                                            ["VoiceCallsignNumber"] = "91",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -17757,8 +17757,8 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0162",
-                                            ["VoiceCallsignLabel"] = "SD",
-                                            ["VoiceCallsignNumber"] = "62",
+                                            ["VoiceCallsignLabel"] = "TK",
+                                            ["VoiceCallsignNumber"] = "92",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -17967,8 +17967,8 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0163",
-                                            ["VoiceCallsignLabel"] = "SD",
-                                            ["VoiceCallsignNumber"] = "63",
+                                            ["VoiceCallsignLabel"] = "TK",
+                                            ["VoiceCallsignNumber"] = "93",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -18177,8 +18177,8 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["SADL_TN"] = "0164",
-                                            ["VoiceCallsignLabel"] = "SD",
-                                            ["VoiceCallsignNumber"] = "64",
+                                            ["VoiceCallsignLabel"] = "TK",
+                                            ["VoiceCallsignNumber"] = "94",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -54456,7 +54456,7 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["LAU3ROF"] = 0,
-                                            ["STN_L16"] = "05652",
+                                            ["STN_L16"] = "00423",
                                             ["VoiceCallsignLabel"] = "LO",
                                             ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
@@ -54650,7 +54650,7 @@ mission =
                                         {
                                             ["HelmetMountedDevice"] = 1,
                                             ["LAU3ROF"] = 0,
-                                            ["STN_L16"] = "05653",
+                                            ["STN_L16"] = "00424",
                                             ["VoiceCallsignLabel"] = "LO",
                                             ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
@@ -73073,7 +73073,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "00324",
                                             ["VoiceCallsignLabel"] = "SD",
-                                            ["VoiceCallsignNumber"] = "23",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -73489,7 +73489,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "00331",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "31",
+                                            ["VoiceCallsignNumber"] = "11",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -73680,7 +73680,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "00332",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "32",
+                                            ["VoiceCallsignNumber"] = "12",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -73868,7 +73868,7 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
-                                            ["STN_L16"] = "05650",
+                                            ["STN_L16"] = "00333",
                                             ["VoiceCallsignLabel"] = "RN",
                                             ["VoiceCallsignNumber"] = "13",
                                         }, -- end of ["AddPropAircraft"]
@@ -74058,7 +74058,7 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
-                                            ["STN_L16"] = "05651",
+                                            ["STN_L16"] = "00334",
                                             ["VoiceCallsignLabel"] = "RN",
                                             ["VoiceCallsignNumber"] = "14",
                                         }, -- end of ["AddPropAircraft"]
@@ -77649,7 +77649,7 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03311",
-                                            ["VoiceCallsignLabel"] = "HO",
+                                            ["VoiceCallsignLabel"] = "HT",
                                             ["VoiceCallsignNumber"] = "31",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
@@ -77842,8 +77842,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03312",
-                                            ["VoiceCallsignLabel"] = "HO",
-                                            ["VoiceCallsignNumber"] = "12",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "32",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -78035,8 +78035,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03313",
-                                            ["VoiceCallsignLabel"] = "HO",
-                                            ["VoiceCallsignNumber"] = "13",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "33",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -78228,8 +78228,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03314",
-                                            ["VoiceCallsignLabel"] = "HO",
-                                            ["VoiceCallsignNumber"] = "14",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "34",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -78646,8 +78646,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03321",
-                                            ["VoiceCallsignLabel"] = "SQ",
-                                            ["VoiceCallsignNumber"] = "21",
+                                            ["VoiceCallsignLabel"] = "SD",
+                                            ["VoiceCallsignNumber"] = "11",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -78839,8 +78839,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03322",
-                                            ["VoiceCallsignLabel"] = "SQ",
-                                            ["VoiceCallsignNumber"] = "22",
+                                            ["VoiceCallsignLabel"] = "SD",
+                                            ["VoiceCallsignNumber"] = "12",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -79032,8 +79032,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03323",
-                                            ["VoiceCallsignLabel"] = "SQ",
-                                            ["VoiceCallsignNumber"] = "23",
+                                            ["VoiceCallsignLabel"] = "SD",
+                                            ["VoiceCallsignNumber"] = "13",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -79225,8 +79225,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03324",
-                                            ["VoiceCallsignLabel"] = "SQ",
-                                            ["VoiceCallsignNumber"] = "24",
+                                            ["VoiceCallsignLabel"] = "SD",
+                                            ["VoiceCallsignNumber"] = "14",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -79643,8 +79643,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03331",
-                                            ["VoiceCallsignLabel"] = "RO",
-                                            ["VoiceCallsignNumber"] = "31",
+                                            ["VoiceCallsignLabel"] = "RN",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -79836,8 +79836,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03332",
-                                            ["VoiceCallsignLabel"] = "RO",
-                                            ["VoiceCallsignNumber"] = "32",
+                                            ["VoiceCallsignLabel"] = "RN",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -80028,8 +80028,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03333",
-                                            ["VoiceCallsignLabel"] = "RO",
-                                            ["VoiceCallsignNumber"] = "33",
+                                            ["VoiceCallsignLabel"] = "RN",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -80220,8 +80220,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03334",
-                                            ["VoiceCallsignLabel"] = "RO",
-                                            ["VoiceCallsignNumber"] = "34",
+                                            ["VoiceCallsignLabel"] = "RN",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -80637,8 +80637,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03341",
-                                            ["VoiceCallsignLabel"] = "ST",
-                                            ["VoiceCallsignNumber"] = "41",
+                                            ["VoiceCallsignLabel"] = "SG",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -80830,8 +80830,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03342",
-                                            ["VoiceCallsignLabel"] = "ST",
-                                            ["VoiceCallsignNumber"] = "42",
+                                            ["VoiceCallsignLabel"] = "SG",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -81022,8 +81022,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03343",
-                                            ["VoiceCallsignLabel"] = "ST",
-                                            ["VoiceCallsignNumber"] = "43",
+                                            ["VoiceCallsignLabel"] = "SG",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -81214,8 +81214,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03344",
-                                            ["VoiceCallsignLabel"] = "ST",
-                                            ["VoiceCallsignNumber"] = "44",
+                                            ["VoiceCallsignLabel"] = "SG",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -81631,8 +81631,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03351",
-                                            ["VoiceCallsignLabel"] = "JU",
-                                            ["VoiceCallsignNumber"] = "51",
+                                            ["VoiceCallsignLabel"] = "JY",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -81824,8 +81824,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03352",
-                                            ["VoiceCallsignLabel"] = "JU",
-                                            ["VoiceCallsignNumber"] = "52",
+                                            ["VoiceCallsignLabel"] = "JY",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -82016,8 +82016,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03353",
-                                            ["VoiceCallsignLabel"] = "JU",
-                                            ["VoiceCallsignNumber"] = "53",
+                                            ["VoiceCallsignLabel"] = "JY",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -82207,9 +82207,9 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
-                                            ["STN_L16"] = "03353",
-                                            ["VoiceCallsignLabel"] = "JU",
-                                            ["VoiceCallsignNumber"] = "53",
+                                            ["STN_L16"] = "03354",
+                                            ["VoiceCallsignLabel"] = "JY",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -82625,8 +82625,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03361",
-                                            ["VoiceCallsignLabel"] = "RA",
-                                            ["VoiceCallsignNumber"] = "61",
+                                            ["VoiceCallsignLabel"] = "RM",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -82818,8 +82818,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03362",
-                                            ["VoiceCallsignLabel"] = "RA",
-                                            ["VoiceCallsignNumber"] = "62",
+                                            ["VoiceCallsignLabel"] = "RM",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -83010,8 +83010,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03363",
-                                            ["VoiceCallsignLabel"] = "RA",
-                                            ["VoiceCallsignNumber"] = "63",
+                                            ["VoiceCallsignLabel"] = "RM",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -83202,8 +83202,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03364",
-                                            ["VoiceCallsignLabel"] = "RA",
-                                            ["VoiceCallsignNumber"] = "64",
+                                            ["VoiceCallsignLabel"] = "RM",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -83619,8 +83619,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03371",
-                                            ["VoiceCallsignLabel"] = "SN",
-                                            ["VoiceCallsignNumber"] = "71",
+                                            ["VoiceCallsignLabel"] = "SE",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -83812,8 +83812,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03372",
-                                            ["VoiceCallsignLabel"] = "SN",
-                                            ["VoiceCallsignNumber"] = "72",
+                                            ["VoiceCallsignLabel"] = "SE",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -84004,8 +84004,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03373",
-                                            ["VoiceCallsignLabel"] = "SN",
-                                            ["VoiceCallsignNumber"] = "73",
+                                            ["VoiceCallsignLabel"] = "SE",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -84196,8 +84196,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "03374",
-                                            ["VoiceCallsignLabel"] = "SN",
-                                            ["VoiceCallsignNumber"] = "74",
+                                            ["VoiceCallsignLabel"] = "SE",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -84613,8 +84613,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "04524",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "11",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -84806,8 +84806,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "04525",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "12",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -84999,8 +84999,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "04526",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "13",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -85192,8 +85192,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "04527",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "14",
+                                            ["VoiceCallsignLabel"] = "HT",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -106752,7 +106752,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11311",
                                             ["VoiceCallsignLabel"] = "DL",
-                                            ["VoiceCallsignNumber"] = "91",
+                                            ["VoiceCallsignNumber"] = "11",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -106943,7 +106943,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11312",
                                             ["VoiceCallsignLabel"] = "DL",
-                                            ["VoiceCallsignNumber"] = "92",
+                                            ["VoiceCallsignNumber"] = "12",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -107133,7 +107133,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11313",
                                             ["VoiceCallsignLabel"] = "DL",
-                                            ["VoiceCallsignNumber"] = "93",
+                                            ["VoiceCallsignNumber"] = "13",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -107323,7 +107323,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11314",
                                             ["VoiceCallsignLabel"] = "DL",
-                                            ["VoiceCallsignNumber"] = "94",
+                                            ["VoiceCallsignNumber"] = "14",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -107731,7 +107731,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11321",
                                             ["VoiceCallsignLabel"] = "HK",
-                                            ["VoiceCallsignNumber"] = "91",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -107924,7 +107924,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11322",
                                             ["VoiceCallsignLabel"] = "HK",
-                                            ["VoiceCallsignNumber"] = "92",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -108117,7 +108117,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11323",
                                             ["VoiceCallsignLabel"] = "HK",
-                                            ["VoiceCallsignNumber"] = "93",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -108310,7 +108310,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11324",
                                             ["VoiceCallsignLabel"] = "HK",
-                                            ["VoiceCallsignNumber"] = "94",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -108727,7 +108727,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11331",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "91",
+                                            ["VoiceCallsignNumber"] = "11",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -108920,7 +108920,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11332",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "92",
+                                            ["VoiceCallsignNumber"] = "12",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -109112,7 +109112,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11333",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "93",
+                                            ["VoiceCallsignNumber"] = "13",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -109304,7 +109304,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11334",
                                             ["VoiceCallsignLabel"] = "RN",
-                                            ["VoiceCallsignNumber"] = "94",
+                                            ["VoiceCallsignNumber"] = "14",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -109714,7 +109714,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11341",
                                             ["VoiceCallsignLabel"] = "JR",
-                                            ["VoiceCallsignNumber"] = "91",
+                                            ["VoiceCallsignNumber"] = "41",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -109907,7 +109907,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11342",
                                             ["VoiceCallsignLabel"] = "JR",
-                                            ["VoiceCallsignNumber"] = "92",
+                                            ["VoiceCallsignNumber"] = "42",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -110100,7 +110100,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11343",
                                             ["VoiceCallsignLabel"] = "JR",
-                                            ["VoiceCallsignNumber"] = "93",
+                                            ["VoiceCallsignNumber"] = "43",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -110293,7 +110293,7 @@ mission =
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "11344",
                                             ["VoiceCallsignLabel"] = "JR",
-                                            ["VoiceCallsignNumber"] = "94",
+                                            ["VoiceCallsignNumber"] = "44",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -111851,8 +111851,8 @@ mission =
                                             ["LaserCode10"] = 8,
                                             ["LaserCode100"] = 6,
                                             ["STN_L16"] = "11451",
-                                            ["VoiceCallsignLabel"] = "NI",
-                                            ["VoiceCallsignNumber"] = "91",
+                                            ["VoiceCallsignLabel"] = "NA",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -112046,8 +112046,8 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["LAU3ROF"] = 0,
                                             ["STN_L16"] = "11452",
-                                            ["VoiceCallsignLabel"] = "NI",
-                                            ["VoiceCallsignNumber"] = "92",
+                                            ["VoiceCallsignLabel"] = "NA",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -112240,8 +112240,8 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["LAU3ROF"] = 0,
                                             ["STN_L16"] = "11453",
-                                            ["VoiceCallsignLabel"] = "NI",
-                                            ["VoiceCallsignNumber"] = "93",
+                                            ["VoiceCallsignLabel"] = "NA",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -112434,8 +112434,8 @@ mission =
                                             ["HelmetMountedDevice"] = 1,
                                             ["LAU3ROF"] = 0,
                                             ["STN_L16"] = "11454",
-                                            ["VoiceCallsignLabel"] = "NI",
-                                            ["VoiceCallsignNumber"] = "94",
+                                            ["VoiceCallsignLabel"] = "NA",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -114774,8 +114774,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "07252",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "11",
+                                            ["VoiceCallsignLabel"] = "DL",
+                                            ["VoiceCallsignNumber"] = "21",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -114967,8 +114967,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "07253",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "12",
+                                            ["VoiceCallsignLabel"] = "DL",
+                                            ["VoiceCallsignNumber"] = "22",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -115160,8 +115160,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "07254",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "13",
+                                            ["VoiceCallsignLabel"] = "DL",
+                                            ["VoiceCallsignNumber"] = "23",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {
@@ -115353,8 +115353,8 @@ mission =
                                             ["InnerBoard"] = 0,
                                             ["OuterBoard"] = 0,
                                             ["STN_L16"] = "07255",
-                                            ["VoiceCallsignLabel"] = "PC",
-                                            ["VoiceCallsignNumber"] = "14",
+                                            ["VoiceCallsignLabel"] = "DL",
+                                            ["VoiceCallsignNumber"] = "24",
                                         }, -- end of ["AddPropAircraft"]
                                         ["Radio"] =
                                         {

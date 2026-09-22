@@ -1,6 +1,24 @@
 -- TANKERS --
 local activeTankers = {}
 local tankerMenus = {}
+local tankerAltitudes = {}
+local tankerSpeeds = {}
+
+-- Altitude is commanded in barometric feet. DCS has no climb-rate control, so
+-- the AI picks its own vertical speed to get there.
+local ALT_STEP_FT = 1000
+local ALT_MIN_FT = 3000
+local ALT_MAX_FT = 45000
+local ALT_FALLBACK_FT = 20000
+
+-- Speed is held and shown as indicated airspeed, which is what a receiver flies
+-- to. DCS commands true airspeed, so every altitude change has to re-issue the
+-- speed or the indicated figure on the label quietly drifts.
+local SPD_STEP_KT = 10
+local SPD_MIN_KT = 150
+local SPD_MAX_KT = 350
+local SPD_FALLBACK_KT = 300
+
 local tankerTemplates = {
   {name = "AR101 #IFF:5101FR", callsign = { id = "Texaco", major = 1, minor = 1 }, spawnMenuText = "Spawn AR101", despawnMenuText = "Despawn AR101", menuGroup = "BLUE_BOOM"},
   {name = "AR102 #IFF:5102FR", callsign = { id = "Texaco", major = 2, minor = 1 }, spawnMenuText = "Spawn AR102", despawnMenuText = "Despawn AR102", menuGroup = "BLUE_BOOM"},
@@ -40,6 +58,15 @@ local function getMenuGroup(template)
   end
 end
 
+-- "AR101 #IFF:5101FR" -> "AR101"
+local function tankerShortName(template)
+  return template.name:match("^(%S+)") or template.name
+end
+
+local function roundTo(value, step)
+  return math.floor(value / step + 0.5) * step
+end
+
 local function tankerList()
   if next(activeTankers) == nil then
     MESSAGE:New("No Tankers operating, spawn via Tanker menu", 5):ToAll()
@@ -49,7 +76,8 @@ local function tankerList()
   local lines = { "Operating Tankers:" }
   for i, template in ipairs(tankerTemplates) do
     if activeTankers[i] then
-      table.insert(lines, "- " .. template.name)
+      table.insert(lines, string.format("- %s: %d ft, %d kt IAS", template.name,
+        tankerAltitudes[i] or ALT_FALLBACK_FT, tankerSpeeds[i] or SPD_FALLBACK_KT))
     end
   end
 
@@ -57,14 +85,110 @@ local function tankerList()
 end
 
 local tankerSpawn
+local tankerDespawn
+local tankerControlMenu
 
-local function tankerDespawn(tankerIndex)
+-- The live GROUP for an active tanker, or nil if it never spawned or is gone.
+local function tankerGroupOf(tankerIndex)
+  local groupName = activeTankers[tankerIndex]
+  local group = groupName and GROUP:FindByName(groupName)
+  if group and group:IsAlive() then
+    return group
+  end
+  return nil
+end
+
+-- Converts the held indicated airspeed to the true figure DCS wants and issues
+-- it. UTILS.IasToTas and UTILS.TasToIas are a matched pair, so a tanker seeded
+-- from its own template and commanded straight back gets its briefed speed.
+-- Keep = true so the setting survives the next leg of the race-track orbit.
+local function tankerApplySpeed(tankerIndex, group)
+  local speed = tankerSpeeds[tankerIndex]
+  local altitude = tankerAltitudes[tankerIndex]
+  if not speed or not altitude then
+    return
+  end
+  local trueSpeed = UTILS.IasToTas(speed, UTILS.FeetToMeters(altitude))
+  group:SetSpeed(UTILS.KnotsToMps(trueSpeed), true)
+end
+
+local function tankerAltitudeRequest(tankerIndex, deltaFeet)
+  local shortName = tankerShortName(tankerTemplates[tankerIndex])
+  local group = tankerGroupOf(tankerIndex)
+  if not group then
+    MESSAGE:New(shortName .. " is not airborne.", 5):ToAll()
+    return
+  end
+
+  local altitude = (tankerAltitudes[tankerIndex] or ALT_FALLBACK_FT) + deltaFeet
+  if altitude < ALT_MIN_FT or altitude > ALT_MAX_FT then
+    MESSAGE:New(string.format("%s is limited to %d - %d ft.",
+      shortName, ALT_MIN_FT, ALT_MAX_FT), 5):ToAll()
+    return
+  end
+
+  group:SetAltitude(UTILS.FeetToMeters(altitude), true, "BARO")
+  tankerAltitudes[tankerIndex] = altitude
+  tankerApplySpeed(tankerIndex, group)
+  tankerControlMenu(tankerIndex)
+
+  MESSAGE:New(string.format("%s %s to %d ft.", shortName,
+    deltaFeet > 0 and "climbing" or "descending", altitude), 10):ToAll()
+end
+
+local function tankerSpeedRequest(tankerIndex, deltaKnots)
+  local shortName = tankerShortName(tankerTemplates[tankerIndex])
+  local group = tankerGroupOf(tankerIndex)
+  if not group then
+    MESSAGE:New(shortName .. " is not airborne.", 5):ToAll()
+    return
+  end
+
+  local speed = (tankerSpeeds[tankerIndex] or SPD_FALLBACK_KT) + deltaKnots
+  if speed < SPD_MIN_KT or speed > SPD_MAX_KT then
+    MESSAGE:New(string.format("%s is limited to %d - %d kt IAS.",
+      shortName, SPD_MIN_KT, SPD_MAX_KT), 5):ToAll()
+    return
+  end
+
+  tankerSpeeds[tankerIndex] = speed
+  tankerApplySpeed(tankerIndex, group)
+  tankerControlMenu(tankerIndex)
+
+  MESSAGE:New(string.format("%s speed set to %d kt IAS.", shortName, speed), 10):ToAll()
+end
+
+-- Rebuilt whenever a player changes a setting, because the label carries the
+-- current altitude and speed and MOOSE menu text cannot be edited in place.
+function tankerControlMenu(tankerIndex)
+  local tankerTemplate = tankerTemplates[tankerIndex]
+  local menus = tankerMenus[tankerIndex]
+
+  if menus.tankerMenu then
+    menus.tankerMenu:Remove()
+    menus.tankerMenu = nil
+  end
+
+  menus.tankerMenu = MENU_MISSION:New(
+    string.format("%s (%d ft, %d kt IAS)", tankerShortName(tankerTemplate),
+      tankerAltitudes[tankerIndex] or ALT_FALLBACK_FT,
+      tankerSpeeds[tankerIndex] or SPD_FALLBACK_KT),
+    getMenuGroup(tankerTemplate)
+  )
+  MENU_MISSION_COMMAND:New(string.format("Climb %d ft", ALT_STEP_FT), menus.tankerMenu, function() tankerAltitudeRequest(tankerIndex, ALT_STEP_FT) end)
+  MENU_MISSION_COMMAND:New(string.format("Descend %d ft", ALT_STEP_FT), menus.tankerMenu, function() tankerAltitudeRequest(tankerIndex, -ALT_STEP_FT) end)
+  MENU_MISSION_COMMAND:New(string.format("IAS +%d kt", SPD_STEP_KT), menus.tankerMenu, function() tankerSpeedRequest(tankerIndex, SPD_STEP_KT) end)
+  MENU_MISSION_COMMAND:New(string.format("IAS -%d kt", SPD_STEP_KT), menus.tankerMenu, function() tankerSpeedRequest(tankerIndex, -SPD_STEP_KT) end)
+  MENU_MISSION_COMMAND:New(tankerTemplate.despawnMenuText, menus.tankerMenu, function() tankerDespawn(tankerIndex) end)
+end
+
+function tankerDespawn(tankerIndex)
   local tankerTemplate = tankerTemplates[tankerIndex]
   local menuGroup = getMenuGroup(tankerTemplate)
-  
-  if tankerMenus[tankerIndex] and tankerMenus[tankerIndex].despawnMenu then
-    tankerMenus[tankerIndex].despawnMenu:Remove()
-    tankerMenus[tankerIndex].despawnMenu = nil
+
+  if tankerMenus[tankerIndex] and tankerMenus[tankerIndex].tankerMenu then
+    tankerMenus[tankerIndex].tankerMenu:Remove()
+    tankerMenus[tankerIndex].tankerMenu = nil
   end
   tankerMenus[tankerIndex].spawnMenu = MENU_MISSION_COMMAND:New(tankerTemplate.spawnMenuText, menuGroup, function() tankerSpawn(tankerIndex) end)
 
@@ -74,11 +198,12 @@ local function tankerDespawn(tankerIndex)
     if group then group:Destroy() end
     activeTankers[tankerIndex] = nil
   end
+  tankerAltitudes[tankerIndex] = nil
+  tankerSpeeds[tankerIndex] = nil
 end
 
 function tankerSpawn(tankerIndex)
   local tankerTemplate = tankerTemplates[tankerIndex]
-  local menuGroup = getMenuGroup(tankerTemplate)
   local cs = tankerTemplate.callsign
 
   local tanker = SPAWN:New(tankerTemplate.name)
@@ -92,7 +217,24 @@ function tankerSpawn(tankerIndex)
       tankerMenus[tankerIndex].spawnMenu = nil
     end
 
-    tankerMenus[tankerIndex].despawnMenu = MENU_MISSION_COMMAND:New(tankerTemplate.despawnMenuText, menuGroup, function() tankerDespawn(tankerIndex) end)
+    -- Seed from the briefed orbit rather than from the instantaneous state, so
+    -- the first player change is relative to what the ME actually commanded.
+    -- The stored waypoint speed is true, so convert it to indicated first.
+    local route = tankerGroup:CopyRoute()
+    local waypoint = route and route[1]
+    local altitude = ALT_FALLBACK_FT
+    local speed = SPD_FALLBACK_KT
+    if waypoint and waypoint.alt then
+      altitude = roundTo(UTILS.MetersToFeet(waypoint.alt), ALT_STEP_FT)
+      if waypoint.speed then
+        speed = roundTo(UTILS.TasToIas(UTILS.MpsToKnots(waypoint.speed), waypoint.alt), SPD_STEP_KT)
+      end
+    end
+
+    tankerAltitudes[tankerIndex] = altitude
+    tankerSpeeds[tankerIndex] = speed
+
+    tankerControlMenu(tankerIndex)
   end):Spawn()
 end
 
