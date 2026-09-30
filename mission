@@ -38744,85 +38744,6 @@ mission =
                             }, -- end of [64]
                             [65] =
                             {
-                                ["groupId"] = 948,
-                                ["hidden"] = true,
-                                ["hiddenOnMFD"] = true,
-                                ["hiddenOnPlanner"] = true,
-                                ["name"] = "Ground-7",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 10,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -67330.032252129,
-                                            ["y"] = -350480.22995519,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -67330.032252129,
-                                                ["y"] = -350480.22995519,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -67330.032252129,
-                                                ["y"] = -350480.22995519,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = true,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 1.4503686084073,
-                                        ["name"] = "Ground-7-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "HEMTT TFFT",
-                                        ["unitId"] = 3761,
-                                        ["x"] = -67330.032252129,
-                                        ["y"] = -350480.22995519,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -67330.032252129,
-                                ["y"] = -350480.22995519,
-                            }, -- end of [65]
-                            [66] =
-                            {
                                 ["groupId"] = 949,
                                 ["hidden"] = true,
                                 ["hiddenOnMFD"] = true,
@@ -38899,8 +38820,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -67344.984573372,
                                 ["y"] = -349567.81020576,
-                            }, -- end of [66]
-                            [67] =
+                            }, -- end of [65]
+                            [66] =
                             {
                                 ["groupId"] = 950,
                                 ["hidden"] = true,
@@ -38978,8 +38899,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -66558.289425659,
                                 ["y"] = -348436.01105486,
-                            }, -- end of [67]
-                            [68] =
+                            }, -- end of [66]
+                            [67] =
                             {
                                 ["groupId"] = 951,
                                 ["hidden"] = true,
@@ -39057,8 +38978,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -66834.508861207,
                                 ["y"] = -349274.06401028,
-                            }, -- end of [68]
-                            [69] =
+                            }, -- end of [67]
+                            [68] =
                             {
                                 ["groupId"] = 952,
                                 ["hidden"] = true,
@@ -39136,8 +39057,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -66556.576509222,
                                 ["y"] = -348431.61896143,
-                            }, -- end of [69]
-                            [70] =
+                            }, -- end of [68]
+                            [69] =
                             {
                                 ["groupId"] = 953,
                                 ["hidden"] = true,
@@ -39215,8 +39136,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -66556.739834015,
                                 ["y"] = -348427.52748268,
-                            }, -- end of [70]
-                            [71] =
+                            }, -- end of [69]
+                            [70] =
                             {
                                 ["groupId"] = 954,
                                 ["hidden"] = true,
@@ -39294,8 +39215,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -67140.191373107,
                                 ["y"] = -347627.29299624,
-                            }, -- end of [71]
-                            [72] =
+                            }, -- end of [70]
+                            [71] =
                             {
                                 ["groupId"] = 955,
                                 ["hidden"] = true,
@@ -39373,8 +39294,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -66815.577242502,
                                 ["y"] = -346239.57027286,
-                            }, -- end of [72]
-                            [73] =
+                            }, -- end of [71]
+                            [72] =
                             {
                                 ["groupId"] = 956,
                                 ["hidden"] = true,
@@ -39452,166 +39373,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -67267.844552252,
                                 ["y"] = -348156.35837999,
-                            }, -- end of [73]
-                            [74] =
-                            {
-                                ["groupId"] = 957,
-                                ["hidden"] = true,
-                                ["hiddenOnMFD"] = true,
-                                ["hiddenOnPlanner"] = true,
-                                ["name"] = "Ground-16",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 13,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -67436.262446322,
-                                            ["y"] = -350124.29734727,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -67436.262446322,
-                                                ["y"] = -350124.29734727,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -67436.262446322,
-                                                ["y"] = -350124.29734727,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = true,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 3.070034154258,
-                                        ["name"] = "Ground-16-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "P20_drivable",
-                                        ["unitId"] = 3770,
-                                        ["x"] = -67436.262446322,
-                                        ["y"] = -350124.29734727,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -67436.262446322,
-                                ["y"] = -350124.29734727,
-                            }, -- end of [74]
-                            [75] =
-                            {
-                                ["groupId"] = 958,
-                                ["hidden"] = true,
-                                ["hiddenOnMFD"] = true,
-                                ["hiddenOnPlanner"] = true,
-                                ["name"] = "Ground-17",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 13,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = -67436.17008869,
-                                            ["y"] = -350120.29222827,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                        [1] =
-                                        {
-                                            [1] =
-                                            {
-                                                ["x"] = -67436.17008869,
-                                                ["y"] = -350120.29222827,
-                                            }, -- end of [1]
-                                            [2] =
-                                            {
-                                                ["x"] = -67436.17008869,
-                                                ["y"] = -350120.29222827,
-                                            }, -- end of [2]
-                                        }, -- end of [1]
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = true,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 3.078760800518,
-                                        ["name"] = "Ground-17-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "High",
-                                        ["type"] = "tacr2a",
-                                        ["unitId"] = 3771,
-                                        ["x"] = -67436.17008869,
-                                        ["y"] = -350120.29222827,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = -67436.17008869,
-                                ["y"] = -350120.29222827,
-                            }, -- end of [75]
-                            [76] =
+                            }, -- end of [72]
+                            [73] =
                             {
                                 ["groupId"] = 960,
                                 ["hidden"] = true,
@@ -39689,8 +39452,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 58910.429716031,
                                 ["y"] = -239581.88586013,
-                            }, -- end of [76]
-                            [77] =
+                            }, -- end of [73]
+                            [74] =
                             {
                                 ["groupId"] = 961,
                                 ["hidden"] = true,
@@ -39768,8 +39531,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 61419.872872099,
                                 ["y"] = -239182.07451507,
-                            }, -- end of [77]
-                            [78] =
+                            }, -- end of [74]
+                            [75] =
                             {
                                 ["groupId"] = 962,
                                 ["hidden"] = true,
@@ -39847,8 +39610,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 60536.852932602,
                                 ["y"] = -239196.98115561,
-                            }, -- end of [78]
-                            [79] =
+                            }, -- end of [75]
+                            [76] =
                             {
                                 ["groupId"] = 963,
                                 ["hidden"] = true,
@@ -39926,8 +39689,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 151195.62144559,
                                 ["y"] = -254181.50324261,
-                            }, -- end of [79]
-                            [80] =
+                            }, -- end of [76]
+                            [77] =
                             {
                                 ["groupId"] = 964,
                                 ["hidden"] = true,
@@ -40005,8 +39768,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 152756.46882717,
                                 ["y"] = -254936.79680919,
-                            }, -- end of [80]
-                            [81] =
+                            }, -- end of [77]
+                            [78] =
                             {
                                 ["groupId"] = 965,
                                 ["hidden"] = true,
@@ -40084,8 +39847,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 150395.4740494,
                                 ["y"] = -253686.88495251,
-                            }, -- end of [81]
-                            [82] =
+                            }, -- end of [78]
+                            [79] =
                             {
                                 ["groupId"] = 966,
                                 ["hidden"] = true,
@@ -40163,8 +39926,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 60508.935253315,
                                 ["y"] = -239159.64134403,
-                            }, -- end of [82]
-                            [83] =
+                            }, -- end of [79]
+                            [80] =
                             {
                                 ["groupId"] = 967,
                                 ["hidden"] = true,
@@ -40242,8 +40005,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 151305.48241192,
                                 ["y"] = -254991.91340492,
-                            }, -- end of [83]
-                            [84] =
+                            }, -- end of [80]
+                            [81] =
                             {
                                 ["groupId"] = 968,
                                 ["hidden"] = true,
@@ -40321,8 +40084,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 60508.857703645,
                                 ["y"] = -239155.73179774,
-                            }, -- end of [84]
-                            [85] =
+                            }, -- end of [81]
+                            [82] =
                             {
                                 ["groupId"] = 969,
                                 ["hidden"] = true,
@@ -40400,8 +40163,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 151304.47074448,
                                 ["y"] = -254995.68503387,
-                            }, -- end of [85]
-                            [86] =
+                            }, -- end of [82]
+                            [83] =
                             {
                                 ["groupId"] = 971,
                                 ["hidden"] = true,
@@ -40490,8 +40253,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -170136.9285148,
                                 ["y"] = -100979.17903568,
-                            }, -- end of [86]
-                            [87] =
+                            }, -- end of [83]
+                            [84] =
                             {
                                 ["groupId"] = 972,
                                 ["hidden"] = true,
@@ -40580,8 +40343,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -168431.35721234,
                                 ["y"] = -101642.53288838,
-                            }, -- end of [87]
-                            [88] =
+                            }, -- end of [84]
+                            [85] =
                             {
                                 ["groupId"] = 973,
                                 ["hidden"] = true,
@@ -40670,8 +40433,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -169448.75253954,
                                 ["y"] = -103295.95888839,
-                            }, -- end of [88]
-                            [89] =
+                            }, -- end of [85]
+                            [86] =
                             {
                                 ["groupId"] = 998,
                                 ["hidden"] = false,
@@ -40734,8 +40497,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -103422.5507629,
                                 ["y"] = -384186.37394981,
-                            }, -- end of [89]
-                            [90] =
+                            }, -- end of [86]
+                            [87] =
                             {
                                 ["groupId"] = 999,
                                 ["hidden"] = false,
@@ -40798,8 +40561,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -103416.59228088,
                                 ["y"] = -384188.79823416,
-                            }, -- end of [90]
-                            [91] =
+                            }, -- end of [87]
+                            [88] =
                             {
                                 ["groupId"] = 1004,
                                 ["hidden"] = false,
@@ -40905,8 +40668,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -103452.80257141,
                                 ["y"] = -384111.76794704,
-                            }, -- end of [91]
-                            [92] =
+                            }, -- end of [88]
+                            [89] =
                             {
                                 ["groupId"] = 1016,
                                 ["hidden"] = false,
@@ -40969,8 +40732,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -94039.555604232,
                                 ["y"] = -342122.31909764,
-                            }, -- end of [92]
-                            [93] =
+                            }, -- end of [89]
+                            [90] =
                             {
                                 ["groupId"] = 1019,
                                 ["hidden"] = false,
@@ -41033,8 +40796,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -94045.514086252,
                                 ["y"] = -342119.89481329,
-                            }, -- end of [93]
-                            [94] =
+                            }, -- end of [90]
+                            [91] =
                             {
                                 ["groupId"] = 1022,
                                 ["hidden"] = false,
@@ -41140,8 +40903,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -94035.561608695,
                                 ["y"] = -342041.30163406,
-                            }, -- end of [94]
-                            [95] =
+                            }, -- end of [91]
+                            [92] =
                             {
                                 ["groupId"] = 1048,
                                 ["hidden"] = false,
@@ -41316,8 +41079,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55507.295641492,
                                 ["y"] = -335209.10807926,
-                            }, -- end of [95]
-                            [96] =
+                            }, -- end of [92]
+                            [93] =
                             {
                                 ["groupId"] = 1049,
                                 ["hidden"] = false,
@@ -41450,8 +41213,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -56060.37261907,
                                 ["y"] = -336055.99055443,
-                            }, -- end of [96]
-                            [97] =
+                            }, -- end of [93]
+                            [94] =
                             {
                                 ["groupId"] = 1050,
                                 ["hidden"] = false,
@@ -41626,8 +41389,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55488.441664358,
                                 ["y"] = -335176.93661035,
-                            }, -- end of [97]
-                            [98] =
+                            }, -- end of [94]
+                            [95] =
                             {
                                 ["groupId"] = 1051,
                                 ["hidden"] = false,
@@ -41808,8 +41571,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55471.683080535,
                                 ["y"] = -335324.30072187,
-                            }, -- end of [98]
-                            [99] =
+                            }, -- end of [95]
+                            [96] =
                             {
                                 ["groupId"] = 1052,
                                 ["hidden"] = false,
@@ -41984,8 +41747,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55496.073036055,
                                 ["y"] = -335192.049719,
-                            }, -- end of [99]
-                            [100] =
+                            }, -- end of [96]
+                            [97] =
                             {
                                 ["groupId"] = 1053,
                                 ["hidden"] = false,
@@ -42118,8 +41881,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -56062.445052864,
                                 ["y"] = -336057.32760849,
-                            }, -- end of [100]
-                            [101] =
+                            }, -- end of [97]
+                            [98] =
                             {
                                 ["groupId"] = 1054,
                                 ["hidden"] = false,
@@ -42252,8 +42015,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -56061.642820428,
                                 ["y"] = -336060.33598013,
-                            }, -- end of [101]
-                            [102] =
+                            }, -- end of [98]
+                            [99] =
                             {
                                 ["groupId"] = 1055,
                                 ["hidden"] = false,
@@ -42386,8 +42149,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -56062.645610973,
                                 ["y"] = -336054.85405848,
-                            }, -- end of [102]
-                            [103] =
+                            }, -- end of [99]
+                            [100] =
                             {
                                 ["groupId"] = 1056,
                                 ["hidden"] = false,
@@ -42520,8 +42283,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -56065.921393422,
                                 ["y"] = -336061.20506527,
-                            }, -- end of [103]
-                            [104] =
+                            }, -- end of [100]
+                            [101] =
                             {
                                 ["groupId"] = 1057,
                                 ["hidden"] = false,
@@ -42685,8 +42448,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55444.835893396,
                                 ["y"] = -335384.99367814,
-                            }, -- end of [104]
-                            [105] =
+                            }, -- end of [101]
+                            [102] =
                             {
                                 ["groupId"] = 1058,
                                 ["hidden"] = false,
@@ -42850,7 +42613,7 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -55445.242576779,
                                 ["y"] = -335376.44616371,
-                            }, -- end of [105]
+                            }, -- end of [102]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -88348,6 +88111,10 @@ mission =
                                 {
                                     [1] =
                                     {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
                                         ["coldAtStart"] = false,
                                         ["heading"] = 4.7132778773901,
                                         ["name"] = "R22_CAS_Kiruna_IFV_Vehicle-1",
@@ -88609,6 +88376,10 @@ mission =
                                 {
                                     [1] =
                                     {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
                                         ["coldAtStart"] = false,
                                         ["heading"] = 4.7132778773901,
                                         ["name"] = "R22_CAS_Kiruna_IFV_Vehicle-2-1",
@@ -90337,6 +90108,89 @@ mission =
                                 ["x"] = -94845.459790742,
                                 ["y"] = -313020.09789416,
                             }, -- end of [32]
+                            [33] =
+                            {
+                                ["groupId"] = 1081,
+                                ["hidden"] = false,
+                                ["name"] = "@@@R22 TST target Kiruna activate",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 469,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                        [1] =
+                                                        {
+                                                            ["auto"] = true,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 1,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "EPLRS",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["groupId"] = 33,
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [1]
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -26704.061665593,
+                                            ["y"] = -94414.693244311,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["spans"] =
+                                    {
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.4835298641952,
+                                        ["name"] = "@@@R22 TST target Kiruna activate-1",
+                                        ["playerCanDrive"] = true,
+                                        ["skill"] = "High",
+                                        ["type"] = "Hummer",
+                                        ["unitId"] = 4010,
+                                        ["x"] = -26704.061665593,
+                                        ["y"] = -94414.693244311,
+                                    }, -- end of [1]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -26704.061665593,
+                                ["y"] = -94414.693244311,
+                            }, -- end of [33]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [3]
@@ -98552,6 +98406,183 @@ mission =
                                 ["x"] = 64547.177549781,
                                 ["y"] = -301210.94589235,
                             }, -- end of [34]
+                            [35] =
+                            {
+                                ["groupId"] = 1080,
+                                ["hidden"] = true,
+                                ["hiddenOnMFD"] = true,
+                                ["hiddenOnPlanner"] = true,
+                                ["lateActivation"] = true,
+                                ["name"] = "@@R22_TST_SCUD",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 505,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -17143.672089622,
+                                            ["y"] = -96513.292043364,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -17143.672089622,
+                                                ["y"] = -96513.292043364,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -17143.672089622,
+                                                ["y"] = -96513.292043364,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.1380031205245,
+                                        ["name"] = "R22_TST_SCUD-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Scud_B",
+                                        ["unitId"] = 4002,
+                                        ["x"] = -17143.672089622,
+                                        ["y"] = -96513.292043364,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.1380031205245,
+                                        ["name"] = "R22_TST_SCUD-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Scud_B",
+                                        ["unitId"] = 4003,
+                                        ["x"] = -17176.810507055,
+                                        ["y"] = -96577.353971153,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.9027035302448,
+                                        ["name"] = "R22_TST_SCUD-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "UAZ-469",
+                                        ["unitId"] = 4007,
+                                        ["x"] = -17132.63912383,
+                                        ["y"] = -96565.438419417,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.9027035302448,
+                                        ["name"] = "R22_TST_SCUD-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "BTR-80",
+                                        ["unitId"] = 4009,
+                                        ["x"] = -16226.423676299,
+                                        ["y"] = -95911.47676294,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.9027035302448,
+                                        ["name"] = "R22_TST_SCUD-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "UAZ-469",
+                                        ["unitId"] = 4006,
+                                        ["x"] = -17133.159546745,
+                                        ["y"] = -96560.442359436,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 0,
+                                        ["name"] = "R22_TST_SCUD-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "ZIL-131 KUNG",
+                                        ["unitId"] = 4008,
+                                        ["x"] = -17136.802507148,
+                                        ["y"] = -96638.193542893,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 3.8833575856874,
+                                        ["name"] = "R22_TST_SCUD-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "ZIL-131 KUNG",
+                                        ["unitId"] = 4005,
+                                        ["x"] = -17144.088427953,
+                                        ["y"] = -96642.148757045,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.1380031205245,
+                                        ["name"] = "R22_TST_SCUD-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 4004,
+                                        ["x"] = -17136.698422565,
+                                        ["y"] = -96550.033901142,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 1.9198621771938,
+                                        ["name"] = "R22_TST_SCUD-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-375 PBU",
+                                        ["unitId"] = 4001,
+                                        ["x"] = -17143.151666707,
+                                        ["y"] = -96634.342413324,
+                                    }, -- end of [9]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -17143.672089622,
+                                ["y"] = -96513.292043364,
+                            }, -- end of [35]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -260470,7 +260501,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 8869665,
+    ["currentKey"] = 8967088,
     ["date"] =
     {
         ["Day"] = 28,
@@ -270501,7 +270532,7 @@ mission =
             {
                 ["blue"] = 3,
                 ["neutrals"] = 0,
-                ["red"] = 0,
+                ["red"] = 1,
             }, -- end of ["instructor"]
             ["observer"] =
             {
@@ -270513,9 +270544,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = 16264.154043187,
-        ["centerY"] = 60029.086697057,
-        ["zoom"] = 1659877.6508964,
+        ["centerX"] = -59693.791264327,
+        ["centerY"] = -326293.63032285,
+        ["zoom"] = 123793.01090488,
     }, -- end of ["map"]
     ["maxDictId"] = 468,
     ["pictureFileNameB"] =
@@ -270661,63 +270692,64 @@ mission =
             [75] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_401\")); mission.trig.func[75]=nil;",
             [76] = "a_do_script_file(getValueResourceByKey(\"ResKey_Action_402\")); mission.trig.func[76]=nil;",
             [77] = "a_activate_group(668);a_activate_group(670);a_activate_group(669);a_activate_group(666); mission.trig.func[77]=nil;",
-            [78] = "a_activate_group(658);a_activate_group(655);a_activate_group(656);a_activate_group(657);a_activate_group(659);a_activate_group(646);a_activate_group(650);a_activate_group(645);a_activate_group(660);a_activate_group(652);a_activate_group(653);a_activate_group(654);a_activate_group(648);a_activate_group(647);a_group_off(655);a_group_off(656);a_group_off(657);a_group_off(659);a_group_off(658);a_group_off(660);a_group_off(652);a_group_off(653); mission.trig.func[78]=nil;",
-            [79] = "a_set_flag(\"24\"); mission.trig.func[79]=nil;",
-            [80] = "a_activate_group(691);a_activate_group(694);a_activate_group(317);a_activate_group(316);a_activate_group(318);a_activate_group(696);a_activate_group(693);a_activate_group(692);a_activate_group(314);a_activate_group(315);a_do_script_file(getValueResourceByKey(\"ResKey_Action_408\"));a_group_off(694);a_activate_group(683);a_activate_group(698);a_activate_group(697);a_activate_group(699);a_activate_group(700); mission.trig.func[80]=nil;",
-            [81] = "a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_425\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_426\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_427\"), \"122\", 1);a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_428\"), \"122\", 1); mission.trig.func[81]=nil;",
-            [82] = "a_activate_group(738);a_activate_group(740);a_activate_group(739);a_activate_group(747);a_activate_group(737); mission.trig.func[82]=nil;",
-            [83] = "a_set_flag(\"R13_CAS1\"); mission.trig.func[83]=nil;",
-            [84] = "a_activate_group(768);a_activate_group(769);a_activate_group(770);a_activate_group(771);a_activate_group(773);a_activate_group(772);a_activate_group(774);a_activate_group(775);a_activate_group(780);a_activate_group(794);a_activate_group(781);a_activate_group(782);a_activate_group(783);a_activate_group(784);a_activate_group(785);a_activate_group(786);a_activate_group(787);a_activate_group(788);a_activate_group(793);a_activate_group(790);a_activate_group(789);a_activate_group(792);a_activate_group(791); mission.trig.func[84]=nil;",
-            [85] = "a_group_off(793);a_group_off(790);a_group_off(789);a_group_off(792);a_group_off(791); mission.trig.func[85]=nil;",
-            [86] = "a_ai_task(768, 1); mission.trig.func[86]=nil;",
-            [87] = "a_set_flag(\"R13_CAS1-BLUE-ADVANCING\"); mission.trig.func[87]=nil;",
-            [88] = "a_ai_task(768, 2); mission.trig.func[88]=nil;",
-            [89] = "a_set_flag(\"R13_CAS1_RED_UNDER_ATTACK\"); mission.trig.func[89]=nil;",
-            [90] = "a_set_flag(\"R13_CAS1_RED_ADS_DAMAGED\"); mission.trig.func[90]=nil;",
-            [91] = "a_group_on(793);a_group_on(790);a_group_on(789);a_group_on(792); mission.trig.func[91]=nil;",
-            [92] = "a_group_on(791); mission.trig.func[92]=nil;",
-            [93] = "a_ai_task(785, 1); mission.trig.func[93]=nil;",
-            [94] = "a_ai_task(786, 1); mission.trig.func[94]=nil;",
-            [95] = "a_set_flag(\"R12_CAS2\"); mission.trig.func[95]=nil;",
-            [96] = "a_activate_group(796);a_activate_group(802);a_activate_group(803);a_activate_group(804);a_activate_group(805);a_activate_group(806);a_activate_group(795);a_activate_group(799);a_activate_group(800);a_activate_group(801);a_activate_group(797);a_activate_group(798); mission.trig.func[96]=nil;",
-            [97] = "a_activate_group(807);a_activate_group(808);a_activate_group(809);a_activate_group(810);a_activate_group(811);a_activate_group(812);a_activate_group(813);a_activate_group(814);a_activate_group(815);a_activate_group(815);a_activate_group(818);a_activate_group(817);a_activate_group(816);a_activate_group(819);a_activate_group(820); mission.trig.func[97]=nil;",
-            [98] = "a_explosion_unit(3080, 30);a_explosion_unit(3078, 30);a_explosion_unit(3079, 30);a_explosion_unit(3081, 30);a_explosion_unit(3082, 30);a_effect_smoke(639, 1, 1, \"\");a_effect_smoke(640, 5, 1, \"\"); mission.trig.func[98]=nil;",
-            [99] = "a_group_off(816);a_group_off(819);a_group_off(820);a_group_off(818); mission.trig.func[99]=nil;",
-            [100] = "a_set_flag(\"R12_CAS2-BLUE-ADVANCING\"); mission.trig.func[100]=nil;",
-            [101] = "a_group_on(816);a_group_on(819); mission.trig.func[101]=nil;",
-            [102] = "a_group_on(820); mission.trig.func[102]=nil;",
-            [103] = "a_ai_task(814, 1); mission.trig.func[103]=nil;",
-            [104] = "a_group_on(818); mission.trig.func[104]=nil;",
-            [105] = "a_set_flag(\"R14_CAS1_ACTIVE\"); mission.trig.func[105]=nil;",
-            [106] = "a_activate_group(870);a_activate_group(871);a_activate_group(872);a_activate_group(873);a_activate_group(874);a_activate_group(875);a_activate_group(876);a_activate_group(878);a_activate_group(877);a_activate_group(889);a_activate_group(895);a_activate_group(897);a_activate_group(886);a_activate_group(898);a_activate_group(887);a_activate_group(899);a_activate_group(888);a_activate_group(903);a_activate_group(883);a_activate_group(890);a_activate_group(884);a_activate_group(893);a_activate_group(885);a_activate_group(902);a_activate_group(901);a_activate_group(894);a_activate_group(904);a_activate_group(891);a_activate_group(892);a_activate_group(896);a_activate_group(900);a_activate_group(905); mission.trig.func[106]=nil;",
-            [107] = "a_group_off(904);a_group_off(891);a_group_off(892);a_group_off(896);a_group_off(900);a_group_off(905);a_group_off(897); mission.trig.func[107]=nil;",
-            [108] = "a_set_flag(\"R14_CAS1_SOF_MOVING\"); mission.trig.func[108]=nil;",
-            [109] = "a_set_flag(\"R14_CAS1 COMBAT START\"); mission.trig.func[109]=nil;",
-            [110] = "a_ai_task(895, 1); mission.trig.func[110]=nil;",
-            [111] = "a_group_on(896);a_group_on(900); mission.trig.func[111]=nil;",
-            [112] = "a_group_on(904);a_group_on(891); mission.trig.func[112]=nil;",
-            [113] = "a_group_on(892);a_group_on(905);a_group_on(897); mission.trig.func[113]=nil;",
-            [114] = "a_group_resume(872);a_group_resume(873);a_group_resume(874); mission.trig.func[114]=nil;",
-            [115] = "a_set_flag(\"R15_CAS2_ACTIVE\"); mission.trig.func[115]=nil;",
-            [116] = "a_activate_group(906);a_activate_group(911);a_activate_group(907);a_activate_group(908);a_activate_group(909);a_activate_group(910);a_activate_group(919);a_activate_group(921);a_activate_group(922);a_activate_group(923);a_activate_group(913);a_activate_group(917);a_activate_group(920);a_activate_group(918);a_activate_group(915);a_activate_group(916);a_activate_group(924);a_activate_group(925);a_activate_group(912);a_activate_group(914);a_activate_group(926); mission.trig.func[116]=nil;",
-            [117] = "a_group_off(912);a_group_off(914);a_group_off(926); mission.trig.func[117]=nil;",
-            [118] = "a_set_flag(\"R15_CAS2_COMBAT_STARTS\"); mission.trig.func[118]=nil;",
-            [119] = "a_group_on(912);a_group_on(914); mission.trig.func[119]=nil;",
-            [120] = "a_group_on(926); mission.trig.func[120]=nil;",
-            [121] = "a_deactivate_group(906); mission.trig.func[121]=nil;",
-            [122] = "a_deactivate_group(911); mission.trig.func[122]=nil;",
-            [123] = "a_activate_group(931);a_activate_group(933);a_activate_group(945); mission.trig.func[123]=nil;",
-            [124] = "a_activate_group(1048);a_activate_group(1052);a_activate_group(1050);a_activate_group(1051);a_activate_group(1049);a_activate_group(1055);a_activate_group(1054);a_activate_group(1056);a_activate_group(1057);a_activate_group(1058);a_activate_group(1053);a_activate_group(1059);a_activate_group(1068);a_activate_group(1069);a_activate_group(1070);a_activate_group(1071);a_activate_group(1075);a_activate_group(1076);a_activate_group(1077);a_activate_group(1078);a_activate_group(1060);a_activate_group(1061);a_activate_group(1062);a_activate_group(1063);a_activate_group(1064);a_activate_group(1065);a_activate_group(1066);a_activate_group(1067);a_activate_group(1073);a_activate_group(1072);a_activate_group(1074); mission.trig.func[124]=nil;",
-            [125] = "a_group_off(1073);a_group_off(1072);a_group_off(1074); mission.trig.func[125]=nil;",
-            [126] = "a_set_flag(\"R15_CAS3_BLUE_MANEUVER\"); mission.trig.func[126]=nil;",
-            [127] = "a_set_flag(\"R15_CAS3_RED_UNDER-ATTACK\"); mission.trig.func[127]=nil;",
-            [128] = "a_ai_task(1066, 1); mission.trig.func[128]=nil;",
-            [129] = "a_group_on(1072); mission.trig.func[129]=nil;",
-            [130] = "a_group_on(1073); mission.trig.func[130]=nil;",
-            [131] = "a_group_on(1074); mission.trig.func[131]=nil;",
-            [132] = "a_ai_task(1048, 1); mission.trig.func[132]=nil;",
-            [133] = "a_ai_task(1052, 1); mission.trig.func[133]=nil;",
-            [134] = "a_ai_task(1050, 1); mission.trig.func[134]=nil;",
+            [78] = "a_activate_group(1080); mission.trig.func[78]=nil;",
+            [79] = "a_activate_group(658);a_activate_group(655);a_activate_group(656);a_activate_group(657);a_activate_group(659);a_activate_group(646);a_activate_group(650);a_activate_group(645);a_activate_group(660);a_activate_group(652);a_activate_group(653);a_activate_group(654);a_activate_group(648);a_activate_group(647);a_group_off(655);a_group_off(656);a_group_off(657);a_group_off(659);a_group_off(658);a_group_off(660);a_group_off(652);a_group_off(653); mission.trig.func[79]=nil;",
+            [80] = "a_set_flag(\"24\"); mission.trig.func[80]=nil;",
+            [81] = "a_activate_group(691);a_activate_group(694);a_activate_group(317);a_activate_group(316);a_activate_group(318);a_activate_group(696);a_activate_group(693);a_activate_group(692);a_activate_group(314);a_activate_group(315);a_do_script_file(getValueResourceByKey(\"ResKey_Action_408\"));a_group_off(694);a_activate_group(683);a_activate_group(698);a_activate_group(697);a_activate_group(699);a_activate_group(700); mission.trig.func[81]=nil;",
+            [82] = "a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_425\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_426\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_427\"), \"122\", 1);a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_428\"), \"122\", 1); mission.trig.func[82]=nil;",
+            [83] = "a_activate_group(738);a_activate_group(740);a_activate_group(739);a_activate_group(747);a_activate_group(737); mission.trig.func[83]=nil;",
+            [84] = "a_set_flag(\"R13_CAS1\"); mission.trig.func[84]=nil;",
+            [85] = "a_activate_group(768);a_activate_group(769);a_activate_group(770);a_activate_group(771);a_activate_group(773);a_activate_group(772);a_activate_group(774);a_activate_group(775);a_activate_group(780);a_activate_group(794);a_activate_group(781);a_activate_group(782);a_activate_group(783);a_activate_group(784);a_activate_group(785);a_activate_group(786);a_activate_group(787);a_activate_group(788);a_activate_group(793);a_activate_group(790);a_activate_group(789);a_activate_group(792);a_activate_group(791); mission.trig.func[85]=nil;",
+            [86] = "a_group_off(793);a_group_off(790);a_group_off(789);a_group_off(792);a_group_off(791); mission.trig.func[86]=nil;",
+            [87] = "a_ai_task(768, 1); mission.trig.func[87]=nil;",
+            [88] = "a_set_flag(\"R13_CAS1-BLUE-ADVANCING\"); mission.trig.func[88]=nil;",
+            [89] = "a_ai_task(768, 2); mission.trig.func[89]=nil;",
+            [90] = "a_set_flag(\"R13_CAS1_RED_UNDER_ATTACK\"); mission.trig.func[90]=nil;",
+            [91] = "a_set_flag(\"R13_CAS1_RED_ADS_DAMAGED\"); mission.trig.func[91]=nil;",
+            [92] = "a_group_on(793);a_group_on(790);a_group_on(789);a_group_on(792); mission.trig.func[92]=nil;",
+            [93] = "a_group_on(791); mission.trig.func[93]=nil;",
+            [94] = "a_ai_task(785, 1); mission.trig.func[94]=nil;",
+            [95] = "a_ai_task(786, 1); mission.trig.func[95]=nil;",
+            [96] = "a_set_flag(\"R12_CAS2\"); mission.trig.func[96]=nil;",
+            [97] = "a_activate_group(796);a_activate_group(802);a_activate_group(803);a_activate_group(804);a_activate_group(805);a_activate_group(806);a_activate_group(795);a_activate_group(799);a_activate_group(800);a_activate_group(801);a_activate_group(797);a_activate_group(798); mission.trig.func[97]=nil;",
+            [98] = "a_activate_group(807);a_activate_group(808);a_activate_group(809);a_activate_group(810);a_activate_group(811);a_activate_group(812);a_activate_group(813);a_activate_group(814);a_activate_group(815);a_activate_group(815);a_activate_group(818);a_activate_group(817);a_activate_group(816);a_activate_group(819);a_activate_group(820); mission.trig.func[98]=nil;",
+            [99] = "a_explosion_unit(3080, 30);a_explosion_unit(3078, 30);a_explosion_unit(3079, 30);a_explosion_unit(3081, 30);a_explosion_unit(3082, 30);a_effect_smoke(639, 1, 1, \"\");a_effect_smoke(640, 5, 1, \"\"); mission.trig.func[99]=nil;",
+            [100] = "a_group_off(816);a_group_off(819);a_group_off(820);a_group_off(818); mission.trig.func[100]=nil;",
+            [101] = "a_set_flag(\"R12_CAS2-BLUE-ADVANCING\"); mission.trig.func[101]=nil;",
+            [102] = "a_group_on(816);a_group_on(819); mission.trig.func[102]=nil;",
+            [103] = "a_group_on(820); mission.trig.func[103]=nil;",
+            [104] = "a_ai_task(814, 1); mission.trig.func[104]=nil;",
+            [105] = "a_group_on(818); mission.trig.func[105]=nil;",
+            [106] = "a_set_flag(\"R14_CAS1_ACTIVE\"); mission.trig.func[106]=nil;",
+            [107] = "a_activate_group(870);a_activate_group(871);a_activate_group(872);a_activate_group(873);a_activate_group(874);a_activate_group(875);a_activate_group(876);a_activate_group(878);a_activate_group(877);a_activate_group(889);a_activate_group(895);a_activate_group(897);a_activate_group(886);a_activate_group(898);a_activate_group(887);a_activate_group(899);a_activate_group(888);a_activate_group(903);a_activate_group(883);a_activate_group(890);a_activate_group(884);a_activate_group(893);a_activate_group(885);a_activate_group(902);a_activate_group(901);a_activate_group(894);a_activate_group(904);a_activate_group(891);a_activate_group(892);a_activate_group(896);a_activate_group(900);a_activate_group(905); mission.trig.func[107]=nil;",
+            [108] = "a_group_off(904);a_group_off(891);a_group_off(892);a_group_off(896);a_group_off(900);a_group_off(905);a_group_off(897); mission.trig.func[108]=nil;",
+            [109] = "a_set_flag(\"R14_CAS1_SOF_MOVING\"); mission.trig.func[109]=nil;",
+            [110] = "a_set_flag(\"R14_CAS1 COMBAT START\"); mission.trig.func[110]=nil;",
+            [111] = "a_ai_task(895, 1); mission.trig.func[111]=nil;",
+            [112] = "a_group_on(896);a_group_on(900); mission.trig.func[112]=nil;",
+            [113] = "a_group_on(904);a_group_on(891); mission.trig.func[113]=nil;",
+            [114] = "a_group_on(892);a_group_on(905);a_group_on(897); mission.trig.func[114]=nil;",
+            [115] = "a_group_resume(872);a_group_resume(873);a_group_resume(874); mission.trig.func[115]=nil;",
+            [116] = "a_set_flag(\"R15_CAS2_ACTIVE\"); mission.trig.func[116]=nil;",
+            [117] = "a_activate_group(906);a_activate_group(911);a_activate_group(907);a_activate_group(908);a_activate_group(909);a_activate_group(910);a_activate_group(919);a_activate_group(921);a_activate_group(922);a_activate_group(923);a_activate_group(913);a_activate_group(917);a_activate_group(920);a_activate_group(918);a_activate_group(915);a_activate_group(916);a_activate_group(924);a_activate_group(925);a_activate_group(912);a_activate_group(914);a_activate_group(926); mission.trig.func[117]=nil;",
+            [118] = "a_group_off(912);a_group_off(914);a_group_off(926); mission.trig.func[118]=nil;",
+            [119] = "a_set_flag(\"R15_CAS2_COMBAT_STARTS\"); mission.trig.func[119]=nil;",
+            [120] = "a_group_on(912);a_group_on(914); mission.trig.func[120]=nil;",
+            [121] = "a_group_on(926); mission.trig.func[121]=nil;",
+            [122] = "a_deactivate_group(906); mission.trig.func[122]=nil;",
+            [123] = "a_deactivate_group(911); mission.trig.func[123]=nil;",
+            [124] = "a_activate_group(931);a_activate_group(933);a_activate_group(945); mission.trig.func[124]=nil;",
+            [125] = "a_activate_group(1048);a_activate_group(1052);a_activate_group(1050);a_activate_group(1051);a_activate_group(1049);a_activate_group(1055);a_activate_group(1054);a_activate_group(1056);a_activate_group(1057);a_activate_group(1058);a_activate_group(1053);a_activate_group(1059);a_activate_group(1068);a_activate_group(1069);a_activate_group(1070);a_activate_group(1071);a_activate_group(1075);a_activate_group(1076);a_activate_group(1077);a_activate_group(1078);a_activate_group(1060);a_activate_group(1061);a_activate_group(1062);a_activate_group(1063);a_activate_group(1064);a_activate_group(1065);a_activate_group(1066);a_activate_group(1067);a_activate_group(1073);a_activate_group(1072);a_activate_group(1074); mission.trig.func[125]=nil;",
+            [126] = "a_group_off(1073);a_group_off(1072);a_group_off(1074); mission.trig.func[126]=nil;",
+            [127] = "a_set_flag(\"R15_CAS3_BLUE_MANEUVER\"); mission.trig.func[127]=nil;",
+            [128] = "a_set_flag(\"R15_CAS3_RED_UNDER-ATTACK\"); mission.trig.func[128]=nil;",
+            [129] = "a_ai_task(1066, 1); mission.trig.func[129]=nil;",
+            [130] = "a_group_on(1072); mission.trig.func[130]=nil;",
+            [131] = "a_group_on(1073); mission.trig.func[131]=nil;",
+            [132] = "a_group_on(1074); mission.trig.func[132]=nil;",
+            [133] = "a_ai_task(1048, 1); mission.trig.func[133]=nil;",
+            [134] = "a_ai_task(1052, 1); mission.trig.func[134]=nil;",
+            [135] = "a_ai_task(1050, 1); mission.trig.func[135]=nil;",
         }, -- end of ["actions"]
         ["conditions"] =
         {
@@ -270798,63 +270830,64 @@ mission =
             [75] = "return(c_time_since_flag(\"22\", 4) )",
             [76] = "return(c_flag_is_true(\"65\") )",
             [77] = "return(c_part_of_group_in_zone(667, 353) )",
-            [78] = "return(c_flag_is_true(\"23\") )",
-            [79] = "return(c_time_since_flag(\"23\", 1800) )",
-            [80] = "return(c_part_of_group_in_zone(695, 353) )",
-            [81] = "return(c_time_after(30) )",
-            [82] = "return(c_flag_is_true(\"121\") )",
-            [83] = "return(c_flag_is_true(\"32\") )",
-            [84] = "return(c_flag_is_true(\"R13_CAS1\") )",
-            [85] = "return(c_time_since_flag(\"R13_CAS1\", 6) )",
-            [86] = "return(c_time_since_flag(\"R13_CAS1\", 4) )",
-            [87] = "return(c_flag_is_true(\"R13_CAS1\") and c_part_of_coalition_in_zone(\"blue\", 576, \"GROUND\") )",
-            [88] = "return(c_time_since_flag(\"RA3_CAS1-BLUE-ADVANCING\", 60) )",
-            [89] = "return(c_flag_is_true(\"R13_CAS1\") and c_group_life_less(780, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(782, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(783, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(787, 80) )",
-            [90] = "return(c_flag_is_true(\"R13_CAS1\") and c_group_life_less(787, 80) )",
-            [91] = "return(c_flag_is_true(\"R13_CAS1-BLUE-ADVANCING\") )",
-            [92] = "return(c_time_since_flag(\"R13_CAS1_RED_ADS_DAMAGED\", 600) )",
-            [93] = "return(c_flag_is_true(\"R13_CAS1-BLUE-ADVANCING\") )",
-            [94] = "return(c_flag_is_true(\"R13_CAS1_RED_UNDER_ATTACK\") )",
-            [95] = "return(c_flag_is_true(\"33\") )",
-            [96] = "return(c_flag_is_true(\"R12_CAS2\") )",
+            [78] = "return(c_part_of_group_in_zone(1081, 353) )",
+            [79] = "return(c_flag_is_true(\"23\") )",
+            [80] = "return(c_time_since_flag(\"23\", 1800) )",
+            [81] = "return(c_part_of_group_in_zone(695, 353) )",
+            [82] = "return(c_time_after(30) )",
+            [83] = "return(c_flag_is_true(\"121\") )",
+            [84] = "return(c_flag_is_true(\"32\") )",
+            [85] = "return(c_flag_is_true(\"R13_CAS1\") )",
+            [86] = "return(c_time_since_flag(\"R13_CAS1\", 6) )",
+            [87] = "return(c_time_since_flag(\"R13_CAS1\", 4) )",
+            [88] = "return(c_flag_is_true(\"R13_CAS1\") and c_part_of_coalition_in_zone(\"blue\", 576, \"GROUND\") )",
+            [89] = "return(c_time_since_flag(\"RA3_CAS1-BLUE-ADVANCING\", 60) )",
+            [90] = "return(c_flag_is_true(\"R13_CAS1\") and c_group_life_less(780, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(782, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(783, 80) or c_flag_is_true(\"R13_CAS1\") and c_group_life_less(787, 80) )",
+            [91] = "return(c_flag_is_true(\"R13_CAS1\") and c_group_life_less(787, 80) )",
+            [92] = "return(c_flag_is_true(\"R13_CAS1-BLUE-ADVANCING\") )",
+            [93] = "return(c_time_since_flag(\"R13_CAS1_RED_ADS_DAMAGED\", 600) )",
+            [94] = "return(c_flag_is_true(\"R13_CAS1-BLUE-ADVANCING\") )",
+            [95] = "return(c_flag_is_true(\"R13_CAS1_RED_UNDER_ATTACK\") )",
+            [96] = "return(c_flag_is_true(\"33\") )",
             [97] = "return(c_flag_is_true(\"R12_CAS2\") )",
-            [98] = "return(c_time_since_flag(\"R12_CAS2\", 5) )",
+            [98] = "return(c_flag_is_true(\"R12_CAS2\") )",
             [99] = "return(c_time_since_flag(\"R12_CAS2\", 5) )",
-            [100] = "return(c_flag_is_true(\"R12_CAS2\") and c_part_of_coalition_in_zone(\"blue\", 643, \"GROUND\") )",
-            [101] = "return(c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(807, 90) or c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(808, 90) or c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(809, 90) )",
-            [102] = "return(c_time_since_flag(\"1\", 10) )",
-            [103] = "return(c_time_since_flag(\"R12_CAS2-BLUE-ADVANCING\", 30) )",
-            [104] = "return(c_group_life_less(817, 80) )",
-            [105] = "return(c_flag_is_true(\"34\") )",
-            [106] = "return(c_flag_is_true(\"R14_CAS1_ACTIVE\") )",
-            [107] = "return(c_time_since_flag(\"R14_CAS1_ACTIVE\", 7) )",
-            [108] = "return(c_time_since_flag(\"R14_CAS1_ACTIVE\", 5) and c_part_of_group_out_zone(870, 845) )",
-            [109] = "return(c_flag_is_true(\"R14_CAS1_ACTIVE\") and c_part_of_coalition_in_zone(\"blue\", 779, \"GROUND\") or c_flag_is_true(\"R14_CAS1_ACTIVE\") and c_flag_is_true(\"R14_CAS1_SOF_MOVING\") )",
-            [110] = "return(c_flag_is_true(\"R14_CAS1 COMBAT START\") )",
-            [111] = "return(c_time_since_flag(\"R14_CAS1 COMBAT START\", 1200) or c_time_since_flag(\"R14_CAS1_SOF_MOVING\", 1200) )",
-            [112] = "return(c_part_of_coalition_in_zone(\"blue\", 778, \"GROUND\") or c_group_life_less(883, 90) or c_group_life_less(884, 90) or c_time_since_flag(\"R14_CAS1_SOF_MOVING\", 120) )",
-            [113] = "return(c_time_since_flag(\"R14_CAS1 COMBAT START\", 300) )",
-            [114] = "return(c_unit_in_zone(3488, 777) )",
-            [115] = "return(c_flag_is_true(\"35\") )",
-            [116] = "return(c_flag_is_true(\"R15_CAS2_ACTIVE\") )",
-            [117] = "return(c_time_since_flag(\"R15_CAS2_ACTIVE\", 7) )",
-            [118] = "return(c_flag_is_true(\"R15_CAS2_ACTIVE\") and c_group_life_less(925, 90) or c_flag_is_true(\"R15_CAS2_ACTIVE\") and c_group_life_less(915, 90) )",
-            [119] = "return(c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 180) )",
-            [120] = "return(c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 300) and c_part_of_group_in_zone(906, 911) or c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 300) and c_part_of_group_in_zone(911, 911) )",
-            [121] = "return(c_part_of_group_in_zone(911, 911) and c_flag_is_true(\"R15_CAS2_COMBAT_STARTS\") )",
-            [122] = "return(c_part_of_group_in_zone(906, 911) and c_flag_is_true(\"R15_CAS2_COMBAT_STARTS\") )",
-            [123] = "return(c_flag_is_true(\"494MQT\") )",
-            [124] = "return(c_flag_is_true(\"R15_CAS3_ON\") )",
-            [125] = "return(c_time_since_flag(\"R15_CAS3_ON\", 4) )",
-            [126] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_part_of_coalition_in_zone(\"blue\", 1261, \"GROUND\") )",
-            [127] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_group_life_less(1075, 80) or c_group_life_less(1076, 80) or c_group_life_less(1077, 80) or c_group_life_less(1078, 80) or c_group_life_less(1061, 80) or c_group_life_less(1062, 80) )",
-            [128] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 10) and c_group_life_less(1075, 70) and c_group_life_less(1078, 70) )",
-            [129] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) )",
-            [130] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 300) )",
-            [131] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 600) )",
-            [132] = "return(c_part_of_group_in_zone(1048, 1261) )",
-            [133] = "return(c_part_of_group_in_zone(1052, 1261) )",
-            [134] = "return(c_part_of_group_in_zone(1050, 1261) )",
+            [100] = "return(c_time_since_flag(\"R12_CAS2\", 5) )",
+            [101] = "return(c_flag_is_true(\"R12_CAS2\") and c_part_of_coalition_in_zone(\"blue\", 643, \"GROUND\") )",
+            [102] = "return(c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(807, 90) or c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(808, 90) or c_time_since_flag(\"R12_CAS2\", 300) and c_group_life_less(809, 90) )",
+            [103] = "return(c_time_since_flag(\"1\", 10) )",
+            [104] = "return(c_time_since_flag(\"R12_CAS2-BLUE-ADVANCING\", 30) )",
+            [105] = "return(c_group_life_less(817, 80) )",
+            [106] = "return(c_flag_is_true(\"34\") )",
+            [107] = "return(c_flag_is_true(\"R14_CAS1_ACTIVE\") )",
+            [108] = "return(c_time_since_flag(\"R14_CAS1_ACTIVE\", 7) )",
+            [109] = "return(c_time_since_flag(\"R14_CAS1_ACTIVE\", 5) and c_part_of_group_out_zone(870, 845) )",
+            [110] = "return(c_flag_is_true(\"R14_CAS1_ACTIVE\") and c_part_of_coalition_in_zone(\"blue\", 779, \"GROUND\") or c_flag_is_true(\"R14_CAS1_ACTIVE\") and c_flag_is_true(\"R14_CAS1_SOF_MOVING\") )",
+            [111] = "return(c_flag_is_true(\"R14_CAS1 COMBAT START\") )",
+            [112] = "return(c_time_since_flag(\"R14_CAS1 COMBAT START\", 1200) or c_time_since_flag(\"R14_CAS1_SOF_MOVING\", 1200) )",
+            [113] = "return(c_part_of_coalition_in_zone(\"blue\", 778, \"GROUND\") or c_group_life_less(883, 90) or c_group_life_less(884, 90) or c_time_since_flag(\"R14_CAS1_SOF_MOVING\", 120) )",
+            [114] = "return(c_time_since_flag(\"R14_CAS1 COMBAT START\", 300) )",
+            [115] = "return(c_unit_in_zone(3488, 777) )",
+            [116] = "return(c_flag_is_true(\"35\") )",
+            [117] = "return(c_flag_is_true(\"R15_CAS2_ACTIVE\") )",
+            [118] = "return(c_time_since_flag(\"R15_CAS2_ACTIVE\", 7) )",
+            [119] = "return(c_flag_is_true(\"R15_CAS2_ACTIVE\") and c_group_life_less(925, 90) or c_flag_is_true(\"R15_CAS2_ACTIVE\") and c_group_life_less(915, 90) )",
+            [120] = "return(c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 180) )",
+            [121] = "return(c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 300) and c_part_of_group_in_zone(906, 911) or c_time_since_flag(\"R15_CAS2_COMBAT_STARTS\", 300) and c_part_of_group_in_zone(911, 911) )",
+            [122] = "return(c_part_of_group_in_zone(911, 911) and c_flag_is_true(\"R15_CAS2_COMBAT_STARTS\") )",
+            [123] = "return(c_part_of_group_in_zone(906, 911) and c_flag_is_true(\"R15_CAS2_COMBAT_STARTS\") )",
+            [124] = "return(c_flag_is_true(\"494MQT\") )",
+            [125] = "return(c_flag_is_true(\"R15_CAS3_ON\") )",
+            [126] = "return(c_time_since_flag(\"R15_CAS3_ON\", 4) )",
+            [127] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_part_of_coalition_in_zone(\"blue\", 1261, \"GROUND\") )",
+            [128] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_group_life_less(1075, 80) or c_group_life_less(1076, 80) or c_group_life_less(1077, 80) or c_group_life_less(1078, 80) or c_group_life_less(1061, 80) or c_group_life_less(1062, 80) )",
+            [129] = "return(c_flag_is_true(\"R15_CAS3_ON\") and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 10) and c_group_life_less(1075, 70) and c_group_life_less(1078, 70) )",
+            [130] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) )",
+            [131] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 300) )",
+            [132] = "return(c_time_since_flag(\"R15_CAS3_RED_UNDER-ATTACK\", 10) and c_time_since_flag(\"R15_CAS3_BLUE_MANEUVER\", 600) )",
+            [133] = "return(c_part_of_group_in_zone(1048, 1261) )",
+            [134] = "return(c_part_of_group_in_zone(1052, 1261) )",
+            [135] = "return(c_part_of_group_in_zone(1050, 1261) )",
         }, -- end of ["conditions"]
         ["custom"] =
         {
@@ -271001,6 +271034,7 @@ mission =
             [132] = true,
             [133] = true,
             [134] = true,
+            [135] = true,
         }, -- end of ["flag"]
         ["func"] =
         {
@@ -271137,6 +271171,7 @@ mission =
             [132] = "if mission.trig.conditions[132]() then mission.trig.actions[132]() end",
             [133] = "if mission.trig.conditions[133]() then mission.trig.actions[133]() end",
             [134] = "if mission.trig.conditions[134]() then mission.trig.actions[134]() end",
+            [135] = "if mission.trig.conditions[135]() then mission.trig.actions[135]() end",
         }, -- end of ["func"]
         ["funcStartup"] =
         {
@@ -275593,6 +275628,32 @@ mission =
             {
                 [1] =
                 {
+                    ["group"] = 1080,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [1]
+            }, -- end of ["actions"]
+            ["colorItem"] = "0x808000ff",
+            ["comment"] = "Activate R22 TST target Kiruna",
+            ["eventlist"] = "",
+            ["predicate"] = "triggerOnce",
+            ["rules"] =
+            {
+                [1] =
+                {
+                    ["coalitionlist"] = "red",
+                    ["group"] = 1081,
+                    ["predicate"] = "c_part_of_group_in_zone",
+                    ["unitType"] = "ALL",
+                    ["zone"] = 353,
+                }, -- end of [1]
+            }, -- end of ["rules"]
+        }, -- end of [78]
+        [79] =
+        {
+            ["actions"] =
+            {
+                [1] =
+                {
                     ["group"] = 658,
                     ["predicate"] = "a_activate_group",
                 }, -- end of [1]
@@ -275717,8 +275778,8 @@ mission =
                     ["zone"] = 353,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [78]
-        [79] =
+        }, -- end of [79]
+        [80] =
         {
             ["actions"] =
             {
@@ -275744,8 +275805,8 @@ mission =
                     ["zone"] = 353,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [79]
-        [80] =
+        }, -- end of [80]
+        [81] =
         {
             ["actions"] =
             {
@@ -275849,8 +275910,8 @@ mission =
                     ["zone"] = 353,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [80]
-        [81] =
+        }, -- end of [81]
+        [82] =
         {
             ["actions"] =
             {
@@ -275903,8 +275964,8 @@ mission =
                     ["seconds"] = 30,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [81]
-        [82] =
+        }, -- end of [82]
+        [83] =
         {
             ["actions"] =
             {
@@ -275946,8 +276007,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [82]
-        [83] =
+        }, -- end of [83]
+        [84] =
         {
             ["actions"] =
             {
@@ -275969,8 +276030,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [83]
-        [84] =
+        }, -- end of [84]
+        [85] =
         {
             ["actions"] =
             {
@@ -276102,8 +276163,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [84]
-        [85] =
+        }, -- end of [85]
+        [86] =
         {
             ["actions"] =
             {
@@ -276146,8 +276207,8 @@ mission =
                     ["seconds"] = 6,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [85]
-        [86] =
+        }, -- end of [86]
+        [87] =
         {
             ["actions"] =
             {
@@ -276174,8 +276235,8 @@ mission =
                     ["seconds"] = 4,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [86]
-        [87] =
+        }, -- end of [87]
+        [88] =
         {
             ["actions"] =
             {
@@ -276204,8 +276265,8 @@ mission =
                     ["zone"] = 576,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [87]
-        [88] =
+        }, -- end of [88]
+        [89] =
         {
             ["actions"] =
             {
@@ -276232,8 +276293,8 @@ mission =
                     ["seconds"] = 60,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [88]
-        [89] =
+        }, -- end of [89]
+        [90] =
         {
             ["actions"] =
             {
@@ -276306,8 +276367,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [11]
             }, -- end of ["rules"]
-        }, -- end of [89]
-        [90] =
+        }, -- end of [90]
+        [91] =
         {
             ["actions"] =
             {
@@ -276335,8 +276396,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [90]
-        [91] =
+        }, -- end of [91]
+        [92] =
         {
             ["actions"] =
             {
@@ -276373,8 +276434,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [91]
-        [92] =
+        }, -- end of [92]
+        [93] =
         {
             ["actions"] =
             {
@@ -276397,8 +276458,8 @@ mission =
                     ["seconds"] = 600,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [92]
-        [93] =
+        }, -- end of [93]
+        [94] =
         {
             ["actions"] =
             {
@@ -276424,8 +276485,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [93]
-        [94] =
+        }, -- end of [94]
+        [95] =
         {
             ["actions"] =
             {
@@ -276451,8 +276512,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [94]
-        [95] =
+        }, -- end of [95]
+        [96] =
         {
             ["actions"] =
             {
@@ -276474,8 +276535,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [95]
-        [96] =
+        }, -- end of [96]
+        [97] =
         {
             ["actions"] =
             {
@@ -276552,8 +276613,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [96]
-        [97] =
+        }, -- end of [97]
+        [98] =
         {
             ["actions"] =
             {
@@ -276645,8 +276706,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [97]
-        [98] =
+        }, -- end of [98]
+        [99] =
         {
             ["actions"] =
             {
@@ -276710,8 +276771,8 @@ mission =
                     ["seconds"] = 5,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [98]
-        [99] =
+        }, -- end of [99]
+        [100] =
         {
             ["actions"] =
             {
@@ -276749,8 +276810,8 @@ mission =
                     ["seconds"] = 5,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [99]
-        [100] =
+        }, -- end of [100]
+        [101] =
         {
             ["actions"] =
             {
@@ -276779,8 +276840,8 @@ mission =
                     ["zone"] = 643,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [100]
-        [101] =
+        }, -- end of [101]
+        [102] =
         {
             ["actions"] =
             {
@@ -276846,8 +276907,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [8]
             }, -- end of ["rules"]
-        }, -- end of [101]
-        [102] =
+        }, -- end of [102]
+        [103] =
         {
             ["actions"] =
             {
@@ -276870,8 +276931,8 @@ mission =
                     ["seconds"] = 10,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [102]
-        [103] =
+        }, -- end of [103]
+        [104] =
         {
             ["actions"] =
             {
@@ -276898,8 +276959,8 @@ mission =
                     ["seconds"] = 30,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [103]
-        [104] =
+        }, -- end of [104]
+        [105] =
         {
             ["actions"] =
             {
@@ -276922,8 +276983,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [104]
-        [105] =
+        }, -- end of [105]
+        [106] =
         {
             ["actions"] =
             {
@@ -276944,8 +277005,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [105]
-        [106] =
+        }, -- end of [106]
+        [107] =
         {
             ["actions"] =
             {
@@ -277121,8 +277182,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [106]
-        [107] =
+        }, -- end of [107]
+        [108] =
         {
             ["actions"] =
             {
@@ -277174,8 +277235,8 @@ mission =
                     ["seconds"] = 7,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [107]
-        [108] =
+        }, -- end of [108]
+        [109] =
         {
             ["actions"] =
             {
@@ -277203,8 +277264,8 @@ mission =
                     ["zone"] = 845,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [108]
-        [109] =
+        }, -- end of [109]
+        [110] =
         {
             ["actions"] =
             {
@@ -277246,8 +277307,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [5]
             }, -- end of ["rules"]
-        }, -- end of [109]
-        [110] =
+        }, -- end of [110]
+        [111] =
         {
             ["actions"] =
             {
@@ -277272,8 +277333,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [110]
-        [111] =
+        }, -- end of [111]
+        [112] =
         {
             ["actions"] =
             {
@@ -277310,8 +277371,8 @@ mission =
                     ["seconds"] = 1200,
                 }, -- end of [3]
             }, -- end of ["rules"]
-        }, -- end of [111]
-        [112] =
+        }, -- end of [112]
+        [113] =
         {
             ["actions"] =
             {
@@ -277369,8 +277430,8 @@ mission =
                     ["seconds"] = 120,
                 }, -- end of [7]
             }, -- end of ["rules"]
-        }, -- end of [112]
-        [113] =
+        }, -- end of [113]
+        [114] =
         {
             ["actions"] =
             {
@@ -277402,8 +277463,8 @@ mission =
                     ["seconds"] = 300,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [113]
-        [114] =
+        }, -- end of [114]
+        [115] =
         {
             ["actions"] =
             {
@@ -277435,8 +277496,8 @@ mission =
                     ["zone"] = 777,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [114]
-        [115] =
+        }, -- end of [115]
+        [116] =
         {
             ["actions"] =
             {
@@ -277458,8 +277519,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [115]
-        [116] =
+        }, -- end of [116]
+        [117] =
         {
             ["actions"] =
             {
@@ -277581,8 +277642,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [116]
-        [117] =
+        }, -- end of [117]
+        [118] =
         {
             ["actions"] =
             {
@@ -277615,8 +277676,8 @@ mission =
                     ["seconds"] = 7,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [117]
-        [118] =
+        }, -- end of [118]
+        [119] =
         {
             ["actions"] =
             {
@@ -277659,8 +277720,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [5]
             }, -- end of ["rules"]
-        }, -- end of [118]
-        [119] =
+        }, -- end of [119]
+        [120] =
         {
             ["actions"] =
             {
@@ -277688,8 +277749,8 @@ mission =
                     ["seconds"] = 180,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [119]
-        [120] =
+        }, -- end of [120]
+        [121] =
         {
             ["actions"] =
             {
@@ -277734,8 +277795,8 @@ mission =
                     ["zone"] = 911,
                 }, -- end of [5]
             }, -- end of ["rules"]
-        }, -- end of [120]
-        [121] =
+        }, -- end of [121]
+        [122] =
         {
             ["actions"] =
             {
@@ -277763,8 +277824,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [121]
-        [122] =
+        }, -- end of [122]
+        [123] =
         {
             ["actions"] =
             {
@@ -277792,8 +277853,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [122]
-        [123] =
+        }, -- end of [123]
+        [124] =
         {
             ["actions"] =
             {
@@ -277824,8 +277885,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [123]
-        [124] =
+        }, -- end of [124]
+        [125] =
         {
             ["actions"] =
             {
@@ -277997,8 +278058,8 @@ mission =
                     ["predicate"] = "c_flag_is_true",
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [124]
-        [125] =
+        }, -- end of [125]
+        [126] =
         {
             ["actions"] =
             {
@@ -278031,8 +278092,8 @@ mission =
                     ["seconds"] = 4,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [125]
-        [126] =
+        }, -- end of [126]
+        [127] =
         {
             ["actions"] =
             {
@@ -278061,8 +278122,8 @@ mission =
                     ["zone"] = 1261,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [126]
-        [127] =
+        }, -- end of [127]
+        [128] =
         {
             ["actions"] =
             {
@@ -278140,8 +278201,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [12]
             }, -- end of ["rules"]
-        }, -- end of [127]
-        [128] =
+        }, -- end of [128]
+        [129] =
         {
             ["actions"] =
             {
@@ -278185,8 +278246,8 @@ mission =
                     ["predicate"] = "c_group_life_less",
                 }, -- end of [4]
             }, -- end of ["rules"]
-        }, -- end of [128]
-        [129] =
+        }, -- end of [129]
+        [130] =
         {
             ["actions"] =
             {
@@ -278209,8 +278270,8 @@ mission =
                     ["seconds"] = 10,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [129]
-        [130] =
+        }, -- end of [130]
+        [131] =
         {
             ["actions"] =
             {
@@ -278239,8 +278300,8 @@ mission =
                     ["seconds"] = 300,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [130]
-        [131] =
+        }, -- end of [131]
+        [132] =
         {
             ["actions"] =
             {
@@ -278269,8 +278330,8 @@ mission =
                     ["seconds"] = 600,
                 }, -- end of [2]
             }, -- end of ["rules"]
-        }, -- end of [131]
-        [132] =
+        }, -- end of [132]
+        [133] =
         {
             ["actions"] =
             {
@@ -278297,8 +278358,8 @@ mission =
                     ["zone"] = 1261,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [132]
-        [133] =
+        }, -- end of [133]
+        [134] =
         {
             ["actions"] =
             {
@@ -278325,8 +278386,8 @@ mission =
                     ["zone"] = 1261,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [133]
-        [134] =
+        }, -- end of [134]
+        [135] =
         {
             ["actions"] =
             {
@@ -278353,7 +278414,7 @@ mission =
                     ["zone"] = 1261,
                 }, -- end of [1]
             }, -- end of ["rules"]
-        }, -- end of [134]
+        }, -- end of [135]
     }, -- end of ["trigrules"]
     ["version"] = 23,
     ["weather"] =
