@@ -87754,7 +87754,7 @@ mission =
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0,
                                         ["name"] = "R22_JTAC Kiruna-1",
-                                        ["playerCanDrive"] = false,
+                                        ["playerCanDrive"] = true,
                                         ["skill"] = "High",
                                         ["type"] = "Soldier stinger",
                                         ["unitId"] = 2796,
@@ -87818,7 +87818,7 @@ mission =
                                         ["coldAtStart"] = false,
                                         ["heading"] = 0,
                                         ["name"] = "R22_JTAC Kiruna-1-1",
-                                        ["playerCanDrive"] = false,
+                                        ["playerCanDrive"] = true,
                                         ["skill"] = "High",
                                         ["type"] = "Soldier stinger",
                                         ["unitId"] = 2797,
@@ -87959,6 +87959,24 @@ mission =
                                                                 }, -- end of ["action"]
                                                             }, -- end of ["params"]
                                                         }, -- end of [1]
+                                                        [2] =
+                                                        {
+                                                            ["auto"] = false,
+                                                            ["enabled"] = true,
+                                                            ["id"] = "WrappedAction",
+                                                            ["number"] = 2,
+                                                            ["params"] =
+                                                            {
+                                                                ["action"] =
+                                                                {
+                                                                    ["id"] = "SetImmortal",
+                                                                    ["params"] =
+                                                                    {
+                                                                        ["value"] = true,
+                                                                    }, -- end of ["params"]
+                                                                }, -- end of ["action"]
+                                                            }, -- end of ["params"]
+                                                        }, -- end of [2]
                                                     }, -- end of ["tasks"]
                                                 }, -- end of ["params"]
                                             }, -- end of ["task"]
@@ -88285,6 +88303,10 @@ mission =
                                 {
                                     [1] =
                                     {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
                                         ["coldAtStart"] = false,
                                         ["heading"] = 4.7132778773901,
                                         ["name"] = "R22_CAS_Kiruna_IFV_Vehicle-1-1",
@@ -90179,6 +90201,308 @@ mission =
                                 ["x"] = -26704.061665593,
                                 ["y"] = -94414.693244311,
                             }, -- end of [33]
+                            [34] =
+                            {
+                                ["groupId"] = 1082,
+                                ["hidden"] = false,
+                                ["lateActivation"] = true,
+                                ["name"] = "R22_CAS_Kiruna_IFV_Vehicle_Plt2",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 499,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -19374.089318984,
+                                            ["y"] = -94149.966106667,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -19374.089318984,
+                                                ["y"] = -94149.966106667,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -19374.089318984,
+                                                ["y"] = -94149.966106667,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_IFV_Vehicle_Plt2-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "BMP-3",
+                                        ["unitId"] = 4018,
+                                        ["x"] = -19374.089318984,
+                                        ["y"] = -94149.966106667,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_IFV_Vehicle_Plt2-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "BMP-3",
+                                        ["unitId"] = 4017,
+                                        ["x"] = -19374.107096922,
+                                        ["y"] = -94129.966114568,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["AddPropVehicle"] =
+                                        {
+                                            ["Slat armor"] = false,
+                                        }, -- end of ["AddPropVehicle"]
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_IFV_Vehicle_Plt2-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "BMP-3",
+                                        ["unitId"] = 4016,
+                                        ["x"] = -19374.12487486,
+                                        ["y"] = -94109.966122469,
+                                    }, -- end of [3]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -19374.089318984,
+                                ["y"] = -94149.966106667,
+                            }, -- end of [34]
+                            [35] =
+                            {
+                                ["groupId"] = 1083,
+                                ["hidden"] = false,
+                                ["lateActivation"] = true,
+                                ["name"] = "R22_CAS_Kiruna_Mortar",
+                                ["route"] =
+                                {
+                                    ["points"] =
+                                    {
+                                        [1] =
+                                        {
+                                            ["ETA"] = 0,
+                                            ["ETA_locked"] = true,
+                                            ["action"] = "Off Road",
+                                            ["alt"] = 499,
+                                            ["alt_type"] = "BARO",
+                                            ["formation_template"] = "",
+                                            ["speed"] = 0,
+                                            ["speed_locked"] = true,
+                                            ["task"] =
+                                            {
+                                                ["id"] = "ComboTask",
+                                                ["params"] =
+                                                {
+                                                    ["tasks"] =
+                                                    {
+                                                    }, -- end of ["tasks"]
+                                                }, -- end of ["params"]
+                                            }, -- end of ["task"]
+                                            ["type"] = "Turning Point",
+                                            ["x"] = -19327.778027541,
+                                            ["y"] = -94146.249568063,
+                                        }, -- end of [1]
+                                    }, -- end of ["points"]
+                                    ["routeRelativeTOT"] = true,
+                                    ["spans"] =
+                                    {
+                                        [1] =
+                                        {
+                                            [1] =
+                                            {
+                                                ["x"] = -19327.778027541,
+                                                ["y"] = -94146.249568063,
+                                            }, -- end of [1]
+                                            [2] =
+                                            {
+                                                ["x"] = -19327.778027541,
+                                                ["y"] = -94146.249568063,
+                                            }, -- end of [2]
+                                        }, -- end of [1]
+                                    }, -- end of ["spans"]
+                                }, -- end of ["route"]
+                                ["start_time"] = 0,
+                                ["task"] = "Ground Nothing",
+                                ["taskSelected"] = true,
+                                ["tasks"] =
+                                {
+                                }, -- end of ["tasks"]
+                                ["uncontrollable"] = false,
+                                ["units"] =
+                                {
+                                    [1] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-1",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "2B11 mortar",
+                                        ["unitId"] = 4023,
+                                        ["x"] = -19327.778027541,
+                                        ["y"] = -94146.249568063,
+                                    }, -- end of [1]
+                                    [2] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-2",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "2B11 mortar",
+                                        ["unitId"] = 4022,
+                                        ["x"] = -19305.973193407,
+                                        ["y"] = -94120.637540668,
+                                    }, -- end of [2]
+                                    [3] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-3",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "2B11 mortar",
+                                        ["unitId"] = 4024,
+                                        ["x"] = -19352.7843651,
+                                        ["y"] = -94107.312364253,
+                                    }, -- end of [3]
+                                    [4] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.8972465583106,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-4",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4026,
+                                        ["x"] = -19305.007280536,
+                                        ["y"] = -94121.022762062,
+                                    }, -- end of [4]
+                                    [5] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.5972709111458,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-5",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4030,
+                                        ["x"] = -19353.614850961,
+                                        ["y"] = -94107.21104871,
+                                    }, -- end of [5]
+                                    [6] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.5972709111458,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-6",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4029,
+                                        ["x"] = -19328.547709685,
+                                        ["y"] = -94146.049361101,
+                                    }, -- end of [6]
+                                    [7] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.9443704481144,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-7",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4028,
+                                        ["x"] = -19351.974982549,
+                                        ["y"] = -94107.243521352,
+                                    }, -- end of [7]
+                                    [8] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 2.7087509990952,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-8",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4027,
+                                        ["x"] = -19326.97699853,
+                                        ["y"] = -94146.439253941,
+                                    }, -- end of [8]
+                                    [9] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 5.5972709111458,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-9",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Infantry AK",
+                                        ["unitId"] = 4025,
+                                        ["x"] = -19307.017234064,
+                                        ["y"] = -94120.69444296,
+                                    }, -- end of [9]
+                                    [10] =
+                                    {
+                                        ["coldAtStart"] = false,
+                                        ["heading"] = 4.7132778773901,
+                                        ["name"] = "R22_CAS_Kiruna_Mortar-10",
+                                        ["playerCanDrive"] = false,
+                                        ["skill"] = "High",
+                                        ["type"] = "Ural-4320T",
+                                        ["unitId"] = 4021,
+                                        ["x"] = -19333.488817433,
+                                        ["y"] = -94120.291432189,
+                                    }, -- end of [10]
+                                }, -- end of ["units"]
+                                ["visible"] = false,
+                                ["x"] = -19327.778027541,
+                                ["y"] = -94146.249568063,
+                            }, -- end of [35]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [3]
@@ -97852,70 +98176,6 @@ mission =
                             }, -- end of [30]
                             [31] =
                             {
-                                ["groupId"] = 929,
-                                ["hidden"] = true,
-                                ["name"] = "R17 Strike defenses-1",
-                                ["route"] =
-                                {
-                                    ["points"] =
-                                    {
-                                        [1] =
-                                        {
-                                            ["ETA"] = 0,
-                                            ["ETA_locked"] = true,
-                                            ["action"] = "Off Road",
-                                            ["alt"] = 5,
-                                            ["alt_type"] = "BARO",
-                                            ["formation_template"] = "",
-                                            ["speed"] = 0,
-                                            ["speed_locked"] = true,
-                                            ["task"] =
-                                            {
-                                                ["id"] = "ComboTask",
-                                                ["params"] =
-                                                {
-                                                    ["tasks"] =
-                                                    {
-                                                    }, -- end of ["tasks"]
-                                                }, -- end of ["params"]
-                                            }, -- end of ["task"]
-                                            ["type"] = "Turning Point",
-                                            ["x"] = 187407.34618639,
-                                            ["y"] = -150083.40657938,
-                                        }, -- end of [1]
-                                    }, -- end of ["points"]
-                                    ["spans"] =
-                                    {
-                                    }, -- end of ["spans"]
-                                }, -- end of ["route"]
-                                ["start_time"] = 0,
-                                ["task"] = "Ground Nothing",
-                                ["taskSelected"] = true,
-                                ["tasks"] =
-                                {
-                                }, -- end of ["tasks"]
-                                ["uncontrollable"] = false,
-                                ["units"] =
-                                {
-                                    [1] =
-                                    {
-                                        ["coldAtStart"] = false,
-                                        ["heading"] = 0,
-                                        ["name"] = "R17 Strike defenses-1-1",
-                                        ["playerCanDrive"] = false,
-                                        ["skill"] = "Average",
-                                        ["type"] = "Infantry AK",
-                                        ["unitId"] = 3630,
-                                        ["x"] = 187407.34618639,
-                                        ["y"] = -150083.40657938,
-                                    }, -- end of [1]
-                                }, -- end of ["units"]
-                                ["visible"] = false,
-                                ["x"] = 187407.34618639,
-                                ["y"] = -150083.40657938,
-                            }, -- end of [31]
-                            [32] =
-                            {
                                 ["groupId"] = 931,
                                 ["hidden"] = true,
                                 ["hiddenOnMFD"] = true,
@@ -98089,8 +98349,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 59679.293075666,
                                 ["y"] = -272118.46381969,
-                            }, -- end of [32]
-                            [33] =
+                            }, -- end of [31]
+                            [32] =
                             {
                                 ["groupId"] = 933,
                                 ["hidden"] = true,
@@ -98229,8 +98489,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 59881.170720088,
                                 ["y"] = -271794.43049486,
-                            }, -- end of [33]
-                            [34] =
+                            }, -- end of [32]
+                            [33] =
                             {
                                 ["groupId"] = 945,
                                 ["hidden"] = true,
@@ -98391,8 +98651,8 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = 64547.177549781,
                                 ["y"] = -301210.94589235,
-                            }, -- end of [34]
-                            [35] =
+                            }, -- end of [33]
+                            [34] =
                             {
                                 ["groupId"] = 1080,
                                 ["hidden"] = true,
@@ -98568,7 +98828,7 @@ mission =
                                 ["visible"] = false,
                                 ["x"] = -17143.672089622,
                                 ["y"] = -96513.292043364,
-                            }, -- end of [35]
+                            }, -- end of [34]
                         }, -- end of ["group"]
                     }, -- end of ["vehicle"]
                 }, -- end of [1]
@@ -260491,7 +260751,7 @@ mission =
             [11] = 47,
         }, -- end of ["red"]
     }, -- end of ["coalitions"]
-    ["currentKey"] = 9038090,
+    ["currentKey"] = 9163965,
     ["date"] =
     {
         ["Day"] = 28,
@@ -270534,9 +270794,9 @@ mission =
     }, -- end of ["groundControl"]
     ["map"] =
     {
-        ["centerX"] = -34459.030849533,
-        ["centerY"] = -198718.16306722,
-        ["zoom"] = 1144781.2538072,
+        ["centerX"] = 75486.27173714,
+        ["centerY"] = -196554.98020675,
+        ["zoom"] = 1035772.6040773,
     }, -- end of ["map"]
     ["maxDictId"] = 468,
     ["pictureFileNameB"] =
@@ -270685,7 +270945,7 @@ mission =
             [78] = "a_activate_group(1080); mission.trig.func[78]=nil;",
             [79] = "a_activate_group(658);a_activate_group(655);a_activate_group(656);a_activate_group(657);a_activate_group(659);a_activate_group(646);a_activate_group(650);a_activate_group(645);a_activate_group(660);a_activate_group(652);a_activate_group(653);a_activate_group(654);a_activate_group(648);a_activate_group(647);a_group_off(655);a_group_off(656);a_group_off(657);a_group_off(659);a_group_off(658);a_group_off(660);a_group_off(652);a_group_off(653); mission.trig.func[79]=nil;",
             [80] = "a_set_flag(\"24\"); mission.trig.func[80]=nil;",
-            [81] = "a_activate_group(691);a_activate_group(694);a_activate_group(317);a_activate_group(316);a_activate_group(318);a_activate_group(696);a_activate_group(693);a_activate_group(692);a_activate_group(314);a_activate_group(315);a_do_script_file(getValueResourceByKey(\"ResKey_Action_408\"));a_group_off(694);a_activate_group(683);a_activate_group(698);a_activate_group(697);a_activate_group(699);a_activate_group(700); mission.trig.func[81]=nil;",
+            [81] = "a_activate_group(691);a_activate_group(694);a_activate_group(317);a_activate_group(316);a_activate_group(318);a_activate_group(696);a_activate_group(693);a_activate_group(692);a_activate_group(314);a_activate_group(315);a_do_script_file(getValueResourceByKey(\"ResKey_Action_408\"));a_group_off(694);a_activate_group(683);a_activate_group(698);a_activate_group(697);a_activate_group(699);a_activate_group(700);a_activate_group(1082);a_activate_group(1083); mission.trig.func[81]=nil;",
             [82] = "a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_425\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_426\"), \"121\", 1);a_add_radio_item_for_group(736, getValueDictByKey(\"DictKey_ActionRadioText_427\"), \"122\", 1);a_add_radio_item_for_group(735, getValueDictByKey(\"DictKey_ActionRadioText_428\"), \"122\", 1); mission.trig.func[82]=nil;",
             [83] = "a_activate_group(738);a_activate_group(740);a_activate_group(739);a_activate_group(747);a_activate_group(737); mission.trig.func[83]=nil;",
             [84] = "a_set_flag(\"R13_CAS1\"); mission.trig.func[84]=nil;",
@@ -275885,6 +276145,16 @@ mission =
                     ["group"] = 700,
                     ["predicate"] = "a_activate_group",
                 }, -- end of [17]
+                [18] =
+                {
+                    ["group"] = 1082,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [18]
+                [19] =
+                {
+                    ["group"] = 1083,
+                    ["predicate"] = "a_activate_group",
+                }, -- end of [19]
             }, -- end of ["actions"]
             ["colorItem"] = "0xc0c0c0ff",
             ["comment"] = "Activate 2FLUG",
